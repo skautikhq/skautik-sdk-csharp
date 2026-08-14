@@ -58,8 +58,8 @@ namespace Skautik.Sdk.Api
         /// </remarks>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="marketId">Market identifier, such as berlin-de.</param>
-        /// <returns>Envelope</returns>
-        Envelope GetMarket(string marketId);
+        /// <returns>MarketResponse</returns>
+        MarketResponse GetMarket(string marketId);
 
         /// <summary>
         /// Retrieve a market
@@ -69,8 +69,8 @@ namespace Skautik.Sdk.Api
         /// </remarks>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="marketId">Market identifier, such as berlin-de.</param>
-        /// <returns>ApiResponse of Envelope</returns>
-        ApiResponse<Envelope> GetMarketWithHttpInfo(string marketId);
+        /// <returns>ApiResponse of MarketResponse</returns>
+        ApiResponse<MarketResponse> GetMarketWithHttpInfo(string marketId);
         /// <summary>
         /// List districts
         /// </summary>
@@ -79,8 +79,8 @@ namespace Skautik.Sdk.Api
         /// </remarks>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="marketId">Market identifier.</param>
-        /// <returns></returns>
-        void ListDistricts(string marketId);
+        /// <returns>DistrictPage</returns>
+        DistrictPage ListDistricts(string marketId);
 
         /// <summary>
         /// List districts
@@ -90,8 +90,8 @@ namespace Skautik.Sdk.Api
         /// </remarks>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="marketId">Market identifier.</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ListDistrictsWithHttpInfo(string marketId);
+        /// <returns>ApiResponse of DistrictPage</returns>
+        ApiResponse<DistrictPage> ListDistrictsWithHttpInfo(string marketId);
         /// <summary>
         /// List markets
         /// </summary>
@@ -102,8 +102,8 @@ namespace Skautik.Sdk.Api
         /// <param name="country">ISO 3166-1 alpha-2 filter. (optional)</param>
         /// <param name="limit">Records per page, 1 to 200. (optional, default to 50)</param>
         /// <param name="cursor">Opaque pointer from the previous response. Omit for the first page. Cursors are stable across inserts, so paging never skips or repeats a record the way an offset does. (optional)</param>
-        /// <returns>Envelope</returns>
-        Envelope ListMarkets(string? country = default, int? limit = default, string? cursor = default);
+        /// <returns>CityPage</returns>
+        CityPage ListMarkets(string? country = default, int? limit = default, string? cursor = default);
 
         /// <summary>
         /// List markets
@@ -115,8 +115,8 @@ namespace Skautik.Sdk.Api
         /// <param name="country">ISO 3166-1 alpha-2 filter. (optional)</param>
         /// <param name="limit">Records per page, 1 to 200. (optional, default to 50)</param>
         /// <param name="cursor">Opaque pointer from the previous response. Omit for the first page. Cursors are stable across inserts, so paging never skips or repeats a record the way an offset does. (optional)</param>
-        /// <returns>ApiResponse of Envelope</returns>
-        ApiResponse<Envelope> ListMarketsWithHttpInfo(string? country = default, int? limit = default, string? cursor = default);
+        /// <returns>ApiResponse of CityPage</returns>
+        ApiResponse<CityPage> ListMarketsWithHttpInfo(string? country = default, int? limit = default, string? cursor = default);
         /// <summary>
         /// Market statistics
         /// </summary>
@@ -129,8 +129,8 @@ namespace Skautik.Sdk.Api
         /// <param name="transactionType">sale or rent. (optional)</param>
         /// <param name="interval">Granularity of the returned series. (optional, default to month)</param>
         /// <param name="since">RFC 3339 lower bound on the series. (optional)</param>
-        /// <returns>Envelope</returns>
-        Envelope MarketStatistics(string marketId, List<string>? propertyType = default, string? transactionType = default, string? interval = default, string? since = default);
+        /// <returns>SeriesResponse</returns>
+        SeriesResponse MarketStatistics(string marketId, List<string>? propertyType = default, string? transactionType = default, string? interval = default, string? since = default);
 
         /// <summary>
         /// Market statistics
@@ -144,8 +144,8 @@ namespace Skautik.Sdk.Api
         /// <param name="transactionType">sale or rent. (optional)</param>
         /// <param name="interval">Granularity of the returned series. (optional, default to month)</param>
         /// <param name="since">RFC 3339 lower bound on the series. (optional)</param>
-        /// <returns>ApiResponse of Envelope</returns>
-        ApiResponse<Envelope> MarketStatisticsWithHttpInfo(string marketId, List<string>? propertyType = default, string? transactionType = default, string? interval = default, string? since = default);
+        /// <returns>ApiResponse of SeriesResponse</returns>
+        ApiResponse<SeriesResponse> MarketStatisticsWithHttpInfo(string marketId, List<string>? propertyType = default, string? transactionType = default, string? interval = default, string? since = default);
         #endregion Synchronous Operations
     }
 
@@ -189,8 +189,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="marketId">Market identifier, such as berlin-de.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of Envelope</returns>
-        System.Threading.Tasks.Task<Envelope> GetMarketAsync(string marketId, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of MarketResponse</returns>
+        System.Threading.Tasks.Task<MarketResponse> GetMarketAsync(string marketId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Retrieve a market
@@ -201,8 +201,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="marketId">Market identifier, such as berlin-de.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (Envelope)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Envelope>> GetMarketWithHttpInfoAsync(string marketId, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (MarketResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<MarketResponse>> GetMarketWithHttpInfoAsync(string marketId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List districts
         /// </summary>
@@ -212,8 +212,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="marketId">Market identifier.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ListDistrictsAsync(string marketId, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of DistrictPage</returns>
+        System.Threading.Tasks.Task<DistrictPage> ListDistrictsAsync(string marketId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List districts
@@ -224,8 +224,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="marketId">Market identifier.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ListDistrictsWithHttpInfoAsync(string marketId, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (DistrictPage)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DistrictPage>> ListDistrictsWithHttpInfoAsync(string marketId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List markets
         /// </summary>
@@ -237,8 +237,8 @@ namespace Skautik.Sdk.Api
         /// <param name="limit">Records per page, 1 to 200. (optional, default to 50)</param>
         /// <param name="cursor">Opaque pointer from the previous response. Omit for the first page. Cursors are stable across inserts, so paging never skips or repeats a record the way an offset does. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of Envelope</returns>
-        System.Threading.Tasks.Task<Envelope> ListMarketsAsync(string? country = default, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of CityPage</returns>
+        System.Threading.Tasks.Task<CityPage> ListMarketsAsync(string? country = default, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List markets
@@ -251,8 +251,8 @@ namespace Skautik.Sdk.Api
         /// <param name="limit">Records per page, 1 to 200. (optional, default to 50)</param>
         /// <param name="cursor">Opaque pointer from the previous response. Omit for the first page. Cursors are stable across inserts, so paging never skips or repeats a record the way an offset does. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (Envelope)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Envelope>> ListMarketsWithHttpInfoAsync(string? country = default, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (CityPage)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CityPage>> ListMarketsWithHttpInfoAsync(string? country = default, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Market statistics
         /// </summary>
@@ -266,8 +266,8 @@ namespace Skautik.Sdk.Api
         /// <param name="interval">Granularity of the returned series. (optional, default to month)</param>
         /// <param name="since">RFC 3339 lower bound on the series. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of Envelope</returns>
-        System.Threading.Tasks.Task<Envelope> MarketStatisticsAsync(string marketId, List<string>? propertyType = default, string? transactionType = default, string? interval = default, string? since = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of SeriesResponse</returns>
+        System.Threading.Tasks.Task<SeriesResponse> MarketStatisticsAsync(string marketId, List<string>? propertyType = default, string? transactionType = default, string? interval = default, string? since = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Market statistics
@@ -282,8 +282,8 @@ namespace Skautik.Sdk.Api
         /// <param name="interval">Granularity of the returned series. (optional, default to month)</param>
         /// <param name="since">RFC 3339 lower bound on the series. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (Envelope)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Envelope>> MarketStatisticsWithHttpInfoAsync(string marketId, List<string>? propertyType = default, string? transactionType = default, string? interval = default, string? since = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (SeriesResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SeriesResponse>> MarketStatisticsWithHttpInfoAsync(string marketId, List<string>? propertyType = default, string? transactionType = default, string? interval = default, string? since = default, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -641,10 +641,10 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="marketId">Market identifier, such as berlin-de.</param>
-        /// <returns>Envelope</returns>
-        public Envelope GetMarket(string marketId)
+        /// <returns>MarketResponse</returns>
+        public MarketResponse GetMarket(string marketId)
         {
-            Skautik.Sdk.Client.ApiResponse<Envelope> localVarResponse = GetMarketWithHttpInfo(marketId);
+            Skautik.Sdk.Client.ApiResponse<MarketResponse> localVarResponse = GetMarketWithHttpInfo(marketId);
             return localVarResponse.Data;
         }
 
@@ -653,8 +653,8 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="marketId">Market identifier, such as berlin-de.</param>
-        /// <returns>ApiResponse of Envelope</returns>
-        public Skautik.Sdk.Client.ApiResponse<Envelope> GetMarketWithHttpInfo(string marketId)
+        /// <returns>ApiResponse of MarketResponse</returns>
+        public Skautik.Sdk.Client.ApiResponse<MarketResponse> GetMarketWithHttpInfo(string marketId)
         {
             // verify the required parameter 'marketId' is set
             if (marketId == null)
@@ -687,7 +687,7 @@ namespace Skautik.Sdk.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Envelope>("/markets/{city}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<MarketResponse>("/markets/{city}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -704,10 +704,10 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="marketId">Market identifier, such as berlin-de.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of Envelope</returns>
-        public async System.Threading.Tasks.Task<Envelope> GetMarketAsync(string marketId, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of MarketResponse</returns>
+        public async System.Threading.Tasks.Task<MarketResponse> GetMarketAsync(string marketId, System.Threading.CancellationToken cancellationToken = default)
         {
-            Skautik.Sdk.Client.ApiResponse<Envelope> localVarResponse = await GetMarketWithHttpInfoAsync(marketId, cancellationToken).ConfigureAwait(false);
+            Skautik.Sdk.Client.ApiResponse<MarketResponse> localVarResponse = await GetMarketWithHttpInfoAsync(marketId, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -717,8 +717,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="marketId">Market identifier, such as berlin-de.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (Envelope)</returns>
-        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<Envelope>> GetMarketWithHttpInfoAsync(string marketId, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (MarketResponse)</returns>
+        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<MarketResponse>> GetMarketWithHttpInfoAsync(string marketId, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'marketId' is set
             if (marketId == null)
@@ -754,7 +754,7 @@ namespace Skautik.Sdk.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Envelope>("/markets/{city}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<MarketResponse>("/markets/{city}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -770,10 +770,11 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="marketId">Market identifier.</param>
-        /// <returns></returns>
-        public void ListDistricts(string marketId)
+        /// <returns>DistrictPage</returns>
+        public DistrictPage ListDistricts(string marketId)
         {
-            ListDistrictsWithHttpInfo(marketId);
+            Skautik.Sdk.Client.ApiResponse<DistrictPage> localVarResponse = ListDistrictsWithHttpInfo(marketId);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -781,8 +782,8 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="marketId">Market identifier.</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Skautik.Sdk.Client.ApiResponse<Object> ListDistrictsWithHttpInfo(string marketId)
+        /// <returns>ApiResponse of DistrictPage</returns>
+        public Skautik.Sdk.Client.ApiResponse<DistrictPage> ListDistrictsWithHttpInfo(string marketId)
         {
             // verify the required parameter 'marketId' is set
             if (marketId == null)
@@ -795,6 +796,7 @@ namespace Skautik.Sdk.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json",
                 "application/problem+json"
             };
 
@@ -814,7 +816,7 @@ namespace Skautik.Sdk.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/markets/{city}/districts", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<DistrictPage>("/markets/{city}/districts", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -831,10 +833,11 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="marketId">Market identifier.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ListDistrictsAsync(string marketId, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of DistrictPage</returns>
+        public async System.Threading.Tasks.Task<DistrictPage> ListDistrictsAsync(string marketId, System.Threading.CancellationToken cancellationToken = default)
         {
-            await ListDistrictsWithHttpInfoAsync(marketId, cancellationToken).ConfigureAwait(false);
+            Skautik.Sdk.Client.ApiResponse<DistrictPage> localVarResponse = await ListDistrictsWithHttpInfoAsync(marketId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -843,8 +846,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="marketId">Market identifier.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<Object>> ListDistrictsWithHttpInfoAsync(string marketId, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (DistrictPage)</returns>
+        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<DistrictPage>> ListDistrictsWithHttpInfoAsync(string marketId, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'marketId' is set
             if (marketId == null)
@@ -858,6 +861,7 @@ namespace Skautik.Sdk.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json",
                 "application/problem+json"
             };
 
@@ -879,7 +883,7 @@ namespace Skautik.Sdk.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/markets/{city}/districts", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<DistrictPage>("/markets/{city}/districts", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -897,10 +901,10 @@ namespace Skautik.Sdk.Api
         /// <param name="country">ISO 3166-1 alpha-2 filter. (optional)</param>
         /// <param name="limit">Records per page, 1 to 200. (optional, default to 50)</param>
         /// <param name="cursor">Opaque pointer from the previous response. Omit for the first page. Cursors are stable across inserts, so paging never skips or repeats a record the way an offset does. (optional)</param>
-        /// <returns>Envelope</returns>
-        public Envelope ListMarkets(string? country = default, int? limit = default, string? cursor = default)
+        /// <returns>CityPage</returns>
+        public CityPage ListMarkets(string? country = default, int? limit = default, string? cursor = default)
         {
-            Skautik.Sdk.Client.ApiResponse<Envelope> localVarResponse = ListMarketsWithHttpInfo(country, limit, cursor);
+            Skautik.Sdk.Client.ApiResponse<CityPage> localVarResponse = ListMarketsWithHttpInfo(country, limit, cursor);
             return localVarResponse.Data;
         }
 
@@ -911,8 +915,8 @@ namespace Skautik.Sdk.Api
         /// <param name="country">ISO 3166-1 alpha-2 filter. (optional)</param>
         /// <param name="limit">Records per page, 1 to 200. (optional, default to 50)</param>
         /// <param name="cursor">Opaque pointer from the previous response. Omit for the first page. Cursors are stable across inserts, so paging never skips or repeats a record the way an offset does. (optional)</param>
-        /// <returns>ApiResponse of Envelope</returns>
-        public Skautik.Sdk.Client.ApiResponse<Envelope> ListMarketsWithHttpInfo(string? country = default, int? limit = default, string? cursor = default)
+        /// <returns>ApiResponse of CityPage</returns>
+        public Skautik.Sdk.Client.ApiResponse<CityPage> ListMarketsWithHttpInfo(string? country = default, int? limit = default, string? cursor = default)
         {
             Skautik.Sdk.Client.RequestOptions localVarRequestOptions = new Skautik.Sdk.Client.RequestOptions();
 
@@ -952,7 +956,7 @@ namespace Skautik.Sdk.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Envelope>("/markets", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<CityPage>("/markets", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -971,10 +975,10 @@ namespace Skautik.Sdk.Api
         /// <param name="limit">Records per page, 1 to 200. (optional, default to 50)</param>
         /// <param name="cursor">Opaque pointer from the previous response. Omit for the first page. Cursors are stable across inserts, so paging never skips or repeats a record the way an offset does. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of Envelope</returns>
-        public async System.Threading.Tasks.Task<Envelope> ListMarketsAsync(string? country = default, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of CityPage</returns>
+        public async System.Threading.Tasks.Task<CityPage> ListMarketsAsync(string? country = default, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Skautik.Sdk.Client.ApiResponse<Envelope> localVarResponse = await ListMarketsWithHttpInfoAsync(country, limit, cursor, cancellationToken).ConfigureAwait(false);
+            Skautik.Sdk.Client.ApiResponse<CityPage> localVarResponse = await ListMarketsWithHttpInfoAsync(country, limit, cursor, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -986,8 +990,8 @@ namespace Skautik.Sdk.Api
         /// <param name="limit">Records per page, 1 to 200. (optional, default to 50)</param>
         /// <param name="cursor">Opaque pointer from the previous response. Omit for the first page. Cursors are stable across inserts, so paging never skips or repeats a record the way an offset does. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (Envelope)</returns>
-        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<Envelope>> ListMarketsWithHttpInfoAsync(string? country = default, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (CityPage)</returns>
+        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<CityPage>> ListMarketsWithHttpInfoAsync(string? country = default, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Skautik.Sdk.Client.RequestOptions localVarRequestOptions = new Skautik.Sdk.Client.RequestOptions();
@@ -1030,7 +1034,7 @@ namespace Skautik.Sdk.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Envelope>("/markets", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<CityPage>("/markets", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1050,10 +1054,10 @@ namespace Skautik.Sdk.Api
         /// <param name="transactionType">sale or rent. (optional)</param>
         /// <param name="interval">Granularity of the returned series. (optional, default to month)</param>
         /// <param name="since">RFC 3339 lower bound on the series. (optional)</param>
-        /// <returns>Envelope</returns>
-        public Envelope MarketStatistics(string marketId, List<string>? propertyType = default, string? transactionType = default, string? interval = default, string? since = default)
+        /// <returns>SeriesResponse</returns>
+        public SeriesResponse MarketStatistics(string marketId, List<string>? propertyType = default, string? transactionType = default, string? interval = default, string? since = default)
         {
-            Skautik.Sdk.Client.ApiResponse<Envelope> localVarResponse = MarketStatisticsWithHttpInfo(marketId, propertyType, transactionType, interval, since);
+            Skautik.Sdk.Client.ApiResponse<SeriesResponse> localVarResponse = MarketStatisticsWithHttpInfo(marketId, propertyType, transactionType, interval, since);
             return localVarResponse.Data;
         }
 
@@ -1066,8 +1070,8 @@ namespace Skautik.Sdk.Api
         /// <param name="transactionType">sale or rent. (optional)</param>
         /// <param name="interval">Granularity of the returned series. (optional, default to month)</param>
         /// <param name="since">RFC 3339 lower bound on the series. (optional)</param>
-        /// <returns>ApiResponse of Envelope</returns>
-        public Skautik.Sdk.Client.ApiResponse<Envelope> MarketStatisticsWithHttpInfo(string marketId, List<string>? propertyType = default, string? transactionType = default, string? interval = default, string? since = default)
+        /// <returns>ApiResponse of SeriesResponse</returns>
+        public Skautik.Sdk.Client.ApiResponse<SeriesResponse> MarketStatisticsWithHttpInfo(string marketId, List<string>? propertyType = default, string? transactionType = default, string? interval = default, string? since = default)
         {
             // verify the required parameter 'marketId' is set
             if (marketId == null)
@@ -1116,7 +1120,7 @@ namespace Skautik.Sdk.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Envelope>("/markets/{city}/statistics", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<SeriesResponse>("/markets/{city}/statistics", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1137,10 +1141,10 @@ namespace Skautik.Sdk.Api
         /// <param name="interval">Granularity of the returned series. (optional, default to month)</param>
         /// <param name="since">RFC 3339 lower bound on the series. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of Envelope</returns>
-        public async System.Threading.Tasks.Task<Envelope> MarketStatisticsAsync(string marketId, List<string>? propertyType = default, string? transactionType = default, string? interval = default, string? since = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of SeriesResponse</returns>
+        public async System.Threading.Tasks.Task<SeriesResponse> MarketStatisticsAsync(string marketId, List<string>? propertyType = default, string? transactionType = default, string? interval = default, string? since = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Skautik.Sdk.Client.ApiResponse<Envelope> localVarResponse = await MarketStatisticsWithHttpInfoAsync(marketId, propertyType, transactionType, interval, since, cancellationToken).ConfigureAwait(false);
+            Skautik.Sdk.Client.ApiResponse<SeriesResponse> localVarResponse = await MarketStatisticsWithHttpInfoAsync(marketId, propertyType, transactionType, interval, since, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1154,8 +1158,8 @@ namespace Skautik.Sdk.Api
         /// <param name="interval">Granularity of the returned series. (optional, default to month)</param>
         /// <param name="since">RFC 3339 lower bound on the series. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (Envelope)</returns>
-        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<Envelope>> MarketStatisticsWithHttpInfoAsync(string marketId, List<string>? propertyType = default, string? transactionType = default, string? interval = default, string? since = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (SeriesResponse)</returns>
+        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<SeriesResponse>> MarketStatisticsWithHttpInfoAsync(string marketId, List<string>? propertyType = default, string? transactionType = default, string? interval = default, string? since = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'marketId' is set
             if (marketId == null)
@@ -1207,7 +1211,7 @@ namespace Skautik.Sdk.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Envelope>("/markets/{city}/statistics", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<SeriesResponse>("/markets/{city}/statistics", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

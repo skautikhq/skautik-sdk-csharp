@@ -35,8 +35,8 @@ namespace Skautik.Sdk.Api
         /// </remarks>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createGenerationRequest"></param>
-        /// <returns>Envelope</returns>
-        Envelope CreateGeneration(CreateGenerationRequest createGenerationRequest);
+        /// <returns>GenerationResponse</returns>
+        GenerationResponse CreateGeneration(CreateGenerationRequest createGenerationRequest);
 
         /// <summary>
         /// Request a generation
@@ -46,8 +46,8 @@ namespace Skautik.Sdk.Api
         /// </remarks>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createGenerationRequest"></param>
-        /// <returns>ApiResponse of Envelope</returns>
-        ApiResponse<Envelope> CreateGenerationWithHttpInfo(CreateGenerationRequest createGenerationRequest);
+        /// <returns>ApiResponse of GenerationResponse</returns>
+        ApiResponse<GenerationResponse> CreateGenerationWithHttpInfo(CreateGenerationRequest createGenerationRequest);
         /// <summary>
         /// Retrieve a generation
         /// </summary>
@@ -56,8 +56,8 @@ namespace Skautik.Sdk.Api
         /// </remarks>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="generationId">Generation identifier.</param>
-        /// <returns>Envelope</returns>
-        Envelope GetGeneration(string generationId);
+        /// <returns>GenerationResponse</returns>
+        GenerationResponse GetGeneration(string generationId);
 
         /// <summary>
         /// Retrieve a generation
@@ -67,8 +67,8 @@ namespace Skautik.Sdk.Api
         /// </remarks>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="generationId">Generation identifier.</param>
-        /// <returns>ApiResponse of Envelope</returns>
-        ApiResponse<Envelope> GetGenerationWithHttpInfo(string generationId);
+        /// <returns>ApiResponse of GenerationResponse</returns>
+        ApiResponse<GenerationResponse> GetGenerationWithHttpInfo(string generationId);
         /// <summary>
         /// List what can be generated
         /// </summary>
@@ -95,8 +95,8 @@ namespace Skautik.Sdk.Api
         /// Recent requests for your organisation, newest first.  Requires the &#x60;images:write&#x60; scope.
         /// </remarks>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void ListGenerations();
+        /// <returns>GenerationPage</returns>
+        GenerationPage ListGenerations();
 
         /// <summary>
         /// List generations
@@ -105,8 +105,8 @@ namespace Skautik.Sdk.Api
         /// Recent requests for your organisation, newest first.  Requires the &#x60;images:write&#x60; scope.
         /// </remarks>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ListGenerationsWithHttpInfo();
+        /// <returns>ApiResponse of GenerationPage</returns>
+        ApiResponse<GenerationPage> ListGenerationsWithHttpInfo();
         #endregion Synchronous Operations
     }
 
@@ -125,8 +125,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createGenerationRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of Envelope</returns>
-        System.Threading.Tasks.Task<Envelope> CreateGenerationAsync(CreateGenerationRequest createGenerationRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of GenerationResponse</returns>
+        System.Threading.Tasks.Task<GenerationResponse> CreateGenerationAsync(CreateGenerationRequest createGenerationRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Request a generation
@@ -137,8 +137,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createGenerationRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (Envelope)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Envelope>> CreateGenerationWithHttpInfoAsync(CreateGenerationRequest createGenerationRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (GenerationResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GenerationResponse>> CreateGenerationWithHttpInfoAsync(CreateGenerationRequest createGenerationRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Retrieve a generation
         /// </summary>
@@ -148,8 +148,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="generationId">Generation identifier.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of Envelope</returns>
-        System.Threading.Tasks.Task<Envelope> GetGenerationAsync(string generationId, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of GenerationResponse</returns>
+        System.Threading.Tasks.Task<GenerationResponse> GetGenerationAsync(string generationId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Retrieve a generation
@@ -160,8 +160,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="generationId">Generation identifier.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (Envelope)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Envelope>> GetGenerationWithHttpInfoAsync(string generationId, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (GenerationResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GenerationResponse>> GetGenerationWithHttpInfoAsync(string generationId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List what can be generated
         /// </summary>
@@ -191,8 +191,8 @@ namespace Skautik.Sdk.Api
         /// </remarks>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ListGenerationsAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of GenerationPage</returns>
+        System.Threading.Tasks.Task<GenerationPage> ListGenerationsAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List generations
@@ -202,8 +202,8 @@ namespace Skautik.Sdk.Api
         /// </remarks>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ListGenerationsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (GenerationPage)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GenerationPage>> ListGenerationsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -422,10 +422,10 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createGenerationRequest"></param>
-        /// <returns>Envelope</returns>
-        public Envelope CreateGeneration(CreateGenerationRequest createGenerationRequest)
+        /// <returns>GenerationResponse</returns>
+        public GenerationResponse CreateGeneration(CreateGenerationRequest createGenerationRequest)
         {
-            Skautik.Sdk.Client.ApiResponse<Envelope> localVarResponse = CreateGenerationWithHttpInfo(createGenerationRequest);
+            Skautik.Sdk.Client.ApiResponse<GenerationResponse> localVarResponse = CreateGenerationWithHttpInfo(createGenerationRequest);
             return localVarResponse.Data;
         }
 
@@ -434,8 +434,8 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createGenerationRequest"></param>
-        /// <returns>ApiResponse of Envelope</returns>
-        public Skautik.Sdk.Client.ApiResponse<Envelope> CreateGenerationWithHttpInfo(CreateGenerationRequest createGenerationRequest)
+        /// <returns>ApiResponse of GenerationResponse</returns>
+        public Skautik.Sdk.Client.ApiResponse<GenerationResponse> CreateGenerationWithHttpInfo(CreateGenerationRequest createGenerationRequest)
         {
             // verify the required parameter 'createGenerationRequest' is set
             if (createGenerationRequest == null)
@@ -469,7 +469,7 @@ namespace Skautik.Sdk.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Envelope>("/generations", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<GenerationResponse>("/generations", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -486,10 +486,10 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createGenerationRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of Envelope</returns>
-        public async System.Threading.Tasks.Task<Envelope> CreateGenerationAsync(CreateGenerationRequest createGenerationRequest, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of GenerationResponse</returns>
+        public async System.Threading.Tasks.Task<GenerationResponse> CreateGenerationAsync(CreateGenerationRequest createGenerationRequest, System.Threading.CancellationToken cancellationToken = default)
         {
-            Skautik.Sdk.Client.ApiResponse<Envelope> localVarResponse = await CreateGenerationWithHttpInfoAsync(createGenerationRequest, cancellationToken).ConfigureAwait(false);
+            Skautik.Sdk.Client.ApiResponse<GenerationResponse> localVarResponse = await CreateGenerationWithHttpInfoAsync(createGenerationRequest, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -499,8 +499,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createGenerationRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (Envelope)</returns>
-        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<Envelope>> CreateGenerationWithHttpInfoAsync(CreateGenerationRequest createGenerationRequest, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (GenerationResponse)</returns>
+        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<GenerationResponse>> CreateGenerationWithHttpInfoAsync(CreateGenerationRequest createGenerationRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'createGenerationRequest' is set
             if (createGenerationRequest == null)
@@ -537,7 +537,7 @@ namespace Skautik.Sdk.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Envelope>("/generations", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<GenerationResponse>("/generations", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -553,10 +553,10 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="generationId">Generation identifier.</param>
-        /// <returns>Envelope</returns>
-        public Envelope GetGeneration(string generationId)
+        /// <returns>GenerationResponse</returns>
+        public GenerationResponse GetGeneration(string generationId)
         {
-            Skautik.Sdk.Client.ApiResponse<Envelope> localVarResponse = GetGenerationWithHttpInfo(generationId);
+            Skautik.Sdk.Client.ApiResponse<GenerationResponse> localVarResponse = GetGenerationWithHttpInfo(generationId);
             return localVarResponse.Data;
         }
 
@@ -565,8 +565,8 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="generationId">Generation identifier.</param>
-        /// <returns>ApiResponse of Envelope</returns>
-        public Skautik.Sdk.Client.ApiResponse<Envelope> GetGenerationWithHttpInfo(string generationId)
+        /// <returns>ApiResponse of GenerationResponse</returns>
+        public Skautik.Sdk.Client.ApiResponse<GenerationResponse> GetGenerationWithHttpInfo(string generationId)
         {
             // verify the required parameter 'generationId' is set
             if (generationId == null)
@@ -599,7 +599,7 @@ namespace Skautik.Sdk.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Envelope>("/generations/{generation_id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<GenerationResponse>("/generations/{generation_id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -616,10 +616,10 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="generationId">Generation identifier.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of Envelope</returns>
-        public async System.Threading.Tasks.Task<Envelope> GetGenerationAsync(string generationId, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of GenerationResponse</returns>
+        public async System.Threading.Tasks.Task<GenerationResponse> GetGenerationAsync(string generationId, System.Threading.CancellationToken cancellationToken = default)
         {
-            Skautik.Sdk.Client.ApiResponse<Envelope> localVarResponse = await GetGenerationWithHttpInfoAsync(generationId, cancellationToken).ConfigureAwait(false);
+            Skautik.Sdk.Client.ApiResponse<GenerationResponse> localVarResponse = await GetGenerationWithHttpInfoAsync(generationId, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -629,8 +629,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="generationId">Generation identifier.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (Envelope)</returns>
-        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<Envelope>> GetGenerationWithHttpInfoAsync(string generationId, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (GenerationResponse)</returns>
+        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<GenerationResponse>> GetGenerationWithHttpInfoAsync(string generationId, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'generationId' is set
             if (generationId == null)
@@ -666,7 +666,7 @@ namespace Skautik.Sdk.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Envelope>("/generations/{generation_id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GenerationResponse>("/generations/{generation_id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -796,18 +796,19 @@ namespace Skautik.Sdk.Api
         /// List generations Recent requests for your organisation, newest first.  Requires the &#x60;images:write&#x60; scope.
         /// </summary>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void ListGenerations()
+        /// <returns>GenerationPage</returns>
+        public GenerationPage ListGenerations()
         {
-            ListGenerationsWithHttpInfo();
+            Skautik.Sdk.Client.ApiResponse<GenerationPage> localVarResponse = ListGenerationsWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
         /// List generations Recent requests for your organisation, newest first.  Requires the &#x60;images:write&#x60; scope.
         /// </summary>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Skautik.Sdk.Client.ApiResponse<Object> ListGenerationsWithHttpInfo()
+        /// <returns>ApiResponse of GenerationPage</returns>
+        public Skautik.Sdk.Client.ApiResponse<GenerationPage> ListGenerationsWithHttpInfo()
         {
             Skautik.Sdk.Client.RequestOptions localVarRequestOptions = new Skautik.Sdk.Client.RequestOptions();
 
@@ -816,6 +817,7 @@ namespace Skautik.Sdk.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json",
                 "application/problem+json"
             };
 
@@ -834,7 +836,7 @@ namespace Skautik.Sdk.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/generations", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<GenerationPage>("/generations", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -850,10 +852,11 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ListGenerationsAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of GenerationPage</returns>
+        public async System.Threading.Tasks.Task<GenerationPage> ListGenerationsAsync(System.Threading.CancellationToken cancellationToken = default)
         {
-            await ListGenerationsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Skautik.Sdk.Client.ApiResponse<GenerationPage> localVarResponse = await ListGenerationsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -861,8 +864,8 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<Object>> ListGenerationsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (GenerationPage)</returns>
+        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<GenerationPage>> ListGenerationsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default)
         {
 
             Skautik.Sdk.Client.RequestOptions localVarRequestOptions = new Skautik.Sdk.Client.RequestOptions();
@@ -872,6 +875,7 @@ namespace Skautik.Sdk.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json",
                 "application/problem+json"
             };
 
@@ -892,7 +896,7 @@ namespace Skautik.Sdk.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/generations", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GenerationPage>("/generations", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

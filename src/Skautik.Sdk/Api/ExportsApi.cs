@@ -35,8 +35,8 @@ namespace Skautik.Sdk.Api
         /// </remarks>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createExportRequest"></param>
-        /// <returns>Envelope</returns>
-        Envelope CreateExport(CreateExportRequest createExportRequest);
+        /// <returns>ExportResponse</returns>
+        ExportResponse CreateExport(CreateExportRequest createExportRequest);
 
         /// <summary>
         /// Request an export
@@ -46,8 +46,8 @@ namespace Skautik.Sdk.Api
         /// </remarks>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createExportRequest"></param>
-        /// <returns>ApiResponse of Envelope</returns>
-        ApiResponse<Envelope> CreateExportWithHttpInfo(CreateExportRequest createExportRequest);
+        /// <returns>ApiResponse of ExportResponse</returns>
+        ApiResponse<ExportResponse> CreateExportWithHttpInfo(CreateExportRequest createExportRequest);
         /// <summary>
         /// Retrieve an export
         /// </summary>
@@ -56,8 +56,8 @@ namespace Skautik.Sdk.Api
         /// </remarks>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="exportId">Export identifier.</param>
-        /// <returns>Envelope</returns>
-        Envelope GetExport(string exportId);
+        /// <returns>ExportResponse</returns>
+        ExportResponse GetExport(string exportId);
 
         /// <summary>
         /// Retrieve an export
@@ -67,8 +67,8 @@ namespace Skautik.Sdk.Api
         /// </remarks>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="exportId">Export identifier.</param>
-        /// <returns>ApiResponse of Envelope</returns>
-        ApiResponse<Envelope> GetExportWithHttpInfo(string exportId);
+        /// <returns>ApiResponse of ExportResponse</returns>
+        ApiResponse<ExportResponse> GetExportWithHttpInfo(string exportId);
         /// <summary>
         /// List exports
         /// </summary>
@@ -76,8 +76,8 @@ namespace Skautik.Sdk.Api
         /// Recent exports for your organisation, newest first.  Statuses only. Download links are not included here: minting one per row would sign a URL for every export you have ever made on a call you probably wanted statuses from. Fetch the export itself for a link.  Requires the &#x60;exports:create&#x60; scope.
         /// </remarks>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void ListExports();
+        /// <returns>ExportPage</returns>
+        ExportPage ListExports();
 
         /// <summary>
         /// List exports
@@ -86,8 +86,8 @@ namespace Skautik.Sdk.Api
         /// Recent exports for your organisation, newest first.  Statuses only. Download links are not included here: minting one per row would sign a URL for every export you have ever made on a call you probably wanted statuses from. Fetch the export itself for a link.  Requires the &#x60;exports:create&#x60; scope.
         /// </remarks>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ListExportsWithHttpInfo();
+        /// <returns>ApiResponse of ExportPage</returns>
+        ApiResponse<ExportPage> ListExportsWithHttpInfo();
         #endregion Synchronous Operations
     }
 
@@ -106,8 +106,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createExportRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of Envelope</returns>
-        System.Threading.Tasks.Task<Envelope> CreateExportAsync(CreateExportRequest createExportRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ExportResponse</returns>
+        System.Threading.Tasks.Task<ExportResponse> CreateExportAsync(CreateExportRequest createExportRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Request an export
@@ -118,8 +118,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createExportRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (Envelope)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Envelope>> CreateExportWithHttpInfoAsync(CreateExportRequest createExportRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (ExportResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ExportResponse>> CreateExportWithHttpInfoAsync(CreateExportRequest createExportRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Retrieve an export
         /// </summary>
@@ -129,8 +129,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="exportId">Export identifier.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of Envelope</returns>
-        System.Threading.Tasks.Task<Envelope> GetExportAsync(string exportId, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ExportResponse</returns>
+        System.Threading.Tasks.Task<ExportResponse> GetExportAsync(string exportId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Retrieve an export
@@ -141,8 +141,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="exportId">Export identifier.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (Envelope)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Envelope>> GetExportWithHttpInfoAsync(string exportId, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (ExportResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ExportResponse>> GetExportWithHttpInfoAsync(string exportId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List exports
         /// </summary>
@@ -151,8 +151,8 @@ namespace Skautik.Sdk.Api
         /// </remarks>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ListExportsAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ExportPage</returns>
+        System.Threading.Tasks.Task<ExportPage> ListExportsAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List exports
@@ -162,8 +162,8 @@ namespace Skautik.Sdk.Api
         /// </remarks>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ListExportsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (ExportPage)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ExportPage>> ListExportsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -382,10 +382,10 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createExportRequest"></param>
-        /// <returns>Envelope</returns>
-        public Envelope CreateExport(CreateExportRequest createExportRequest)
+        /// <returns>ExportResponse</returns>
+        public ExportResponse CreateExport(CreateExportRequest createExportRequest)
         {
-            Skautik.Sdk.Client.ApiResponse<Envelope> localVarResponse = CreateExportWithHttpInfo(createExportRequest);
+            Skautik.Sdk.Client.ApiResponse<ExportResponse> localVarResponse = CreateExportWithHttpInfo(createExportRequest);
             return localVarResponse.Data;
         }
 
@@ -394,8 +394,8 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createExportRequest"></param>
-        /// <returns>ApiResponse of Envelope</returns>
-        public Skautik.Sdk.Client.ApiResponse<Envelope> CreateExportWithHttpInfo(CreateExportRequest createExportRequest)
+        /// <returns>ApiResponse of ExportResponse</returns>
+        public Skautik.Sdk.Client.ApiResponse<ExportResponse> CreateExportWithHttpInfo(CreateExportRequest createExportRequest)
         {
             // verify the required parameter 'createExportRequest' is set
             if (createExportRequest == null)
@@ -429,7 +429,7 @@ namespace Skautik.Sdk.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Envelope>("/exports", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<ExportResponse>("/exports", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -446,10 +446,10 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createExportRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of Envelope</returns>
-        public async System.Threading.Tasks.Task<Envelope> CreateExportAsync(CreateExportRequest createExportRequest, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ExportResponse</returns>
+        public async System.Threading.Tasks.Task<ExportResponse> CreateExportAsync(CreateExportRequest createExportRequest, System.Threading.CancellationToken cancellationToken = default)
         {
-            Skautik.Sdk.Client.ApiResponse<Envelope> localVarResponse = await CreateExportWithHttpInfoAsync(createExportRequest, cancellationToken).ConfigureAwait(false);
+            Skautik.Sdk.Client.ApiResponse<ExportResponse> localVarResponse = await CreateExportWithHttpInfoAsync(createExportRequest, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -459,8 +459,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createExportRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (Envelope)</returns>
-        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<Envelope>> CreateExportWithHttpInfoAsync(CreateExportRequest createExportRequest, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (ExportResponse)</returns>
+        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<ExportResponse>> CreateExportWithHttpInfoAsync(CreateExportRequest createExportRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'createExportRequest' is set
             if (createExportRequest == null)
@@ -497,7 +497,7 @@ namespace Skautik.Sdk.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Envelope>("/exports", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<ExportResponse>("/exports", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -513,10 +513,10 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="exportId">Export identifier.</param>
-        /// <returns>Envelope</returns>
-        public Envelope GetExport(string exportId)
+        /// <returns>ExportResponse</returns>
+        public ExportResponse GetExport(string exportId)
         {
-            Skautik.Sdk.Client.ApiResponse<Envelope> localVarResponse = GetExportWithHttpInfo(exportId);
+            Skautik.Sdk.Client.ApiResponse<ExportResponse> localVarResponse = GetExportWithHttpInfo(exportId);
             return localVarResponse.Data;
         }
 
@@ -525,8 +525,8 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="exportId">Export identifier.</param>
-        /// <returns>ApiResponse of Envelope</returns>
-        public Skautik.Sdk.Client.ApiResponse<Envelope> GetExportWithHttpInfo(string exportId)
+        /// <returns>ApiResponse of ExportResponse</returns>
+        public Skautik.Sdk.Client.ApiResponse<ExportResponse> GetExportWithHttpInfo(string exportId)
         {
             // verify the required parameter 'exportId' is set
             if (exportId == null)
@@ -559,7 +559,7 @@ namespace Skautik.Sdk.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Envelope>("/exports/{export_id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<ExportResponse>("/exports/{export_id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -576,10 +576,10 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="exportId">Export identifier.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of Envelope</returns>
-        public async System.Threading.Tasks.Task<Envelope> GetExportAsync(string exportId, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ExportResponse</returns>
+        public async System.Threading.Tasks.Task<ExportResponse> GetExportAsync(string exportId, System.Threading.CancellationToken cancellationToken = default)
         {
-            Skautik.Sdk.Client.ApiResponse<Envelope> localVarResponse = await GetExportWithHttpInfoAsync(exportId, cancellationToken).ConfigureAwait(false);
+            Skautik.Sdk.Client.ApiResponse<ExportResponse> localVarResponse = await GetExportWithHttpInfoAsync(exportId, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -589,8 +589,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="exportId">Export identifier.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (Envelope)</returns>
-        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<Envelope>> GetExportWithHttpInfoAsync(string exportId, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (ExportResponse)</returns>
+        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<ExportResponse>> GetExportWithHttpInfoAsync(string exportId, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'exportId' is set
             if (exportId == null)
@@ -626,7 +626,7 @@ namespace Skautik.Sdk.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Envelope>("/exports/{export_id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ExportResponse>("/exports/{export_id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -641,18 +641,19 @@ namespace Skautik.Sdk.Api
         /// List exports Recent exports for your organisation, newest first.  Statuses only. Download links are not included here: minting one per row would sign a URL for every export you have ever made on a call you probably wanted statuses from. Fetch the export itself for a link.  Requires the &#x60;exports:create&#x60; scope.
         /// </summary>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void ListExports()
+        /// <returns>ExportPage</returns>
+        public ExportPage ListExports()
         {
-            ListExportsWithHttpInfo();
+            Skautik.Sdk.Client.ApiResponse<ExportPage> localVarResponse = ListExportsWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
         /// List exports Recent exports for your organisation, newest first.  Statuses only. Download links are not included here: minting one per row would sign a URL for every export you have ever made on a call you probably wanted statuses from. Fetch the export itself for a link.  Requires the &#x60;exports:create&#x60; scope.
         /// </summary>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Skautik.Sdk.Client.ApiResponse<Object> ListExportsWithHttpInfo()
+        /// <returns>ApiResponse of ExportPage</returns>
+        public Skautik.Sdk.Client.ApiResponse<ExportPage> ListExportsWithHttpInfo()
         {
             Skautik.Sdk.Client.RequestOptions localVarRequestOptions = new Skautik.Sdk.Client.RequestOptions();
 
@@ -661,6 +662,7 @@ namespace Skautik.Sdk.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json",
                 "application/problem+json"
             };
 
@@ -679,7 +681,7 @@ namespace Skautik.Sdk.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/exports", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<ExportPage>("/exports", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -695,10 +697,11 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ListExportsAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ExportPage</returns>
+        public async System.Threading.Tasks.Task<ExportPage> ListExportsAsync(System.Threading.CancellationToken cancellationToken = default)
         {
-            await ListExportsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Skautik.Sdk.Client.ApiResponse<ExportPage> localVarResponse = await ListExportsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -706,8 +709,8 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<Object>> ListExportsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (ExportPage)</returns>
+        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<ExportPage>> ListExportsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default)
         {
 
             Skautik.Sdk.Client.RequestOptions localVarRequestOptions = new Skautik.Sdk.Client.RequestOptions();
@@ -717,6 +720,7 @@ namespace Skautik.Sdk.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json",
                 "application/problem+json"
             };
 
@@ -737,7 +741,7 @@ namespace Skautik.Sdk.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/exports", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ExportPage>("/exports", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

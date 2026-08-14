@@ -77,8 +77,8 @@ namespace Skautik.Sdk.Api
         /// </remarks>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookId">Webhook identifier.</param>
-        /// <returns></returns>
-        void GetWebhook(string webhookId);
+        /// <returns>WebhookResponse</returns>
+        WebhookResponse GetWebhook(string webhookId);
 
         /// <summary>
         /// Retrieve a webhook
@@ -88,8 +88,8 @@ namespace Skautik.Sdk.Api
         /// </remarks>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookId">Webhook identifier.</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> GetWebhookWithHttpInfo(string webhookId);
+        /// <returns>ApiResponse of WebhookResponse</returns>
+        ApiResponse<WebhookResponse> GetWebhookWithHttpInfo(string webhookId);
         /// <summary>
         /// List deliveries
         /// </summary>
@@ -100,8 +100,8 @@ namespace Skautik.Sdk.Api
         /// <param name="webhookId">Webhook identifier.</param>
         /// <param name="status">Filter by outcome. (optional)</param>
         /// <param name="limit">How many attempts to return, newest first. Capped at 100. (optional, default to 100)</param>
-        /// <returns></returns>
-        void ListDeliveries(string webhookId, string? status = default, int? limit = default);
+        /// <returns>DeliveryPage</returns>
+        DeliveryPage ListDeliveries(string webhookId, string? status = default, int? limit = default);
 
         /// <summary>
         /// List deliveries
@@ -113,8 +113,8 @@ namespace Skautik.Sdk.Api
         /// <param name="webhookId">Webhook identifier.</param>
         /// <param name="status">Filter by outcome. (optional)</param>
         /// <param name="limit">How many attempts to return, newest first. Capped at 100. (optional, default to 100)</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ListDeliveriesWithHttpInfo(string webhookId, string? status = default, int? limit = default);
+        /// <returns>ApiResponse of DeliveryPage</returns>
+        ApiResponse<DeliveryPage> ListDeliveriesWithHttpInfo(string webhookId, string? status = default, int? limit = default);
         /// <summary>
         /// List available events
         /// </summary>
@@ -141,8 +141,8 @@ namespace Skautik.Sdk.Api
         /// Every endpoint your organisation has registered.  The signing secret is never included. It is shown once when the endpoint is created, and an endpoint list that returned it would hand it to everyone who can read this call.  Requires the &#x60;webhooks:manage&#x60; scope.
         /// </remarks>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Envelope</returns>
-        Envelope ListWebhooks();
+        /// <returns>WebhookPage</returns>
+        WebhookPage ListWebhooks();
 
         /// <summary>
         /// List webhooks
@@ -151,8 +151,8 @@ namespace Skautik.Sdk.Api
         /// Every endpoint your organisation has registered.  The signing secret is never included. It is shown once when the endpoint is created, and an endpoint list that returned it would hand it to everyone who can read this call.  Requires the &#x60;webhooks:manage&#x60; scope.
         /// </remarks>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Envelope</returns>
-        ApiResponse<Envelope> ListWebhooksWithHttpInfo();
+        /// <returns>ApiResponse of WebhookPage</returns>
+        ApiResponse<WebhookPage> ListWebhooksWithHttpInfo();
         /// <summary>
         /// Rotate the signing secret
         /// </summary>
@@ -204,8 +204,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookId">Webhook identifier.</param>
         /// <param name="updateWebhookRequest"> (optional)</param>
-        /// <returns></returns>
-        void UpdateWebhook(string webhookId, UpdateWebhookRequest? updateWebhookRequest = default);
+        /// <returns>WebhookResponse</returns>
+        WebhookResponse UpdateWebhook(string webhookId, UpdateWebhookRequest? updateWebhookRequest = default);
 
         /// <summary>
         /// Update a webhook
@@ -216,8 +216,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookId">Webhook identifier.</param>
         /// <param name="updateWebhookRequest"> (optional)</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> UpdateWebhookWithHttpInfo(string webhookId, UpdateWebhookRequest? updateWebhookRequest = default);
+        /// <returns>ApiResponse of WebhookResponse</returns>
+        ApiResponse<WebhookResponse> UpdateWebhookWithHttpInfo(string webhookId, UpdateWebhookRequest? updateWebhookRequest = default);
         #endregion Synchronous Operations
     }
 
@@ -282,8 +282,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookId">Webhook identifier.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task GetWebhookAsync(string webhookId, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of WebhookResponse</returns>
+        System.Threading.Tasks.Task<WebhookResponse> GetWebhookAsync(string webhookId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Retrieve a webhook
@@ -294,8 +294,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookId">Webhook identifier.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> GetWebhookWithHttpInfoAsync(string webhookId, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (WebhookResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<WebhookResponse>> GetWebhookWithHttpInfoAsync(string webhookId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List deliveries
         /// </summary>
@@ -307,8 +307,8 @@ namespace Skautik.Sdk.Api
         /// <param name="status">Filter by outcome. (optional)</param>
         /// <param name="limit">How many attempts to return, newest first. Capped at 100. (optional, default to 100)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ListDeliveriesAsync(string webhookId, string? status = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of DeliveryPage</returns>
+        System.Threading.Tasks.Task<DeliveryPage> ListDeliveriesAsync(string webhookId, string? status = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List deliveries
@@ -321,8 +321,8 @@ namespace Skautik.Sdk.Api
         /// <param name="status">Filter by outcome. (optional)</param>
         /// <param name="limit">How many attempts to return, newest first. Capped at 100. (optional, default to 100)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ListDeliveriesWithHttpInfoAsync(string webhookId, string? status = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (DeliveryPage)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DeliveryPage>> ListDeliveriesWithHttpInfoAsync(string webhookId, string? status = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List available events
         /// </summary>
@@ -352,8 +352,8 @@ namespace Skautik.Sdk.Api
         /// </remarks>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of Envelope</returns>
-        System.Threading.Tasks.Task<Envelope> ListWebhooksAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of WebhookPage</returns>
+        System.Threading.Tasks.Task<WebhookPage> ListWebhooksAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List webhooks
@@ -363,8 +363,8 @@ namespace Skautik.Sdk.Api
         /// </remarks>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (Envelope)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Envelope>> ListWebhooksWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (WebhookPage)</returns>
+        System.Threading.Tasks.Task<ApiResponse<WebhookPage>> ListWebhooksWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Rotate the signing secret
         /// </summary>
@@ -421,8 +421,8 @@ namespace Skautik.Sdk.Api
         /// <param name="webhookId">Webhook identifier.</param>
         /// <param name="updateWebhookRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task UpdateWebhookAsync(string webhookId, UpdateWebhookRequest? updateWebhookRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of WebhookResponse</returns>
+        System.Threading.Tasks.Task<WebhookResponse> UpdateWebhookAsync(string webhookId, UpdateWebhookRequest? updateWebhookRequest = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update a webhook
@@ -434,8 +434,8 @@ namespace Skautik.Sdk.Api
         /// <param name="webhookId">Webhook identifier.</param>
         /// <param name="updateWebhookRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> UpdateWebhookWithHttpInfoAsync(string webhookId, UpdateWebhookRequest? updateWebhookRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (WebhookResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<WebhookResponse>> UpdateWebhookWithHttpInfoAsync(string webhookId, UpdateWebhookRequest? updateWebhookRequest = default, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -908,10 +908,11 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookId">Webhook identifier.</param>
-        /// <returns></returns>
-        public void GetWebhook(string webhookId)
+        /// <returns>WebhookResponse</returns>
+        public WebhookResponse GetWebhook(string webhookId)
         {
-            GetWebhookWithHttpInfo(webhookId);
+            Skautik.Sdk.Client.ApiResponse<WebhookResponse> localVarResponse = GetWebhookWithHttpInfo(webhookId);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -919,8 +920,8 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookId">Webhook identifier.</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Skautik.Sdk.Client.ApiResponse<Object> GetWebhookWithHttpInfo(string webhookId)
+        /// <returns>ApiResponse of WebhookResponse</returns>
+        public Skautik.Sdk.Client.ApiResponse<WebhookResponse> GetWebhookWithHttpInfo(string webhookId)
         {
             // verify the required parameter 'webhookId' is set
             if (webhookId == null)
@@ -933,6 +934,7 @@ namespace Skautik.Sdk.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json",
                 "application/problem+json"
             };
 
@@ -952,7 +954,7 @@ namespace Skautik.Sdk.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/webhooks/{webhook_id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<WebhookResponse>("/webhooks/{webhook_id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -969,10 +971,11 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookId">Webhook identifier.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task GetWebhookAsync(string webhookId, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of WebhookResponse</returns>
+        public async System.Threading.Tasks.Task<WebhookResponse> GetWebhookAsync(string webhookId, System.Threading.CancellationToken cancellationToken = default)
         {
-            await GetWebhookWithHttpInfoAsync(webhookId, cancellationToken).ConfigureAwait(false);
+            Skautik.Sdk.Client.ApiResponse<WebhookResponse> localVarResponse = await GetWebhookWithHttpInfoAsync(webhookId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -981,8 +984,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookId">Webhook identifier.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<Object>> GetWebhookWithHttpInfoAsync(string webhookId, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (WebhookResponse)</returns>
+        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<WebhookResponse>> GetWebhookWithHttpInfoAsync(string webhookId, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'webhookId' is set
             if (webhookId == null)
@@ -996,6 +999,7 @@ namespace Skautik.Sdk.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json",
                 "application/problem+json"
             };
 
@@ -1017,7 +1021,7 @@ namespace Skautik.Sdk.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/webhooks/{webhook_id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<WebhookResponse>("/webhooks/{webhook_id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1035,10 +1039,11 @@ namespace Skautik.Sdk.Api
         /// <param name="webhookId">Webhook identifier.</param>
         /// <param name="status">Filter by outcome. (optional)</param>
         /// <param name="limit">How many attempts to return, newest first. Capped at 100. (optional, default to 100)</param>
-        /// <returns></returns>
-        public void ListDeliveries(string webhookId, string? status = default, int? limit = default)
+        /// <returns>DeliveryPage</returns>
+        public DeliveryPage ListDeliveries(string webhookId, string? status = default, int? limit = default)
         {
-            ListDeliveriesWithHttpInfo(webhookId, status, limit);
+            Skautik.Sdk.Client.ApiResponse<DeliveryPage> localVarResponse = ListDeliveriesWithHttpInfo(webhookId, status, limit);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -1048,8 +1053,8 @@ namespace Skautik.Sdk.Api
         /// <param name="webhookId">Webhook identifier.</param>
         /// <param name="status">Filter by outcome. (optional)</param>
         /// <param name="limit">How many attempts to return, newest first. Capped at 100. (optional, default to 100)</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Skautik.Sdk.Client.ApiResponse<Object> ListDeliveriesWithHttpInfo(string webhookId, string? status = default, int? limit = default)
+        /// <returns>ApiResponse of DeliveryPage</returns>
+        public Skautik.Sdk.Client.ApiResponse<DeliveryPage> ListDeliveriesWithHttpInfo(string webhookId, string? status = default, int? limit = default)
         {
             // verify the required parameter 'webhookId' is set
             if (webhookId == null)
@@ -1062,6 +1067,7 @@ namespace Skautik.Sdk.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json",
                 "application/problem+json"
             };
 
@@ -1089,7 +1095,7 @@ namespace Skautik.Sdk.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/webhooks/{webhook_id}/deliveries", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<DeliveryPage>("/webhooks/{webhook_id}/deliveries", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1108,10 +1114,11 @@ namespace Skautik.Sdk.Api
         /// <param name="status">Filter by outcome. (optional)</param>
         /// <param name="limit">How many attempts to return, newest first. Capped at 100. (optional, default to 100)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ListDeliveriesAsync(string webhookId, string? status = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of DeliveryPage</returns>
+        public async System.Threading.Tasks.Task<DeliveryPage> ListDeliveriesAsync(string webhookId, string? status = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            await ListDeliveriesWithHttpInfoAsync(webhookId, status, limit, cancellationToken).ConfigureAwait(false);
+            Skautik.Sdk.Client.ApiResponse<DeliveryPage> localVarResponse = await ListDeliveriesWithHttpInfoAsync(webhookId, status, limit, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -1122,8 +1129,8 @@ namespace Skautik.Sdk.Api
         /// <param name="status">Filter by outcome. (optional)</param>
         /// <param name="limit">How many attempts to return, newest first. Capped at 100. (optional, default to 100)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<Object>> ListDeliveriesWithHttpInfoAsync(string webhookId, string? status = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (DeliveryPage)</returns>
+        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<DeliveryPage>> ListDeliveriesWithHttpInfoAsync(string webhookId, string? status = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'webhookId' is set
             if (webhookId == null)
@@ -1137,6 +1144,7 @@ namespace Skautik.Sdk.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json",
                 "application/problem+json"
             };
 
@@ -1166,7 +1174,7 @@ namespace Skautik.Sdk.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/webhooks/{webhook_id}/deliveries", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<DeliveryPage>("/webhooks/{webhook_id}/deliveries", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1296,10 +1304,10 @@ namespace Skautik.Sdk.Api
         /// List webhooks Every endpoint your organisation has registered.  The signing secret is never included. It is shown once when the endpoint is created, and an endpoint list that returned it would hand it to everyone who can read this call.  Requires the &#x60;webhooks:manage&#x60; scope.
         /// </summary>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Envelope</returns>
-        public Envelope ListWebhooks()
+        /// <returns>WebhookPage</returns>
+        public WebhookPage ListWebhooks()
         {
-            Skautik.Sdk.Client.ApiResponse<Envelope> localVarResponse = ListWebhooksWithHttpInfo();
+            Skautik.Sdk.Client.ApiResponse<WebhookPage> localVarResponse = ListWebhooksWithHttpInfo();
             return localVarResponse.Data;
         }
 
@@ -1307,8 +1315,8 @@ namespace Skautik.Sdk.Api
         /// List webhooks Every endpoint your organisation has registered.  The signing secret is never included. It is shown once when the endpoint is created, and an endpoint list that returned it would hand it to everyone who can read this call.  Requires the &#x60;webhooks:manage&#x60; scope.
         /// </summary>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Envelope</returns>
-        public Skautik.Sdk.Client.ApiResponse<Envelope> ListWebhooksWithHttpInfo()
+        /// <returns>ApiResponse of WebhookPage</returns>
+        public Skautik.Sdk.Client.ApiResponse<WebhookPage> ListWebhooksWithHttpInfo()
         {
             Skautik.Sdk.Client.RequestOptions localVarRequestOptions = new Skautik.Sdk.Client.RequestOptions();
 
@@ -1336,7 +1344,7 @@ namespace Skautik.Sdk.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Envelope>("/webhooks", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<WebhookPage>("/webhooks", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1352,10 +1360,10 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of Envelope</returns>
-        public async System.Threading.Tasks.Task<Envelope> ListWebhooksAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of WebhookPage</returns>
+        public async System.Threading.Tasks.Task<WebhookPage> ListWebhooksAsync(System.Threading.CancellationToken cancellationToken = default)
         {
-            Skautik.Sdk.Client.ApiResponse<Envelope> localVarResponse = await ListWebhooksWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Skautik.Sdk.Client.ApiResponse<WebhookPage> localVarResponse = await ListWebhooksWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1364,8 +1372,8 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (Envelope)</returns>
-        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<Envelope>> ListWebhooksWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (WebhookPage)</returns>
+        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<WebhookPage>> ListWebhooksWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default)
         {
 
             Skautik.Sdk.Client.RequestOptions localVarRequestOptions = new Skautik.Sdk.Client.RequestOptions();
@@ -1396,7 +1404,7 @@ namespace Skautik.Sdk.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Envelope>("/webhooks", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<WebhookPage>("/webhooks", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1667,10 +1675,11 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookId">Webhook identifier.</param>
         /// <param name="updateWebhookRequest"> (optional)</param>
-        /// <returns></returns>
-        public void UpdateWebhook(string webhookId, UpdateWebhookRequest? updateWebhookRequest = default)
+        /// <returns>WebhookResponse</returns>
+        public WebhookResponse UpdateWebhook(string webhookId, UpdateWebhookRequest? updateWebhookRequest = default)
         {
-            UpdateWebhookWithHttpInfo(webhookId, updateWebhookRequest);
+            Skautik.Sdk.Client.ApiResponse<WebhookResponse> localVarResponse = UpdateWebhookWithHttpInfo(webhookId, updateWebhookRequest);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -1679,8 +1688,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookId">Webhook identifier.</param>
         /// <param name="updateWebhookRequest"> (optional)</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Skautik.Sdk.Client.ApiResponse<Object> UpdateWebhookWithHttpInfo(string webhookId, UpdateWebhookRequest? updateWebhookRequest = default)
+        /// <returns>ApiResponse of WebhookResponse</returns>
+        public Skautik.Sdk.Client.ApiResponse<WebhookResponse> UpdateWebhookWithHttpInfo(string webhookId, UpdateWebhookRequest? updateWebhookRequest = default)
         {
             // verify the required parameter 'webhookId' is set
             if (webhookId == null)
@@ -1694,6 +1703,7 @@ namespace Skautik.Sdk.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json",
                 "application/problem+json"
             };
 
@@ -1714,7 +1724,7 @@ namespace Skautik.Sdk.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Patch<Object>("/webhooks/{webhook_id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Patch<WebhookResponse>("/webhooks/{webhook_id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1732,10 +1742,11 @@ namespace Skautik.Sdk.Api
         /// <param name="webhookId">Webhook identifier.</param>
         /// <param name="updateWebhookRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task UpdateWebhookAsync(string webhookId, UpdateWebhookRequest? updateWebhookRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of WebhookResponse</returns>
+        public async System.Threading.Tasks.Task<WebhookResponse> UpdateWebhookAsync(string webhookId, UpdateWebhookRequest? updateWebhookRequest = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            await UpdateWebhookWithHttpInfoAsync(webhookId, updateWebhookRequest, cancellationToken).ConfigureAwait(false);
+            Skautik.Sdk.Client.ApiResponse<WebhookResponse> localVarResponse = await UpdateWebhookWithHttpInfoAsync(webhookId, updateWebhookRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -1745,8 +1756,8 @@ namespace Skautik.Sdk.Api
         /// <param name="webhookId">Webhook identifier.</param>
         /// <param name="updateWebhookRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<Object>> UpdateWebhookWithHttpInfoAsync(string webhookId, UpdateWebhookRequest? updateWebhookRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (WebhookResponse)</returns>
+        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<WebhookResponse>> UpdateWebhookWithHttpInfoAsync(string webhookId, UpdateWebhookRequest? updateWebhookRequest = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'webhookId' is set
             if (webhookId == null)
@@ -1761,6 +1772,7 @@ namespace Skautik.Sdk.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json",
                 "application/problem+json"
             };
 
@@ -1783,7 +1795,7 @@ namespace Skautik.Sdk.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PatchAsync<Object>("/webhooks/{webhook_id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PatchAsync<WebhookResponse>("/webhooks/{webhook_id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

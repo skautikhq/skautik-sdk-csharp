@@ -103,8 +103,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId">Identifier returned by any collection endpoint.</param>
         /// <param name="expand">Related resources to inline. (optional)</param>
-        /// <returns>Envelope</returns>
-        Envelope GetProperty(string propertyId, List<string>? expand = default);
+        /// <returns>PropertyResponse</returns>
+        PropertyResponse GetProperty(string propertyId, List<string>? expand = default);
 
         /// <summary>
         /// Retrieve a property
@@ -115,8 +115,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId">Identifier returned by any collection endpoint.</param>
         /// <param name="expand">Related resources to inline. (optional)</param>
-        /// <returns>ApiResponse of Envelope</returns>
-        ApiResponse<Envelope> GetPropertyWithHttpInfo(string propertyId, List<string>? expand = default);
+        /// <returns>ApiResponse of PropertyResponse</returns>
+        ApiResponse<PropertyResponse> GetPropertyWithHttpInfo(string propertyId, List<string>? expand = default);
         /// <summary>
         /// List properties
         /// </summary>
@@ -139,8 +139,8 @@ namespace Skautik.Sdk.Api
         /// <param name="sort">Field to order by. Prefix with a minus for descending. Ties break on id, so paging is deterministic. (optional, default to -listed_at)</param>
         /// <param name="fields">Comma-separated list of fields to return. Trims payloads substantially when you only need a few. (optional)</param>
         /// <param name="expand">Comma-separated related resources to inline rather than fetch separately. (optional)</param>
-        /// <returns>Envelope</returns>
-        Envelope ListProperties(string? market = default, List<string>? district = default, string? transactionType = default, List<string>? propertyType = default, int? priceMin = default, int? priceMax = default, int? bedroomsMin = default, decimal? areaMin = default, string? status = default, string? updatedSince = default, int? limit = default, string? cursor = default, string? sort = default, List<string>? fields = default, List<string>? expand = default);
+        /// <returns>PropertyPage</returns>
+        PropertyPage ListProperties(string? market = default, List<string>? district = default, string? transactionType = default, List<string>? propertyType = default, int? priceMin = default, int? priceMax = default, int? bedroomsMin = default, decimal? areaMin = default, string? status = default, string? updatedSince = default, int? limit = default, string? cursor = default, string? sort = default, List<string>? fields = default, List<string>? expand = default);
 
         /// <summary>
         /// List properties
@@ -164,8 +164,8 @@ namespace Skautik.Sdk.Api
         /// <param name="sort">Field to order by. Prefix with a minus for descending. Ties break on id, so paging is deterministic. (optional, default to -listed_at)</param>
         /// <param name="fields">Comma-separated list of fields to return. Trims payloads substantially when you only need a few. (optional)</param>
         /// <param name="expand">Comma-separated related resources to inline rather than fetch separately. (optional)</param>
-        /// <returns>ApiResponse of Envelope</returns>
-        ApiResponse<Envelope> ListPropertiesWithHttpInfo(string? market = default, List<string>? district = default, string? transactionType = default, List<string>? propertyType = default, int? priceMin = default, int? priceMax = default, int? bedroomsMin = default, decimal? areaMin = default, string? status = default, string? updatedSince = default, int? limit = default, string? cursor = default, string? sort = default, List<string>? fields = default, List<string>? expand = default);
+        /// <returns>ApiResponse of PropertyPage</returns>
+        ApiResponse<PropertyPage> ListPropertiesWithHttpInfo(string? market = default, List<string>? district = default, string? transactionType = default, List<string>? propertyType = default, int? priceMin = default, int? priceMax = default, int? bedroomsMin = default, decimal? areaMin = default, string? status = default, string? updatedSince = default, int? limit = default, string? cursor = default, string? sort = default, List<string>? fields = default, List<string>? expand = default);
         /// <summary>
         /// List images
         /// </summary>
@@ -174,8 +174,8 @@ namespace Skautik.Sdk.Api
         /// </remarks>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId">Property identifier.</param>
-        /// <returns></returns>
-        void ListPropertyImages(string propertyId);
+        /// <returns>ImagePage</returns>
+        ImagePage ListPropertyImages(string propertyId);
 
         /// <summary>
         /// List images
@@ -185,8 +185,8 @@ namespace Skautik.Sdk.Api
         /// </remarks>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId">Property identifier.</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ListPropertyImagesWithHttpInfo(string propertyId);
+        /// <returns>ApiResponse of ImagePage</returns>
+        ApiResponse<ImagePage> ListPropertyImagesWithHttpInfo(string propertyId);
         /// <summary>
         /// Price history
         /// </summary>
@@ -195,8 +195,8 @@ namespace Skautik.Sdk.Api
         /// </remarks>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId">Property identifier.</param>
-        /// <returns>Envelope</returns>
-        Envelope PropertyPriceHistory(string propertyId);
+        /// <returns>PriceObservationPage</returns>
+        PriceObservationPage PropertyPriceHistory(string propertyId);
 
         /// <summary>
         /// Price history
@@ -206,8 +206,8 @@ namespace Skautik.Sdk.Api
         /// </remarks>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId">Property identifier.</param>
-        /// <returns>ApiResponse of Envelope</returns>
-        ApiResponse<Envelope> PropertyPriceHistoryWithHttpInfo(string propertyId);
+        /// <returns>ApiResponse of PriceObservationPage</returns>
+        ApiResponse<PriceObservationPage> PropertyPriceHistoryWithHttpInfo(string propertyId);
         /// <summary>
         /// Search properties
         /// </summary>
@@ -238,8 +238,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId">Property to compare against.</param>
         /// <param name="limit">Comparables to return, 1 to 50. (optional, default to 10)</param>
-        /// <returns></returns>
-        void SimilarProperties(string propertyId, int? limit = default);
+        /// <returns>PropertyPage</returns>
+        PropertyPage SimilarProperties(string propertyId, int? limit = default);
 
         /// <summary>
         /// Similar properties
@@ -250,8 +250,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId">Property to compare against.</param>
         /// <param name="limit">Comparables to return, 1 to 50. (optional, default to 10)</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> SimilarPropertiesWithHttpInfo(string propertyId, int? limit = default);
+        /// <returns>ApiResponse of PropertyPage</returns>
+        ApiResponse<PropertyPage> SimilarPropertiesWithHttpInfo(string propertyId, int? limit = default);
         /// <summary>
         /// Update a property
         /// </summary>
@@ -261,8 +261,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId">Property to update.</param>
         /// <param name="ifMatch">ETag from your last read. Rejected with 412 if the record moved on. (optional)</param>
-        /// <returns></returns>
-        void UpdateProperty(string propertyId, string? ifMatch = default);
+        /// <returns>PropertyResponse</returns>
+        PropertyResponse UpdateProperty(string propertyId, string? ifMatch = default);
 
         /// <summary>
         /// Update a property
@@ -273,8 +273,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId">Property to update.</param>
         /// <param name="ifMatch">ETag from your last read. Rejected with 412 if the record moved on. (optional)</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> UpdatePropertyWithHttpInfo(string propertyId, string? ifMatch = default);
+        /// <returns>ApiResponse of PropertyResponse</returns>
+        ApiResponse<PropertyResponse> UpdatePropertyWithHttpInfo(string propertyId, string? ifMatch = default);
         /// <summary>
         /// Upload an image
         /// </summary>
@@ -285,8 +285,8 @@ namespace Skautik.Sdk.Api
         /// <param name="propertyId">Property to attach to.</param>
         /// <param name="file">Image payload.</param>
         /// <param name="position">Display order. The image at position 0 is the primary one. (optional)</param>
-        /// <returns></returns>
-        void UploadPropertyImage(string propertyId, FileParameter file, int? position = default);
+        /// <returns>ImageResponse</returns>
+        ImageResponse UploadPropertyImage(string propertyId, FileParameter file, int? position = default);
 
         /// <summary>
         /// Upload an image
@@ -298,8 +298,8 @@ namespace Skautik.Sdk.Api
         /// <param name="propertyId">Property to attach to.</param>
         /// <param name="file">Image payload.</param>
         /// <param name="position">Display order. The image at position 0 is the primary one. (optional)</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> UploadPropertyImageWithHttpInfo(string propertyId, FileParameter file, int? position = default);
+        /// <returns>ApiResponse of ImageResponse</returns>
+        ApiResponse<ImageResponse> UploadPropertyImageWithHttpInfo(string propertyId, FileParameter file, int? position = default);
         #endregion Synchronous Operations
     }
 
@@ -392,8 +392,8 @@ namespace Skautik.Sdk.Api
         /// <param name="propertyId">Identifier returned by any collection endpoint.</param>
         /// <param name="expand">Related resources to inline. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of Envelope</returns>
-        System.Threading.Tasks.Task<Envelope> GetPropertyAsync(string propertyId, List<string>? expand = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of PropertyResponse</returns>
+        System.Threading.Tasks.Task<PropertyResponse> GetPropertyAsync(string propertyId, List<string>? expand = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Retrieve a property
@@ -405,8 +405,8 @@ namespace Skautik.Sdk.Api
         /// <param name="propertyId">Identifier returned by any collection endpoint.</param>
         /// <param name="expand">Related resources to inline. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (Envelope)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Envelope>> GetPropertyWithHttpInfoAsync(string propertyId, List<string>? expand = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (PropertyResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PropertyResponse>> GetPropertyWithHttpInfoAsync(string propertyId, List<string>? expand = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List properties
         /// </summary>
@@ -430,8 +430,8 @@ namespace Skautik.Sdk.Api
         /// <param name="fields">Comma-separated list of fields to return. Trims payloads substantially when you only need a few. (optional)</param>
         /// <param name="expand">Comma-separated related resources to inline rather than fetch separately. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of Envelope</returns>
-        System.Threading.Tasks.Task<Envelope> ListPropertiesAsync(string? market = default, List<string>? district = default, string? transactionType = default, List<string>? propertyType = default, int? priceMin = default, int? priceMax = default, int? bedroomsMin = default, decimal? areaMin = default, string? status = default, string? updatedSince = default, int? limit = default, string? cursor = default, string? sort = default, List<string>? fields = default, List<string>? expand = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of PropertyPage</returns>
+        System.Threading.Tasks.Task<PropertyPage> ListPropertiesAsync(string? market = default, List<string>? district = default, string? transactionType = default, List<string>? propertyType = default, int? priceMin = default, int? priceMax = default, int? bedroomsMin = default, decimal? areaMin = default, string? status = default, string? updatedSince = default, int? limit = default, string? cursor = default, string? sort = default, List<string>? fields = default, List<string>? expand = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List properties
@@ -456,8 +456,8 @@ namespace Skautik.Sdk.Api
         /// <param name="fields">Comma-separated list of fields to return. Trims payloads substantially when you only need a few. (optional)</param>
         /// <param name="expand">Comma-separated related resources to inline rather than fetch separately. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (Envelope)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Envelope>> ListPropertiesWithHttpInfoAsync(string? market = default, List<string>? district = default, string? transactionType = default, List<string>? propertyType = default, int? priceMin = default, int? priceMax = default, int? bedroomsMin = default, decimal? areaMin = default, string? status = default, string? updatedSince = default, int? limit = default, string? cursor = default, string? sort = default, List<string>? fields = default, List<string>? expand = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (PropertyPage)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PropertyPage>> ListPropertiesWithHttpInfoAsync(string? market = default, List<string>? district = default, string? transactionType = default, List<string>? propertyType = default, int? priceMin = default, int? priceMax = default, int? bedroomsMin = default, decimal? areaMin = default, string? status = default, string? updatedSince = default, int? limit = default, string? cursor = default, string? sort = default, List<string>? fields = default, List<string>? expand = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List images
         /// </summary>
@@ -467,8 +467,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId">Property identifier.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ListPropertyImagesAsync(string propertyId, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ImagePage</returns>
+        System.Threading.Tasks.Task<ImagePage> ListPropertyImagesAsync(string propertyId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List images
@@ -479,8 +479,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId">Property identifier.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ListPropertyImagesWithHttpInfoAsync(string propertyId, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (ImagePage)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ImagePage>> ListPropertyImagesWithHttpInfoAsync(string propertyId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Price history
         /// </summary>
@@ -490,8 +490,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId">Property identifier.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of Envelope</returns>
-        System.Threading.Tasks.Task<Envelope> PropertyPriceHistoryAsync(string propertyId, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of PriceObservationPage</returns>
+        System.Threading.Tasks.Task<PriceObservationPage> PropertyPriceHistoryAsync(string propertyId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Price history
@@ -502,8 +502,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId">Property identifier.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (Envelope)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Envelope>> PropertyPriceHistoryWithHttpInfoAsync(string propertyId, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (PriceObservationPage)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PriceObservationPage>> PropertyPriceHistoryWithHttpInfoAsync(string propertyId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Search properties
         /// </summary>
@@ -537,8 +537,8 @@ namespace Skautik.Sdk.Api
         /// <param name="propertyId">Property to compare against.</param>
         /// <param name="limit">Comparables to return, 1 to 50. (optional, default to 10)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task SimilarPropertiesAsync(string propertyId, int? limit = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of PropertyPage</returns>
+        System.Threading.Tasks.Task<PropertyPage> SimilarPropertiesAsync(string propertyId, int? limit = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Similar properties
@@ -550,8 +550,8 @@ namespace Skautik.Sdk.Api
         /// <param name="propertyId">Property to compare against.</param>
         /// <param name="limit">Comparables to return, 1 to 50. (optional, default to 10)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> SimilarPropertiesWithHttpInfoAsync(string propertyId, int? limit = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (PropertyPage)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PropertyPage>> SimilarPropertiesWithHttpInfoAsync(string propertyId, int? limit = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Update a property
         /// </summary>
@@ -562,8 +562,8 @@ namespace Skautik.Sdk.Api
         /// <param name="propertyId">Property to update.</param>
         /// <param name="ifMatch">ETag from your last read. Rejected with 412 if the record moved on. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task UpdatePropertyAsync(string propertyId, string? ifMatch = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of PropertyResponse</returns>
+        System.Threading.Tasks.Task<PropertyResponse> UpdatePropertyAsync(string propertyId, string? ifMatch = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update a property
@@ -575,8 +575,8 @@ namespace Skautik.Sdk.Api
         /// <param name="propertyId">Property to update.</param>
         /// <param name="ifMatch">ETag from your last read. Rejected with 412 if the record moved on. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> UpdatePropertyWithHttpInfoAsync(string propertyId, string? ifMatch = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (PropertyResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PropertyResponse>> UpdatePropertyWithHttpInfoAsync(string propertyId, string? ifMatch = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Upload an image
         /// </summary>
@@ -588,8 +588,8 @@ namespace Skautik.Sdk.Api
         /// <param name="file">Image payload.</param>
         /// <param name="position">Display order. The image at position 0 is the primary one. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task UploadPropertyImageAsync(string propertyId, FileParameter file, int? position = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ImageResponse</returns>
+        System.Threading.Tasks.Task<ImageResponse> UploadPropertyImageAsync(string propertyId, FileParameter file, int? position = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Upload an image
@@ -602,8 +602,8 @@ namespace Skautik.Sdk.Api
         /// <param name="file">Image payload.</param>
         /// <param name="position">Display order. The image at position 0 is the primary one. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> UploadPropertyImageWithHttpInfoAsync(string propertyId, FileParameter file, int? position = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (ImageResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ImageResponse>> UploadPropertyImageWithHttpInfoAsync(string propertyId, FileParameter file, int? position = default, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -1230,10 +1230,10 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId">Identifier returned by any collection endpoint.</param>
         /// <param name="expand">Related resources to inline. (optional)</param>
-        /// <returns>Envelope</returns>
-        public Envelope GetProperty(string propertyId, List<string>? expand = default)
+        /// <returns>PropertyResponse</returns>
+        public PropertyResponse GetProperty(string propertyId, List<string>? expand = default)
         {
-            Skautik.Sdk.Client.ApiResponse<Envelope> localVarResponse = GetPropertyWithHttpInfo(propertyId, expand);
+            Skautik.Sdk.Client.ApiResponse<PropertyResponse> localVarResponse = GetPropertyWithHttpInfo(propertyId, expand);
             return localVarResponse.Data;
         }
 
@@ -1243,8 +1243,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId">Identifier returned by any collection endpoint.</param>
         /// <param name="expand">Related resources to inline. (optional)</param>
-        /// <returns>ApiResponse of Envelope</returns>
-        public Skautik.Sdk.Client.ApiResponse<Envelope> GetPropertyWithHttpInfo(string propertyId, List<string>? expand = default)
+        /// <returns>ApiResponse of PropertyResponse</returns>
+        public Skautik.Sdk.Client.ApiResponse<PropertyResponse> GetPropertyWithHttpInfo(string propertyId, List<string>? expand = default)
         {
             // verify the required parameter 'propertyId' is set
             if (propertyId == null)
@@ -1281,7 +1281,7 @@ namespace Skautik.Sdk.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Envelope>("/properties/{property_id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<PropertyResponse>("/properties/{property_id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1299,10 +1299,10 @@ namespace Skautik.Sdk.Api
         /// <param name="propertyId">Identifier returned by any collection endpoint.</param>
         /// <param name="expand">Related resources to inline. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of Envelope</returns>
-        public async System.Threading.Tasks.Task<Envelope> GetPropertyAsync(string propertyId, List<string>? expand = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of PropertyResponse</returns>
+        public async System.Threading.Tasks.Task<PropertyResponse> GetPropertyAsync(string propertyId, List<string>? expand = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Skautik.Sdk.Client.ApiResponse<Envelope> localVarResponse = await GetPropertyWithHttpInfoAsync(propertyId, expand, cancellationToken).ConfigureAwait(false);
+            Skautik.Sdk.Client.ApiResponse<PropertyResponse> localVarResponse = await GetPropertyWithHttpInfoAsync(propertyId, expand, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1313,8 +1313,8 @@ namespace Skautik.Sdk.Api
         /// <param name="propertyId">Identifier returned by any collection endpoint.</param>
         /// <param name="expand">Related resources to inline. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (Envelope)</returns>
-        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<Envelope>> GetPropertyWithHttpInfoAsync(string propertyId, List<string>? expand = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (PropertyResponse)</returns>
+        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<PropertyResponse>> GetPropertyWithHttpInfoAsync(string propertyId, List<string>? expand = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'propertyId' is set
             if (propertyId == null)
@@ -1354,7 +1354,7 @@ namespace Skautik.Sdk.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Envelope>("/properties/{property_id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<PropertyResponse>("/properties/{property_id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1384,10 +1384,10 @@ namespace Skautik.Sdk.Api
         /// <param name="sort">Field to order by. Prefix with a minus for descending. Ties break on id, so paging is deterministic. (optional, default to -listed_at)</param>
         /// <param name="fields">Comma-separated list of fields to return. Trims payloads substantially when you only need a few. (optional)</param>
         /// <param name="expand">Comma-separated related resources to inline rather than fetch separately. (optional)</param>
-        /// <returns>Envelope</returns>
-        public Envelope ListProperties(string? market = default, List<string>? district = default, string? transactionType = default, List<string>? propertyType = default, int? priceMin = default, int? priceMax = default, int? bedroomsMin = default, decimal? areaMin = default, string? status = default, string? updatedSince = default, int? limit = default, string? cursor = default, string? sort = default, List<string>? fields = default, List<string>? expand = default)
+        /// <returns>PropertyPage</returns>
+        public PropertyPage ListProperties(string? market = default, List<string>? district = default, string? transactionType = default, List<string>? propertyType = default, int? priceMin = default, int? priceMax = default, int? bedroomsMin = default, decimal? areaMin = default, string? status = default, string? updatedSince = default, int? limit = default, string? cursor = default, string? sort = default, List<string>? fields = default, List<string>? expand = default)
         {
-            Skautik.Sdk.Client.ApiResponse<Envelope> localVarResponse = ListPropertiesWithHttpInfo(market, district, transactionType, propertyType, priceMin, priceMax, bedroomsMin, areaMin, status, updatedSince, limit, cursor, sort, fields, expand);
+            Skautik.Sdk.Client.ApiResponse<PropertyPage> localVarResponse = ListPropertiesWithHttpInfo(market, district, transactionType, propertyType, priceMin, priceMax, bedroomsMin, areaMin, status, updatedSince, limit, cursor, sort, fields, expand);
             return localVarResponse.Data;
         }
 
@@ -1410,8 +1410,8 @@ namespace Skautik.Sdk.Api
         /// <param name="sort">Field to order by. Prefix with a minus for descending. Ties break on id, so paging is deterministic. (optional, default to -listed_at)</param>
         /// <param name="fields">Comma-separated list of fields to return. Trims payloads substantially when you only need a few. (optional)</param>
         /// <param name="expand">Comma-separated related resources to inline rather than fetch separately. (optional)</param>
-        /// <returns>ApiResponse of Envelope</returns>
-        public Skautik.Sdk.Client.ApiResponse<Envelope> ListPropertiesWithHttpInfo(string? market = default, List<string>? district = default, string? transactionType = default, List<string>? propertyType = default, int? priceMin = default, int? priceMax = default, int? bedroomsMin = default, decimal? areaMin = default, string? status = default, string? updatedSince = default, int? limit = default, string? cursor = default, string? sort = default, List<string>? fields = default, List<string>? expand = default)
+        /// <returns>ApiResponse of PropertyPage</returns>
+        public Skautik.Sdk.Client.ApiResponse<PropertyPage> ListPropertiesWithHttpInfo(string? market = default, List<string>? district = default, string? transactionType = default, List<string>? propertyType = default, int? priceMin = default, int? priceMax = default, int? bedroomsMin = default, decimal? areaMin = default, string? status = default, string? updatedSince = default, int? limit = default, string? cursor = default, string? sort = default, List<string>? fields = default, List<string>? expand = default)
         {
             Skautik.Sdk.Client.RequestOptions localVarRequestOptions = new Skautik.Sdk.Client.RequestOptions();
 
@@ -1499,7 +1499,7 @@ namespace Skautik.Sdk.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Envelope>("/properties", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<PropertyPage>("/properties", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1530,10 +1530,10 @@ namespace Skautik.Sdk.Api
         /// <param name="fields">Comma-separated list of fields to return. Trims payloads substantially when you only need a few. (optional)</param>
         /// <param name="expand">Comma-separated related resources to inline rather than fetch separately. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of Envelope</returns>
-        public async System.Threading.Tasks.Task<Envelope> ListPropertiesAsync(string? market = default, List<string>? district = default, string? transactionType = default, List<string>? propertyType = default, int? priceMin = default, int? priceMax = default, int? bedroomsMin = default, decimal? areaMin = default, string? status = default, string? updatedSince = default, int? limit = default, string? cursor = default, string? sort = default, List<string>? fields = default, List<string>? expand = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of PropertyPage</returns>
+        public async System.Threading.Tasks.Task<PropertyPage> ListPropertiesAsync(string? market = default, List<string>? district = default, string? transactionType = default, List<string>? propertyType = default, int? priceMin = default, int? priceMax = default, int? bedroomsMin = default, decimal? areaMin = default, string? status = default, string? updatedSince = default, int? limit = default, string? cursor = default, string? sort = default, List<string>? fields = default, List<string>? expand = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Skautik.Sdk.Client.ApiResponse<Envelope> localVarResponse = await ListPropertiesWithHttpInfoAsync(market, district, transactionType, propertyType, priceMin, priceMax, bedroomsMin, areaMin, status, updatedSince, limit, cursor, sort, fields, expand, cancellationToken).ConfigureAwait(false);
+            Skautik.Sdk.Client.ApiResponse<PropertyPage> localVarResponse = await ListPropertiesWithHttpInfoAsync(market, district, transactionType, propertyType, priceMin, priceMax, bedroomsMin, areaMin, status, updatedSince, limit, cursor, sort, fields, expand, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1557,8 +1557,8 @@ namespace Skautik.Sdk.Api
         /// <param name="fields">Comma-separated list of fields to return. Trims payloads substantially when you only need a few. (optional)</param>
         /// <param name="expand">Comma-separated related resources to inline rather than fetch separately. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (Envelope)</returns>
-        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<Envelope>> ListPropertiesWithHttpInfoAsync(string? market = default, List<string>? district = default, string? transactionType = default, List<string>? propertyType = default, int? priceMin = default, int? priceMax = default, int? bedroomsMin = default, decimal? areaMin = default, string? status = default, string? updatedSince = default, int? limit = default, string? cursor = default, string? sort = default, List<string>? fields = default, List<string>? expand = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (PropertyPage)</returns>
+        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<PropertyPage>> ListPropertiesWithHttpInfoAsync(string? market = default, List<string>? district = default, string? transactionType = default, List<string>? propertyType = default, int? priceMin = default, int? priceMax = default, int? bedroomsMin = default, decimal? areaMin = default, string? status = default, string? updatedSince = default, int? limit = default, string? cursor = default, string? sort = default, List<string>? fields = default, List<string>? expand = default, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Skautik.Sdk.Client.RequestOptions localVarRequestOptions = new Skautik.Sdk.Client.RequestOptions();
@@ -1649,7 +1649,7 @@ namespace Skautik.Sdk.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Envelope>("/properties", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<PropertyPage>("/properties", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1665,10 +1665,11 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId">Property identifier.</param>
-        /// <returns></returns>
-        public void ListPropertyImages(string propertyId)
+        /// <returns>ImagePage</returns>
+        public ImagePage ListPropertyImages(string propertyId)
         {
-            ListPropertyImagesWithHttpInfo(propertyId);
+            Skautik.Sdk.Client.ApiResponse<ImagePage> localVarResponse = ListPropertyImagesWithHttpInfo(propertyId);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -1676,8 +1677,8 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId">Property identifier.</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Skautik.Sdk.Client.ApiResponse<Object> ListPropertyImagesWithHttpInfo(string propertyId)
+        /// <returns>ApiResponse of ImagePage</returns>
+        public Skautik.Sdk.Client.ApiResponse<ImagePage> ListPropertyImagesWithHttpInfo(string propertyId)
         {
             // verify the required parameter 'propertyId' is set
             if (propertyId == null)
@@ -1690,6 +1691,7 @@ namespace Skautik.Sdk.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json",
                 "application/problem+json"
             };
 
@@ -1709,7 +1711,7 @@ namespace Skautik.Sdk.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/properties/{property_id}/images", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<ImagePage>("/properties/{property_id}/images", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1726,10 +1728,11 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId">Property identifier.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ListPropertyImagesAsync(string propertyId, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ImagePage</returns>
+        public async System.Threading.Tasks.Task<ImagePage> ListPropertyImagesAsync(string propertyId, System.Threading.CancellationToken cancellationToken = default)
         {
-            await ListPropertyImagesWithHttpInfoAsync(propertyId, cancellationToken).ConfigureAwait(false);
+            Skautik.Sdk.Client.ApiResponse<ImagePage> localVarResponse = await ListPropertyImagesWithHttpInfoAsync(propertyId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -1738,8 +1741,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId">Property identifier.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<Object>> ListPropertyImagesWithHttpInfoAsync(string propertyId, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (ImagePage)</returns>
+        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<ImagePage>> ListPropertyImagesWithHttpInfoAsync(string propertyId, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'propertyId' is set
             if (propertyId == null)
@@ -1753,6 +1756,7 @@ namespace Skautik.Sdk.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json",
                 "application/problem+json"
             };
 
@@ -1774,7 +1778,7 @@ namespace Skautik.Sdk.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/properties/{property_id}/images", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ImagePage>("/properties/{property_id}/images", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1790,10 +1794,10 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId">Property identifier.</param>
-        /// <returns>Envelope</returns>
-        public Envelope PropertyPriceHistory(string propertyId)
+        /// <returns>PriceObservationPage</returns>
+        public PriceObservationPage PropertyPriceHistory(string propertyId)
         {
-            Skautik.Sdk.Client.ApiResponse<Envelope> localVarResponse = PropertyPriceHistoryWithHttpInfo(propertyId);
+            Skautik.Sdk.Client.ApiResponse<PriceObservationPage> localVarResponse = PropertyPriceHistoryWithHttpInfo(propertyId);
             return localVarResponse.Data;
         }
 
@@ -1802,8 +1806,8 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId">Property identifier.</param>
-        /// <returns>ApiResponse of Envelope</returns>
-        public Skautik.Sdk.Client.ApiResponse<Envelope> PropertyPriceHistoryWithHttpInfo(string propertyId)
+        /// <returns>ApiResponse of PriceObservationPage</returns>
+        public Skautik.Sdk.Client.ApiResponse<PriceObservationPage> PropertyPriceHistoryWithHttpInfo(string propertyId)
         {
             // verify the required parameter 'propertyId' is set
             if (propertyId == null)
@@ -1836,7 +1840,7 @@ namespace Skautik.Sdk.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Envelope>("/properties/{property_id}/price-history", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<PriceObservationPage>("/properties/{property_id}/price-history", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1853,10 +1857,10 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId">Property identifier.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of Envelope</returns>
-        public async System.Threading.Tasks.Task<Envelope> PropertyPriceHistoryAsync(string propertyId, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of PriceObservationPage</returns>
+        public async System.Threading.Tasks.Task<PriceObservationPage> PropertyPriceHistoryAsync(string propertyId, System.Threading.CancellationToken cancellationToken = default)
         {
-            Skautik.Sdk.Client.ApiResponse<Envelope> localVarResponse = await PropertyPriceHistoryWithHttpInfoAsync(propertyId, cancellationToken).ConfigureAwait(false);
+            Skautik.Sdk.Client.ApiResponse<PriceObservationPage> localVarResponse = await PropertyPriceHistoryWithHttpInfoAsync(propertyId, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1866,8 +1870,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId">Property identifier.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (Envelope)</returns>
-        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<Envelope>> PropertyPriceHistoryWithHttpInfoAsync(string propertyId, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (PriceObservationPage)</returns>
+        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<PriceObservationPage>> PropertyPriceHistoryWithHttpInfoAsync(string propertyId, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'propertyId' is set
             if (propertyId == null)
@@ -1903,7 +1907,7 @@ namespace Skautik.Sdk.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Envelope>("/properties/{property_id}/price-history", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<PriceObservationPage>("/properties/{property_id}/price-history", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2043,10 +2047,11 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId">Property to compare against.</param>
         /// <param name="limit">Comparables to return, 1 to 50. (optional, default to 10)</param>
-        /// <returns></returns>
-        public void SimilarProperties(string propertyId, int? limit = default)
+        /// <returns>PropertyPage</returns>
+        public PropertyPage SimilarProperties(string propertyId, int? limit = default)
         {
-            SimilarPropertiesWithHttpInfo(propertyId, limit);
+            Skautik.Sdk.Client.ApiResponse<PropertyPage> localVarResponse = SimilarPropertiesWithHttpInfo(propertyId, limit);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -2055,8 +2060,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId">Property to compare against.</param>
         /// <param name="limit">Comparables to return, 1 to 50. (optional, default to 10)</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Skautik.Sdk.Client.ApiResponse<Object> SimilarPropertiesWithHttpInfo(string propertyId, int? limit = default)
+        /// <returns>ApiResponse of PropertyPage</returns>
+        public Skautik.Sdk.Client.ApiResponse<PropertyPage> SimilarPropertiesWithHttpInfo(string propertyId, int? limit = default)
         {
             // verify the required parameter 'propertyId' is set
             if (propertyId == null)
@@ -2069,6 +2074,7 @@ namespace Skautik.Sdk.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json",
                 "application/problem+json"
             };
 
@@ -2092,7 +2098,7 @@ namespace Skautik.Sdk.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/properties/{property_id}/similar", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<PropertyPage>("/properties/{property_id}/similar", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2110,10 +2116,11 @@ namespace Skautik.Sdk.Api
         /// <param name="propertyId">Property to compare against.</param>
         /// <param name="limit">Comparables to return, 1 to 50. (optional, default to 10)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task SimilarPropertiesAsync(string propertyId, int? limit = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of PropertyPage</returns>
+        public async System.Threading.Tasks.Task<PropertyPage> SimilarPropertiesAsync(string propertyId, int? limit = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            await SimilarPropertiesWithHttpInfoAsync(propertyId, limit, cancellationToken).ConfigureAwait(false);
+            Skautik.Sdk.Client.ApiResponse<PropertyPage> localVarResponse = await SimilarPropertiesWithHttpInfoAsync(propertyId, limit, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -2123,8 +2130,8 @@ namespace Skautik.Sdk.Api
         /// <param name="propertyId">Property to compare against.</param>
         /// <param name="limit">Comparables to return, 1 to 50. (optional, default to 10)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<Object>> SimilarPropertiesWithHttpInfoAsync(string propertyId, int? limit = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (PropertyPage)</returns>
+        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<PropertyPage>> SimilarPropertiesWithHttpInfoAsync(string propertyId, int? limit = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'propertyId' is set
             if (propertyId == null)
@@ -2138,6 +2145,7 @@ namespace Skautik.Sdk.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json",
                 "application/problem+json"
             };
 
@@ -2163,7 +2171,7 @@ namespace Skautik.Sdk.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/properties/{property_id}/similar", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<PropertyPage>("/properties/{property_id}/similar", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2180,10 +2188,11 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId">Property to update.</param>
         /// <param name="ifMatch">ETag from your last read. Rejected with 412 if the record moved on. (optional)</param>
-        /// <returns></returns>
-        public void UpdateProperty(string propertyId, string? ifMatch = default)
+        /// <returns>PropertyResponse</returns>
+        public PropertyResponse UpdateProperty(string propertyId, string? ifMatch = default)
         {
-            UpdatePropertyWithHttpInfo(propertyId, ifMatch);
+            Skautik.Sdk.Client.ApiResponse<PropertyResponse> localVarResponse = UpdatePropertyWithHttpInfo(propertyId, ifMatch);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -2192,8 +2201,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId">Property to update.</param>
         /// <param name="ifMatch">ETag from your last read. Rejected with 412 if the record moved on. (optional)</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Skautik.Sdk.Client.ApiResponse<Object> UpdatePropertyWithHttpInfo(string propertyId, string? ifMatch = default)
+        /// <returns>ApiResponse of PropertyResponse</returns>
+        public Skautik.Sdk.Client.ApiResponse<PropertyResponse> UpdatePropertyWithHttpInfo(string propertyId, string? ifMatch = default)
         {
             // verify the required parameter 'propertyId' is set
             if (propertyId == null)
@@ -2206,6 +2215,7 @@ namespace Skautik.Sdk.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json",
                 "application/problem+json"
             };
 
@@ -2229,7 +2239,7 @@ namespace Skautik.Sdk.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Patch<Object>("/properties/{property_id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Patch<PropertyResponse>("/properties/{property_id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2247,10 +2257,11 @@ namespace Skautik.Sdk.Api
         /// <param name="propertyId">Property to update.</param>
         /// <param name="ifMatch">ETag from your last read. Rejected with 412 if the record moved on. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task UpdatePropertyAsync(string propertyId, string? ifMatch = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of PropertyResponse</returns>
+        public async System.Threading.Tasks.Task<PropertyResponse> UpdatePropertyAsync(string propertyId, string? ifMatch = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            await UpdatePropertyWithHttpInfoAsync(propertyId, ifMatch, cancellationToken).ConfigureAwait(false);
+            Skautik.Sdk.Client.ApiResponse<PropertyResponse> localVarResponse = await UpdatePropertyWithHttpInfoAsync(propertyId, ifMatch, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -2260,8 +2271,8 @@ namespace Skautik.Sdk.Api
         /// <param name="propertyId">Property to update.</param>
         /// <param name="ifMatch">ETag from your last read. Rejected with 412 if the record moved on. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<Object>> UpdatePropertyWithHttpInfoAsync(string propertyId, string? ifMatch = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (PropertyResponse)</returns>
+        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<PropertyResponse>> UpdatePropertyWithHttpInfoAsync(string propertyId, string? ifMatch = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'propertyId' is set
             if (propertyId == null)
@@ -2275,6 +2286,7 @@ namespace Skautik.Sdk.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json",
                 "application/problem+json"
             };
 
@@ -2300,7 +2312,7 @@ namespace Skautik.Sdk.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PatchAsync<Object>("/properties/{property_id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PatchAsync<PropertyResponse>("/properties/{property_id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2318,10 +2330,11 @@ namespace Skautik.Sdk.Api
         /// <param name="propertyId">Property to attach to.</param>
         /// <param name="file">Image payload.</param>
         /// <param name="position">Display order. The image at position 0 is the primary one. (optional)</param>
-        /// <returns></returns>
-        public void UploadPropertyImage(string propertyId, FileParameter file, int? position = default)
+        /// <returns>ImageResponse</returns>
+        public ImageResponse UploadPropertyImage(string propertyId, FileParameter file, int? position = default)
         {
-            UploadPropertyImageWithHttpInfo(propertyId, file, position);
+            Skautik.Sdk.Client.ApiResponse<ImageResponse> localVarResponse = UploadPropertyImageWithHttpInfo(propertyId, file, position);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -2331,8 +2344,8 @@ namespace Skautik.Sdk.Api
         /// <param name="propertyId">Property to attach to.</param>
         /// <param name="file">Image payload.</param>
         /// <param name="position">Display order. The image at position 0 is the primary one. (optional)</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Skautik.Sdk.Client.ApiResponse<Object> UploadPropertyImageWithHttpInfo(string propertyId, FileParameter file, int? position = default)
+        /// <returns>ApiResponse of ImageResponse</returns>
+        public Skautik.Sdk.Client.ApiResponse<ImageResponse> UploadPropertyImageWithHttpInfo(string propertyId, FileParameter file, int? position = default)
         {
             // verify the required parameter 'propertyId' is set
             if (propertyId == null)
@@ -2350,6 +2363,7 @@ namespace Skautik.Sdk.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json",
                 "application/problem+json"
             };
 
@@ -2374,7 +2388,7 @@ namespace Skautik.Sdk.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/properties/{property_id}/images", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<ImageResponse>("/properties/{property_id}/images", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2393,10 +2407,11 @@ namespace Skautik.Sdk.Api
         /// <param name="file">Image payload.</param>
         /// <param name="position">Display order. The image at position 0 is the primary one. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task UploadPropertyImageAsync(string propertyId, FileParameter file, int? position = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ImageResponse</returns>
+        public async System.Threading.Tasks.Task<ImageResponse> UploadPropertyImageAsync(string propertyId, FileParameter file, int? position = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            await UploadPropertyImageWithHttpInfoAsync(propertyId, file, position, cancellationToken).ConfigureAwait(false);
+            Skautik.Sdk.Client.ApiResponse<ImageResponse> localVarResponse = await UploadPropertyImageWithHttpInfoAsync(propertyId, file, position, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -2407,8 +2422,8 @@ namespace Skautik.Sdk.Api
         /// <param name="file">Image payload.</param>
         /// <param name="position">Display order. The image at position 0 is the primary one. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<Object>> UploadPropertyImageWithHttpInfoAsync(string propertyId, FileParameter file, int? position = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (ImageResponse)</returns>
+        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<ImageResponse>> UploadPropertyImageWithHttpInfoAsync(string propertyId, FileParameter file, int? position = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'propertyId' is set
             if (propertyId == null)
@@ -2427,6 +2442,7 @@ namespace Skautik.Sdk.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json",
                 "application/problem+json"
             };
 
@@ -2453,7 +2469,7 @@ namespace Skautik.Sdk.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/properties/{property_id}/images", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<ImageResponse>("/properties/{property_id}/images", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

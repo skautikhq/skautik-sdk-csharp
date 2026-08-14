@@ -41,8 +41,8 @@ namespace Skautik.Sdk.Api
         /// <param name="mode">incremental updates what the payload contains. full_sync additionally withdraws anything absent, and is refused unless the source is configured for it. (optional, default to incremental)</param>
         /// <param name="sourceId">Apply a stored import source&#39;s mapping and settings rather than the defaults. (optional)</param>
         /// <param name="url">Where to fetch the payload from. Mutually exclusive with file. (optional)</param>
-        /// <returns>Envelope</returns>
-        Envelope CreateImport(string format, string? idempotencyKey = default, bool? dryRun = default, FileParameter? file = default, string? mode = default, string? sourceId = default, string? url = default);
+        /// <returns>ImportResponse</returns>
+        ImportResponse CreateImport(string format, string? idempotencyKey = default, bool? dryRun = default, FileParameter? file = default, string? mode = default, string? sourceId = default, string? url = default);
 
         /// <summary>
         /// Start an import
@@ -58,8 +58,8 @@ namespace Skautik.Sdk.Api
         /// <param name="mode">incremental updates what the payload contains. full_sync additionally withdraws anything absent, and is refused unless the source is configured for it. (optional, default to incremental)</param>
         /// <param name="sourceId">Apply a stored import source&#39;s mapping and settings rather than the defaults. (optional)</param>
         /// <param name="url">Where to fetch the payload from. Mutually exclusive with file. (optional)</param>
-        /// <returns>ApiResponse of Envelope</returns>
-        ApiResponse<Envelope> CreateImportWithHttpInfo(string format, string? idempotencyKey = default, bool? dryRun = default, FileParameter? file = default, string? mode = default, string? sourceId = default, string? url = default);
+        /// <returns>ApiResponse of ImportResponse</returns>
+        ApiResponse<ImportResponse> CreateImportWithHttpInfo(string format, string? idempotencyKey = default, bool? dryRun = default, FileParameter? file = default, string? mode = default, string? sourceId = default, string? url = default);
         /// <summary>
         /// Create an import source
         /// </summary>
@@ -68,8 +68,8 @@ namespace Skautik.Sdk.Api
         /// </remarks>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createImportSourceRequest"></param>
-        /// <returns>Envelope</returns>
-        Envelope CreateImportSource(CreateImportSourceRequest createImportSourceRequest);
+        /// <returns>ImportSourceResponse</returns>
+        ImportSourceResponse CreateImportSource(CreateImportSourceRequest createImportSourceRequest);
 
         /// <summary>
         /// Create an import source
@@ -79,8 +79,8 @@ namespace Skautik.Sdk.Api
         /// </remarks>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createImportSourceRequest"></param>
-        /// <returns>ApiResponse of Envelope</returns>
-        ApiResponse<Envelope> CreateImportSourceWithHttpInfo(CreateImportSourceRequest createImportSourceRequest);
+        /// <returns>ApiResponse of ImportSourceResponse</returns>
+        ApiResponse<ImportSourceResponse> CreateImportSourceWithHttpInfo(CreateImportSourceRequest createImportSourceRequest);
         /// <summary>
         /// Delete an import source
         /// </summary>
@@ -110,8 +110,8 @@ namespace Skautik.Sdk.Api
         /// </remarks>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="importId">Import identifier.</param>
-        /// <returns>Envelope</returns>
-        Envelope GetImport(string importId);
+        /// <returns>ImportResponse</returns>
+        ImportResponse GetImport(string importId);
 
         /// <summary>
         /// Retrieve an import
@@ -121,8 +121,8 @@ namespace Skautik.Sdk.Api
         /// </remarks>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="importId">Import identifier.</param>
-        /// <returns>ApiResponse of Envelope</returns>
-        ApiResponse<Envelope> GetImportWithHttpInfo(string importId);
+        /// <returns>ApiResponse of ImportResponse</returns>
+        ApiResponse<ImportResponse> GetImportWithHttpInfo(string importId);
         /// <summary>
         /// Retrieve an import source
         /// </summary>
@@ -131,8 +131,8 @@ namespace Skautik.Sdk.Api
         /// </remarks>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sourceId">Source identifier.</param>
-        /// <returns></returns>
-        void GetImportSource(string sourceId);
+        /// <returns>ImportSourceResponse</returns>
+        ImportSourceResponse GetImportSource(string sourceId);
 
         /// <summary>
         /// Retrieve an import source
@@ -142,8 +142,8 @@ namespace Skautik.Sdk.Api
         /// </remarks>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sourceId">Source identifier.</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> GetImportSourceWithHttpInfo(string sourceId);
+        /// <returns>ApiResponse of ImportSourceResponse</returns>
+        ApiResponse<ImportSourceResponse> GetImportSourceWithHttpInfo(string sourceId);
         /// <summary>
         /// List accepted formats and columns
         /// </summary>
@@ -172,8 +172,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="importId">Import identifier.</param>
         /// <param name="outcome">Narrow to one outcome. (optional)</param>
-        /// <returns>Envelope</returns>
-        Envelope ListImportRecords(string importId, string? outcome = default);
+        /// <returns>ImportRecordPage</returns>
+        ImportRecordPage ListImportRecords(string importId, string? outcome = default);
 
         /// <summary>
         /// List import records
@@ -184,8 +184,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="importId">Import identifier.</param>
         /// <param name="outcome">Narrow to one outcome. (optional)</param>
-        /// <returns>ApiResponse of Envelope</returns>
-        ApiResponse<Envelope> ListImportRecordsWithHttpInfo(string importId, string? outcome = default);
+        /// <returns>ApiResponse of ImportRecordPage</returns>
+        ApiResponse<ImportRecordPage> ListImportRecordsWithHttpInfo(string importId, string? outcome = default);
         /// <summary>
         /// List import sources
         /// </summary>
@@ -193,8 +193,8 @@ namespace Skautik.Sdk.Api
         /// Every standing connector your organisation has configured.  Credentials are never returned. A fetched source often holds the login for your own server in its URL, so the URL comes back with the password removed.  Requires the &#x60;imports:write&#x60; scope.
         /// </remarks>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Envelope</returns>
-        Envelope ListImportSources();
+        /// <returns>ImportSourcePage</returns>
+        ImportSourcePage ListImportSources();
 
         /// <summary>
         /// List import sources
@@ -203,8 +203,8 @@ namespace Skautik.Sdk.Api
         /// Every standing connector your organisation has configured.  Credentials are never returned. A fetched source often holds the login for your own server in its URL, so the URL comes back with the password removed.  Requires the &#x60;imports:write&#x60; scope.
         /// </remarks>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Envelope</returns>
-        ApiResponse<Envelope> ListImportSourcesWithHttpInfo();
+        /// <returns>ApiResponse of ImportSourcePage</returns>
+        ApiResponse<ImportSourcePage> ListImportSourcesWithHttpInfo();
         /// <summary>
         /// List imports
         /// </summary>
@@ -214,8 +214,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sourceId">Only imports produced by one source. (optional)</param>
         /// <param name="status">Filter by outcome. (optional)</param>
-        /// <returns></returns>
-        void ListImports(string? sourceId = default, string? status = default);
+        /// <returns>ImportPage</returns>
+        ImportPage ListImports(string? sourceId = default, string? status = default);
 
         /// <summary>
         /// List imports
@@ -226,8 +226,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sourceId">Only imports produced by one source. (optional)</param>
         /// <param name="status">Filter by outcome. (optional)</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ListImportsWithHttpInfo(string? sourceId = default, string? status = default);
+        /// <returns>ApiResponse of ImportPage</returns>
+        ApiResponse<ImportPage> ListImportsWithHttpInfo(string? sourceId = default, string? status = default);
         /// <summary>
         /// Update an import source
         /// </summary>
@@ -236,8 +236,8 @@ namespace Skautik.Sdk.Api
         /// </remarks>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sourceId">Source identifier.</param>
-        /// <returns></returns>
-        void UpdateImportSource(string sourceId);
+        /// <returns>ImportSourceResponse</returns>
+        ImportSourceResponse UpdateImportSource(string sourceId);
 
         /// <summary>
         /// Update an import source
@@ -247,8 +247,8 @@ namespace Skautik.Sdk.Api
         /// </remarks>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sourceId">Source identifier.</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> UpdateImportSourceWithHttpInfo(string sourceId);
+        /// <returns>ApiResponse of ImportSourceResponse</returns>
+        ApiResponse<ImportSourceResponse> UpdateImportSourceWithHttpInfo(string sourceId);
         #endregion Synchronous Operations
     }
 
@@ -273,8 +273,8 @@ namespace Skautik.Sdk.Api
         /// <param name="sourceId">Apply a stored import source&#39;s mapping and settings rather than the defaults. (optional)</param>
         /// <param name="url">Where to fetch the payload from. Mutually exclusive with file. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of Envelope</returns>
-        System.Threading.Tasks.Task<Envelope> CreateImportAsync(string format, string? idempotencyKey = default, bool? dryRun = default, FileParameter? file = default, string? mode = default, string? sourceId = default, string? url = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ImportResponse</returns>
+        System.Threading.Tasks.Task<ImportResponse> CreateImportAsync(string format, string? idempotencyKey = default, bool? dryRun = default, FileParameter? file = default, string? mode = default, string? sourceId = default, string? url = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Start an import
@@ -291,8 +291,8 @@ namespace Skautik.Sdk.Api
         /// <param name="sourceId">Apply a stored import source&#39;s mapping and settings rather than the defaults. (optional)</param>
         /// <param name="url">Where to fetch the payload from. Mutually exclusive with file. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (Envelope)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Envelope>> CreateImportWithHttpInfoAsync(string format, string? idempotencyKey = default, bool? dryRun = default, FileParameter? file = default, string? mode = default, string? sourceId = default, string? url = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (ImportResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ImportResponse>> CreateImportWithHttpInfoAsync(string format, string? idempotencyKey = default, bool? dryRun = default, FileParameter? file = default, string? mode = default, string? sourceId = default, string? url = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create an import source
         /// </summary>
@@ -302,8 +302,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createImportSourceRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of Envelope</returns>
-        System.Threading.Tasks.Task<Envelope> CreateImportSourceAsync(CreateImportSourceRequest createImportSourceRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ImportSourceResponse</returns>
+        System.Threading.Tasks.Task<ImportSourceResponse> CreateImportSourceAsync(CreateImportSourceRequest createImportSourceRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Create an import source
@@ -314,8 +314,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createImportSourceRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (Envelope)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Envelope>> CreateImportSourceWithHttpInfoAsync(CreateImportSourceRequest createImportSourceRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (ImportSourceResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ImportSourceResponse>> CreateImportSourceWithHttpInfoAsync(CreateImportSourceRequest createImportSourceRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Delete an import source
         /// </summary>
@@ -348,8 +348,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="importId">Import identifier.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of Envelope</returns>
-        System.Threading.Tasks.Task<Envelope> GetImportAsync(string importId, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ImportResponse</returns>
+        System.Threading.Tasks.Task<ImportResponse> GetImportAsync(string importId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Retrieve an import
@@ -360,8 +360,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="importId">Import identifier.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (Envelope)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Envelope>> GetImportWithHttpInfoAsync(string importId, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (ImportResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ImportResponse>> GetImportWithHttpInfoAsync(string importId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Retrieve an import source
         /// </summary>
@@ -371,8 +371,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sourceId">Source identifier.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task GetImportSourceAsync(string sourceId, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ImportSourceResponse</returns>
+        System.Threading.Tasks.Task<ImportSourceResponse> GetImportSourceAsync(string sourceId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Retrieve an import source
@@ -383,8 +383,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sourceId">Source identifier.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> GetImportSourceWithHttpInfoAsync(string sourceId, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (ImportSourceResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ImportSourceResponse>> GetImportSourceWithHttpInfoAsync(string sourceId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List accepted formats and columns
         /// </summary>
@@ -416,8 +416,8 @@ namespace Skautik.Sdk.Api
         /// <param name="importId">Import identifier.</param>
         /// <param name="outcome">Narrow to one outcome. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of Envelope</returns>
-        System.Threading.Tasks.Task<Envelope> ListImportRecordsAsync(string importId, string? outcome = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ImportRecordPage</returns>
+        System.Threading.Tasks.Task<ImportRecordPage> ListImportRecordsAsync(string importId, string? outcome = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List import records
@@ -429,8 +429,8 @@ namespace Skautik.Sdk.Api
         /// <param name="importId">Import identifier.</param>
         /// <param name="outcome">Narrow to one outcome. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (Envelope)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Envelope>> ListImportRecordsWithHttpInfoAsync(string importId, string? outcome = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (ImportRecordPage)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ImportRecordPage>> ListImportRecordsWithHttpInfoAsync(string importId, string? outcome = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List import sources
         /// </summary>
@@ -439,8 +439,8 @@ namespace Skautik.Sdk.Api
         /// </remarks>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of Envelope</returns>
-        System.Threading.Tasks.Task<Envelope> ListImportSourcesAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ImportSourcePage</returns>
+        System.Threading.Tasks.Task<ImportSourcePage> ListImportSourcesAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List import sources
@@ -450,8 +450,8 @@ namespace Skautik.Sdk.Api
         /// </remarks>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (Envelope)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Envelope>> ListImportSourcesWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (ImportSourcePage)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ImportSourcePage>> ListImportSourcesWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List imports
         /// </summary>
@@ -462,8 +462,8 @@ namespace Skautik.Sdk.Api
         /// <param name="sourceId">Only imports produced by one source. (optional)</param>
         /// <param name="status">Filter by outcome. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ListImportsAsync(string? sourceId = default, string? status = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ImportPage</returns>
+        System.Threading.Tasks.Task<ImportPage> ListImportsAsync(string? sourceId = default, string? status = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List imports
@@ -475,8 +475,8 @@ namespace Skautik.Sdk.Api
         /// <param name="sourceId">Only imports produced by one source. (optional)</param>
         /// <param name="status">Filter by outcome. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ListImportsWithHttpInfoAsync(string? sourceId = default, string? status = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (ImportPage)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ImportPage>> ListImportsWithHttpInfoAsync(string? sourceId = default, string? status = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Update an import source
         /// </summary>
@@ -486,8 +486,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sourceId">Source identifier.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task UpdateImportSourceAsync(string sourceId, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ImportSourceResponse</returns>
+        System.Threading.Tasks.Task<ImportSourceResponse> UpdateImportSourceAsync(string sourceId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update an import source
@@ -498,8 +498,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sourceId">Source identifier.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> UpdateImportSourceWithHttpInfoAsync(string sourceId, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (ImportSourceResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ImportSourceResponse>> UpdateImportSourceWithHttpInfoAsync(string sourceId, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -724,10 +724,10 @@ namespace Skautik.Sdk.Api
         /// <param name="mode">incremental updates what the payload contains. full_sync additionally withdraws anything absent, and is refused unless the source is configured for it. (optional, default to incremental)</param>
         /// <param name="sourceId">Apply a stored import source&#39;s mapping and settings rather than the defaults. (optional)</param>
         /// <param name="url">Where to fetch the payload from. Mutually exclusive with file. (optional)</param>
-        /// <returns>Envelope</returns>
-        public Envelope CreateImport(string format, string? idempotencyKey = default, bool? dryRun = default, FileParameter? file = default, string? mode = default, string? sourceId = default, string? url = default)
+        /// <returns>ImportResponse</returns>
+        public ImportResponse CreateImport(string format, string? idempotencyKey = default, bool? dryRun = default, FileParameter? file = default, string? mode = default, string? sourceId = default, string? url = default)
         {
-            Skautik.Sdk.Client.ApiResponse<Envelope> localVarResponse = CreateImportWithHttpInfo(format, idempotencyKey, dryRun, file, mode, sourceId, url);
+            Skautik.Sdk.Client.ApiResponse<ImportResponse> localVarResponse = CreateImportWithHttpInfo(format, idempotencyKey, dryRun, file, mode, sourceId, url);
             return localVarResponse.Data;
         }
 
@@ -742,8 +742,8 @@ namespace Skautik.Sdk.Api
         /// <param name="mode">incremental updates what the payload contains. full_sync additionally withdraws anything absent, and is refused unless the source is configured for it. (optional, default to incremental)</param>
         /// <param name="sourceId">Apply a stored import source&#39;s mapping and settings rather than the defaults. (optional)</param>
         /// <param name="url">Where to fetch the payload from. Mutually exclusive with file. (optional)</param>
-        /// <returns>ApiResponse of Envelope</returns>
-        public Skautik.Sdk.Client.ApiResponse<Envelope> CreateImportWithHttpInfo(string format, string? idempotencyKey = default, bool? dryRun = default, FileParameter? file = default, string? mode = default, string? sourceId = default, string? url = default)
+        /// <returns>ApiResponse of ImportResponse</returns>
+        public Skautik.Sdk.Client.ApiResponse<ImportResponse> CreateImportWithHttpInfo(string format, string? idempotencyKey = default, bool? dryRun = default, FileParameter? file = default, string? mode = default, string? sourceId = default, string? url = default)
         {
             // verify the required parameter 'format' is set
             if (format == null)
@@ -801,7 +801,7 @@ namespace Skautik.Sdk.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Envelope>("/imports", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<ImportResponse>("/imports", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -824,10 +824,10 @@ namespace Skautik.Sdk.Api
         /// <param name="sourceId">Apply a stored import source&#39;s mapping and settings rather than the defaults. (optional)</param>
         /// <param name="url">Where to fetch the payload from. Mutually exclusive with file. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of Envelope</returns>
-        public async System.Threading.Tasks.Task<Envelope> CreateImportAsync(string format, string? idempotencyKey = default, bool? dryRun = default, FileParameter? file = default, string? mode = default, string? sourceId = default, string? url = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ImportResponse</returns>
+        public async System.Threading.Tasks.Task<ImportResponse> CreateImportAsync(string format, string? idempotencyKey = default, bool? dryRun = default, FileParameter? file = default, string? mode = default, string? sourceId = default, string? url = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Skautik.Sdk.Client.ApiResponse<Envelope> localVarResponse = await CreateImportWithHttpInfoAsync(format, idempotencyKey, dryRun, file, mode, sourceId, url, cancellationToken).ConfigureAwait(false);
+            Skautik.Sdk.Client.ApiResponse<ImportResponse> localVarResponse = await CreateImportWithHttpInfoAsync(format, idempotencyKey, dryRun, file, mode, sourceId, url, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -843,8 +843,8 @@ namespace Skautik.Sdk.Api
         /// <param name="sourceId">Apply a stored import source&#39;s mapping and settings rather than the defaults. (optional)</param>
         /// <param name="url">Where to fetch the payload from. Mutually exclusive with file. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (Envelope)</returns>
-        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<Envelope>> CreateImportWithHttpInfoAsync(string format, string? idempotencyKey = default, bool? dryRun = default, FileParameter? file = default, string? mode = default, string? sourceId = default, string? url = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (ImportResponse)</returns>
+        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<ImportResponse>> CreateImportWithHttpInfoAsync(string format, string? idempotencyKey = default, bool? dryRun = default, FileParameter? file = default, string? mode = default, string? sourceId = default, string? url = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'format' is set
             if (format == null)
@@ -905,7 +905,7 @@ namespace Skautik.Sdk.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Envelope>("/imports", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<ImportResponse>("/imports", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -921,10 +921,10 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createImportSourceRequest"></param>
-        /// <returns>Envelope</returns>
-        public Envelope CreateImportSource(CreateImportSourceRequest createImportSourceRequest)
+        /// <returns>ImportSourceResponse</returns>
+        public ImportSourceResponse CreateImportSource(CreateImportSourceRequest createImportSourceRequest)
         {
-            Skautik.Sdk.Client.ApiResponse<Envelope> localVarResponse = CreateImportSourceWithHttpInfo(createImportSourceRequest);
+            Skautik.Sdk.Client.ApiResponse<ImportSourceResponse> localVarResponse = CreateImportSourceWithHttpInfo(createImportSourceRequest);
             return localVarResponse.Data;
         }
 
@@ -933,8 +933,8 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createImportSourceRequest"></param>
-        /// <returns>ApiResponse of Envelope</returns>
-        public Skautik.Sdk.Client.ApiResponse<Envelope> CreateImportSourceWithHttpInfo(CreateImportSourceRequest createImportSourceRequest)
+        /// <returns>ApiResponse of ImportSourceResponse</returns>
+        public Skautik.Sdk.Client.ApiResponse<ImportSourceResponse> CreateImportSourceWithHttpInfo(CreateImportSourceRequest createImportSourceRequest)
         {
             // verify the required parameter 'createImportSourceRequest' is set
             if (createImportSourceRequest == null)
@@ -968,7 +968,7 @@ namespace Skautik.Sdk.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Envelope>("/import-sources", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<ImportSourceResponse>("/import-sources", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -985,10 +985,10 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createImportSourceRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of Envelope</returns>
-        public async System.Threading.Tasks.Task<Envelope> CreateImportSourceAsync(CreateImportSourceRequest createImportSourceRequest, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ImportSourceResponse</returns>
+        public async System.Threading.Tasks.Task<ImportSourceResponse> CreateImportSourceAsync(CreateImportSourceRequest createImportSourceRequest, System.Threading.CancellationToken cancellationToken = default)
         {
-            Skautik.Sdk.Client.ApiResponse<Envelope> localVarResponse = await CreateImportSourceWithHttpInfoAsync(createImportSourceRequest, cancellationToken).ConfigureAwait(false);
+            Skautik.Sdk.Client.ApiResponse<ImportSourceResponse> localVarResponse = await CreateImportSourceWithHttpInfoAsync(createImportSourceRequest, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -998,8 +998,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createImportSourceRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (Envelope)</returns>
-        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<Envelope>> CreateImportSourceWithHttpInfoAsync(CreateImportSourceRequest createImportSourceRequest, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (ImportSourceResponse)</returns>
+        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<ImportSourceResponse>> CreateImportSourceWithHttpInfoAsync(CreateImportSourceRequest createImportSourceRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'createImportSourceRequest' is set
             if (createImportSourceRequest == null)
@@ -1036,7 +1036,7 @@ namespace Skautik.Sdk.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Envelope>("/import-sources", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<ImportSourceResponse>("/import-sources", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1177,10 +1177,10 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="importId">Import identifier.</param>
-        /// <returns>Envelope</returns>
-        public Envelope GetImport(string importId)
+        /// <returns>ImportResponse</returns>
+        public ImportResponse GetImport(string importId)
         {
-            Skautik.Sdk.Client.ApiResponse<Envelope> localVarResponse = GetImportWithHttpInfo(importId);
+            Skautik.Sdk.Client.ApiResponse<ImportResponse> localVarResponse = GetImportWithHttpInfo(importId);
             return localVarResponse.Data;
         }
 
@@ -1189,8 +1189,8 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="importId">Import identifier.</param>
-        /// <returns>ApiResponse of Envelope</returns>
-        public Skautik.Sdk.Client.ApiResponse<Envelope> GetImportWithHttpInfo(string importId)
+        /// <returns>ApiResponse of ImportResponse</returns>
+        public Skautik.Sdk.Client.ApiResponse<ImportResponse> GetImportWithHttpInfo(string importId)
         {
             // verify the required parameter 'importId' is set
             if (importId == null)
@@ -1223,7 +1223,7 @@ namespace Skautik.Sdk.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Envelope>("/imports/{import_id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<ImportResponse>("/imports/{import_id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1240,10 +1240,10 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="importId">Import identifier.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of Envelope</returns>
-        public async System.Threading.Tasks.Task<Envelope> GetImportAsync(string importId, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ImportResponse</returns>
+        public async System.Threading.Tasks.Task<ImportResponse> GetImportAsync(string importId, System.Threading.CancellationToken cancellationToken = default)
         {
-            Skautik.Sdk.Client.ApiResponse<Envelope> localVarResponse = await GetImportWithHttpInfoAsync(importId, cancellationToken).ConfigureAwait(false);
+            Skautik.Sdk.Client.ApiResponse<ImportResponse> localVarResponse = await GetImportWithHttpInfoAsync(importId, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1253,8 +1253,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="importId">Import identifier.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (Envelope)</returns>
-        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<Envelope>> GetImportWithHttpInfoAsync(string importId, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (ImportResponse)</returns>
+        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<ImportResponse>> GetImportWithHttpInfoAsync(string importId, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'importId' is set
             if (importId == null)
@@ -1290,7 +1290,7 @@ namespace Skautik.Sdk.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Envelope>("/imports/{import_id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ImportResponse>("/imports/{import_id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1306,10 +1306,11 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sourceId">Source identifier.</param>
-        /// <returns></returns>
-        public void GetImportSource(string sourceId)
+        /// <returns>ImportSourceResponse</returns>
+        public ImportSourceResponse GetImportSource(string sourceId)
         {
-            GetImportSourceWithHttpInfo(sourceId);
+            Skautik.Sdk.Client.ApiResponse<ImportSourceResponse> localVarResponse = GetImportSourceWithHttpInfo(sourceId);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -1317,8 +1318,8 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sourceId">Source identifier.</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Skautik.Sdk.Client.ApiResponse<Object> GetImportSourceWithHttpInfo(string sourceId)
+        /// <returns>ApiResponse of ImportSourceResponse</returns>
+        public Skautik.Sdk.Client.ApiResponse<ImportSourceResponse> GetImportSourceWithHttpInfo(string sourceId)
         {
             // verify the required parameter 'sourceId' is set
             if (sourceId == null)
@@ -1331,6 +1332,7 @@ namespace Skautik.Sdk.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json",
                 "application/problem+json"
             };
 
@@ -1350,7 +1352,7 @@ namespace Skautik.Sdk.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/import-sources/{source_id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<ImportSourceResponse>("/import-sources/{source_id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1367,10 +1369,11 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sourceId">Source identifier.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task GetImportSourceAsync(string sourceId, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ImportSourceResponse</returns>
+        public async System.Threading.Tasks.Task<ImportSourceResponse> GetImportSourceAsync(string sourceId, System.Threading.CancellationToken cancellationToken = default)
         {
-            await GetImportSourceWithHttpInfoAsync(sourceId, cancellationToken).ConfigureAwait(false);
+            Skautik.Sdk.Client.ApiResponse<ImportSourceResponse> localVarResponse = await GetImportSourceWithHttpInfoAsync(sourceId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -1379,8 +1382,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sourceId">Source identifier.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<Object>> GetImportSourceWithHttpInfoAsync(string sourceId, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (ImportSourceResponse)</returns>
+        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<ImportSourceResponse>> GetImportSourceWithHttpInfoAsync(string sourceId, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'sourceId' is set
             if (sourceId == null)
@@ -1394,6 +1397,7 @@ namespace Skautik.Sdk.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json",
                 "application/problem+json"
             };
 
@@ -1415,7 +1419,7 @@ namespace Skautik.Sdk.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/import-sources/{source_id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ImportSourceResponse>("/import-sources/{source_id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1547,10 +1551,10 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="importId">Import identifier.</param>
         /// <param name="outcome">Narrow to one outcome. (optional)</param>
-        /// <returns>Envelope</returns>
-        public Envelope ListImportRecords(string importId, string? outcome = default)
+        /// <returns>ImportRecordPage</returns>
+        public ImportRecordPage ListImportRecords(string importId, string? outcome = default)
         {
-            Skautik.Sdk.Client.ApiResponse<Envelope> localVarResponse = ListImportRecordsWithHttpInfo(importId, outcome);
+            Skautik.Sdk.Client.ApiResponse<ImportRecordPage> localVarResponse = ListImportRecordsWithHttpInfo(importId, outcome);
             return localVarResponse.Data;
         }
 
@@ -1560,8 +1564,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="importId">Import identifier.</param>
         /// <param name="outcome">Narrow to one outcome. (optional)</param>
-        /// <returns>ApiResponse of Envelope</returns>
-        public Skautik.Sdk.Client.ApiResponse<Envelope> ListImportRecordsWithHttpInfo(string importId, string? outcome = default)
+        /// <returns>ApiResponse of ImportRecordPage</returns>
+        public Skautik.Sdk.Client.ApiResponse<ImportRecordPage> ListImportRecordsWithHttpInfo(string importId, string? outcome = default)
         {
             // verify the required parameter 'importId' is set
             if (importId == null)
@@ -1598,7 +1602,7 @@ namespace Skautik.Sdk.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Envelope>("/imports/{import_id}/records", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<ImportRecordPage>("/imports/{import_id}/records", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1616,10 +1620,10 @@ namespace Skautik.Sdk.Api
         /// <param name="importId">Import identifier.</param>
         /// <param name="outcome">Narrow to one outcome. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of Envelope</returns>
-        public async System.Threading.Tasks.Task<Envelope> ListImportRecordsAsync(string importId, string? outcome = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ImportRecordPage</returns>
+        public async System.Threading.Tasks.Task<ImportRecordPage> ListImportRecordsAsync(string importId, string? outcome = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Skautik.Sdk.Client.ApiResponse<Envelope> localVarResponse = await ListImportRecordsWithHttpInfoAsync(importId, outcome, cancellationToken).ConfigureAwait(false);
+            Skautik.Sdk.Client.ApiResponse<ImportRecordPage> localVarResponse = await ListImportRecordsWithHttpInfoAsync(importId, outcome, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1630,8 +1634,8 @@ namespace Skautik.Sdk.Api
         /// <param name="importId">Import identifier.</param>
         /// <param name="outcome">Narrow to one outcome. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (Envelope)</returns>
-        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<Envelope>> ListImportRecordsWithHttpInfoAsync(string importId, string? outcome = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (ImportRecordPage)</returns>
+        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<ImportRecordPage>> ListImportRecordsWithHttpInfoAsync(string importId, string? outcome = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'importId' is set
             if (importId == null)
@@ -1671,7 +1675,7 @@ namespace Skautik.Sdk.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Envelope>("/imports/{import_id}/records", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ImportRecordPage>("/imports/{import_id}/records", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1686,10 +1690,10 @@ namespace Skautik.Sdk.Api
         /// List import sources Every standing connector your organisation has configured.  Credentials are never returned. A fetched source often holds the login for your own server in its URL, so the URL comes back with the password removed.  Requires the &#x60;imports:write&#x60; scope.
         /// </summary>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Envelope</returns>
-        public Envelope ListImportSources()
+        /// <returns>ImportSourcePage</returns>
+        public ImportSourcePage ListImportSources()
         {
-            Skautik.Sdk.Client.ApiResponse<Envelope> localVarResponse = ListImportSourcesWithHttpInfo();
+            Skautik.Sdk.Client.ApiResponse<ImportSourcePage> localVarResponse = ListImportSourcesWithHttpInfo();
             return localVarResponse.Data;
         }
 
@@ -1697,8 +1701,8 @@ namespace Skautik.Sdk.Api
         /// List import sources Every standing connector your organisation has configured.  Credentials are never returned. A fetched source often holds the login for your own server in its URL, so the URL comes back with the password removed.  Requires the &#x60;imports:write&#x60; scope.
         /// </summary>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Envelope</returns>
-        public Skautik.Sdk.Client.ApiResponse<Envelope> ListImportSourcesWithHttpInfo()
+        /// <returns>ApiResponse of ImportSourcePage</returns>
+        public Skautik.Sdk.Client.ApiResponse<ImportSourcePage> ListImportSourcesWithHttpInfo()
         {
             Skautik.Sdk.Client.RequestOptions localVarRequestOptions = new Skautik.Sdk.Client.RequestOptions();
 
@@ -1726,7 +1730,7 @@ namespace Skautik.Sdk.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Envelope>("/import-sources", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<ImportSourcePage>("/import-sources", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1742,10 +1746,10 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of Envelope</returns>
-        public async System.Threading.Tasks.Task<Envelope> ListImportSourcesAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ImportSourcePage</returns>
+        public async System.Threading.Tasks.Task<ImportSourcePage> ListImportSourcesAsync(System.Threading.CancellationToken cancellationToken = default)
         {
-            Skautik.Sdk.Client.ApiResponse<Envelope> localVarResponse = await ListImportSourcesWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Skautik.Sdk.Client.ApiResponse<ImportSourcePage> localVarResponse = await ListImportSourcesWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1754,8 +1758,8 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (Envelope)</returns>
-        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<Envelope>> ListImportSourcesWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (ImportSourcePage)</returns>
+        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<ImportSourcePage>> ListImportSourcesWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default)
         {
 
             Skautik.Sdk.Client.RequestOptions localVarRequestOptions = new Skautik.Sdk.Client.RequestOptions();
@@ -1786,7 +1790,7 @@ namespace Skautik.Sdk.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Envelope>("/import-sources", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ImportSourcePage>("/import-sources", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1803,10 +1807,11 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sourceId">Only imports produced by one source. (optional)</param>
         /// <param name="status">Filter by outcome. (optional)</param>
-        /// <returns></returns>
-        public void ListImports(string? sourceId = default, string? status = default)
+        /// <returns>ImportPage</returns>
+        public ImportPage ListImports(string? sourceId = default, string? status = default)
         {
-            ListImportsWithHttpInfo(sourceId, status);
+            Skautik.Sdk.Client.ApiResponse<ImportPage> localVarResponse = ListImportsWithHttpInfo(sourceId, status);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -1815,8 +1820,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sourceId">Only imports produced by one source. (optional)</param>
         /// <param name="status">Filter by outcome. (optional)</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Skautik.Sdk.Client.ApiResponse<Object> ListImportsWithHttpInfo(string? sourceId = default, string? status = default)
+        /// <returns>ApiResponse of ImportPage</returns>
+        public Skautik.Sdk.Client.ApiResponse<ImportPage> ListImportsWithHttpInfo(string? sourceId = default, string? status = default)
         {
             Skautik.Sdk.Client.RequestOptions localVarRequestOptions = new Skautik.Sdk.Client.RequestOptions();
 
@@ -1825,6 +1830,7 @@ namespace Skautik.Sdk.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json",
                 "application/problem+json"
             };
 
@@ -1851,7 +1857,7 @@ namespace Skautik.Sdk.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/imports", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<ImportPage>("/imports", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1869,10 +1875,11 @@ namespace Skautik.Sdk.Api
         /// <param name="sourceId">Only imports produced by one source. (optional)</param>
         /// <param name="status">Filter by outcome. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ListImportsAsync(string? sourceId = default, string? status = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ImportPage</returns>
+        public async System.Threading.Tasks.Task<ImportPage> ListImportsAsync(string? sourceId = default, string? status = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            await ListImportsWithHttpInfoAsync(sourceId, status, cancellationToken).ConfigureAwait(false);
+            Skautik.Sdk.Client.ApiResponse<ImportPage> localVarResponse = await ListImportsWithHttpInfoAsync(sourceId, status, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -1882,8 +1889,8 @@ namespace Skautik.Sdk.Api
         /// <param name="sourceId">Only imports produced by one source. (optional)</param>
         /// <param name="status">Filter by outcome. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<Object>> ListImportsWithHttpInfoAsync(string? sourceId = default, string? status = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (ImportPage)</returns>
+        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<ImportPage>> ListImportsWithHttpInfoAsync(string? sourceId = default, string? status = default, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Skautik.Sdk.Client.RequestOptions localVarRequestOptions = new Skautik.Sdk.Client.RequestOptions();
@@ -1893,6 +1900,7 @@ namespace Skautik.Sdk.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json",
                 "application/problem+json"
             };
 
@@ -1921,7 +1929,7 @@ namespace Skautik.Sdk.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/imports", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ImportPage>("/imports", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1937,10 +1945,11 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sourceId">Source identifier.</param>
-        /// <returns></returns>
-        public void UpdateImportSource(string sourceId)
+        /// <returns>ImportSourceResponse</returns>
+        public ImportSourceResponse UpdateImportSource(string sourceId)
         {
-            UpdateImportSourceWithHttpInfo(sourceId);
+            Skautik.Sdk.Client.ApiResponse<ImportSourceResponse> localVarResponse = UpdateImportSourceWithHttpInfo(sourceId);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -1948,8 +1957,8 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sourceId">Source identifier.</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Skautik.Sdk.Client.ApiResponse<Object> UpdateImportSourceWithHttpInfo(string sourceId)
+        /// <returns>ApiResponse of ImportSourceResponse</returns>
+        public Skautik.Sdk.Client.ApiResponse<ImportSourceResponse> UpdateImportSourceWithHttpInfo(string sourceId)
         {
             // verify the required parameter 'sourceId' is set
             if (sourceId == null)
@@ -1962,6 +1971,7 @@ namespace Skautik.Sdk.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json",
                 "application/problem+json"
             };
 
@@ -1981,7 +1991,7 @@ namespace Skautik.Sdk.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Patch<Object>("/import-sources/{source_id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Patch<ImportSourceResponse>("/import-sources/{source_id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1998,10 +2008,11 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sourceId">Source identifier.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task UpdateImportSourceAsync(string sourceId, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ImportSourceResponse</returns>
+        public async System.Threading.Tasks.Task<ImportSourceResponse> UpdateImportSourceAsync(string sourceId, System.Threading.CancellationToken cancellationToken = default)
         {
-            await UpdateImportSourceWithHttpInfoAsync(sourceId, cancellationToken).ConfigureAwait(false);
+            Skautik.Sdk.Client.ApiResponse<ImportSourceResponse> localVarResponse = await UpdateImportSourceWithHttpInfoAsync(sourceId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -2010,8 +2021,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sourceId">Source identifier.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<Object>> UpdateImportSourceWithHttpInfoAsync(string sourceId, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (ImportSourceResponse)</returns>
+        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<ImportSourceResponse>> UpdateImportSourceWithHttpInfoAsync(string sourceId, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'sourceId' is set
             if (sourceId == null)
@@ -2025,6 +2036,7 @@ namespace Skautik.Sdk.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json",
                 "application/problem+json"
             };
 
@@ -2046,7 +2058,7 @@ namespace Skautik.Sdk.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PatchAsync<Object>("/import-sources/{source_id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PatchAsync<ImportSourceResponse>("/import-sources/{source_id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

@@ -35,8 +35,8 @@ namespace Skautik.Sdk.Api
         /// </remarks>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="inquiryId">Inquiry identifier.</param>
-        /// <returns></returns>
-        void GetInquiry(string inquiryId);
+        /// <returns>InquiryResponse</returns>
+        InquiryResponse GetInquiry(string inquiryId);
 
         /// <summary>
         /// Retrieve an inquiry
@@ -46,8 +46,8 @@ namespace Skautik.Sdk.Api
         /// </remarks>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="inquiryId">Inquiry identifier.</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> GetInquiryWithHttpInfo(string inquiryId);
+        /// <returns>ApiResponse of InquiryResponse</returns>
+        ApiResponse<InquiryResponse> GetInquiryWithHttpInfo(string inquiryId);
         /// <summary>
         /// List inquiries
         /// </summary>
@@ -59,8 +59,8 @@ namespace Skautik.Sdk.Api
         /// <param name="status">Only enquiries in this state. (optional)</param>
         /// <param name="limit">Page size. Clamped to 200. (optional, default to 50)</param>
         /// <param name="cursor">Opaque cursor from the previous page&#39;s meta.next_cursor. (optional)</param>
-        /// <returns>Envelope</returns>
-        Envelope ListInquiries(string? propertyId = default, string? status = default, int? limit = default, string? cursor = default);
+        /// <returns>InquiryPage</returns>
+        InquiryPage ListInquiries(string? propertyId = default, string? status = default, int? limit = default, string? cursor = default);
 
         /// <summary>
         /// List inquiries
@@ -73,8 +73,8 @@ namespace Skautik.Sdk.Api
         /// <param name="status">Only enquiries in this state. (optional)</param>
         /// <param name="limit">Page size. Clamped to 200. (optional, default to 50)</param>
         /// <param name="cursor">Opaque cursor from the previous page&#39;s meta.next_cursor. (optional)</param>
-        /// <returns>ApiResponse of Envelope</returns>
-        ApiResponse<Envelope> ListInquiriesWithHttpInfo(string? propertyId = default, string? status = default, int? limit = default, string? cursor = default);
+        /// <returns>ApiResponse of InquiryPage</returns>
+        ApiResponse<InquiryPage> ListInquiriesWithHttpInfo(string? propertyId = default, string? status = default, int? limit = default, string? cursor = default);
         /// <summary>
         /// Mark as read
         /// </summary>
@@ -105,8 +105,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="inquiryId">Inquiry identifier.</param>
         /// <param name="updateInquiryRequest"></param>
-        /// <returns></returns>
-        void UpdateInquiry(string inquiryId, UpdateInquiryRequest updateInquiryRequest);
+        /// <returns>InquiryResponse</returns>
+        InquiryResponse UpdateInquiry(string inquiryId, UpdateInquiryRequest updateInquiryRequest);
 
         /// <summary>
         /// Set the status
@@ -117,8 +117,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="inquiryId">Inquiry identifier.</param>
         /// <param name="updateInquiryRequest"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> UpdateInquiryWithHttpInfo(string inquiryId, UpdateInquiryRequest updateInquiryRequest);
+        /// <returns>ApiResponse of InquiryResponse</returns>
+        ApiResponse<InquiryResponse> UpdateInquiryWithHttpInfo(string inquiryId, UpdateInquiryRequest updateInquiryRequest);
         #endregion Synchronous Operations
     }
 
@@ -137,8 +137,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="inquiryId">Inquiry identifier.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task GetInquiryAsync(string inquiryId, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of InquiryResponse</returns>
+        System.Threading.Tasks.Task<InquiryResponse> GetInquiryAsync(string inquiryId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Retrieve an inquiry
@@ -149,8 +149,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="inquiryId">Inquiry identifier.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> GetInquiryWithHttpInfoAsync(string inquiryId, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (InquiryResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<InquiryResponse>> GetInquiryWithHttpInfoAsync(string inquiryId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List inquiries
         /// </summary>
@@ -163,8 +163,8 @@ namespace Skautik.Sdk.Api
         /// <param name="limit">Page size. Clamped to 200. (optional, default to 50)</param>
         /// <param name="cursor">Opaque cursor from the previous page&#39;s meta.next_cursor. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of Envelope</returns>
-        System.Threading.Tasks.Task<Envelope> ListInquiriesAsync(string? propertyId = default, string? status = default, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of InquiryPage</returns>
+        System.Threading.Tasks.Task<InquiryPage> ListInquiriesAsync(string? propertyId = default, string? status = default, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List inquiries
@@ -178,8 +178,8 @@ namespace Skautik.Sdk.Api
         /// <param name="limit">Page size. Clamped to 200. (optional, default to 50)</param>
         /// <param name="cursor">Opaque cursor from the previous page&#39;s meta.next_cursor. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (Envelope)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Envelope>> ListInquiriesWithHttpInfoAsync(string? propertyId = default, string? status = default, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (InquiryPage)</returns>
+        System.Threading.Tasks.Task<ApiResponse<InquiryPage>> ListInquiriesWithHttpInfoAsync(string? propertyId = default, string? status = default, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Mark as read
         /// </summary>
@@ -213,8 +213,8 @@ namespace Skautik.Sdk.Api
         /// <param name="inquiryId">Inquiry identifier.</param>
         /// <param name="updateInquiryRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task UpdateInquiryAsync(string inquiryId, UpdateInquiryRequest updateInquiryRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of InquiryResponse</returns>
+        System.Threading.Tasks.Task<InquiryResponse> UpdateInquiryAsync(string inquiryId, UpdateInquiryRequest updateInquiryRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Set the status
@@ -226,8 +226,8 @@ namespace Skautik.Sdk.Api
         /// <param name="inquiryId">Inquiry identifier.</param>
         /// <param name="updateInquiryRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> UpdateInquiryWithHttpInfoAsync(string inquiryId, UpdateInquiryRequest updateInquiryRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (InquiryResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<InquiryResponse>> UpdateInquiryWithHttpInfoAsync(string inquiryId, UpdateInquiryRequest updateInquiryRequest, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -446,10 +446,11 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="inquiryId">Inquiry identifier.</param>
-        /// <returns></returns>
-        public void GetInquiry(string inquiryId)
+        /// <returns>InquiryResponse</returns>
+        public InquiryResponse GetInquiry(string inquiryId)
         {
-            GetInquiryWithHttpInfo(inquiryId);
+            Skautik.Sdk.Client.ApiResponse<InquiryResponse> localVarResponse = GetInquiryWithHttpInfo(inquiryId);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -457,8 +458,8 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="inquiryId">Inquiry identifier.</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Skautik.Sdk.Client.ApiResponse<Object> GetInquiryWithHttpInfo(string inquiryId)
+        /// <returns>ApiResponse of InquiryResponse</returns>
+        public Skautik.Sdk.Client.ApiResponse<InquiryResponse> GetInquiryWithHttpInfo(string inquiryId)
         {
             // verify the required parameter 'inquiryId' is set
             if (inquiryId == null)
@@ -471,6 +472,7 @@ namespace Skautik.Sdk.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json",
                 "application/problem+json"
             };
 
@@ -490,7 +492,7 @@ namespace Skautik.Sdk.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/inquiries/{inquiry_id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<InquiryResponse>("/inquiries/{inquiry_id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -507,10 +509,11 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="inquiryId">Inquiry identifier.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task GetInquiryAsync(string inquiryId, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of InquiryResponse</returns>
+        public async System.Threading.Tasks.Task<InquiryResponse> GetInquiryAsync(string inquiryId, System.Threading.CancellationToken cancellationToken = default)
         {
-            await GetInquiryWithHttpInfoAsync(inquiryId, cancellationToken).ConfigureAwait(false);
+            Skautik.Sdk.Client.ApiResponse<InquiryResponse> localVarResponse = await GetInquiryWithHttpInfoAsync(inquiryId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -519,8 +522,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="inquiryId">Inquiry identifier.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<Object>> GetInquiryWithHttpInfoAsync(string inquiryId, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (InquiryResponse)</returns>
+        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<InquiryResponse>> GetInquiryWithHttpInfoAsync(string inquiryId, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'inquiryId' is set
             if (inquiryId == null)
@@ -534,6 +537,7 @@ namespace Skautik.Sdk.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json",
                 "application/problem+json"
             };
 
@@ -555,7 +559,7 @@ namespace Skautik.Sdk.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/inquiries/{inquiry_id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<InquiryResponse>("/inquiries/{inquiry_id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -574,10 +578,10 @@ namespace Skautik.Sdk.Api
         /// <param name="status">Only enquiries in this state. (optional)</param>
         /// <param name="limit">Page size. Clamped to 200. (optional, default to 50)</param>
         /// <param name="cursor">Opaque cursor from the previous page&#39;s meta.next_cursor. (optional)</param>
-        /// <returns>Envelope</returns>
-        public Envelope ListInquiries(string? propertyId = default, string? status = default, int? limit = default, string? cursor = default)
+        /// <returns>InquiryPage</returns>
+        public InquiryPage ListInquiries(string? propertyId = default, string? status = default, int? limit = default, string? cursor = default)
         {
-            Skautik.Sdk.Client.ApiResponse<Envelope> localVarResponse = ListInquiriesWithHttpInfo(propertyId, status, limit, cursor);
+            Skautik.Sdk.Client.ApiResponse<InquiryPage> localVarResponse = ListInquiriesWithHttpInfo(propertyId, status, limit, cursor);
             return localVarResponse.Data;
         }
 
@@ -589,8 +593,8 @@ namespace Skautik.Sdk.Api
         /// <param name="status">Only enquiries in this state. (optional)</param>
         /// <param name="limit">Page size. Clamped to 200. (optional, default to 50)</param>
         /// <param name="cursor">Opaque cursor from the previous page&#39;s meta.next_cursor. (optional)</param>
-        /// <returns>ApiResponse of Envelope</returns>
-        public Skautik.Sdk.Client.ApiResponse<Envelope> ListInquiriesWithHttpInfo(string? propertyId = default, string? status = default, int? limit = default, string? cursor = default)
+        /// <returns>ApiResponse of InquiryPage</returns>
+        public Skautik.Sdk.Client.ApiResponse<InquiryPage> ListInquiriesWithHttpInfo(string? propertyId = default, string? status = default, int? limit = default, string? cursor = default)
         {
             Skautik.Sdk.Client.RequestOptions localVarRequestOptions = new Skautik.Sdk.Client.RequestOptions();
 
@@ -634,7 +638,7 @@ namespace Skautik.Sdk.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Envelope>("/inquiries", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<InquiryPage>("/inquiries", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -654,10 +658,10 @@ namespace Skautik.Sdk.Api
         /// <param name="limit">Page size. Clamped to 200. (optional, default to 50)</param>
         /// <param name="cursor">Opaque cursor from the previous page&#39;s meta.next_cursor. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of Envelope</returns>
-        public async System.Threading.Tasks.Task<Envelope> ListInquiriesAsync(string? propertyId = default, string? status = default, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of InquiryPage</returns>
+        public async System.Threading.Tasks.Task<InquiryPage> ListInquiriesAsync(string? propertyId = default, string? status = default, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Skautik.Sdk.Client.ApiResponse<Envelope> localVarResponse = await ListInquiriesWithHttpInfoAsync(propertyId, status, limit, cursor, cancellationToken).ConfigureAwait(false);
+            Skautik.Sdk.Client.ApiResponse<InquiryPage> localVarResponse = await ListInquiriesWithHttpInfoAsync(propertyId, status, limit, cursor, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -670,8 +674,8 @@ namespace Skautik.Sdk.Api
         /// <param name="limit">Page size. Clamped to 200. (optional, default to 50)</param>
         /// <param name="cursor">Opaque cursor from the previous page&#39;s meta.next_cursor. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (Envelope)</returns>
-        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<Envelope>> ListInquiriesWithHttpInfoAsync(string? propertyId = default, string? status = default, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (InquiryPage)</returns>
+        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<InquiryPage>> ListInquiriesWithHttpInfoAsync(string? propertyId = default, string? status = default, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Skautik.Sdk.Client.RequestOptions localVarRequestOptions = new Skautik.Sdk.Client.RequestOptions();
@@ -718,7 +722,7 @@ namespace Skautik.Sdk.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Envelope>("/inquiries", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<InquiryPage>("/inquiries", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -860,10 +864,11 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="inquiryId">Inquiry identifier.</param>
         /// <param name="updateInquiryRequest"></param>
-        /// <returns></returns>
-        public void UpdateInquiry(string inquiryId, UpdateInquiryRequest updateInquiryRequest)
+        /// <returns>InquiryResponse</returns>
+        public InquiryResponse UpdateInquiry(string inquiryId, UpdateInquiryRequest updateInquiryRequest)
         {
-            UpdateInquiryWithHttpInfo(inquiryId, updateInquiryRequest);
+            Skautik.Sdk.Client.ApiResponse<InquiryResponse> localVarResponse = UpdateInquiryWithHttpInfo(inquiryId, updateInquiryRequest);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -872,8 +877,8 @@ namespace Skautik.Sdk.Api
         /// <exception cref="Skautik.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="inquiryId">Inquiry identifier.</param>
         /// <param name="updateInquiryRequest"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Skautik.Sdk.Client.ApiResponse<Object> UpdateInquiryWithHttpInfo(string inquiryId, UpdateInquiryRequest updateInquiryRequest)
+        /// <returns>ApiResponse of InquiryResponse</returns>
+        public Skautik.Sdk.Client.ApiResponse<InquiryResponse> UpdateInquiryWithHttpInfo(string inquiryId, UpdateInquiryRequest updateInquiryRequest)
         {
             // verify the required parameter 'inquiryId' is set
             if (inquiryId == null)
@@ -891,6 +896,7 @@ namespace Skautik.Sdk.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json",
                 "application/problem+json"
             };
 
@@ -911,7 +917,7 @@ namespace Skautik.Sdk.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Patch<Object>("/inquiries/{inquiry_id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Patch<InquiryResponse>("/inquiries/{inquiry_id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -929,10 +935,11 @@ namespace Skautik.Sdk.Api
         /// <param name="inquiryId">Inquiry identifier.</param>
         /// <param name="updateInquiryRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task UpdateInquiryAsync(string inquiryId, UpdateInquiryRequest updateInquiryRequest, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of InquiryResponse</returns>
+        public async System.Threading.Tasks.Task<InquiryResponse> UpdateInquiryAsync(string inquiryId, UpdateInquiryRequest updateInquiryRequest, System.Threading.CancellationToken cancellationToken = default)
         {
-            await UpdateInquiryWithHttpInfoAsync(inquiryId, updateInquiryRequest, cancellationToken).ConfigureAwait(false);
+            Skautik.Sdk.Client.ApiResponse<InquiryResponse> localVarResponse = await UpdateInquiryWithHttpInfoAsync(inquiryId, updateInquiryRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -942,8 +949,8 @@ namespace Skautik.Sdk.Api
         /// <param name="inquiryId">Inquiry identifier.</param>
         /// <param name="updateInquiryRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<Object>> UpdateInquiryWithHttpInfoAsync(string inquiryId, UpdateInquiryRequest updateInquiryRequest, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (InquiryResponse)</returns>
+        public async System.Threading.Tasks.Task<Skautik.Sdk.Client.ApiResponse<InquiryResponse>> UpdateInquiryWithHttpInfoAsync(string inquiryId, UpdateInquiryRequest updateInquiryRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'inquiryId' is set
             if (inquiryId == null)
@@ -962,6 +969,7 @@ namespace Skautik.Sdk.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json",
                 "application/problem+json"
             };
 
@@ -984,7 +992,7 @@ namespace Skautik.Sdk.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PatchAsync<Object>("/inquiries/{inquiry_id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PatchAsync<InquiryResponse>("/inquiries/{inquiry_id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
