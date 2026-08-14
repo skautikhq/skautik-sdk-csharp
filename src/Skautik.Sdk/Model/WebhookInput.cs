@@ -26,17 +26,17 @@ using Skautik.Sdk.Client;
 namespace Skautik.Sdk.Model
 {
     /// <summary>
-    /// CreateWebhookRequest
+    /// WebhookInput
     /// </summary>
-    public partial class CreateWebhookRequest : IValidatableObject
+    public partial class WebhookInput : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreateWebhookRequest" /> class.
+        /// Initializes a new instance of the <see cref="WebhookInput" /> class.
         /// </summary>
-        /// <param name="events">Event names to subscribe to. Every name must be one of the events listed above; an unrecognised one is refused rather than silently never firing.</param>
-        /// <param name="url">HTTPS endpoint. Plain HTTP is rejected.</param>
+        /// <param name="events">events</param>
+        /// <param name="url">url</param>
         [JsonConstructor]
-        public CreateWebhookRequest(List<string> events, string url)
+        public WebhookInput(List<string> events, string url)
         {
             Events = events;
             Url = url;
@@ -46,18 +46,14 @@ namespace Skautik.Sdk.Model
         partial void OnCreated();
 
         /// <summary>
-        /// Event names to subscribe to. Every name must be one of the events listed above; an unrecognised one is refused rather than silently never firing.
+        /// Gets or Sets Events
         /// </summary>
-        /// <value>Event names to subscribe to. Every name must be one of the events listed above; an unrecognised one is refused rather than silently never firing.</value>
-        /* <example>[&quot;property.created&quot;,&quot;inquiry.created&quot;]</example> */
         [JsonPropertyName("events")]
         public List<string> Events { get; set; }
 
         /// <summary>
-        /// HTTPS endpoint. Plain HTTP is rejected.
+        /// Gets or Sets Url
         /// </summary>
-        /// <value>HTTPS endpoint. Plain HTTP is rejected.</value>
-        /* <example>https://example.com/hooks/skautik</example> */
         [JsonPropertyName("url")]
         public string Url { get; set; }
 
@@ -68,7 +64,7 @@ namespace Skautik.Sdk.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class CreateWebhookRequest {\n");
+            sb.Append("class WebhookInput {\n");
             sb.Append("  Events: ").Append(Events).Append("\n");
             sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("}\n");
@@ -87,29 +83,29 @@ namespace Skautik.Sdk.Model
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="CreateWebhookRequest" />
+    /// A Json converter for type <see cref="WebhookInput" />
     /// </summary>
-    public partial class CreateWebhookRequestJsonConverter : JsonConverter<CreateWebhookRequest>
+    public partial class WebhookInputJsonConverter : JsonConverter<WebhookInput>
     {
         partial void OnCreated();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreateWebhookRequestJsonConverter" /> class.
+        /// Initializes a new instance of the <see cref="WebhookInputJsonConverter" /> class.
         /// </summary>
-        public CreateWebhookRequestJsonConverter()
+        public WebhookInputJsonConverter()
         {
             OnCreated();
         }
 
         /// <summary>
-        /// Deserializes json to <see cref="CreateWebhookRequest" />
+        /// Deserializes json to <see cref="WebhookInput" />
         /// </summary>
         /// <param name="utf8JsonReader"></param>
         /// <param name="typeToConvert"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <returns></returns>
         /// <exception cref="JsonException"></exception>
-        public override CreateWebhookRequest Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override WebhookInput Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -149,53 +145,53 @@ namespace Skautik.Sdk.Model
             }
 
             if (!events.IsSet)
-                throw new ArgumentException("Property is required for class CreateWebhookRequest.", nameof(events));
+                throw new ArgumentException("Property is required for class WebhookInput.", nameof(events));
 
             if (!url.IsSet)
-                throw new ArgumentException("Property is required for class CreateWebhookRequest.", nameof(url));
+                throw new ArgumentException("Property is required for class WebhookInput.", nameof(url));
 
             if (events.IsSet && events.Value == null)
-                throw new ArgumentNullException(nameof(events), "Property is not nullable for class CreateWebhookRequest.");
+                throw new ArgumentNullException(nameof(events), "Property is not nullable for class WebhookInput.");
 
             if (url.IsSet && url.Value == null)
-                throw new ArgumentNullException(nameof(url), "Property is not nullable for class CreateWebhookRequest.");
+                throw new ArgumentNullException(nameof(url), "Property is not nullable for class WebhookInput.");
 
-            return new CreateWebhookRequest(events.Value!, url.Value!);
+            return new WebhookInput(events.Value!, url.Value!);
         }
 
         /// <summary>
-        /// Serializes a <see cref="CreateWebhookRequest" />
+        /// Serializes a <see cref="WebhookInput" />
         /// </summary>
         /// <param name="writer"></param>
-        /// <param name="createWebhookRequest"></param>
+        /// <param name="webhookInput"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <exception cref="NotImplementedException"></exception>
-        public override void Write(Utf8JsonWriter writer, CreateWebhookRequest createWebhookRequest, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, WebhookInput webhookInput, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
 
-            WriteProperties(writer, createWebhookRequest, jsonSerializerOptions);
+            WriteProperties(writer, webhookInput, jsonSerializerOptions);
             writer.WriteEndObject();
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="CreateWebhookRequest" />
+        /// Serializes the properties of <see cref="WebhookInput" />
         /// </summary>
         /// <param name="writer"></param>
-        /// <param name="createWebhookRequest"></param>
+        /// <param name="webhookInput"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <exception cref="NotImplementedException"></exception>
-        public void WriteProperties(Utf8JsonWriter writer, CreateWebhookRequest createWebhookRequest, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, WebhookInput webhookInput, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (createWebhookRequest.Events == null)
-                throw new ArgumentNullException(nameof(createWebhookRequest.Events), "Property is required for class CreateWebhookRequest.");
+            if (webhookInput.Events == null)
+                throw new ArgumentNullException(nameof(webhookInput.Events), "Property is required for class WebhookInput.");
 
-            if (createWebhookRequest.Url == null)
-                throw new ArgumentNullException(nameof(createWebhookRequest.Url), "Property is required for class CreateWebhookRequest.");
+            if (webhookInput.Url == null)
+                throw new ArgumentNullException(nameof(webhookInput.Url), "Property is required for class WebhookInput.");
 
             writer.WritePropertyName("events");
-            JsonSerializer.Serialize(writer, createWebhookRequest.Events, jsonSerializerOptions);
-            writer.WriteString("url", createWebhookRequest.Url);
+            JsonSerializer.Serialize(writer, webhookInput.Events, jsonSerializerOptions);
+            writer.WriteString("url", webhookInput.Url);
         }
     }
 }

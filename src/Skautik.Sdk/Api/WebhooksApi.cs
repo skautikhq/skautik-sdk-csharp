@@ -45,10 +45,10 @@ namespace Skautik.Sdk.Api
         /// Register an HTTPS endpoint for a set of events.  The response includes a signing secret, shown once. Store it immediately: every delivery is signed with it, and a handler that does not verify the signature will accept forged calls from anyone who learns the URL.  Requires the &#x60;webhooks:manage&#x60; scope.
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createWebhookRequest"></param>
+        /// <param name="webhookInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateWebhookApiResponse"/>&gt;</returns>
-        Task<ICreateWebhookApiResponse> CreateWebhookAsync(CreateWebhookRequest createWebhookRequest, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICreateWebhookApiResponse> CreateWebhookAsync(WebhookInput webhookInput, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Create a webhook
@@ -56,10 +56,10 @@ namespace Skautik.Sdk.Api
         /// <remarks>
         /// Register an HTTPS endpoint for a set of events.  The response includes a signing secret, shown once. Store it immediately: every delivery is signed with it, and a handler that does not verify the signature will accept forged calls from anyone who learns the URL.  Requires the &#x60;webhooks:manage&#x60; scope.
         /// </remarks>
-        /// <param name="createWebhookRequest"></param>
+        /// <param name="webhookInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateWebhookApiResponse"/>?&gt;</returns>
-        Task<ICreateWebhookApiResponse?> CreateWebhookOrDefaultAsync(CreateWebhookRequest createWebhookRequest, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICreateWebhookApiResponse?> CreateWebhookOrDefaultAsync(WebhookInput webhookInput, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Delete a webhook
@@ -116,7 +116,7 @@ namespace Skautik.Sdk.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookId">Webhook identifier.</param>
         /// <param name="status">Filter by outcome. (optional)</param>
-        /// <param name="limit">How many attempts to return, newest first. Capped at 100. (optional, default to 100)</param>
+        /// <param name="limit">How many attempts to return, newest first. Capped at 100. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListDeliveriesApiResponse"/>&gt;</returns>
         Task<IListDeliveriesApiResponse> ListDeliveriesAsync(string webhookId, Option<string> status = default, Option<int> limit = default, System.Threading.CancellationToken cancellationToken = default);
@@ -129,7 +129,7 @@ namespace Skautik.Sdk.Api
         /// </remarks>
         /// <param name="webhookId">Webhook identifier.</param>
         /// <param name="status">Filter by outcome. (optional)</param>
-        /// <param name="limit">How many attempts to return, newest first. Capped at 100. (optional, default to 100)</param>
+        /// <param name="limit">How many attempts to return, newest first. Capped at 100. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListDeliveriesApiResponse"/>?&gt;</returns>
         Task<IListDeliveriesApiResponse?> ListDeliveriesOrDefaultAsync(string webhookId, Option<string> status = default, Option<int> limit = default, System.Threading.CancellationToken cancellationToken = default);
@@ -230,10 +230,10 @@ namespace Skautik.Sdk.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookId">Webhook identifier.</param>
-        /// <param name="updateWebhookRequest"> (optional)</param>
+        /// <param name="webhookUpdate"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IUpdateWebhookApiResponse"/>&gt;</returns>
-        Task<IUpdateWebhookApiResponse> UpdateWebhookAsync(string webhookId, Option<UpdateWebhookRequest> updateWebhookRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IUpdateWebhookApiResponse> UpdateWebhookAsync(string webhookId, WebhookUpdate webhookUpdate, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update a webhook
@@ -242,10 +242,10 @@ namespace Skautik.Sdk.Api
         /// Change the URL, the events, or whether it is active.  A partial update: anything you omit is left alone. Setting active to false stops deliveries without losing the registration, which is what to reach for while you are fixing a handler.  Requires the &#x60;webhooks:manage&#x60; scope.
         /// </remarks>
         /// <param name="webhookId">Webhook identifier.</param>
-        /// <param name="updateWebhookRequest"> (optional)</param>
+        /// <param name="webhookUpdate"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IUpdateWebhookApiResponse"/>?&gt;</returns>
-        Task<IUpdateWebhookApiResponse?> UpdateWebhookOrDefaultAsync(string webhookId, Option<UpdateWebhookRequest> updateWebhookRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IUpdateWebhookApiResponse?> UpdateWebhookOrDefaultAsync(string webhookId, WebhookUpdate webhookUpdate, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
@@ -853,28 +853,28 @@ namespace Skautik.Sdk.Api
             BearerTokenProvider = bearerTokenProvider;
         }
 
-        partial void FormatCreateWebhook(CreateWebhookRequest createWebhookRequest);
+        partial void FormatCreateWebhook(WebhookInput webhookInput);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
-        /// <param name="createWebhookRequest"></param>
+        /// <param name="webhookInput"></param>
         /// <returns></returns>
-        private void ValidateCreateWebhook(CreateWebhookRequest createWebhookRequest)
+        private void ValidateCreateWebhook(WebhookInput webhookInput)
         {
-            if (createWebhookRequest == null)
-                throw new ArgumentNullException(nameof(createWebhookRequest));
+            if (webhookInput == null)
+                throw new ArgumentNullException(nameof(webhookInput));
         }
 
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="createWebhookRequest"></param>
-        private void AfterCreateWebhookDefaultImplementation(ICreateWebhookApiResponse apiResponseLocalVar, CreateWebhookRequest createWebhookRequest)
+        /// <param name="webhookInput"></param>
+        private void AfterCreateWebhookDefaultImplementation(ICreateWebhookApiResponse apiResponseLocalVar, WebhookInput webhookInput)
         {
             bool suppressDefaultLog = false;
-            AfterCreateWebhook(ref suppressDefaultLog, apiResponseLocalVar, createWebhookRequest);
+            AfterCreateWebhook(ref suppressDefaultLog, apiResponseLocalVar, webhookInput);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -884,8 +884,8 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="createWebhookRequest"></param>
-        partial void AfterCreateWebhook(ref bool suppressDefaultLog, ICreateWebhookApiResponse apiResponseLocalVar, CreateWebhookRequest createWebhookRequest);
+        /// <param name="webhookInput"></param>
+        partial void AfterCreateWebhook(ref bool suppressDefaultLog, ICreateWebhookApiResponse apiResponseLocalVar, WebhookInput webhookInput);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -893,11 +893,11 @@ namespace Skautik.Sdk.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="createWebhookRequest"></param>
-        private void OnErrorCreateWebhookDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, CreateWebhookRequest createWebhookRequest)
+        /// <param name="webhookInput"></param>
+        private void OnErrorCreateWebhookDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, WebhookInput webhookInput)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorCreateWebhook(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, createWebhookRequest);
+            OnErrorCreateWebhook(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, webhookInput);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -909,20 +909,20 @@ namespace Skautik.Sdk.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="createWebhookRequest"></param>
-        partial void OnErrorCreateWebhook(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, CreateWebhookRequest createWebhookRequest);
+        /// <param name="webhookInput"></param>
+        partial void OnErrorCreateWebhook(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, WebhookInput webhookInput);
 
         /// <summary>
         /// Create a webhook Register an HTTPS endpoint for a set of events.  The response includes a signing secret, shown once. Store it immediately: every delivery is signed with it, and a handler that does not verify the signature will accept forged calls from anyone who learns the URL.  Requires the &#x60;webhooks:manage&#x60; scope.
         /// </summary>
-        /// <param name="createWebhookRequest"></param>
+        /// <param name="webhookInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateWebhookApiResponse"/>&gt;</returns>
-        public async Task<ICreateWebhookApiResponse?> CreateWebhookOrDefaultAsync(CreateWebhookRequest createWebhookRequest, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<ICreateWebhookApiResponse?> CreateWebhookOrDefaultAsync(WebhookInput webhookInput, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await CreateWebhookAsync(createWebhookRequest, cancellationToken).ConfigureAwait(false);
+                return await CreateWebhookAsync(webhookInput, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -934,18 +934,18 @@ namespace Skautik.Sdk.Api
         /// Create a webhook Register an HTTPS endpoint for a set of events.  The response includes a signing secret, shown once. Store it immediately: every delivery is signed with it, and a handler that does not verify the signature will accept forged calls from anyone who learns the URL.  Requires the &#x60;webhooks:manage&#x60; scope.
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createWebhookRequest"></param>
+        /// <param name="webhookInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateWebhookApiResponse"/>&gt;</returns>
-        public async Task<ICreateWebhookApiResponse> CreateWebhookAsync(CreateWebhookRequest createWebhookRequest, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<ICreateWebhookApiResponse> CreateWebhookAsync(WebhookInput webhookInput, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateCreateWebhook(createWebhookRequest);
+                ValidateCreateWebhook(webhookInput);
 
-                FormatCreateWebhook(createWebhookRequest);
+                FormatCreateWebhook(webhookInput);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -956,9 +956,9 @@ namespace Skautik.Sdk.Api
                         ? "/webhooks"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/webhooks");
 
-                    httpRequestMessageLocalVar.Content = (createWebhookRequest as object) is Skautik.Sdk.Client.FileParameter fileParameterLocalVar
+                    httpRequestMessageLocalVar.Content = (webhookInput as object) is Skautik.Sdk.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(createWebhookRequest, _jsonSerializerOptions));
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(webhookInput, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
@@ -1005,7 +1005,7 @@ namespace Skautik.Sdk.Api
                             }
                         }
 
-                        AfterCreateWebhookDefaultImplementation(apiResponseLocalVar, createWebhookRequest);
+                        AfterCreateWebhookDefaultImplementation(apiResponseLocalVar, webhookInput);
 
                         Events.ExecuteOnCreateWebhook(apiResponseLocalVar);
 
@@ -1019,7 +1019,7 @@ namespace Skautik.Sdk.Api
             }
             catch(Exception e)
             {
-                OnErrorCreateWebhookDefaultImplementation(e, "/webhooks", uriBuilderLocalVar.Path, createWebhookRequest);
+                OnErrorCreateWebhookDefaultImplementation(e, "/webhooks", uriBuilderLocalVar.Path, webhookInput);
                 Events.ExecuteOnErrorCreateWebhook(e);
                 throw;
             }
@@ -2237,7 +2237,7 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <param name="webhookId">Webhook identifier.</param>
         /// <param name="status">Filter by outcome. (optional)</param>
-        /// <param name="limit">How many attempts to return, newest first. Capped at 100. (optional, default to 100)</param>
+        /// <param name="limit">How many attempts to return, newest first. Capped at 100. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListDeliveriesApiResponse"/>&gt;</returns>
         public async Task<IListDeliveriesApiResponse?> ListDeliveriesOrDefaultAsync(string webhookId, Option<string> status = default, Option<int> limit = default, System.Threading.CancellationToken cancellationToken = default)
@@ -2258,7 +2258,7 @@ namespace Skautik.Sdk.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookId">Webhook identifier.</param>
         /// <param name="status">Filter by outcome. (optional)</param>
-        /// <param name="limit">How many attempts to return, newest first. Capped at 100. (optional, default to 100)</param>
+        /// <param name="limit">How many attempts to return, newest first. Capped at 100. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListDeliveriesApiResponse"/>&gt;</returns>
         public async Task<IListDeliveriesApiResponse> ListDeliveriesAsync(string webhookId, Option<string> status = default, Option<int> limit = default, System.Threading.CancellationToken cancellationToken = default)
@@ -4321,21 +4321,21 @@ namespace Skautik.Sdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatUpdateWebhook(ref string webhookId, Option<UpdateWebhookRequest> updateWebhookRequest);
+        partial void FormatUpdateWebhook(ref string webhookId, WebhookUpdate webhookUpdate);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="webhookId"></param>
-        /// <param name="updateWebhookRequest"></param>
+        /// <param name="webhookUpdate"></param>
         /// <returns></returns>
-        private void ValidateUpdateWebhook(string webhookId, Option<UpdateWebhookRequest> updateWebhookRequest)
+        private void ValidateUpdateWebhook(string webhookId, WebhookUpdate webhookUpdate)
         {
             if (webhookId == null)
                 throw new ArgumentNullException(nameof(webhookId));
 
-            if (updateWebhookRequest.IsSet && updateWebhookRequest.Value == null)
-                throw new ArgumentNullException(nameof(updateWebhookRequest));
+            if (webhookUpdate == null)
+                throw new ArgumentNullException(nameof(webhookUpdate));
         }
 
         /// <summary>
@@ -4343,11 +4343,11 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="webhookId"></param>
-        /// <param name="updateWebhookRequest"></param>
-        private void AfterUpdateWebhookDefaultImplementation(IUpdateWebhookApiResponse apiResponseLocalVar, string webhookId, Option<UpdateWebhookRequest> updateWebhookRequest)
+        /// <param name="webhookUpdate"></param>
+        private void AfterUpdateWebhookDefaultImplementation(IUpdateWebhookApiResponse apiResponseLocalVar, string webhookId, WebhookUpdate webhookUpdate)
         {
             bool suppressDefaultLog = false;
-            AfterUpdateWebhook(ref suppressDefaultLog, apiResponseLocalVar, webhookId, updateWebhookRequest);
+            AfterUpdateWebhook(ref suppressDefaultLog, apiResponseLocalVar, webhookId, webhookUpdate);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -4358,8 +4358,8 @@ namespace Skautik.Sdk.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="webhookId"></param>
-        /// <param name="updateWebhookRequest"></param>
-        partial void AfterUpdateWebhook(ref bool suppressDefaultLog, IUpdateWebhookApiResponse apiResponseLocalVar, string webhookId, Option<UpdateWebhookRequest> updateWebhookRequest);
+        /// <param name="webhookUpdate"></param>
+        partial void AfterUpdateWebhook(ref bool suppressDefaultLog, IUpdateWebhookApiResponse apiResponseLocalVar, string webhookId, WebhookUpdate webhookUpdate);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -4368,11 +4368,11 @@ namespace Skautik.Sdk.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="webhookId"></param>
-        /// <param name="updateWebhookRequest"></param>
-        private void OnErrorUpdateWebhookDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string webhookId, Option<UpdateWebhookRequest> updateWebhookRequest)
+        /// <param name="webhookUpdate"></param>
+        private void OnErrorUpdateWebhookDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string webhookId, WebhookUpdate webhookUpdate)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorUpdateWebhook(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, webhookId, updateWebhookRequest);
+            OnErrorUpdateWebhook(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, webhookId, webhookUpdate);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -4385,21 +4385,21 @@ namespace Skautik.Sdk.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="webhookId"></param>
-        /// <param name="updateWebhookRequest"></param>
-        partial void OnErrorUpdateWebhook(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string webhookId, Option<UpdateWebhookRequest> updateWebhookRequest);
+        /// <param name="webhookUpdate"></param>
+        partial void OnErrorUpdateWebhook(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string webhookId, WebhookUpdate webhookUpdate);
 
         /// <summary>
         /// Update a webhook Change the URL, the events, or whether it is active.  A partial update: anything you omit is left alone. Setting active to false stops deliveries without losing the registration, which is what to reach for while you are fixing a handler.  Requires the &#x60;webhooks:manage&#x60; scope.
         /// </summary>
         /// <param name="webhookId">Webhook identifier.</param>
-        /// <param name="updateWebhookRequest"> (optional)</param>
+        /// <param name="webhookUpdate"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IUpdateWebhookApiResponse"/>&gt;</returns>
-        public async Task<IUpdateWebhookApiResponse?> UpdateWebhookOrDefaultAsync(string webhookId, Option<UpdateWebhookRequest> updateWebhookRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IUpdateWebhookApiResponse?> UpdateWebhookOrDefaultAsync(string webhookId, WebhookUpdate webhookUpdate, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await UpdateWebhookAsync(webhookId, updateWebhookRequest, cancellationToken).ConfigureAwait(false);
+                return await UpdateWebhookAsync(webhookId, webhookUpdate, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -4412,18 +4412,18 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookId">Webhook identifier.</param>
-        /// <param name="updateWebhookRequest"> (optional)</param>
+        /// <param name="webhookUpdate"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IUpdateWebhookApiResponse"/>&gt;</returns>
-        public async Task<IUpdateWebhookApiResponse> UpdateWebhookAsync(string webhookId, Option<UpdateWebhookRequest> updateWebhookRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IUpdateWebhookApiResponse> UpdateWebhookAsync(string webhookId, WebhookUpdate webhookUpdate, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateUpdateWebhook(webhookId, updateWebhookRequest);
+                ValidateUpdateWebhook(webhookId, webhookUpdate);
 
-                FormatUpdateWebhook(ref webhookId, updateWebhookRequest);
+                FormatUpdateWebhook(ref webhookId, webhookUpdate);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -4435,12 +4435,9 @@ namespace Skautik.Sdk.Api
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/webhooks/{webhook_id}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bwebhook_id%7D", Uri.EscapeDataString(webhookId.ToString()));
 
-                    if (updateWebhookRequest.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (updateWebhookRequest.Value as object) is Skautik.Sdk.Client.FileParameter fileParameterLocalVar
+                    httpRequestMessageLocalVar.Content = (webhookUpdate as object) is Skautik.Sdk.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(updateWebhookRequest.Value, _jsonSerializerOptions));
-                    }
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(webhookUpdate, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
@@ -4487,7 +4484,7 @@ namespace Skautik.Sdk.Api
                             }
                         }
 
-                        AfterUpdateWebhookDefaultImplementation(apiResponseLocalVar, webhookId, updateWebhookRequest);
+                        AfterUpdateWebhookDefaultImplementation(apiResponseLocalVar, webhookId, webhookUpdate);
 
                         Events.ExecuteOnUpdateWebhook(apiResponseLocalVar);
 
@@ -4501,7 +4498,7 @@ namespace Skautik.Sdk.Api
             }
             catch(Exception e)
             {
-                OnErrorUpdateWebhookDefaultImplementation(e, "/webhooks/{webhook_id}", uriBuilderLocalVar.Path, webhookId, updateWebhookRequest);
+                OnErrorUpdateWebhookDefaultImplementation(e, "/webhooks/{webhook_id}", uriBuilderLocalVar.Path, webhookId, webhookUpdate);
                 Events.ExecuteOnErrorUpdateWebhook(e);
                 throw;
             }

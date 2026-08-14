@@ -45,11 +45,11 @@ namespace Skautik.Sdk.Api
         /// Publish a record from your own inventory.  Send an Idempotency-Key so a retried request cannot create a duplicate listing. Records created this way belong to your organisation and are the only ones your key may modify.  Requires the &#x60;properties:write&#x60; scope.
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createPropertyRequest"></param>
+        /// <param name="propertyInput"></param>
         /// <param name="idempotencyKey">Unique per logical creation. Replaying the same key returns the original result rather than creating a second record. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreatePropertyApiResponse"/>&gt;</returns>
-        Task<ICreatePropertyApiResponse> CreatePropertyAsync(CreatePropertyRequest createPropertyRequest, Option<string> idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICreatePropertyApiResponse> CreatePropertyAsync(PropertyInput propertyInput, Option<string> idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Create a property
@@ -57,11 +57,11 @@ namespace Skautik.Sdk.Api
         /// <remarks>
         /// Publish a record from your own inventory.  Send an Idempotency-Key so a retried request cannot create a duplicate listing. Records created this way belong to your organisation and are the only ones your key may modify.  Requires the &#x60;properties:write&#x60; scope.
         /// </remarks>
-        /// <param name="createPropertyRequest"></param>
+        /// <param name="propertyInput"></param>
         /// <param name="idempotencyKey">Unique per logical creation. Replaying the same key returns the original result rather than creating a second record. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreatePropertyApiResponse"/>?&gt;</returns>
-        Task<ICreatePropertyApiResponse?> CreatePropertyOrDefaultAsync(CreatePropertyRequest createPropertyRequest, Option<string> idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICreatePropertyApiResponse?> CreatePropertyOrDefaultAsync(PropertyInput propertyInput, Option<string> idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Withdraw a property
@@ -240,10 +240,10 @@ namespace Skautik.Sdk.Api
         /// Semantic and geographic search that is too complex for a query string.  Takes a natural-language query, a drawn polygon, or both. Results come back ranked by relevance rather than by a sortable column, so this endpoint ignores the sort parameter. It is a POST because a polygon does not belong in a URL, not because it changes anything.  Requires the &#x60;properties:read&#x60; scope.
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="searchPropertiesRequest"> (optional)</param>
+        /// <param name="searchRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ISearchPropertiesApiResponse"/>&gt;</returns>
-        Task<ISearchPropertiesApiResponse> SearchPropertiesAsync(Option<SearchPropertiesRequest> searchPropertiesRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ISearchPropertiesApiResponse> SearchPropertiesAsync(SearchRequest searchRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Search properties
@@ -251,10 +251,10 @@ namespace Skautik.Sdk.Api
         /// <remarks>
         /// Semantic and geographic search that is too complex for a query string.  Takes a natural-language query, a drawn polygon, or both. Results come back ranked by relevance rather than by a sortable column, so this endpoint ignores the sort parameter. It is a POST because a polygon does not belong in a URL, not because it changes anything.  Requires the &#x60;properties:read&#x60; scope.
         /// </remarks>
-        /// <param name="searchPropertiesRequest"> (optional)</param>
+        /// <param name="searchRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ISearchPropertiesApiResponse"/>?&gt;</returns>
-        Task<ISearchPropertiesApiResponse?> SearchPropertiesOrDefaultAsync(Option<SearchPropertiesRequest> searchPropertiesRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ISearchPropertiesApiResponse?> SearchPropertiesOrDefaultAsync(SearchRequest searchRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Similar properties
@@ -264,7 +264,7 @@ namespace Skautik.Sdk.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId">Property to compare against.</param>
-        /// <param name="limit">Comparables to return, 1 to 50. (optional, default to 10)</param>
+        /// <param name="limit">Comparables to return, 1 to 50. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ISimilarPropertiesApiResponse"/>&gt;</returns>
         Task<ISimilarPropertiesApiResponse> SimilarPropertiesAsync(string propertyId, Option<int> limit = default, System.Threading.CancellationToken cancellationToken = default);
@@ -276,7 +276,7 @@ namespace Skautik.Sdk.Api
         /// Comparable records, for context or valuation support.  Similarity blends location, size, type, and condition. It is a convenience, not an appraisal, and comparables thin out quickly in low-supply areas.  Requires the &#x60;properties:read&#x60; scope.  Availability: Growth and above.
         /// </remarks>
         /// <param name="propertyId">Property to compare against.</param>
-        /// <param name="limit">Comparables to return, 1 to 50. (optional, default to 10)</param>
+        /// <param name="limit">Comparables to return, 1 to 50. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ISimilarPropertiesApiResponse"/>?&gt;</returns>
         Task<ISimilarPropertiesApiResponse?> SimilarPropertiesOrDefaultAsync(string propertyId, Option<int> limit = default, System.Threading.CancellationToken cancellationToken = default);
@@ -289,10 +289,11 @@ namespace Skautik.Sdk.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId">Property to update.</param>
+        /// <param name="propertyInput"></param>
         /// <param name="ifMatch">ETag from your last read. Rejected with 412 if the record moved on. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IUpdatePropertyApiResponse"/>&gt;</returns>
-        Task<IUpdatePropertyApiResponse> UpdatePropertyAsync(string propertyId, Option<string> ifMatch = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IUpdatePropertyApiResponse> UpdatePropertyAsync(string propertyId, PropertyInput propertyInput, Option<string> ifMatch = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update a property
@@ -301,10 +302,11 @@ namespace Skautik.Sdk.Api
         /// Change fields on a record you published.  A partial update: send only what changes. Send If-Match with the ETag from your last read to avoid overwriting a concurrent edit. A record owned by an import source is refused here, because the next run would revert whatever you wrote: change it in the system that feeds the import instead.  Requires the &#x60;properties:write&#x60; scope.
         /// </remarks>
         /// <param name="propertyId">Property to update.</param>
+        /// <param name="propertyInput"></param>
         /// <param name="ifMatch">ETag from your last read. Rejected with 412 if the record moved on. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IUpdatePropertyApiResponse"/>?&gt;</returns>
-        Task<IUpdatePropertyApiResponse?> UpdatePropertyOrDefaultAsync(string propertyId, Option<string> ifMatch = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IUpdatePropertyApiResponse?> UpdatePropertyOrDefaultAsync(string propertyId, PropertyInput propertyInput, Option<string> ifMatch = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Upload an image
@@ -315,10 +317,12 @@ namespace Skautik.Sdk.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId">Property to attach to.</param>
         /// <param name="file">Image payload.</param>
+        /// <param name="roomType">What the photograph shows, used to group images and to pick a source for staging. (optional)</param>
+        /// <param name="primary">Pass true to make this the primary image, which demotes the current one. (optional)</param>
         /// <param name="position">Display order. The image at position 0 is the primary one. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IUploadPropertyImageApiResponse"/>&gt;</returns>
-        Task<IUploadPropertyImageApiResponse> UploadPropertyImageAsync(string propertyId, Skautik.Sdk.Client.FileParameter file, Option<int> position = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IUploadPropertyImageApiResponse> UploadPropertyImageAsync(string propertyId, Skautik.Sdk.Client.FileParameter file, Option<string> roomType = default, Option<bool> primary = default, Option<int> position = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Upload an image
@@ -328,10 +332,12 @@ namespace Skautik.Sdk.Api
         /// </remarks>
         /// <param name="propertyId">Property to attach to.</param>
         /// <param name="file">Image payload.</param>
+        /// <param name="roomType">What the photograph shows, used to group images and to pick a source for staging. (optional)</param>
+        /// <param name="primary">Pass true to make this the primary image, which demotes the current one. (optional)</param>
         /// <param name="position">Display order. The image at position 0 is the primary one. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IUploadPropertyImageApiResponse"/>?&gt;</returns>
-        Task<IUploadPropertyImageApiResponse?> UploadPropertyImageOrDefaultAsync(string propertyId, Skautik.Sdk.Client.FileParameter file, Option<int> position = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IUploadPropertyImageApiResponse?> UploadPropertyImageOrDefaultAsync(string propertyId, Skautik.Sdk.Client.FileParameter file, Option<string> roomType = default, Option<bool> primary = default, Option<int> position = default, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
@@ -1099,18 +1105,18 @@ namespace Skautik.Sdk.Api
             BearerTokenProvider = bearerTokenProvider;
         }
 
-        partial void FormatCreateProperty(CreatePropertyRequest createPropertyRequest, ref Option<string> idempotencyKey);
+        partial void FormatCreateProperty(PropertyInput propertyInput, ref Option<string> idempotencyKey);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
-        /// <param name="createPropertyRequest"></param>
+        /// <param name="propertyInput"></param>
         /// <param name="idempotencyKey"></param>
         /// <returns></returns>
-        private void ValidateCreateProperty(CreatePropertyRequest createPropertyRequest, Option<string> idempotencyKey)
+        private void ValidateCreateProperty(PropertyInput propertyInput, Option<string> idempotencyKey)
         {
-            if (createPropertyRequest == null)
-                throw new ArgumentNullException(nameof(createPropertyRequest));
+            if (propertyInput == null)
+                throw new ArgumentNullException(nameof(propertyInput));
 
             if (idempotencyKey.IsSet && idempotencyKey.Value == null)
                 throw new ArgumentNullException(nameof(idempotencyKey));
@@ -1120,12 +1126,12 @@ namespace Skautik.Sdk.Api
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="createPropertyRequest"></param>
+        /// <param name="propertyInput"></param>
         /// <param name="idempotencyKey"></param>
-        private void AfterCreatePropertyDefaultImplementation(ICreatePropertyApiResponse apiResponseLocalVar, CreatePropertyRequest createPropertyRequest, Option<string> idempotencyKey)
+        private void AfterCreatePropertyDefaultImplementation(ICreatePropertyApiResponse apiResponseLocalVar, PropertyInput propertyInput, Option<string> idempotencyKey)
         {
             bool suppressDefaultLog = false;
-            AfterCreateProperty(ref suppressDefaultLog, apiResponseLocalVar, createPropertyRequest, idempotencyKey);
+            AfterCreateProperty(ref suppressDefaultLog, apiResponseLocalVar, propertyInput, idempotencyKey);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -1135,9 +1141,9 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="createPropertyRequest"></param>
+        /// <param name="propertyInput"></param>
         /// <param name="idempotencyKey"></param>
-        partial void AfterCreateProperty(ref bool suppressDefaultLog, ICreatePropertyApiResponse apiResponseLocalVar, CreatePropertyRequest createPropertyRequest, Option<string> idempotencyKey);
+        partial void AfterCreateProperty(ref bool suppressDefaultLog, ICreatePropertyApiResponse apiResponseLocalVar, PropertyInput propertyInput, Option<string> idempotencyKey);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -1145,12 +1151,12 @@ namespace Skautik.Sdk.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="createPropertyRequest"></param>
+        /// <param name="propertyInput"></param>
         /// <param name="idempotencyKey"></param>
-        private void OnErrorCreatePropertyDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, CreatePropertyRequest createPropertyRequest, Option<string> idempotencyKey)
+        private void OnErrorCreatePropertyDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, PropertyInput propertyInput, Option<string> idempotencyKey)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorCreateProperty(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, createPropertyRequest, idempotencyKey);
+            OnErrorCreateProperty(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, propertyInput, idempotencyKey);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -1162,22 +1168,22 @@ namespace Skautik.Sdk.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="createPropertyRequest"></param>
+        /// <param name="propertyInput"></param>
         /// <param name="idempotencyKey"></param>
-        partial void OnErrorCreateProperty(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, CreatePropertyRequest createPropertyRequest, Option<string> idempotencyKey);
+        partial void OnErrorCreateProperty(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, PropertyInput propertyInput, Option<string> idempotencyKey);
 
         /// <summary>
         /// Create a property Publish a record from your own inventory.  Send an Idempotency-Key so a retried request cannot create a duplicate listing. Records created this way belong to your organisation and are the only ones your key may modify.  Requires the &#x60;properties:write&#x60; scope.
         /// </summary>
-        /// <param name="createPropertyRequest"></param>
+        /// <param name="propertyInput"></param>
         /// <param name="idempotencyKey">Unique per logical creation. Replaying the same key returns the original result rather than creating a second record. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreatePropertyApiResponse"/>&gt;</returns>
-        public async Task<ICreatePropertyApiResponse?> CreatePropertyOrDefaultAsync(CreatePropertyRequest createPropertyRequest, Option<string> idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<ICreatePropertyApiResponse?> CreatePropertyOrDefaultAsync(PropertyInput propertyInput, Option<string> idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await CreatePropertyAsync(createPropertyRequest, idempotencyKey, cancellationToken).ConfigureAwait(false);
+                return await CreatePropertyAsync(propertyInput, idempotencyKey, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -1189,19 +1195,19 @@ namespace Skautik.Sdk.Api
         /// Create a property Publish a record from your own inventory.  Send an Idempotency-Key so a retried request cannot create a duplicate listing. Records created this way belong to your organisation and are the only ones your key may modify.  Requires the &#x60;properties:write&#x60; scope.
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createPropertyRequest"></param>
+        /// <param name="propertyInput"></param>
         /// <param name="idempotencyKey">Unique per logical creation. Replaying the same key returns the original result rather than creating a second record. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreatePropertyApiResponse"/>&gt;</returns>
-        public async Task<ICreatePropertyApiResponse> CreatePropertyAsync(CreatePropertyRequest createPropertyRequest, Option<string> idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<ICreatePropertyApiResponse> CreatePropertyAsync(PropertyInput propertyInput, Option<string> idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateCreateProperty(createPropertyRequest, idempotencyKey);
+                ValidateCreateProperty(propertyInput, idempotencyKey);
 
-                FormatCreateProperty(createPropertyRequest, ref idempotencyKey);
+                FormatCreateProperty(propertyInput, ref idempotencyKey);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -1212,9 +1218,9 @@ namespace Skautik.Sdk.Api
                         ? "/properties"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/properties");
 
-                    httpRequestMessageLocalVar.Content = (createPropertyRequest as object) is Skautik.Sdk.Client.FileParameter fileParameterLocalVar
+                    httpRequestMessageLocalVar.Content = (propertyInput as object) is Skautik.Sdk.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(createPropertyRequest, _jsonSerializerOptions));
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(propertyInput, _jsonSerializerOptions));
 
                     if (idempotencyKey.IsSet)
                     {
@@ -1274,7 +1280,7 @@ namespace Skautik.Sdk.Api
                             }
                         }
 
-                        AfterCreatePropertyDefaultImplementation(apiResponseLocalVar, createPropertyRequest, idempotencyKey);
+                        AfterCreatePropertyDefaultImplementation(apiResponseLocalVar, propertyInput, idempotencyKey);
 
                         Events.ExecuteOnCreateProperty(apiResponseLocalVar);
 
@@ -1288,7 +1294,7 @@ namespace Skautik.Sdk.Api
             }
             catch(Exception e)
             {
-                OnErrorCreatePropertyDefaultImplementation(e, "/properties", uriBuilderLocalVar.Path, createPropertyRequest, idempotencyKey);
+                OnErrorCreatePropertyDefaultImplementation(e, "/properties", uriBuilderLocalVar.Path, propertyInput, idempotencyKey);
                 Events.ExecuteOnErrorCreateProperty(e);
                 throw;
             }
@@ -4441,28 +4447,28 @@ namespace Skautik.Sdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatSearchProperties(Option<SearchPropertiesRequest> searchPropertiesRequest);
+        partial void FormatSearchProperties(SearchRequest searchRequest);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
-        /// <param name="searchPropertiesRequest"></param>
+        /// <param name="searchRequest"></param>
         /// <returns></returns>
-        private void ValidateSearchProperties(Option<SearchPropertiesRequest> searchPropertiesRequest)
+        private void ValidateSearchProperties(SearchRequest searchRequest)
         {
-            if (searchPropertiesRequest.IsSet && searchPropertiesRequest.Value == null)
-                throw new ArgumentNullException(nameof(searchPropertiesRequest));
+            if (searchRequest == null)
+                throw new ArgumentNullException(nameof(searchRequest));
         }
 
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="searchPropertiesRequest"></param>
-        private void AfterSearchPropertiesDefaultImplementation(ISearchPropertiesApiResponse apiResponseLocalVar, Option<SearchPropertiesRequest> searchPropertiesRequest)
+        /// <param name="searchRequest"></param>
+        private void AfterSearchPropertiesDefaultImplementation(ISearchPropertiesApiResponse apiResponseLocalVar, SearchRequest searchRequest)
         {
             bool suppressDefaultLog = false;
-            AfterSearchProperties(ref suppressDefaultLog, apiResponseLocalVar, searchPropertiesRequest);
+            AfterSearchProperties(ref suppressDefaultLog, apiResponseLocalVar, searchRequest);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -4472,8 +4478,8 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="searchPropertiesRequest"></param>
-        partial void AfterSearchProperties(ref bool suppressDefaultLog, ISearchPropertiesApiResponse apiResponseLocalVar, Option<SearchPropertiesRequest> searchPropertiesRequest);
+        /// <param name="searchRequest"></param>
+        partial void AfterSearchProperties(ref bool suppressDefaultLog, ISearchPropertiesApiResponse apiResponseLocalVar, SearchRequest searchRequest);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -4481,11 +4487,11 @@ namespace Skautik.Sdk.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="searchPropertiesRequest"></param>
-        private void OnErrorSearchPropertiesDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<SearchPropertiesRequest> searchPropertiesRequest)
+        /// <param name="searchRequest"></param>
+        private void OnErrorSearchPropertiesDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, SearchRequest searchRequest)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorSearchProperties(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, searchPropertiesRequest);
+            OnErrorSearchProperties(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, searchRequest);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -4497,20 +4503,20 @@ namespace Skautik.Sdk.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="searchPropertiesRequest"></param>
-        partial void OnErrorSearchProperties(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<SearchPropertiesRequest> searchPropertiesRequest);
+        /// <param name="searchRequest"></param>
+        partial void OnErrorSearchProperties(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, SearchRequest searchRequest);
 
         /// <summary>
         /// Search properties Semantic and geographic search that is too complex for a query string.  Takes a natural-language query, a drawn polygon, or both. Results come back ranked by relevance rather than by a sortable column, so this endpoint ignores the sort parameter. It is a POST because a polygon does not belong in a URL, not because it changes anything.  Requires the &#x60;properties:read&#x60; scope.
         /// </summary>
-        /// <param name="searchPropertiesRequest"> (optional)</param>
+        /// <param name="searchRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ISearchPropertiesApiResponse"/>&gt;</returns>
-        public async Task<ISearchPropertiesApiResponse?> SearchPropertiesOrDefaultAsync(Option<SearchPropertiesRequest> searchPropertiesRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<ISearchPropertiesApiResponse?> SearchPropertiesOrDefaultAsync(SearchRequest searchRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await SearchPropertiesAsync(searchPropertiesRequest, cancellationToken).ConfigureAwait(false);
+                return await SearchPropertiesAsync(searchRequest, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -4522,18 +4528,18 @@ namespace Skautik.Sdk.Api
         /// Search properties Semantic and geographic search that is too complex for a query string.  Takes a natural-language query, a drawn polygon, or both. Results come back ranked by relevance rather than by a sortable column, so this endpoint ignores the sort parameter. It is a POST because a polygon does not belong in a URL, not because it changes anything.  Requires the &#x60;properties:read&#x60; scope.
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="searchPropertiesRequest"> (optional)</param>
+        /// <param name="searchRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ISearchPropertiesApiResponse"/>&gt;</returns>
-        public async Task<ISearchPropertiesApiResponse> SearchPropertiesAsync(Option<SearchPropertiesRequest> searchPropertiesRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<ISearchPropertiesApiResponse> SearchPropertiesAsync(SearchRequest searchRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateSearchProperties(searchPropertiesRequest);
+                ValidateSearchProperties(searchRequest);
 
-                FormatSearchProperties(searchPropertiesRequest);
+                FormatSearchProperties(searchRequest);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -4544,12 +4550,9 @@ namespace Skautik.Sdk.Api
                         ? "/properties/search"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/properties/search");
 
-                    if (searchPropertiesRequest.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (searchPropertiesRequest.Value as object) is Skautik.Sdk.Client.FileParameter fileParameterLocalVar
+                    httpRequestMessageLocalVar.Content = (searchRequest as object) is Skautik.Sdk.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(searchPropertiesRequest.Value, _jsonSerializerOptions));
-                    }
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(searchRequest, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
@@ -4596,7 +4599,7 @@ namespace Skautik.Sdk.Api
                             }
                         }
 
-                        AfterSearchPropertiesDefaultImplementation(apiResponseLocalVar, searchPropertiesRequest);
+                        AfterSearchPropertiesDefaultImplementation(apiResponseLocalVar, searchRequest);
 
                         Events.ExecuteOnSearchProperties(apiResponseLocalVar);
 
@@ -4610,7 +4613,7 @@ namespace Skautik.Sdk.Api
             }
             catch(Exception e)
             {
-                OnErrorSearchPropertiesDefaultImplementation(e, "/properties/search", uriBuilderLocalVar.Path, searchPropertiesRequest);
+                OnErrorSearchPropertiesDefaultImplementation(e, "/properties/search", uriBuilderLocalVar.Path, searchRequest);
                 Events.ExecuteOnErrorSearchProperties(e);
                 throw;
             }
@@ -4966,7 +4969,7 @@ namespace Skautik.Sdk.Api
         /// Similar properties Comparable records, for context or valuation support.  Similarity blends location, size, type, and condition. It is a convenience, not an appraisal, and comparables thin out quickly in low-supply areas.  Requires the &#x60;properties:read&#x60; scope.  Availability: Growth and above.
         /// </summary>
         /// <param name="propertyId">Property to compare against.</param>
-        /// <param name="limit">Comparables to return, 1 to 50. (optional, default to 10)</param>
+        /// <param name="limit">Comparables to return, 1 to 50. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ISimilarPropertiesApiResponse"/>&gt;</returns>
         public async Task<ISimilarPropertiesApiResponse?> SimilarPropertiesOrDefaultAsync(string propertyId, Option<int> limit = default, System.Threading.CancellationToken cancellationToken = default)
@@ -4986,7 +4989,7 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId">Property to compare against.</param>
-        /// <param name="limit">Comparables to return, 1 to 50. (optional, default to 10)</param>
+        /// <param name="limit">Comparables to return, 1 to 50. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ISimilarPropertiesApiResponse"/>&gt;</returns>
         public async Task<ISimilarPropertiesApiResponse> SimilarPropertiesAsync(string propertyId, Option<int> limit = default, System.Threading.CancellationToken cancellationToken = default)
@@ -5355,18 +5358,22 @@ namespace Skautik.Sdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatUpdateProperty(ref string propertyId, ref Option<string> ifMatch);
+        partial void FormatUpdateProperty(ref string propertyId, PropertyInput propertyInput, ref Option<string> ifMatch);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="propertyId"></param>
+        /// <param name="propertyInput"></param>
         /// <param name="ifMatch"></param>
         /// <returns></returns>
-        private void ValidateUpdateProperty(string propertyId, Option<string> ifMatch)
+        private void ValidateUpdateProperty(string propertyId, PropertyInput propertyInput, Option<string> ifMatch)
         {
             if (propertyId == null)
                 throw new ArgumentNullException(nameof(propertyId));
+
+            if (propertyInput == null)
+                throw new ArgumentNullException(nameof(propertyInput));
 
             if (ifMatch.IsSet && ifMatch.Value == null)
                 throw new ArgumentNullException(nameof(ifMatch));
@@ -5377,11 +5384,12 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="propertyId"></param>
+        /// <param name="propertyInput"></param>
         /// <param name="ifMatch"></param>
-        private void AfterUpdatePropertyDefaultImplementation(IUpdatePropertyApiResponse apiResponseLocalVar, string propertyId, Option<string> ifMatch)
+        private void AfterUpdatePropertyDefaultImplementation(IUpdatePropertyApiResponse apiResponseLocalVar, string propertyId, PropertyInput propertyInput, Option<string> ifMatch)
         {
             bool suppressDefaultLog = false;
-            AfterUpdateProperty(ref suppressDefaultLog, apiResponseLocalVar, propertyId, ifMatch);
+            AfterUpdateProperty(ref suppressDefaultLog, apiResponseLocalVar, propertyId, propertyInput, ifMatch);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -5392,8 +5400,9 @@ namespace Skautik.Sdk.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="propertyId"></param>
+        /// <param name="propertyInput"></param>
         /// <param name="ifMatch"></param>
-        partial void AfterUpdateProperty(ref bool suppressDefaultLog, IUpdatePropertyApiResponse apiResponseLocalVar, string propertyId, Option<string> ifMatch);
+        partial void AfterUpdateProperty(ref bool suppressDefaultLog, IUpdatePropertyApiResponse apiResponseLocalVar, string propertyId, PropertyInput propertyInput, Option<string> ifMatch);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -5402,11 +5411,12 @@ namespace Skautik.Sdk.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="propertyId"></param>
+        /// <param name="propertyInput"></param>
         /// <param name="ifMatch"></param>
-        private void OnErrorUpdatePropertyDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string propertyId, Option<string> ifMatch)
+        private void OnErrorUpdatePropertyDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string propertyId, PropertyInput propertyInput, Option<string> ifMatch)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorUpdateProperty(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, propertyId, ifMatch);
+            OnErrorUpdateProperty(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, propertyId, propertyInput, ifMatch);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -5419,21 +5429,23 @@ namespace Skautik.Sdk.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="propertyId"></param>
+        /// <param name="propertyInput"></param>
         /// <param name="ifMatch"></param>
-        partial void OnErrorUpdateProperty(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string propertyId, Option<string> ifMatch);
+        partial void OnErrorUpdateProperty(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string propertyId, PropertyInput propertyInput, Option<string> ifMatch);
 
         /// <summary>
         /// Update a property Change fields on a record you published.  A partial update: send only what changes. Send If-Match with the ETag from your last read to avoid overwriting a concurrent edit. A record owned by an import source is refused here, because the next run would revert whatever you wrote: change it in the system that feeds the import instead.  Requires the &#x60;properties:write&#x60; scope.
         /// </summary>
         /// <param name="propertyId">Property to update.</param>
+        /// <param name="propertyInput"></param>
         /// <param name="ifMatch">ETag from your last read. Rejected with 412 if the record moved on. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IUpdatePropertyApiResponse"/>&gt;</returns>
-        public async Task<IUpdatePropertyApiResponse?> UpdatePropertyOrDefaultAsync(string propertyId, Option<string> ifMatch = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IUpdatePropertyApiResponse?> UpdatePropertyOrDefaultAsync(string propertyId, PropertyInput propertyInput, Option<string> ifMatch = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await UpdatePropertyAsync(propertyId, ifMatch, cancellationToken).ConfigureAwait(false);
+                return await UpdatePropertyAsync(propertyId, propertyInput, ifMatch, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -5446,18 +5458,19 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId">Property to update.</param>
+        /// <param name="propertyInput"></param>
         /// <param name="ifMatch">ETag from your last read. Rejected with 412 if the record moved on. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IUpdatePropertyApiResponse"/>&gt;</returns>
-        public async Task<IUpdatePropertyApiResponse> UpdatePropertyAsync(string propertyId, Option<string> ifMatch = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IUpdatePropertyApiResponse> UpdatePropertyAsync(string propertyId, PropertyInput propertyInput, Option<string> ifMatch = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateUpdateProperty(propertyId, ifMatch);
+                ValidateUpdateProperty(propertyId, propertyInput, ifMatch);
 
-                FormatUpdateProperty(ref propertyId, ref ifMatch);
+                FormatUpdateProperty(ref propertyId, propertyInput, ref ifMatch);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -5468,6 +5481,10 @@ namespace Skautik.Sdk.Api
                         ? "/properties/{property_id}"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/properties/{property_id}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bproperty_id%7D", Uri.EscapeDataString(propertyId.ToString()));
+
+                    httpRequestMessageLocalVar.Content = (propertyInput as object) is Skautik.Sdk.Client.FileParameter fileParameterLocalVar
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(propertyInput, _jsonSerializerOptions));
 
                     if (ifMatch.IsSet)
                     {
@@ -5490,6 +5507,15 @@ namespace Skautik.Sdk.Api
                     tokenBaseLocalVars.Add(bearerTokenLocalVar1);
 
                     bearerTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar, "");
+
+                    string[] contentTypes = new string[] {
+                        "application/json"
+                    };
+
+                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
+
+                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
+                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
 
                     string[] acceptLocalVars = new string[] {
                         "application/json",
@@ -5518,7 +5544,7 @@ namespace Skautik.Sdk.Api
                             }
                         }
 
-                        AfterUpdatePropertyDefaultImplementation(apiResponseLocalVar, propertyId, ifMatch);
+                        AfterUpdatePropertyDefaultImplementation(apiResponseLocalVar, propertyId, propertyInput, ifMatch);
 
                         Events.ExecuteOnUpdateProperty(apiResponseLocalVar);
 
@@ -5532,7 +5558,7 @@ namespace Skautik.Sdk.Api
             }
             catch(Exception e)
             {
-                OnErrorUpdatePropertyDefaultImplementation(e, "/properties/{property_id}", uriBuilderLocalVar.Path, propertyId, ifMatch);
+                OnErrorUpdatePropertyDefaultImplementation(e, "/properties/{property_id}", uriBuilderLocalVar.Path, propertyId, propertyInput, ifMatch);
                 Events.ExecuteOnErrorUpdateProperty(e);
                 throw;
             }
@@ -5897,21 +5923,25 @@ namespace Skautik.Sdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatUploadPropertyImage(ref string propertyId, ref Skautik.Sdk.Client.FileParameter file, ref Option<int> position);
+        partial void FormatUploadPropertyImage(ref string propertyId, ref Skautik.Sdk.Client.FileParameter file, ref Option<string> roomType, ref Option<bool> primary, ref Option<int> position);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="propertyId"></param>
         /// <param name="file"></param>
+        /// <param name="roomType"></param>
         /// <returns></returns>
-        private void ValidateUploadPropertyImage(string propertyId, Skautik.Sdk.Client.FileParameter file)
+        private void ValidateUploadPropertyImage(string propertyId, Skautik.Sdk.Client.FileParameter file, Option<string> roomType)
         {
             if (propertyId == null)
                 throw new ArgumentNullException(nameof(propertyId));
 
             if (file == null)
                 throw new ArgumentNullException(nameof(file));
+
+            if (roomType.IsSet && roomType.Value == null)
+                throw new ArgumentNullException(nameof(roomType));
         }
 
         /// <summary>
@@ -5920,11 +5950,13 @@ namespace Skautik.Sdk.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="propertyId"></param>
         /// <param name="file"></param>
+        /// <param name="roomType"></param>
+        /// <param name="primary"></param>
         /// <param name="position"></param>
-        private void AfterUploadPropertyImageDefaultImplementation(IUploadPropertyImageApiResponse apiResponseLocalVar, string propertyId, Skautik.Sdk.Client.FileParameter file, Option<int> position)
+        private void AfterUploadPropertyImageDefaultImplementation(IUploadPropertyImageApiResponse apiResponseLocalVar, string propertyId, Skautik.Sdk.Client.FileParameter file, Option<string> roomType, Option<bool> primary, Option<int> position)
         {
             bool suppressDefaultLog = false;
-            AfterUploadPropertyImage(ref suppressDefaultLog, apiResponseLocalVar, propertyId, file, position);
+            AfterUploadPropertyImage(ref suppressDefaultLog, apiResponseLocalVar, propertyId, file, roomType, primary, position);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -5936,8 +5968,10 @@ namespace Skautik.Sdk.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="propertyId"></param>
         /// <param name="file"></param>
+        /// <param name="roomType"></param>
+        /// <param name="primary"></param>
         /// <param name="position"></param>
-        partial void AfterUploadPropertyImage(ref bool suppressDefaultLog, IUploadPropertyImageApiResponse apiResponseLocalVar, string propertyId, Skautik.Sdk.Client.FileParameter file, Option<int> position);
+        partial void AfterUploadPropertyImage(ref bool suppressDefaultLog, IUploadPropertyImageApiResponse apiResponseLocalVar, string propertyId, Skautik.Sdk.Client.FileParameter file, Option<string> roomType, Option<bool> primary, Option<int> position);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -5947,11 +5981,13 @@ namespace Skautik.Sdk.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="propertyId"></param>
         /// <param name="file"></param>
+        /// <param name="roomType"></param>
+        /// <param name="primary"></param>
         /// <param name="position"></param>
-        private void OnErrorUploadPropertyImageDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string propertyId, Skautik.Sdk.Client.FileParameter file, Option<int> position)
+        private void OnErrorUploadPropertyImageDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string propertyId, Skautik.Sdk.Client.FileParameter file, Option<string> roomType, Option<bool> primary, Option<int> position)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorUploadPropertyImage(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, propertyId, file, position);
+            OnErrorUploadPropertyImage(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, propertyId, file, roomType, primary, position);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -5965,22 +6001,26 @@ namespace Skautik.Sdk.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="propertyId"></param>
         /// <param name="file"></param>
+        /// <param name="roomType"></param>
+        /// <param name="primary"></param>
         /// <param name="position"></param>
-        partial void OnErrorUploadPropertyImage(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string propertyId, Skautik.Sdk.Client.FileParameter file, Option<int> position);
+        partial void OnErrorUploadPropertyImage(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string propertyId, Skautik.Sdk.Client.FileParameter file, Option<string> roomType, Option<bool> primary, Option<int> position);
 
         /// <summary>
         /// Upload an image Attach an image to a record you published.  Multipart upload. JPEG, PNG, or WebP up to 12 MB. Upload only images you hold the rights to: property photography is usually licensed to an agent rather than owned outright.  Requires the &#x60;images:write&#x60; scope.
         /// </summary>
         /// <param name="propertyId">Property to attach to.</param>
         /// <param name="file">Image payload.</param>
+        /// <param name="roomType">What the photograph shows, used to group images and to pick a source for staging. (optional)</param>
+        /// <param name="primary">Pass true to make this the primary image, which demotes the current one. (optional)</param>
         /// <param name="position">Display order. The image at position 0 is the primary one. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IUploadPropertyImageApiResponse"/>&gt;</returns>
-        public async Task<IUploadPropertyImageApiResponse?> UploadPropertyImageOrDefaultAsync(string propertyId, Skautik.Sdk.Client.FileParameter file, Option<int> position = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IUploadPropertyImageApiResponse?> UploadPropertyImageOrDefaultAsync(string propertyId, Skautik.Sdk.Client.FileParameter file, Option<string> roomType = default, Option<bool> primary = default, Option<int> position = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await UploadPropertyImageAsync(propertyId, file, position, cancellationToken).ConfigureAwait(false);
+                return await UploadPropertyImageAsync(propertyId, file, roomType, primary, position, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -5994,18 +6034,20 @@ namespace Skautik.Sdk.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId">Property to attach to.</param>
         /// <param name="file">Image payload.</param>
+        /// <param name="roomType">What the photograph shows, used to group images and to pick a source for staging. (optional)</param>
+        /// <param name="primary">Pass true to make this the primary image, which demotes the current one. (optional)</param>
         /// <param name="position">Display order. The image at position 0 is the primary one. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IUploadPropertyImageApiResponse"/>&gt;</returns>
-        public async Task<IUploadPropertyImageApiResponse> UploadPropertyImageAsync(string propertyId, Skautik.Sdk.Client.FileParameter file, Option<int> position = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IUploadPropertyImageApiResponse> UploadPropertyImageAsync(string propertyId, Skautik.Sdk.Client.FileParameter file, Option<string> roomType = default, Option<bool> primary = default, Option<int> position = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateUploadPropertyImage(propertyId, file);
+                ValidateUploadPropertyImage(propertyId, file, roomType);
 
-                FormatUploadPropertyImage(ref propertyId, ref file, ref position);
+                FormatUploadPropertyImage(ref propertyId, ref file, ref roomType, ref primary, ref position);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -6016,6 +6058,16 @@ namespace Skautik.Sdk.Api
                         ? "/properties/{property_id}/images"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/properties/{property_id}/images");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bproperty_id%7D", Uri.EscapeDataString(propertyId.ToString()));
+
+                    System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
+
+                    if (roomType.IsSet)
+                        parseQueryStringLocalVar["room_type"] = ClientUtils.ParameterToString(roomType.Value);
+
+                    if (primary.IsSet)
+                        parseQueryStringLocalVar["primary"] = ClientUtils.ParameterToString(primary.Value);
+
+                    uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
                     MultipartFormDataContent multipartContentLocalVar = new MultipartFormDataContent();
 
@@ -6075,7 +6127,7 @@ namespace Skautik.Sdk.Api
                             }
                         }
 
-                        AfterUploadPropertyImageDefaultImplementation(apiResponseLocalVar, propertyId, file, position);
+                        AfterUploadPropertyImageDefaultImplementation(apiResponseLocalVar, propertyId, file, roomType, primary, position);
 
                         Events.ExecuteOnUploadPropertyImage(apiResponseLocalVar);
 
@@ -6089,7 +6141,7 @@ namespace Skautik.Sdk.Api
             }
             catch(Exception e)
             {
-                OnErrorUploadPropertyImageDefaultImplementation(e, "/properties/{property_id}/images", uriBuilderLocalVar.Path, propertyId, file, position);
+                OnErrorUploadPropertyImageDefaultImplementation(e, "/properties/{property_id}/images", uriBuilderLocalVar.Path, propertyId, file, roomType, primary, position);
                 Events.ExecuteOnErrorUploadPropertyImage(e);
                 throw;
             }

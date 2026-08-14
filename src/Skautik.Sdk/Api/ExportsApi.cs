@@ -45,10 +45,10 @@ namespace Skautik.Sdk.Api
         /// Queue a bulk extract of the catalogue.  Accepts the same filters as the list endpoint. Returns immediately with a pending export; subscribe to export.completed rather than polling. Note that a narrowed field set may not round trip: feeding an export back into an import needs the columns an import requires, external_id and type among them, so omit fields for analysis rather than for a re-import.  Requires the &#x60;exports:create&#x60; scope.
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createExportRequest"></param>
+        /// <param name="exportInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateExportApiResponse"/>&gt;</returns>
-        Task<ICreateExportApiResponse> CreateExportAsync(CreateExportRequest createExportRequest, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICreateExportApiResponse> CreateExportAsync(ExportInput exportInput, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Request an export
@@ -56,10 +56,10 @@ namespace Skautik.Sdk.Api
         /// <remarks>
         /// Queue a bulk extract of the catalogue.  Accepts the same filters as the list endpoint. Returns immediately with a pending export; subscribe to export.completed rather than polling. Note that a narrowed field set may not round trip: feeding an export back into an import needs the columns an import requires, external_id and type among them, so omit fields for analysis rather than for a re-import.  Requires the &#x60;exports:create&#x60; scope.
         /// </remarks>
-        /// <param name="createExportRequest"></param>
+        /// <param name="exportInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateExportApiResponse"/>?&gt;</returns>
-        Task<ICreateExportApiResponse?> CreateExportOrDefaultAsync(CreateExportRequest createExportRequest, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICreateExportApiResponse?> CreateExportOrDefaultAsync(ExportInput exportInput, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Retrieve an export
@@ -339,28 +339,28 @@ namespace Skautik.Sdk.Api
             BearerTokenProvider = bearerTokenProvider;
         }
 
-        partial void FormatCreateExport(CreateExportRequest createExportRequest);
+        partial void FormatCreateExport(ExportInput exportInput);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
-        /// <param name="createExportRequest"></param>
+        /// <param name="exportInput"></param>
         /// <returns></returns>
-        private void ValidateCreateExport(CreateExportRequest createExportRequest)
+        private void ValidateCreateExport(ExportInput exportInput)
         {
-            if (createExportRequest == null)
-                throw new ArgumentNullException(nameof(createExportRequest));
+            if (exportInput == null)
+                throw new ArgumentNullException(nameof(exportInput));
         }
 
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="createExportRequest"></param>
-        private void AfterCreateExportDefaultImplementation(ICreateExportApiResponse apiResponseLocalVar, CreateExportRequest createExportRequest)
+        /// <param name="exportInput"></param>
+        private void AfterCreateExportDefaultImplementation(ICreateExportApiResponse apiResponseLocalVar, ExportInput exportInput)
         {
             bool suppressDefaultLog = false;
-            AfterCreateExport(ref suppressDefaultLog, apiResponseLocalVar, createExportRequest);
+            AfterCreateExport(ref suppressDefaultLog, apiResponseLocalVar, exportInput);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -370,8 +370,8 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="createExportRequest"></param>
-        partial void AfterCreateExport(ref bool suppressDefaultLog, ICreateExportApiResponse apiResponseLocalVar, CreateExportRequest createExportRequest);
+        /// <param name="exportInput"></param>
+        partial void AfterCreateExport(ref bool suppressDefaultLog, ICreateExportApiResponse apiResponseLocalVar, ExportInput exportInput);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -379,11 +379,11 @@ namespace Skautik.Sdk.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="createExportRequest"></param>
-        private void OnErrorCreateExportDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, CreateExportRequest createExportRequest)
+        /// <param name="exportInput"></param>
+        private void OnErrorCreateExportDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, ExportInput exportInput)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorCreateExport(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, createExportRequest);
+            OnErrorCreateExport(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, exportInput);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -395,20 +395,20 @@ namespace Skautik.Sdk.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="createExportRequest"></param>
-        partial void OnErrorCreateExport(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, CreateExportRequest createExportRequest);
+        /// <param name="exportInput"></param>
+        partial void OnErrorCreateExport(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, ExportInput exportInput);
 
         /// <summary>
         /// Request an export Queue a bulk extract of the catalogue.  Accepts the same filters as the list endpoint. Returns immediately with a pending export; subscribe to export.completed rather than polling. Note that a narrowed field set may not round trip: feeding an export back into an import needs the columns an import requires, external_id and type among them, so omit fields for analysis rather than for a re-import.  Requires the &#x60;exports:create&#x60; scope.
         /// </summary>
-        /// <param name="createExportRequest"></param>
+        /// <param name="exportInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateExportApiResponse"/>&gt;</returns>
-        public async Task<ICreateExportApiResponse?> CreateExportOrDefaultAsync(CreateExportRequest createExportRequest, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<ICreateExportApiResponse?> CreateExportOrDefaultAsync(ExportInput exportInput, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await CreateExportAsync(createExportRequest, cancellationToken).ConfigureAwait(false);
+                return await CreateExportAsync(exportInput, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -420,18 +420,18 @@ namespace Skautik.Sdk.Api
         /// Request an export Queue a bulk extract of the catalogue.  Accepts the same filters as the list endpoint. Returns immediately with a pending export; subscribe to export.completed rather than polling. Note that a narrowed field set may not round trip: feeding an export back into an import needs the columns an import requires, external_id and type among them, so omit fields for analysis rather than for a re-import.  Requires the &#x60;exports:create&#x60; scope.
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createExportRequest"></param>
+        /// <param name="exportInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateExportApiResponse"/>&gt;</returns>
-        public async Task<ICreateExportApiResponse> CreateExportAsync(CreateExportRequest createExportRequest, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<ICreateExportApiResponse> CreateExportAsync(ExportInput exportInput, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateCreateExport(createExportRequest);
+                ValidateCreateExport(exportInput);
 
-                FormatCreateExport(createExportRequest);
+                FormatCreateExport(exportInput);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -442,9 +442,9 @@ namespace Skautik.Sdk.Api
                         ? "/exports"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/exports");
 
-                    httpRequestMessageLocalVar.Content = (createExportRequest as object) is Skautik.Sdk.Client.FileParameter fileParameterLocalVar
+                    httpRequestMessageLocalVar.Content = (exportInput as object) is Skautik.Sdk.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(createExportRequest, _jsonSerializerOptions));
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(exportInput, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
@@ -491,7 +491,7 @@ namespace Skautik.Sdk.Api
                             }
                         }
 
-                        AfterCreateExportDefaultImplementation(apiResponseLocalVar, createExportRequest);
+                        AfterCreateExportDefaultImplementation(apiResponseLocalVar, exportInput);
 
                         Events.ExecuteOnCreateExport(apiResponseLocalVar);
 
@@ -505,7 +505,7 @@ namespace Skautik.Sdk.Api
             }
             catch(Exception e)
             {
-                OnErrorCreateExportDefaultImplementation(e, "/exports", uriBuilderLocalVar.Path, createExportRequest);
+                OnErrorCreateExportDefaultImplementation(e, "/exports", uriBuilderLocalVar.Path, exportInput);
                 Events.ExecuteOnErrorCreateExport(e);
                 throw;
             }

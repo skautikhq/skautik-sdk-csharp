@@ -68,13 +68,14 @@ namespace Skautik.Sdk.Api
         /// Enquiries about your properties, newest first.  Cursor paginated like every other collection. Filter by property or by status to build a work queue rather than paging the lot.  Requires the &#x60;inquiries:read&#x60; scope.
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="propertyId">Only enquiries about this property. (optional)</param>
         /// <param name="status">Only enquiries in this state. (optional)</param>
+        /// <param name="propertyId">Only enquiries about this property. (optional)</param>
         /// <param name="limit">Page size. Clamped to 200. (optional, default to 50)</param>
         /// <param name="cursor">Opaque cursor from the previous page&#39;s meta.next_cursor. (optional)</param>
+        /// <param name="sort">Field to order by. Prefix with a minus for descending. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListInquiriesApiResponse"/>&gt;</returns>
-        Task<IListInquiriesApiResponse> ListInquiriesAsync(Option<string> propertyId = default, Option<string> status = default, Option<int> limit = default, Option<string> cursor = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IListInquiriesApiResponse> ListInquiriesAsync(Option<string> status = default, Option<string> propertyId = default, Option<int> limit = default, Option<string> cursor = default, Option<string> sort = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List inquiries
@@ -82,13 +83,14 @@ namespace Skautik.Sdk.Api
         /// <remarks>
         /// Enquiries about your properties, newest first.  Cursor paginated like every other collection. Filter by property or by status to build a work queue rather than paging the lot.  Requires the &#x60;inquiries:read&#x60; scope.
         /// </remarks>
-        /// <param name="propertyId">Only enquiries about this property. (optional)</param>
         /// <param name="status">Only enquiries in this state. (optional)</param>
+        /// <param name="propertyId">Only enquiries about this property. (optional)</param>
         /// <param name="limit">Page size. Clamped to 200. (optional, default to 50)</param>
         /// <param name="cursor">Opaque cursor from the previous page&#39;s meta.next_cursor. (optional)</param>
+        /// <param name="sort">Field to order by. Prefix with a minus for descending. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListInquiriesApiResponse"/>?&gt;</returns>
-        Task<IListInquiriesApiResponse?> ListInquiriesOrDefaultAsync(Option<string> propertyId = default, Option<string> status = default, Option<int> limit = default, Option<string> cursor = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IListInquiriesApiResponse?> ListInquiriesOrDefaultAsync(Option<string> status = default, Option<string> propertyId = default, Option<int> limit = default, Option<string> cursor = default, Option<string> sort = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Mark as read
@@ -121,10 +123,10 @@ namespace Skautik.Sdk.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="inquiryId">Inquiry identifier.</param>
-        /// <param name="updateInquiryRequest"></param>
+        /// <param name="inquiryStatusInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IUpdateInquiryApiResponse"/>&gt;</returns>
-        Task<IUpdateInquiryApiResponse> UpdateInquiryAsync(string inquiryId, UpdateInquiryRequest updateInquiryRequest, System.Threading.CancellationToken cancellationToken = default);
+        Task<IUpdateInquiryApiResponse> UpdateInquiryAsync(string inquiryId, InquiryStatusInput inquiryStatusInput, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Set the status
@@ -133,10 +135,10 @@ namespace Skautik.Sdk.Api
         /// Move an enquiry through your workflow.  Setting replied records when it happened, and that record survives a later move to closed: the fact that somebody was answered is not undone by filing the conversation away.  Requires the &#x60;inquiries:read&#x60; scope.
         /// </remarks>
         /// <param name="inquiryId">Inquiry identifier.</param>
-        /// <param name="updateInquiryRequest"></param>
+        /// <param name="inquiryStatusInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IUpdateInquiryApiResponse"/>?&gt;</returns>
-        Task<IUpdateInquiryApiResponse?> UpdateInquiryOrDefaultAsync(string inquiryId, UpdateInquiryRequest updateInquiryRequest, System.Threading.CancellationToken cancellationToken = default);
+        Task<IUpdateInquiryApiResponse?> UpdateInquiryOrDefaultAsync(string inquiryId, InquiryStatusInput inquiryStatusInput, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
@@ -877,39 +879,44 @@ namespace Skautik.Sdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatListInquiries(ref Option<string> propertyId, ref Option<string> status, ref Option<int> limit, ref Option<string> cursor);
+        partial void FormatListInquiries(ref Option<string> status, ref Option<string> propertyId, ref Option<int> limit, ref Option<string> cursor, ref Option<string> sort);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
-        /// <param name="propertyId"></param>
         /// <param name="status"></param>
+        /// <param name="propertyId"></param>
         /// <param name="cursor"></param>
+        /// <param name="sort"></param>
         /// <returns></returns>
-        private void ValidateListInquiries(Option<string> propertyId, Option<string> status, Option<string> cursor)
+        private void ValidateListInquiries(Option<string> status, Option<string> propertyId, Option<string> cursor, Option<string> sort)
         {
-            if (propertyId.IsSet && propertyId.Value == null)
-                throw new ArgumentNullException(nameof(propertyId));
-
             if (status.IsSet && status.Value == null)
                 throw new ArgumentNullException(nameof(status));
 
+            if (propertyId.IsSet && propertyId.Value == null)
+                throw new ArgumentNullException(nameof(propertyId));
+
             if (cursor.IsSet && cursor.Value == null)
                 throw new ArgumentNullException(nameof(cursor));
+
+            if (sort.IsSet && sort.Value == null)
+                throw new ArgumentNullException(nameof(sort));
         }
 
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="propertyId"></param>
         /// <param name="status"></param>
+        /// <param name="propertyId"></param>
         /// <param name="limit"></param>
         /// <param name="cursor"></param>
-        private void AfterListInquiriesDefaultImplementation(IListInquiriesApiResponse apiResponseLocalVar, Option<string> propertyId, Option<string> status, Option<int> limit, Option<string> cursor)
+        /// <param name="sort"></param>
+        private void AfterListInquiriesDefaultImplementation(IListInquiriesApiResponse apiResponseLocalVar, Option<string> status, Option<string> propertyId, Option<int> limit, Option<string> cursor, Option<string> sort)
         {
             bool suppressDefaultLog = false;
-            AfterListInquiries(ref suppressDefaultLog, apiResponseLocalVar, propertyId, status, limit, cursor);
+            AfterListInquiries(ref suppressDefaultLog, apiResponseLocalVar, status, propertyId, limit, cursor, sort);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -919,11 +926,12 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="propertyId"></param>
         /// <param name="status"></param>
+        /// <param name="propertyId"></param>
         /// <param name="limit"></param>
         /// <param name="cursor"></param>
-        partial void AfterListInquiries(ref bool suppressDefaultLog, IListInquiriesApiResponse apiResponseLocalVar, Option<string> propertyId, Option<string> status, Option<int> limit, Option<string> cursor);
+        /// <param name="sort"></param>
+        partial void AfterListInquiries(ref bool suppressDefaultLog, IListInquiriesApiResponse apiResponseLocalVar, Option<string> status, Option<string> propertyId, Option<int> limit, Option<string> cursor, Option<string> sort);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -931,14 +939,15 @@ namespace Skautik.Sdk.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="propertyId"></param>
         /// <param name="status"></param>
+        /// <param name="propertyId"></param>
         /// <param name="limit"></param>
         /// <param name="cursor"></param>
-        private void OnErrorListInquiriesDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> propertyId, Option<string> status, Option<int> limit, Option<string> cursor)
+        /// <param name="sort"></param>
+        private void OnErrorListInquiriesDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> status, Option<string> propertyId, Option<int> limit, Option<string> cursor, Option<string> sort)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorListInquiries(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, propertyId, status, limit, cursor);
+            OnErrorListInquiries(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, status, propertyId, limit, cursor, sort);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -950,26 +959,28 @@ namespace Skautik.Sdk.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="propertyId"></param>
         /// <param name="status"></param>
+        /// <param name="propertyId"></param>
         /// <param name="limit"></param>
         /// <param name="cursor"></param>
-        partial void OnErrorListInquiries(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> propertyId, Option<string> status, Option<int> limit, Option<string> cursor);
+        /// <param name="sort"></param>
+        partial void OnErrorListInquiries(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> status, Option<string> propertyId, Option<int> limit, Option<string> cursor, Option<string> sort);
 
         /// <summary>
         /// List inquiries Enquiries about your properties, newest first.  Cursor paginated like every other collection. Filter by property or by status to build a work queue rather than paging the lot.  Requires the &#x60;inquiries:read&#x60; scope.
         /// </summary>
-        /// <param name="propertyId">Only enquiries about this property. (optional)</param>
         /// <param name="status">Only enquiries in this state. (optional)</param>
+        /// <param name="propertyId">Only enquiries about this property. (optional)</param>
         /// <param name="limit">Page size. Clamped to 200. (optional, default to 50)</param>
         /// <param name="cursor">Opaque cursor from the previous page&#39;s meta.next_cursor. (optional)</param>
+        /// <param name="sort">Field to order by. Prefix with a minus for descending. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListInquiriesApiResponse"/>&gt;</returns>
-        public async Task<IListInquiriesApiResponse?> ListInquiriesOrDefaultAsync(Option<string> propertyId = default, Option<string> status = default, Option<int> limit = default, Option<string> cursor = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IListInquiriesApiResponse?> ListInquiriesOrDefaultAsync(Option<string> status = default, Option<string> propertyId = default, Option<int> limit = default, Option<string> cursor = default, Option<string> sort = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await ListInquiriesAsync(propertyId, status, limit, cursor, cancellationToken).ConfigureAwait(false);
+                return await ListInquiriesAsync(status, propertyId, limit, cursor, sort, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -981,21 +992,22 @@ namespace Skautik.Sdk.Api
         /// List inquiries Enquiries about your properties, newest first.  Cursor paginated like every other collection. Filter by property or by status to build a work queue rather than paging the lot.  Requires the &#x60;inquiries:read&#x60; scope.
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="propertyId">Only enquiries about this property. (optional)</param>
         /// <param name="status">Only enquiries in this state. (optional)</param>
+        /// <param name="propertyId">Only enquiries about this property. (optional)</param>
         /// <param name="limit">Page size. Clamped to 200. (optional, default to 50)</param>
         /// <param name="cursor">Opaque cursor from the previous page&#39;s meta.next_cursor. (optional)</param>
+        /// <param name="sort">Field to order by. Prefix with a minus for descending. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListInquiriesApiResponse"/>&gt;</returns>
-        public async Task<IListInquiriesApiResponse> ListInquiriesAsync(Option<string> propertyId = default, Option<string> status = default, Option<int> limit = default, Option<string> cursor = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IListInquiriesApiResponse> ListInquiriesAsync(Option<string> status = default, Option<string> propertyId = default, Option<int> limit = default, Option<string> cursor = default, Option<string> sort = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateListInquiries(propertyId, status, cursor);
+                ValidateListInquiries(status, propertyId, cursor, sort);
 
-                FormatListInquiries(ref propertyId, ref status, ref limit, ref cursor);
+                FormatListInquiries(ref status, ref propertyId, ref limit, ref cursor, ref sort);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -1008,17 +1020,20 @@ namespace Skautik.Sdk.Api
 
                     System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
 
-                    if (propertyId.IsSet)
-                        parseQueryStringLocalVar["property_id"] = ClientUtils.ParameterToString(propertyId.Value);
-
                     if (status.IsSet)
                         parseQueryStringLocalVar["status"] = ClientUtils.ParameterToString(status.Value);
+
+                    if (propertyId.IsSet)
+                        parseQueryStringLocalVar["property_id"] = ClientUtils.ParameterToString(propertyId.Value);
 
                     if (limit.IsSet)
                         parseQueryStringLocalVar["limit"] = ClientUtils.ParameterToString(limit.Value);
 
                     if (cursor.IsSet)
                         parseQueryStringLocalVar["cursor"] = ClientUtils.ParameterToString(cursor.Value);
+
+                    if (sort.IsSet)
+                        parseQueryStringLocalVar["sort"] = ClientUtils.ParameterToString(sort.Value);
 
                     uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
@@ -1058,7 +1073,7 @@ namespace Skautik.Sdk.Api
                             }
                         }
 
-                        AfterListInquiriesDefaultImplementation(apiResponseLocalVar, propertyId, status, limit, cursor);
+                        AfterListInquiriesDefaultImplementation(apiResponseLocalVar, status, propertyId, limit, cursor, sort);
 
                         Events.ExecuteOnListInquiries(apiResponseLocalVar);
 
@@ -1072,7 +1087,7 @@ namespace Skautik.Sdk.Api
             }
             catch(Exception e)
             {
-                OnErrorListInquiriesDefaultImplementation(e, "/inquiries", uriBuilderLocalVar.Path, propertyId, status, limit, cursor);
+                OnErrorListInquiriesDefaultImplementation(e, "/inquiries", uriBuilderLocalVar.Path, status, propertyId, limit, cursor, sort);
                 Events.ExecuteOnErrorListInquiries(e);
                 throw;
             }
@@ -1771,21 +1786,21 @@ namespace Skautik.Sdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatUpdateInquiry(ref string inquiryId, UpdateInquiryRequest updateInquiryRequest);
+        partial void FormatUpdateInquiry(ref string inquiryId, InquiryStatusInput inquiryStatusInput);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="inquiryId"></param>
-        /// <param name="updateInquiryRequest"></param>
+        /// <param name="inquiryStatusInput"></param>
         /// <returns></returns>
-        private void ValidateUpdateInquiry(string inquiryId, UpdateInquiryRequest updateInquiryRequest)
+        private void ValidateUpdateInquiry(string inquiryId, InquiryStatusInput inquiryStatusInput)
         {
             if (inquiryId == null)
                 throw new ArgumentNullException(nameof(inquiryId));
 
-            if (updateInquiryRequest == null)
-                throw new ArgumentNullException(nameof(updateInquiryRequest));
+            if (inquiryStatusInput == null)
+                throw new ArgumentNullException(nameof(inquiryStatusInput));
         }
 
         /// <summary>
@@ -1793,11 +1808,11 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="inquiryId"></param>
-        /// <param name="updateInquiryRequest"></param>
-        private void AfterUpdateInquiryDefaultImplementation(IUpdateInquiryApiResponse apiResponseLocalVar, string inquiryId, UpdateInquiryRequest updateInquiryRequest)
+        /// <param name="inquiryStatusInput"></param>
+        private void AfterUpdateInquiryDefaultImplementation(IUpdateInquiryApiResponse apiResponseLocalVar, string inquiryId, InquiryStatusInput inquiryStatusInput)
         {
             bool suppressDefaultLog = false;
-            AfterUpdateInquiry(ref suppressDefaultLog, apiResponseLocalVar, inquiryId, updateInquiryRequest);
+            AfterUpdateInquiry(ref suppressDefaultLog, apiResponseLocalVar, inquiryId, inquiryStatusInput);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -1808,8 +1823,8 @@ namespace Skautik.Sdk.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="inquiryId"></param>
-        /// <param name="updateInquiryRequest"></param>
-        partial void AfterUpdateInquiry(ref bool suppressDefaultLog, IUpdateInquiryApiResponse apiResponseLocalVar, string inquiryId, UpdateInquiryRequest updateInquiryRequest);
+        /// <param name="inquiryStatusInput"></param>
+        partial void AfterUpdateInquiry(ref bool suppressDefaultLog, IUpdateInquiryApiResponse apiResponseLocalVar, string inquiryId, InquiryStatusInput inquiryStatusInput);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -1818,11 +1833,11 @@ namespace Skautik.Sdk.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="inquiryId"></param>
-        /// <param name="updateInquiryRequest"></param>
-        private void OnErrorUpdateInquiryDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string inquiryId, UpdateInquiryRequest updateInquiryRequest)
+        /// <param name="inquiryStatusInput"></param>
+        private void OnErrorUpdateInquiryDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string inquiryId, InquiryStatusInput inquiryStatusInput)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorUpdateInquiry(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, inquiryId, updateInquiryRequest);
+            OnErrorUpdateInquiry(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, inquiryId, inquiryStatusInput);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -1835,21 +1850,21 @@ namespace Skautik.Sdk.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="inquiryId"></param>
-        /// <param name="updateInquiryRequest"></param>
-        partial void OnErrorUpdateInquiry(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string inquiryId, UpdateInquiryRequest updateInquiryRequest);
+        /// <param name="inquiryStatusInput"></param>
+        partial void OnErrorUpdateInquiry(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string inquiryId, InquiryStatusInput inquiryStatusInput);
 
         /// <summary>
         /// Set the status Move an enquiry through your workflow.  Setting replied records when it happened, and that record survives a later move to closed: the fact that somebody was answered is not undone by filing the conversation away.  Requires the &#x60;inquiries:read&#x60; scope.
         /// </summary>
         /// <param name="inquiryId">Inquiry identifier.</param>
-        /// <param name="updateInquiryRequest"></param>
+        /// <param name="inquiryStatusInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IUpdateInquiryApiResponse"/>&gt;</returns>
-        public async Task<IUpdateInquiryApiResponse?> UpdateInquiryOrDefaultAsync(string inquiryId, UpdateInquiryRequest updateInquiryRequest, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IUpdateInquiryApiResponse?> UpdateInquiryOrDefaultAsync(string inquiryId, InquiryStatusInput inquiryStatusInput, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await UpdateInquiryAsync(inquiryId, updateInquiryRequest, cancellationToken).ConfigureAwait(false);
+                return await UpdateInquiryAsync(inquiryId, inquiryStatusInput, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -1862,18 +1877,18 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="inquiryId">Inquiry identifier.</param>
-        /// <param name="updateInquiryRequest"></param>
+        /// <param name="inquiryStatusInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IUpdateInquiryApiResponse"/>&gt;</returns>
-        public async Task<IUpdateInquiryApiResponse> UpdateInquiryAsync(string inquiryId, UpdateInquiryRequest updateInquiryRequest, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IUpdateInquiryApiResponse> UpdateInquiryAsync(string inquiryId, InquiryStatusInput inquiryStatusInput, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateUpdateInquiry(inquiryId, updateInquiryRequest);
+                ValidateUpdateInquiry(inquiryId, inquiryStatusInput);
 
-                FormatUpdateInquiry(ref inquiryId, updateInquiryRequest);
+                FormatUpdateInquiry(ref inquiryId, inquiryStatusInput);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -1885,9 +1900,9 @@ namespace Skautik.Sdk.Api
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/inquiries/{inquiry_id}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Binquiry_id%7D", Uri.EscapeDataString(inquiryId.ToString()));
 
-                    httpRequestMessageLocalVar.Content = (updateInquiryRequest as object) is Skautik.Sdk.Client.FileParameter fileParameterLocalVar
+                    httpRequestMessageLocalVar.Content = (inquiryStatusInput as object) is Skautik.Sdk.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(updateInquiryRequest, _jsonSerializerOptions));
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(inquiryStatusInput, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
@@ -1934,7 +1949,7 @@ namespace Skautik.Sdk.Api
                             }
                         }
 
-                        AfterUpdateInquiryDefaultImplementation(apiResponseLocalVar, inquiryId, updateInquiryRequest);
+                        AfterUpdateInquiryDefaultImplementation(apiResponseLocalVar, inquiryId, inquiryStatusInput);
 
                         Events.ExecuteOnUpdateInquiry(apiResponseLocalVar);
 
@@ -1948,7 +1963,7 @@ namespace Skautik.Sdk.Api
             }
             catch(Exception e)
             {
-                OnErrorUpdateInquiryDefaultImplementation(e, "/inquiries/{inquiry_id}", uriBuilderLocalVar.Path, inquiryId, updateInquiryRequest);
+                OnErrorUpdateInquiryDefaultImplementation(e, "/inquiries/{inquiry_id}", uriBuilderLocalVar.Path, inquiryId, inquiryStatusInput);
                 Events.ExecuteOnErrorUpdateInquiry(e);
                 throw;
             }

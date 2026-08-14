@@ -112,16 +112,6 @@ namespace Skautik.Sdk.Client
                 return boolean
                     ? "true"
                     : "false";
-            if (obj is CreateExportRequest.FormatEnum createExportRequestFormatEnum)
-                return CreateExportRequest.FormatEnumToJsonValue(createExportRequestFormatEnum);
-            if (obj is CreateGenerationRequest.KindEnum createGenerationRequestKindEnum)
-                return CreateGenerationRequest.KindEnumToJsonValue(createGenerationRequestKindEnum);
-            if (obj is CreateImportSourceRequest.FormatEnum createImportSourceRequestFormatEnum)
-                return CreateImportSourceRequest.FormatEnumToJsonValue(createImportSourceRequestFormatEnum);
-            if (obj is CreateImportSourceRequest.DeletionPolicyEnum createImportSourceRequestDeletionPolicyEnum)
-                return CreateImportSourceRequest.DeletionPolicyEnumToJsonValue(createImportSourceRequestDeletionPolicyEnum);
-            if (obj is UpdateInquiryRequest.StatusEnum updateInquiryRequestStatusEnum)
-                return UpdateInquiryRequest.StatusEnumToJsonValue(updateInquiryRequestStatusEnum);
             if (obj is ICollection collection)
             {
                 List<string?> entries = new();

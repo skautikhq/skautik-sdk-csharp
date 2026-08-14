@@ -45,10 +45,10 @@ namespace Skautik.Sdk.Api
         /// Queue a transformation of one of your property images.  Returns immediately with a queued generation. Poll the retrieve endpoint, or subscribe to a webhook, rather than holding the request open. The source image must already belong to one of your properties: there is no way to submit an arbitrary URL, which is deliberate.  Requires the &#x60;images:write&#x60; scope.
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createGenerationRequest"></param>
+        /// <param name="generationInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateGenerationApiResponse"/>&gt;</returns>
-        Task<ICreateGenerationApiResponse> CreateGenerationAsync(CreateGenerationRequest createGenerationRequest, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICreateGenerationApiResponse> CreateGenerationAsync(GenerationInput generationInput, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Request a generation
@@ -56,10 +56,10 @@ namespace Skautik.Sdk.Api
         /// <remarks>
         /// Queue a transformation of one of your property images.  Returns immediately with a queued generation. Poll the retrieve endpoint, or subscribe to a webhook, rather than holding the request open. The source image must already belong to one of your properties: there is no way to submit an arbitrary URL, which is deliberate.  Requires the &#x60;images:write&#x60; scope.
         /// </remarks>
-        /// <param name="createGenerationRequest"></param>
+        /// <param name="generationInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateGenerationApiResponse"/>?&gt;</returns>
-        Task<ICreateGenerationApiResponse?> CreateGenerationOrDefaultAsync(CreateGenerationRequest createGenerationRequest, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICreateGenerationApiResponse?> CreateGenerationOrDefaultAsync(GenerationInput generationInput, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Retrieve a generation
@@ -422,28 +422,28 @@ namespace Skautik.Sdk.Api
             BearerTokenProvider = bearerTokenProvider;
         }
 
-        partial void FormatCreateGeneration(CreateGenerationRequest createGenerationRequest);
+        partial void FormatCreateGeneration(GenerationInput generationInput);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
-        /// <param name="createGenerationRequest"></param>
+        /// <param name="generationInput"></param>
         /// <returns></returns>
-        private void ValidateCreateGeneration(CreateGenerationRequest createGenerationRequest)
+        private void ValidateCreateGeneration(GenerationInput generationInput)
         {
-            if (createGenerationRequest == null)
-                throw new ArgumentNullException(nameof(createGenerationRequest));
+            if (generationInput == null)
+                throw new ArgumentNullException(nameof(generationInput));
         }
 
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="createGenerationRequest"></param>
-        private void AfterCreateGenerationDefaultImplementation(ICreateGenerationApiResponse apiResponseLocalVar, CreateGenerationRequest createGenerationRequest)
+        /// <param name="generationInput"></param>
+        private void AfterCreateGenerationDefaultImplementation(ICreateGenerationApiResponse apiResponseLocalVar, GenerationInput generationInput)
         {
             bool suppressDefaultLog = false;
-            AfterCreateGeneration(ref suppressDefaultLog, apiResponseLocalVar, createGenerationRequest);
+            AfterCreateGeneration(ref suppressDefaultLog, apiResponseLocalVar, generationInput);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -453,8 +453,8 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="createGenerationRequest"></param>
-        partial void AfterCreateGeneration(ref bool suppressDefaultLog, ICreateGenerationApiResponse apiResponseLocalVar, CreateGenerationRequest createGenerationRequest);
+        /// <param name="generationInput"></param>
+        partial void AfterCreateGeneration(ref bool suppressDefaultLog, ICreateGenerationApiResponse apiResponseLocalVar, GenerationInput generationInput);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -462,11 +462,11 @@ namespace Skautik.Sdk.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="createGenerationRequest"></param>
-        private void OnErrorCreateGenerationDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, CreateGenerationRequest createGenerationRequest)
+        /// <param name="generationInput"></param>
+        private void OnErrorCreateGenerationDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, GenerationInput generationInput)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorCreateGeneration(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, createGenerationRequest);
+            OnErrorCreateGeneration(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, generationInput);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -478,20 +478,20 @@ namespace Skautik.Sdk.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="createGenerationRequest"></param>
-        partial void OnErrorCreateGeneration(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, CreateGenerationRequest createGenerationRequest);
+        /// <param name="generationInput"></param>
+        partial void OnErrorCreateGeneration(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, GenerationInput generationInput);
 
         /// <summary>
         /// Request a generation Queue a transformation of one of your property images.  Returns immediately with a queued generation. Poll the retrieve endpoint, or subscribe to a webhook, rather than holding the request open. The source image must already belong to one of your properties: there is no way to submit an arbitrary URL, which is deliberate.  Requires the &#x60;images:write&#x60; scope.
         /// </summary>
-        /// <param name="createGenerationRequest"></param>
+        /// <param name="generationInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateGenerationApiResponse"/>&gt;</returns>
-        public async Task<ICreateGenerationApiResponse?> CreateGenerationOrDefaultAsync(CreateGenerationRequest createGenerationRequest, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<ICreateGenerationApiResponse?> CreateGenerationOrDefaultAsync(GenerationInput generationInput, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await CreateGenerationAsync(createGenerationRequest, cancellationToken).ConfigureAwait(false);
+                return await CreateGenerationAsync(generationInput, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -503,18 +503,18 @@ namespace Skautik.Sdk.Api
         /// Request a generation Queue a transformation of one of your property images.  Returns immediately with a queued generation. Poll the retrieve endpoint, or subscribe to a webhook, rather than holding the request open. The source image must already belong to one of your properties: there is no way to submit an arbitrary URL, which is deliberate.  Requires the &#x60;images:write&#x60; scope.
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createGenerationRequest"></param>
+        /// <param name="generationInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateGenerationApiResponse"/>&gt;</returns>
-        public async Task<ICreateGenerationApiResponse> CreateGenerationAsync(CreateGenerationRequest createGenerationRequest, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<ICreateGenerationApiResponse> CreateGenerationAsync(GenerationInput generationInput, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateCreateGeneration(createGenerationRequest);
+                ValidateCreateGeneration(generationInput);
 
-                FormatCreateGeneration(createGenerationRequest);
+                FormatCreateGeneration(generationInput);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -525,9 +525,9 @@ namespace Skautik.Sdk.Api
                         ? "/generations"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/generations");
 
-                    httpRequestMessageLocalVar.Content = (createGenerationRequest as object) is Skautik.Sdk.Client.FileParameter fileParameterLocalVar
+                    httpRequestMessageLocalVar.Content = (generationInput as object) is Skautik.Sdk.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(createGenerationRequest, _jsonSerializerOptions));
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(generationInput, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
@@ -574,7 +574,7 @@ namespace Skautik.Sdk.Api
                             }
                         }
 
-                        AfterCreateGenerationDefaultImplementation(apiResponseLocalVar, createGenerationRequest);
+                        AfterCreateGenerationDefaultImplementation(apiResponseLocalVar, generationInput);
 
                         Events.ExecuteOnCreateGeneration(apiResponseLocalVar);
 
@@ -588,7 +588,7 @@ namespace Skautik.Sdk.Api
             }
             catch(Exception e)
             {
-                OnErrorCreateGenerationDefaultImplementation(e, "/generations", uriBuilderLocalVar.Path, createGenerationRequest);
+                OnErrorCreateGenerationDefaultImplementation(e, "/generations", uriBuilderLocalVar.Path, generationInput);
                 Events.ExecuteOnErrorCreateGeneration(e);
                 throw;
             }

@@ -45,16 +45,16 @@ namespace Skautik.Sdk.Api
         /// Upload a file, or point us at one, and process it.  Accepts a multipart upload or a URL we fetch. Validation runs first and the whole file is rejected if it cannot be parsed; individual records that fail are reported without stopping the rest, unless you ask for all-or-nothing.  Requires the &#x60;imports:write&#x60; scope.
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="format">Which format the payload is in.</param>
+        /// <param name="format"></param>
+        /// <param name="mode"> (optional, default to incremental)</param>
+        /// <param name="sourceId"> (optional)</param>
+        /// <param name="dryRun"> (optional)</param>
+        /// <param name="filename">Original filename, recorded on the run so a failure can be traced back to the file that caused it. (optional)</param>
         /// <param name="idempotencyKey">Prevents a retried upload from being processed twice. (optional)</param>
-        /// <param name="dryRun">Validate and report what would change without writing anything. Run this first on any migration. (optional, default to false)</param>
         /// <param name="file">The payload. Mutually exclusive with url. (optional)</param>
-        /// <param name="mode">incremental updates what the payload contains. full_sync additionally withdraws anything absent, and is refused unless the source is configured for it. (optional, default to incremental)</param>
-        /// <param name="sourceId">Apply a stored import source&#39;s mapping and settings rather than the defaults. (optional)</param>
-        /// <param name="url">Where to fetch the payload from. Mutually exclusive with file. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateImportApiResponse"/>&gt;</returns>
-        Task<ICreateImportApiResponse> CreateImportAsync(string format, Option<string> idempotencyKey = default, Option<bool> dryRun = default, Option<Skautik.Sdk.Client.FileParameter> file = default, Option<string> mode = default, Option<string> sourceId = default, Option<string> url = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICreateImportApiResponse> CreateImportAsync(string format, Option<string> mode = default, Option<string> sourceId = default, Option<bool> dryRun = default, Option<string> filename = default, Option<string> idempotencyKey = default, Option<Skautik.Sdk.Client.FileParameter> file = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Start an import
@@ -62,16 +62,16 @@ namespace Skautik.Sdk.Api
         /// <remarks>
         /// Upload a file, or point us at one, and process it.  Accepts a multipart upload or a URL we fetch. Validation runs first and the whole file is rejected if it cannot be parsed; individual records that fail are reported without stopping the rest, unless you ask for all-or-nothing.  Requires the &#x60;imports:write&#x60; scope.
         /// </remarks>
-        /// <param name="format">Which format the payload is in.</param>
+        /// <param name="format"></param>
+        /// <param name="mode"> (optional, default to incremental)</param>
+        /// <param name="sourceId"> (optional)</param>
+        /// <param name="dryRun"> (optional)</param>
+        /// <param name="filename">Original filename, recorded on the run so a failure can be traced back to the file that caused it. (optional)</param>
         /// <param name="idempotencyKey">Prevents a retried upload from being processed twice. (optional)</param>
-        /// <param name="dryRun">Validate and report what would change without writing anything. Run this first on any migration. (optional, default to false)</param>
         /// <param name="file">The payload. Mutually exclusive with url. (optional)</param>
-        /// <param name="mode">incremental updates what the payload contains. full_sync additionally withdraws anything absent, and is refused unless the source is configured for it. (optional, default to incremental)</param>
-        /// <param name="sourceId">Apply a stored import source&#39;s mapping and settings rather than the defaults. (optional)</param>
-        /// <param name="url">Where to fetch the payload from. Mutually exclusive with file. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateImportApiResponse"/>?&gt;</returns>
-        Task<ICreateImportApiResponse?> CreateImportOrDefaultAsync(string format, Option<string> idempotencyKey = default, Option<bool> dryRun = default, Option<Skautik.Sdk.Client.FileParameter> file = default, Option<string> mode = default, Option<string> sourceId = default, Option<string> url = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICreateImportApiResponse?> CreateImportOrDefaultAsync(string format, Option<string> mode = default, Option<string> sourceId = default, Option<bool> dryRun = default, Option<string> filename = default, Option<string> idempotencyKey = default, Option<Skautik.Sdk.Client.FileParameter> file = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Create an import source
@@ -80,10 +80,10 @@ namespace Skautik.Sdk.Api
         /// A standing connector that imports on a schedule.  Configure once and stop thinking about it. A source holds the format, the delivery method, the field mapping, and the deletion policy, and every run against it produces an import you can inspect.  Requires the &#x60;imports:write&#x60; scope.
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createImportSourceRequest"></param>
+        /// <param name="importSourceInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateImportSourceApiResponse"/>&gt;</returns>
-        Task<ICreateImportSourceApiResponse> CreateImportSourceAsync(CreateImportSourceRequest createImportSourceRequest, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICreateImportSourceApiResponse> CreateImportSourceAsync(ImportSourceInput importSourceInput, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Create an import source
@@ -91,10 +91,10 @@ namespace Skautik.Sdk.Api
         /// <remarks>
         /// A standing connector that imports on a schedule.  Configure once and stop thinking about it. A source holds the format, the delivery method, the field mapping, and the deletion policy, and every run against it produces an import you can inspect.  Requires the &#x60;imports:write&#x60; scope.
         /// </remarks>
-        /// <param name="createImportSourceRequest"></param>
+        /// <param name="importSourceInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateImportSourceApiResponse"/>?&gt;</returns>
-        Task<ICreateImportSourceApiResponse?> CreateImportSourceOrDefaultAsync(CreateImportSourceRequest createImportSourceRequest, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICreateImportSourceApiResponse?> CreateImportSourceOrDefaultAsync(ImportSourceInput importSourceInput, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Delete an import source
@@ -194,10 +194,9 @@ namespace Skautik.Sdk.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="importId">Import identifier.</param>
-        /// <param name="outcome">Narrow to one outcome. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListImportRecordsApiResponse"/>&gt;</returns>
-        Task<IListImportRecordsApiResponse> ListImportRecordsAsync(string importId, Option<string> outcome = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IListImportRecordsApiResponse> ListImportRecordsAsync(string importId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List import records
@@ -206,10 +205,9 @@ namespace Skautik.Sdk.Api
         /// Per-record outcome, including why any failed.  Filter to failed to get the working list for a fix. Each entry names the source identifier and the line or element it came from, so a problem can be found in your export rather than guessed at.  Requires the &#x60;imports:write&#x60; scope.
         /// </remarks>
         /// <param name="importId">Import identifier.</param>
-        /// <param name="outcome">Narrow to one outcome. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListImportRecordsApiResponse"/>?&gt;</returns>
-        Task<IListImportRecordsApiResponse?> ListImportRecordsOrDefaultAsync(string importId, Option<string> outcome = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IListImportRecordsApiResponse?> ListImportRecordsOrDefaultAsync(string importId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List import sources
@@ -239,11 +237,9 @@ namespace Skautik.Sdk.Api
         /// Import history for your organisation.  Requires the &#x60;imports:write&#x60; scope.
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="sourceId">Only imports produced by one source. (optional)</param>
-        /// <param name="status">Filter by outcome. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListImportsApiResponse"/>&gt;</returns>
-        Task<IListImportsApiResponse> ListImportsAsync(Option<string> sourceId = default, Option<string> status = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IListImportsApiResponse> ListImportsAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List imports
@@ -251,11 +247,9 @@ namespace Skautik.Sdk.Api
         /// <remarks>
         /// Import history for your organisation.  Requires the &#x60;imports:write&#x60; scope.
         /// </remarks>
-        /// <param name="sourceId">Only imports produced by one source. (optional)</param>
-        /// <param name="status">Filter by outcome. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListImportsApiResponse"/>?&gt;</returns>
-        Task<IListImportsApiResponse?> ListImportsOrDefaultAsync(Option<string> sourceId = default, Option<string> status = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IListImportsApiResponse?> ListImportsOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update an import source
@@ -265,9 +259,10 @@ namespace Skautik.Sdk.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="sourceId">Source identifier.</param>
+        /// <param name="sourceUpdate"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IUpdateImportSourceApiResponse"/>&gt;</returns>
-        Task<IUpdateImportSourceApiResponse> UpdateImportSourceAsync(string sourceId, System.Threading.CancellationToken cancellationToken = default);
+        Task<IUpdateImportSourceApiResponse> UpdateImportSourceAsync(string sourceId, SourceUpdate sourceUpdate, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update an import source
@@ -276,9 +271,10 @@ namespace Skautik.Sdk.Api
         /// Change the mapping, schedule, or deletion policy.  Requires the &#x60;imports:write&#x60; scope.
         /// </remarks>
         /// <param name="sourceId">Source identifier.</param>
+        /// <param name="sourceUpdate"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IUpdateImportSourceApiResponse"/>?&gt;</returns>
-        Task<IUpdateImportSourceApiResponse?> UpdateImportSourceOrDefaultAsync(string sourceId, System.Threading.CancellationToken cancellationToken = default);
+        Task<IUpdateImportSourceApiResponse?> UpdateImportSourceOrDefaultAsync(string sourceId, SourceUpdate sourceUpdate, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
@@ -960,28 +956,22 @@ namespace Skautik.Sdk.Api
             BearerTokenProvider = bearerTokenProvider;
         }
 
-        partial void FormatCreateImport(ref string format, ref Option<string> idempotencyKey, ref Option<bool> dryRun, ref Option<Skautik.Sdk.Client.FileParameter> file, ref Option<string> mode, ref Option<string> sourceId, ref Option<string> url);
+        partial void FormatCreateImport(ref string format, ref Option<string> mode, ref Option<string> sourceId, ref Option<bool> dryRun, ref Option<string> filename, ref Option<string> idempotencyKey, ref Option<Skautik.Sdk.Client.FileParameter> file);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="format"></param>
-        /// <param name="idempotencyKey"></param>
-        /// <param name="file"></param>
         /// <param name="mode"></param>
         /// <param name="sourceId"></param>
-        /// <param name="url"></param>
+        /// <param name="filename"></param>
+        /// <param name="idempotencyKey"></param>
+        /// <param name="file"></param>
         /// <returns></returns>
-        private void ValidateCreateImport(string format, Option<string> idempotencyKey, Option<Skautik.Sdk.Client.FileParameter> file, Option<string> mode, Option<string> sourceId, Option<string> url)
+        private void ValidateCreateImport(string format, Option<string> mode, Option<string> sourceId, Option<string> filename, Option<string> idempotencyKey, Option<Skautik.Sdk.Client.FileParameter> file)
         {
             if (format == null)
                 throw new ArgumentNullException(nameof(format));
-
-            if (idempotencyKey.IsSet && idempotencyKey.Value == null)
-                throw new ArgumentNullException(nameof(idempotencyKey));
-
-            if (file.IsSet && file.Value == null)
-                throw new ArgumentNullException(nameof(file));
 
             if (mode.IsSet && mode.Value == null)
                 throw new ArgumentNullException(nameof(mode));
@@ -989,8 +979,14 @@ namespace Skautik.Sdk.Api
             if (sourceId.IsSet && sourceId.Value == null)
                 throw new ArgumentNullException(nameof(sourceId));
 
-            if (url.IsSet && url.Value == null)
-                throw new ArgumentNullException(nameof(url));
+            if (filename.IsSet && filename.Value == null)
+                throw new ArgumentNullException(nameof(filename));
+
+            if (idempotencyKey.IsSet && idempotencyKey.Value == null)
+                throw new ArgumentNullException(nameof(idempotencyKey));
+
+            if (file.IsSet && file.Value == null)
+                throw new ArgumentNullException(nameof(file));
         }
 
         /// <summary>
@@ -998,16 +994,16 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="format"></param>
-        /// <param name="idempotencyKey"></param>
-        /// <param name="dryRun"></param>
-        /// <param name="file"></param>
         /// <param name="mode"></param>
         /// <param name="sourceId"></param>
-        /// <param name="url"></param>
-        private void AfterCreateImportDefaultImplementation(ICreateImportApiResponse apiResponseLocalVar, string format, Option<string> idempotencyKey, Option<bool> dryRun, Option<Skautik.Sdk.Client.FileParameter> file, Option<string> mode, Option<string> sourceId, Option<string> url)
+        /// <param name="dryRun"></param>
+        /// <param name="filename"></param>
+        /// <param name="idempotencyKey"></param>
+        /// <param name="file"></param>
+        private void AfterCreateImportDefaultImplementation(ICreateImportApiResponse apiResponseLocalVar, string format, Option<string> mode, Option<string> sourceId, Option<bool> dryRun, Option<string> filename, Option<string> idempotencyKey, Option<Skautik.Sdk.Client.FileParameter> file)
         {
             bool suppressDefaultLog = false;
-            AfterCreateImport(ref suppressDefaultLog, apiResponseLocalVar, format, idempotencyKey, dryRun, file, mode, sourceId, url);
+            AfterCreateImport(ref suppressDefaultLog, apiResponseLocalVar, format, mode, sourceId, dryRun, filename, idempotencyKey, file);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -1018,13 +1014,13 @@ namespace Skautik.Sdk.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="format"></param>
-        /// <param name="idempotencyKey"></param>
-        /// <param name="dryRun"></param>
-        /// <param name="file"></param>
         /// <param name="mode"></param>
         /// <param name="sourceId"></param>
-        /// <param name="url"></param>
-        partial void AfterCreateImport(ref bool suppressDefaultLog, ICreateImportApiResponse apiResponseLocalVar, string format, Option<string> idempotencyKey, Option<bool> dryRun, Option<Skautik.Sdk.Client.FileParameter> file, Option<string> mode, Option<string> sourceId, Option<string> url);
+        /// <param name="dryRun"></param>
+        /// <param name="filename"></param>
+        /// <param name="idempotencyKey"></param>
+        /// <param name="file"></param>
+        partial void AfterCreateImport(ref bool suppressDefaultLog, ICreateImportApiResponse apiResponseLocalVar, string format, Option<string> mode, Option<string> sourceId, Option<bool> dryRun, Option<string> filename, Option<string> idempotencyKey, Option<Skautik.Sdk.Client.FileParameter> file);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -1033,16 +1029,16 @@ namespace Skautik.Sdk.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="format"></param>
-        /// <param name="idempotencyKey"></param>
-        /// <param name="dryRun"></param>
-        /// <param name="file"></param>
         /// <param name="mode"></param>
         /// <param name="sourceId"></param>
-        /// <param name="url"></param>
-        private void OnErrorCreateImportDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string format, Option<string> idempotencyKey, Option<bool> dryRun, Option<Skautik.Sdk.Client.FileParameter> file, Option<string> mode, Option<string> sourceId, Option<string> url)
+        /// <param name="dryRun"></param>
+        /// <param name="filename"></param>
+        /// <param name="idempotencyKey"></param>
+        /// <param name="file"></param>
+        private void OnErrorCreateImportDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string format, Option<string> mode, Option<string> sourceId, Option<bool> dryRun, Option<string> filename, Option<string> idempotencyKey, Option<Skautik.Sdk.Client.FileParameter> file)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorCreateImport(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, format, idempotencyKey, dryRun, file, mode, sourceId, url);
+            OnErrorCreateImport(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, format, mode, sourceId, dryRun, filename, idempotencyKey, file);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -1055,31 +1051,31 @@ namespace Skautik.Sdk.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="format"></param>
-        /// <param name="idempotencyKey"></param>
-        /// <param name="dryRun"></param>
-        /// <param name="file"></param>
         /// <param name="mode"></param>
         /// <param name="sourceId"></param>
-        /// <param name="url"></param>
-        partial void OnErrorCreateImport(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string format, Option<string> idempotencyKey, Option<bool> dryRun, Option<Skautik.Sdk.Client.FileParameter> file, Option<string> mode, Option<string> sourceId, Option<string> url);
+        /// <param name="dryRun"></param>
+        /// <param name="filename"></param>
+        /// <param name="idempotencyKey"></param>
+        /// <param name="file"></param>
+        partial void OnErrorCreateImport(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string format, Option<string> mode, Option<string> sourceId, Option<bool> dryRun, Option<string> filename, Option<string> idempotencyKey, Option<Skautik.Sdk.Client.FileParameter> file);
 
         /// <summary>
         /// Start an import Upload a file, or point us at one, and process it.  Accepts a multipart upload or a URL we fetch. Validation runs first and the whole file is rejected if it cannot be parsed; individual records that fail are reported without stopping the rest, unless you ask for all-or-nothing.  Requires the &#x60;imports:write&#x60; scope.
         /// </summary>
-        /// <param name="format">Which format the payload is in.</param>
+        /// <param name="format"></param>
+        /// <param name="mode"> (optional, default to incremental)</param>
+        /// <param name="sourceId"> (optional)</param>
+        /// <param name="dryRun"> (optional)</param>
+        /// <param name="filename">Original filename, recorded on the run so a failure can be traced back to the file that caused it. (optional)</param>
         /// <param name="idempotencyKey">Prevents a retried upload from being processed twice. (optional)</param>
-        /// <param name="dryRun">Validate and report what would change without writing anything. Run this first on any migration. (optional, default to false)</param>
         /// <param name="file">The payload. Mutually exclusive with url. (optional)</param>
-        /// <param name="mode">incremental updates what the payload contains. full_sync additionally withdraws anything absent, and is refused unless the source is configured for it. (optional, default to incremental)</param>
-        /// <param name="sourceId">Apply a stored import source&#39;s mapping and settings rather than the defaults. (optional)</param>
-        /// <param name="url">Where to fetch the payload from. Mutually exclusive with file. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateImportApiResponse"/>&gt;</returns>
-        public async Task<ICreateImportApiResponse?> CreateImportOrDefaultAsync(string format, Option<string> idempotencyKey = default, Option<bool> dryRun = default, Option<Skautik.Sdk.Client.FileParameter> file = default, Option<string> mode = default, Option<string> sourceId = default, Option<string> url = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<ICreateImportApiResponse?> CreateImportOrDefaultAsync(string format, Option<string> mode = default, Option<string> sourceId = default, Option<bool> dryRun = default, Option<string> filename = default, Option<string> idempotencyKey = default, Option<Skautik.Sdk.Client.FileParameter> file = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await CreateImportAsync(format, idempotencyKey, dryRun, file, mode, sourceId, url, cancellationToken).ConfigureAwait(false);
+                return await CreateImportAsync(format, mode, sourceId, dryRun, filename, idempotencyKey, file, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -1091,24 +1087,24 @@ namespace Skautik.Sdk.Api
         /// Start an import Upload a file, or point us at one, and process it.  Accepts a multipart upload or a URL we fetch. Validation runs first and the whole file is rejected if it cannot be parsed; individual records that fail are reported without stopping the rest, unless you ask for all-or-nothing.  Requires the &#x60;imports:write&#x60; scope.
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="format">Which format the payload is in.</param>
+        /// <param name="format"></param>
+        /// <param name="mode"> (optional, default to incremental)</param>
+        /// <param name="sourceId"> (optional)</param>
+        /// <param name="dryRun"> (optional)</param>
+        /// <param name="filename">Original filename, recorded on the run so a failure can be traced back to the file that caused it. (optional)</param>
         /// <param name="idempotencyKey">Prevents a retried upload from being processed twice. (optional)</param>
-        /// <param name="dryRun">Validate and report what would change without writing anything. Run this first on any migration. (optional, default to false)</param>
         /// <param name="file">The payload. Mutually exclusive with url. (optional)</param>
-        /// <param name="mode">incremental updates what the payload contains. full_sync additionally withdraws anything absent, and is refused unless the source is configured for it. (optional, default to incremental)</param>
-        /// <param name="sourceId">Apply a stored import source&#39;s mapping and settings rather than the defaults. (optional)</param>
-        /// <param name="url">Where to fetch the payload from. Mutually exclusive with file. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateImportApiResponse"/>&gt;</returns>
-        public async Task<ICreateImportApiResponse> CreateImportAsync(string format, Option<string> idempotencyKey = default, Option<bool> dryRun = default, Option<Skautik.Sdk.Client.FileParameter> file = default, Option<string> mode = default, Option<string> sourceId = default, Option<string> url = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<ICreateImportApiResponse> CreateImportAsync(string format, Option<string> mode = default, Option<string> sourceId = default, Option<bool> dryRun = default, Option<string> filename = default, Option<string> idempotencyKey = default, Option<Skautik.Sdk.Client.FileParameter> file = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateCreateImport(format, idempotencyKey, file, mode, sourceId, url);
+                ValidateCreateImport(format, mode, sourceId, filename, idempotencyKey, file);
 
-                FormatCreateImport(ref format, ref idempotencyKey, ref dryRun, ref file, ref mode, ref sourceId, ref url);
+                FormatCreateImport(ref format, ref mode, ref sourceId, ref dryRun, ref filename, ref idempotencyKey, ref file);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -1119,16 +1115,29 @@ namespace Skautik.Sdk.Api
                         ? "/imports"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/imports");
 
+                    System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
+
+                    parseQueryStringLocalVar["format"] = ClientUtils.ParameterToString(format);
+
+                    if (mode.IsSet)
+                        parseQueryStringLocalVar["mode"] = ClientUtils.ParameterToString(mode.Value);
+
+                    if (sourceId.IsSet)
+                        parseQueryStringLocalVar["source_id"] = ClientUtils.ParameterToString(sourceId.Value);
+
+                    if (dryRun.IsSet)
+                        parseQueryStringLocalVar["dry_run"] = ClientUtils.ParameterToString(dryRun.Value);
+
+                    if (filename.IsSet)
+                        parseQueryStringLocalVar["filename"] = ClientUtils.ParameterToString(filename.Value);
+
+                    uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
+
                     MultipartFormDataContent multipartContentLocalVar = new MultipartFormDataContent();
 
                     httpRequestMessageLocalVar.Content = multipartContentLocalVar;
 
                     List<KeyValuePair<string, string?>> formParameterLocalVars = new List<KeyValuePair<string, string?>>();
-
-                    formParameterLocalVars.Add(new KeyValuePair<string, string?>("format", ClientUtils.ParameterToString(format)));
-
-                    if (dryRun.IsSet)
-                        formParameterLocalVars.Add(new KeyValuePair<string, string?>("dry_run", ClientUtils.ParameterToString(dryRun.Value)));
 
                     if (file.IsSet)
                     {
@@ -1136,15 +1145,6 @@ namespace Skautik.Sdk.Api
                         streamContentLocalVar.Headers.ContentType = new MediaTypeHeaderValue(file.Value.ContentType);
                         multipartContentLocalVar.Add(streamContentLocalVar, "file", file.Value.FileName ?? "file");
                     }
-
-                    if (mode.IsSet)
-                        formParameterLocalVars.Add(new KeyValuePair<string, string?>("mode", ClientUtils.ParameterToString(mode.Value)));
-
-                    if (sourceId.IsSet)
-                        formParameterLocalVars.Add(new KeyValuePair<string, string?>("source_id", ClientUtils.ParameterToString(sourceId.Value)));
-
-                    if (url.IsSet)
-                        formParameterLocalVars.Add(new KeyValuePair<string, string?>("url", ClientUtils.ParameterToString(url.Value)));
 
                     foreach (var formParamLocalVar in formParameterLocalVars)
                         multipartContentLocalVar.Add(new StringContent(formParamLocalVar.Value ?? string.Empty), formParamLocalVar.Key);
@@ -1202,7 +1202,7 @@ namespace Skautik.Sdk.Api
                             }
                         }
 
-                        AfterCreateImportDefaultImplementation(apiResponseLocalVar, format, idempotencyKey, dryRun, file, mode, sourceId, url);
+                        AfterCreateImportDefaultImplementation(apiResponseLocalVar, format, mode, sourceId, dryRun, filename, idempotencyKey, file);
 
                         Events.ExecuteOnCreateImport(apiResponseLocalVar);
 
@@ -1216,7 +1216,7 @@ namespace Skautik.Sdk.Api
             }
             catch(Exception e)
             {
-                OnErrorCreateImportDefaultImplementation(e, "/imports", uriBuilderLocalVar.Path, format, idempotencyKey, dryRun, file, mode, sourceId, url);
+                OnErrorCreateImportDefaultImplementation(e, "/imports", uriBuilderLocalVar.Path, format, mode, sourceId, dryRun, filename, idempotencyKey, file);
                 Events.ExecuteOnErrorCreateImport(e);
                 throw;
             }
@@ -1549,28 +1549,28 @@ namespace Skautik.Sdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatCreateImportSource(CreateImportSourceRequest createImportSourceRequest);
+        partial void FormatCreateImportSource(ImportSourceInput importSourceInput);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
-        /// <param name="createImportSourceRequest"></param>
+        /// <param name="importSourceInput"></param>
         /// <returns></returns>
-        private void ValidateCreateImportSource(CreateImportSourceRequest createImportSourceRequest)
+        private void ValidateCreateImportSource(ImportSourceInput importSourceInput)
         {
-            if (createImportSourceRequest == null)
-                throw new ArgumentNullException(nameof(createImportSourceRequest));
+            if (importSourceInput == null)
+                throw new ArgumentNullException(nameof(importSourceInput));
         }
 
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="createImportSourceRequest"></param>
-        private void AfterCreateImportSourceDefaultImplementation(ICreateImportSourceApiResponse apiResponseLocalVar, CreateImportSourceRequest createImportSourceRequest)
+        /// <param name="importSourceInput"></param>
+        private void AfterCreateImportSourceDefaultImplementation(ICreateImportSourceApiResponse apiResponseLocalVar, ImportSourceInput importSourceInput)
         {
             bool suppressDefaultLog = false;
-            AfterCreateImportSource(ref suppressDefaultLog, apiResponseLocalVar, createImportSourceRequest);
+            AfterCreateImportSource(ref suppressDefaultLog, apiResponseLocalVar, importSourceInput);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -1580,8 +1580,8 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="createImportSourceRequest"></param>
-        partial void AfterCreateImportSource(ref bool suppressDefaultLog, ICreateImportSourceApiResponse apiResponseLocalVar, CreateImportSourceRequest createImportSourceRequest);
+        /// <param name="importSourceInput"></param>
+        partial void AfterCreateImportSource(ref bool suppressDefaultLog, ICreateImportSourceApiResponse apiResponseLocalVar, ImportSourceInput importSourceInput);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -1589,11 +1589,11 @@ namespace Skautik.Sdk.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="createImportSourceRequest"></param>
-        private void OnErrorCreateImportSourceDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, CreateImportSourceRequest createImportSourceRequest)
+        /// <param name="importSourceInput"></param>
+        private void OnErrorCreateImportSourceDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, ImportSourceInput importSourceInput)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorCreateImportSource(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, createImportSourceRequest);
+            OnErrorCreateImportSource(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, importSourceInput);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -1605,20 +1605,20 @@ namespace Skautik.Sdk.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="createImportSourceRequest"></param>
-        partial void OnErrorCreateImportSource(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, CreateImportSourceRequest createImportSourceRequest);
+        /// <param name="importSourceInput"></param>
+        partial void OnErrorCreateImportSource(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, ImportSourceInput importSourceInput);
 
         /// <summary>
         /// Create an import source A standing connector that imports on a schedule.  Configure once and stop thinking about it. A source holds the format, the delivery method, the field mapping, and the deletion policy, and every run against it produces an import you can inspect.  Requires the &#x60;imports:write&#x60; scope.
         /// </summary>
-        /// <param name="createImportSourceRequest"></param>
+        /// <param name="importSourceInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateImportSourceApiResponse"/>&gt;</returns>
-        public async Task<ICreateImportSourceApiResponse?> CreateImportSourceOrDefaultAsync(CreateImportSourceRequest createImportSourceRequest, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<ICreateImportSourceApiResponse?> CreateImportSourceOrDefaultAsync(ImportSourceInput importSourceInput, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await CreateImportSourceAsync(createImportSourceRequest, cancellationToken).ConfigureAwait(false);
+                return await CreateImportSourceAsync(importSourceInput, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -1630,18 +1630,18 @@ namespace Skautik.Sdk.Api
         /// Create an import source A standing connector that imports on a schedule.  Configure once and stop thinking about it. A source holds the format, the delivery method, the field mapping, and the deletion policy, and every run against it produces an import you can inspect.  Requires the &#x60;imports:write&#x60; scope.
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createImportSourceRequest"></param>
+        /// <param name="importSourceInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateImportSourceApiResponse"/>&gt;</returns>
-        public async Task<ICreateImportSourceApiResponse> CreateImportSourceAsync(CreateImportSourceRequest createImportSourceRequest, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<ICreateImportSourceApiResponse> CreateImportSourceAsync(ImportSourceInput importSourceInput, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateCreateImportSource(createImportSourceRequest);
+                ValidateCreateImportSource(importSourceInput);
 
-                FormatCreateImportSource(createImportSourceRequest);
+                FormatCreateImportSource(importSourceInput);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -1652,9 +1652,9 @@ namespace Skautik.Sdk.Api
                         ? "/import-sources"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/import-sources");
 
-                    httpRequestMessageLocalVar.Content = (createImportSourceRequest as object) is Skautik.Sdk.Client.FileParameter fileParameterLocalVar
+                    httpRequestMessageLocalVar.Content = (importSourceInput as object) is Skautik.Sdk.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(createImportSourceRequest, _jsonSerializerOptions));
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(importSourceInput, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
@@ -1701,7 +1701,7 @@ namespace Skautik.Sdk.Api
                             }
                         }
 
-                        AfterCreateImportSourceDefaultImplementation(apiResponseLocalVar, createImportSourceRequest);
+                        AfterCreateImportSourceDefaultImplementation(apiResponseLocalVar, importSourceInput);
 
                         Events.ExecuteOnCreateImportSource(apiResponseLocalVar);
 
@@ -1715,7 +1715,7 @@ namespace Skautik.Sdk.Api
             }
             catch(Exception e)
             {
-                OnErrorCreateImportSourceDefaultImplementation(e, "/import-sources", uriBuilderLocalVar.Path, createImportSourceRequest);
+                OnErrorCreateImportSourceDefaultImplementation(e, "/import-sources", uriBuilderLocalVar.Path, importSourceInput);
                 Events.ExecuteOnErrorCreateImportSource(e);
                 throw;
             }
@@ -3719,21 +3719,17 @@ namespace Skautik.Sdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatListImportRecords(ref string importId, ref Option<string> outcome);
+        partial void FormatListImportRecords(ref string importId);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="importId"></param>
-        /// <param name="outcome"></param>
         /// <returns></returns>
-        private void ValidateListImportRecords(string importId, Option<string> outcome)
+        private void ValidateListImportRecords(string importId)
         {
             if (importId == null)
                 throw new ArgumentNullException(nameof(importId));
-
-            if (outcome.IsSet && outcome.Value == null)
-                throw new ArgumentNullException(nameof(outcome));
         }
 
         /// <summary>
@@ -3741,11 +3737,10 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="importId"></param>
-        /// <param name="outcome"></param>
-        private void AfterListImportRecordsDefaultImplementation(IListImportRecordsApiResponse apiResponseLocalVar, string importId, Option<string> outcome)
+        private void AfterListImportRecordsDefaultImplementation(IListImportRecordsApiResponse apiResponseLocalVar, string importId)
         {
             bool suppressDefaultLog = false;
-            AfterListImportRecords(ref suppressDefaultLog, apiResponseLocalVar, importId, outcome);
+            AfterListImportRecords(ref suppressDefaultLog, apiResponseLocalVar, importId);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -3756,8 +3751,7 @@ namespace Skautik.Sdk.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="importId"></param>
-        /// <param name="outcome"></param>
-        partial void AfterListImportRecords(ref bool suppressDefaultLog, IListImportRecordsApiResponse apiResponseLocalVar, string importId, Option<string> outcome);
+        partial void AfterListImportRecords(ref bool suppressDefaultLog, IListImportRecordsApiResponse apiResponseLocalVar, string importId);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -3766,11 +3760,10 @@ namespace Skautik.Sdk.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="importId"></param>
-        /// <param name="outcome"></param>
-        private void OnErrorListImportRecordsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string importId, Option<string> outcome)
+        private void OnErrorListImportRecordsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string importId)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorListImportRecords(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, importId, outcome);
+            OnErrorListImportRecords(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, importId);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -3783,21 +3776,19 @@ namespace Skautik.Sdk.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="importId"></param>
-        /// <param name="outcome"></param>
-        partial void OnErrorListImportRecords(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string importId, Option<string> outcome);
+        partial void OnErrorListImportRecords(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string importId);
 
         /// <summary>
         /// List import records Per-record outcome, including why any failed.  Filter to failed to get the working list for a fix. Each entry names the source identifier and the line or element it came from, so a problem can be found in your export rather than guessed at.  Requires the &#x60;imports:write&#x60; scope.
         /// </summary>
         /// <param name="importId">Import identifier.</param>
-        /// <param name="outcome">Narrow to one outcome. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListImportRecordsApiResponse"/>&gt;</returns>
-        public async Task<IListImportRecordsApiResponse?> ListImportRecordsOrDefaultAsync(string importId, Option<string> outcome = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IListImportRecordsApiResponse?> ListImportRecordsOrDefaultAsync(string importId, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await ListImportRecordsAsync(importId, outcome, cancellationToken).ConfigureAwait(false);
+                return await ListImportRecordsAsync(importId, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -3810,18 +3801,17 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="importId">Import identifier.</param>
-        /// <param name="outcome">Narrow to one outcome. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListImportRecordsApiResponse"/>&gt;</returns>
-        public async Task<IListImportRecordsApiResponse> ListImportRecordsAsync(string importId, Option<string> outcome = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IListImportRecordsApiResponse> ListImportRecordsAsync(string importId, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateListImportRecords(importId, outcome);
+                ValidateListImportRecords(importId);
 
-                FormatListImportRecords(ref importId, ref outcome);
+                FormatListImportRecords(ref importId);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -3832,13 +3822,6 @@ namespace Skautik.Sdk.Api
                         ? "/imports/{import_id}/records"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/imports/{import_id}/records");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bimport_id%7D", Uri.EscapeDataString(importId.ToString()));
-
-                    System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
-
-                    if (outcome.IsSet)
-                        parseQueryStringLocalVar["outcome"] = ClientUtils.ParameterToString(outcome.Value);
-
-                    uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
@@ -3876,7 +3859,7 @@ namespace Skautik.Sdk.Api
                             }
                         }
 
-                        AfterListImportRecordsDefaultImplementation(apiResponseLocalVar, importId, outcome);
+                        AfterListImportRecordsDefaultImplementation(apiResponseLocalVar, importId);
 
                         Events.ExecuteOnListImportRecords(apiResponseLocalVar);
 
@@ -3890,7 +3873,7 @@ namespace Skautik.Sdk.Api
             }
             catch(Exception e)
             {
-                OnErrorListImportRecordsDefaultImplementation(e, "/imports/{import_id}/records", uriBuilderLocalVar.Path, importId, outcome);
+                OnErrorListImportRecordsDefaultImplementation(e, "/imports/{import_id}/records", uriBuilderLocalVar.Path, importId);
                 Events.ExecuteOnErrorListImportRecords(e);
                 throw;
             }
@@ -4598,33 +4581,14 @@ namespace Skautik.Sdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatListImports(ref Option<string> sourceId, ref Option<string> status);
-
-        /// <summary>
-        /// Validates the request parameters
-        /// </summary>
-        /// <param name="sourceId"></param>
-        /// <param name="status"></param>
-        /// <returns></returns>
-        private void ValidateListImports(Option<string> sourceId, Option<string> status)
-        {
-            if (sourceId.IsSet && sourceId.Value == null)
-                throw new ArgumentNullException(nameof(sourceId));
-
-            if (status.IsSet && status.Value == null)
-                throw new ArgumentNullException(nameof(status));
-        }
-
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="sourceId"></param>
-        /// <param name="status"></param>
-        private void AfterListImportsDefaultImplementation(IListImportsApiResponse apiResponseLocalVar, Option<string> sourceId, Option<string> status)
+        private void AfterListImportsDefaultImplementation(IListImportsApiResponse apiResponseLocalVar)
         {
             bool suppressDefaultLog = false;
-            AfterListImports(ref suppressDefaultLog, apiResponseLocalVar, sourceId, status);
+            AfterListImports(ref suppressDefaultLog, apiResponseLocalVar);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -4634,9 +4598,7 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="sourceId"></param>
-        /// <param name="status"></param>
-        partial void AfterListImports(ref bool suppressDefaultLog, IListImportsApiResponse apiResponseLocalVar, Option<string> sourceId, Option<string> status);
+        partial void AfterListImports(ref bool suppressDefaultLog, IListImportsApiResponse apiResponseLocalVar);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -4644,12 +4606,10 @@ namespace Skautik.Sdk.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="sourceId"></param>
-        /// <param name="status"></param>
-        private void OnErrorListImportsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> sourceId, Option<string> status)
+        private void OnErrorListImportsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorListImports(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, sourceId, status);
+            OnErrorListImports(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -4661,22 +4621,18 @@ namespace Skautik.Sdk.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="sourceId"></param>
-        /// <param name="status"></param>
-        partial void OnErrorListImports(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> sourceId, Option<string> status);
+        partial void OnErrorListImports(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
 
         /// <summary>
         /// List imports Import history for your organisation.  Requires the &#x60;imports:write&#x60; scope.
         /// </summary>
-        /// <param name="sourceId">Only imports produced by one source. (optional)</param>
-        /// <param name="status">Filter by outcome. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListImportsApiResponse"/>&gt;</returns>
-        public async Task<IListImportsApiResponse?> ListImportsOrDefaultAsync(Option<string> sourceId = default, Option<string> status = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IListImportsApiResponse?> ListImportsOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await ListImportsAsync(sourceId, status, cancellationToken).ConfigureAwait(false);
+                return await ListImportsAsync(cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -4688,20 +4644,14 @@ namespace Skautik.Sdk.Api
         /// List imports Import history for your organisation.  Requires the &#x60;imports:write&#x60; scope.
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="sourceId">Only imports produced by one source. (optional)</param>
-        /// <param name="status">Filter by outcome. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListImportsApiResponse"/>&gt;</returns>
-        public async Task<IListImportsApiResponse> ListImportsAsync(Option<string> sourceId = default, Option<string> status = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IListImportsApiResponse> ListImportsAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateListImports(sourceId, status);
-
-                FormatListImports(ref sourceId, ref status);
-
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
@@ -4710,16 +4660,6 @@ namespace Skautik.Sdk.Api
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
                         ? "/imports"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/imports");
-
-                    System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
-
-                    if (sourceId.IsSet)
-                        parseQueryStringLocalVar["source_id"] = ClientUtils.ParameterToString(sourceId.Value);
-
-                    if (status.IsSet)
-                        parseQueryStringLocalVar["status"] = ClientUtils.ParameterToString(status.Value);
-
-                    uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
@@ -4757,7 +4697,7 @@ namespace Skautik.Sdk.Api
                             }
                         }
 
-                        AfterListImportsDefaultImplementation(apiResponseLocalVar, sourceId, status);
+                        AfterListImportsDefaultImplementation(apiResponseLocalVar);
 
                         Events.ExecuteOnListImports(apiResponseLocalVar);
 
@@ -4771,7 +4711,7 @@ namespace Skautik.Sdk.Api
             }
             catch(Exception e)
             {
-                OnErrorListImportsDefaultImplementation(e, "/imports", uriBuilderLocalVar.Path, sourceId, status);
+                OnErrorListImportsDefaultImplementation(e, "/imports", uriBuilderLocalVar.Path);
                 Events.ExecuteOnErrorListImports(e);
                 throw;
             }
@@ -5060,17 +5000,21 @@ namespace Skautik.Sdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatUpdateImportSource(ref string sourceId);
+        partial void FormatUpdateImportSource(ref string sourceId, SourceUpdate sourceUpdate);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="sourceId"></param>
+        /// <param name="sourceUpdate"></param>
         /// <returns></returns>
-        private void ValidateUpdateImportSource(string sourceId)
+        private void ValidateUpdateImportSource(string sourceId, SourceUpdate sourceUpdate)
         {
             if (sourceId == null)
                 throw new ArgumentNullException(nameof(sourceId));
+
+            if (sourceUpdate == null)
+                throw new ArgumentNullException(nameof(sourceUpdate));
         }
 
         /// <summary>
@@ -5078,10 +5022,11 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="sourceId"></param>
-        private void AfterUpdateImportSourceDefaultImplementation(IUpdateImportSourceApiResponse apiResponseLocalVar, string sourceId)
+        /// <param name="sourceUpdate"></param>
+        private void AfterUpdateImportSourceDefaultImplementation(IUpdateImportSourceApiResponse apiResponseLocalVar, string sourceId, SourceUpdate sourceUpdate)
         {
             bool suppressDefaultLog = false;
-            AfterUpdateImportSource(ref suppressDefaultLog, apiResponseLocalVar, sourceId);
+            AfterUpdateImportSource(ref suppressDefaultLog, apiResponseLocalVar, sourceId, sourceUpdate);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -5092,7 +5037,8 @@ namespace Skautik.Sdk.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="sourceId"></param>
-        partial void AfterUpdateImportSource(ref bool suppressDefaultLog, IUpdateImportSourceApiResponse apiResponseLocalVar, string sourceId);
+        /// <param name="sourceUpdate"></param>
+        partial void AfterUpdateImportSource(ref bool suppressDefaultLog, IUpdateImportSourceApiResponse apiResponseLocalVar, string sourceId, SourceUpdate sourceUpdate);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -5101,10 +5047,11 @@ namespace Skautik.Sdk.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="sourceId"></param>
-        private void OnErrorUpdateImportSourceDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string sourceId)
+        /// <param name="sourceUpdate"></param>
+        private void OnErrorUpdateImportSourceDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string sourceId, SourceUpdate sourceUpdate)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorUpdateImportSource(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, sourceId);
+            OnErrorUpdateImportSource(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, sourceId, sourceUpdate);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -5117,19 +5064,21 @@ namespace Skautik.Sdk.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="sourceId"></param>
-        partial void OnErrorUpdateImportSource(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string sourceId);
+        /// <param name="sourceUpdate"></param>
+        partial void OnErrorUpdateImportSource(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string sourceId, SourceUpdate sourceUpdate);
 
         /// <summary>
         /// Update an import source Change the mapping, schedule, or deletion policy.  Requires the &#x60;imports:write&#x60; scope.
         /// </summary>
         /// <param name="sourceId">Source identifier.</param>
+        /// <param name="sourceUpdate"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IUpdateImportSourceApiResponse"/>&gt;</returns>
-        public async Task<IUpdateImportSourceApiResponse?> UpdateImportSourceOrDefaultAsync(string sourceId, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IUpdateImportSourceApiResponse?> UpdateImportSourceOrDefaultAsync(string sourceId, SourceUpdate sourceUpdate, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await UpdateImportSourceAsync(sourceId, cancellationToken).ConfigureAwait(false);
+                return await UpdateImportSourceAsync(sourceId, sourceUpdate, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -5142,17 +5091,18 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="sourceId">Source identifier.</param>
+        /// <param name="sourceUpdate"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IUpdateImportSourceApiResponse"/>&gt;</returns>
-        public async Task<IUpdateImportSourceApiResponse> UpdateImportSourceAsync(string sourceId, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IUpdateImportSourceApiResponse> UpdateImportSourceAsync(string sourceId, SourceUpdate sourceUpdate, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateUpdateImportSource(sourceId);
+                ValidateUpdateImportSource(sourceId, sourceUpdate);
 
-                FormatUpdateImportSource(ref sourceId);
+                FormatUpdateImportSource(ref sourceId, sourceUpdate);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -5164,6 +5114,10 @@ namespace Skautik.Sdk.Api
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/import-sources/{source_id}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bsource_id%7D", Uri.EscapeDataString(sourceId.ToString()));
 
+                    httpRequestMessageLocalVar.Content = (sourceUpdate as object) is Skautik.Sdk.Client.FileParameter fileParameterLocalVar
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(sourceUpdate, _jsonSerializerOptions));
+
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
 
@@ -5172,6 +5126,15 @@ namespace Skautik.Sdk.Api
                     tokenBaseLocalVars.Add(bearerTokenLocalVar1);
 
                     bearerTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar, "");
+
+                    string[] contentTypes = new string[] {
+                        "application/json"
+                    };
+
+                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
+
+                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
+                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
 
                     string[] acceptLocalVars = new string[] {
                         "application/json",
@@ -5200,7 +5163,7 @@ namespace Skautik.Sdk.Api
                             }
                         }
 
-                        AfterUpdateImportSourceDefaultImplementation(apiResponseLocalVar, sourceId);
+                        AfterUpdateImportSourceDefaultImplementation(apiResponseLocalVar, sourceId, sourceUpdate);
 
                         Events.ExecuteOnUpdateImportSource(apiResponseLocalVar);
 
@@ -5214,7 +5177,7 @@ namespace Skautik.Sdk.Api
             }
             catch(Exception e)
             {
-                OnErrorUpdateImportSourceDefaultImplementation(e, "/import-sources/{source_id}", uriBuilderLocalVar.Path, sourceId);
+                OnErrorUpdateImportSourceDefaultImplementation(e, "/import-sources/{source_id}", uriBuilderLocalVar.Path, sourceId, sourceUpdate);
                 Events.ExecuteOnErrorUpdateImportSource(e);
                 throw;
             }

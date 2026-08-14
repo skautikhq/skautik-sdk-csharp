@@ -26,18 +26,18 @@ using Skautik.Sdk.Client;
 namespace Skautik.Sdk.Model
 {
     /// <summary>
-    /// UpdateWebhookRequest
+    /// WebhookUpdate
     /// </summary>
-    public partial class UpdateWebhookRequest : IValidatableObject
+    public partial class WebhookUpdate : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="UpdateWebhookRequest" /> class.
+        /// Initializes a new instance of the <see cref="WebhookUpdate" /> class.
         /// </summary>
-        /// <param name="active">False pauses deliveries; the registration and its secret survive.</param>
-        /// <param name="events">Replaces the whole subscription list rather than adding to it.</param>
-        /// <param name="url">New HTTPS endpoint.</param>
+        /// <param name="active">active</param>
+        /// <param name="events">events</param>
+        /// <param name="url">url</param>
         [JsonConstructor]
-        public UpdateWebhookRequest(Option<bool?> active = default, Option<List<string>?> events = default, Option<string?> url = default)
+        public WebhookUpdate(Option<bool?> active = default, Option<List<string>?> events = default, Option<string?> url = default)
         {
             ActiveOption = active;
             EventsOption = events;
@@ -55,10 +55,8 @@ namespace Skautik.Sdk.Model
         public Option<bool?> ActiveOption { get; private set; }
 
         /// <summary>
-        /// False pauses deliveries; the registration and its secret survive.
+        /// Gets or Sets Active
         /// </summary>
-        /// <value>False pauses deliveries; the registration and its secret survive.</value>
-        /* <example>true</example> */
         [JsonPropertyName("active")]
         public bool? Active { get { return this.ActiveOption.Value; } set { this.ActiveOption = new(value); } }
 
@@ -70,10 +68,8 @@ namespace Skautik.Sdk.Model
         public Option<List<string>?> EventsOption { get; private set; }
 
         /// <summary>
-        /// Replaces the whole subscription list rather than adding to it.
+        /// Gets or Sets Events
         /// </summary>
-        /// <value>Replaces the whole subscription list rather than adding to it.</value>
-        /* <example>[&quot;property.created&quot;,&quot;property.withdrawn&quot;]</example> */
         [JsonPropertyName("events")]
         public List<string>? Events { get { return this.EventsOption.Value; } set { this.EventsOption = new(value); } }
 
@@ -85,10 +81,8 @@ namespace Skautik.Sdk.Model
         public Option<string?> UrlOption { get; private set; }
 
         /// <summary>
-        /// New HTTPS endpoint.
+        /// Gets or Sets Url
         /// </summary>
-        /// <value>New HTTPS endpoint.</value>
-        /* <example>https://example.com/hooks/skautik</example> */
         [JsonPropertyName("url")]
         public string? Url { get { return this.UrlOption.Value; } set { this.UrlOption = new(value); } }
 
@@ -99,7 +93,7 @@ namespace Skautik.Sdk.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class UpdateWebhookRequest {\n");
+            sb.Append("class WebhookUpdate {\n");
             sb.Append("  Active: ").Append(Active).Append("\n");
             sb.Append("  Events: ").Append(Events).Append("\n");
             sb.Append("  Url: ").Append(Url).Append("\n");
@@ -119,29 +113,29 @@ namespace Skautik.Sdk.Model
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="UpdateWebhookRequest" />
+    /// A Json converter for type <see cref="WebhookUpdate" />
     /// </summary>
-    public partial class UpdateWebhookRequestJsonConverter : JsonConverter<UpdateWebhookRequest>
+    public partial class WebhookUpdateJsonConverter : JsonConverter<WebhookUpdate>
     {
         partial void OnCreated();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="UpdateWebhookRequestJsonConverter" /> class.
+        /// Initializes a new instance of the <see cref="WebhookUpdateJsonConverter" /> class.
         /// </summary>
-        public UpdateWebhookRequestJsonConverter()
+        public WebhookUpdateJsonConverter()
         {
             OnCreated();
         }
 
         /// <summary>
-        /// Deserializes json to <see cref="UpdateWebhookRequest" />
+        /// Deserializes json to <see cref="WebhookUpdate" />
         /// </summary>
         /// <param name="utf8JsonReader"></param>
         /// <param name="typeToConvert"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <returns></returns>
         /// <exception cref="JsonException"></exception>
-        public override UpdateWebhookRequest Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override WebhookUpdate Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -185,57 +179,57 @@ namespace Skautik.Sdk.Model
             }
 
             if (active.IsSet && active.Value == null)
-                throw new ArgumentNullException(nameof(active), "Property is not nullable for class UpdateWebhookRequest.");
+                throw new ArgumentNullException(nameof(active), "Property is not nullable for class WebhookUpdate.");
 
             if (events.IsSet && events.Value == null)
-                throw new ArgumentNullException(nameof(events), "Property is not nullable for class UpdateWebhookRequest.");
+                throw new ArgumentNullException(nameof(events), "Property is not nullable for class WebhookUpdate.");
 
             if (url.IsSet && url.Value == null)
-                throw new ArgumentNullException(nameof(url), "Property is not nullable for class UpdateWebhookRequest.");
+                throw new ArgumentNullException(nameof(url), "Property is not nullable for class WebhookUpdate.");
 
-            return new UpdateWebhookRequest(active, events, url);
+            return new WebhookUpdate(active, events, url);
         }
 
         /// <summary>
-        /// Serializes a <see cref="UpdateWebhookRequest" />
+        /// Serializes a <see cref="WebhookUpdate" />
         /// </summary>
         /// <param name="writer"></param>
-        /// <param name="updateWebhookRequest"></param>
+        /// <param name="webhookUpdate"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <exception cref="NotImplementedException"></exception>
-        public override void Write(Utf8JsonWriter writer, UpdateWebhookRequest updateWebhookRequest, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, WebhookUpdate webhookUpdate, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
 
-            WriteProperties(writer, updateWebhookRequest, jsonSerializerOptions);
+            WriteProperties(writer, webhookUpdate, jsonSerializerOptions);
             writer.WriteEndObject();
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="UpdateWebhookRequest" />
+        /// Serializes the properties of <see cref="WebhookUpdate" />
         /// </summary>
         /// <param name="writer"></param>
-        /// <param name="updateWebhookRequest"></param>
+        /// <param name="webhookUpdate"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <exception cref="NotImplementedException"></exception>
-        public void WriteProperties(Utf8JsonWriter writer, UpdateWebhookRequest updateWebhookRequest, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, WebhookUpdate webhookUpdate, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (updateWebhookRequest.EventsOption.IsSet && updateWebhookRequest.Events == null)
-                throw new ArgumentNullException(nameof(updateWebhookRequest.Events), "Property is required for class UpdateWebhookRequest.");
+            if (webhookUpdate.EventsOption.IsSet && webhookUpdate.Events == null)
+                throw new ArgumentNullException(nameof(webhookUpdate.Events), "Property is required for class WebhookUpdate.");
 
-            if (updateWebhookRequest.UrlOption.IsSet && updateWebhookRequest.Url == null)
-                throw new ArgumentNullException(nameof(updateWebhookRequest.Url), "Property is required for class UpdateWebhookRequest.");
+            if (webhookUpdate.UrlOption.IsSet && webhookUpdate.Url == null)
+                throw new ArgumentNullException(nameof(webhookUpdate.Url), "Property is required for class WebhookUpdate.");
 
-            if (updateWebhookRequest.ActiveOption.IsSet)
-                writer.WriteBoolean("active", updateWebhookRequest.ActiveOption.Value!.Value);
+            if (webhookUpdate.ActiveOption.IsSet)
+                writer.WriteBoolean("active", webhookUpdate.ActiveOption.Value!.Value);
 
-            if (updateWebhookRequest.EventsOption.IsSet)
+            if (webhookUpdate.EventsOption.IsSet)
             {
                 writer.WritePropertyName("events");
-                JsonSerializer.Serialize(writer, updateWebhookRequest.Events, jsonSerializerOptions);
+                JsonSerializer.Serialize(writer, webhookUpdate.Events, jsonSerializerOptions);
             }
-            if (updateWebhookRequest.UrlOption.IsSet)
-                writer.WriteString("url", updateWebhookRequest.Url);
+            if (webhookUpdate.UrlOption.IsSet)
+                writer.WriteString("url", webhookUpdate.Url);
         }
     }
 }
