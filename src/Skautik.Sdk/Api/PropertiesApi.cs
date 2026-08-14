@@ -119,7 +119,7 @@ namespace Skautik.Sdk.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId">Identifier returned by any collection endpoint.</param>
-        /// <param name="expand">Related resources to inline. (optional)</param>
+        /// <param name="expand">Related records to inline rather than fetch separately. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetPropertyApiResponse"/>&gt;</returns>
         Task<IGetPropertyApiResponse> GetPropertyAsync(string propertyId, Option<List<string>> expand = default, System.Threading.CancellationToken cancellationToken = default);
@@ -131,7 +131,7 @@ namespace Skautik.Sdk.Api
         /// One property with its full attribute set.  Requires the &#x60;properties:read&#x60; scope.
         /// </remarks>
         /// <param name="propertyId">Identifier returned by any collection endpoint.</param>
-        /// <param name="expand">Related resources to inline. (optional)</param>
+        /// <param name="expand">Related records to inline rather than fetch separately. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetPropertyApiResponse"/>?&gt;</returns>
         Task<IGetPropertyApiResponse?> GetPropertyOrDefaultAsync(string propertyId, Option<List<string>> expand = default, System.Threading.CancellationToken cancellationToken = default);
@@ -143,24 +143,24 @@ namespace Skautik.Sdk.Api
         /// Page through the catalogue with filters.  The workhorse read endpoint. Filters combine with AND. Anything omitted is unconstrained, so an unfiltered call returns the whole catalogue in cursor order.  Requires the &#x60;properties:read&#x60; scope.
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="market">Market identifier from the markets endpoint. (optional)</param>
-        /// <param name="district">District within the market. Repeatable for a union. (optional)</param>
+        /// <param name="city">City to restrict to, as it appears on a property&#39;s address. (optional)</param>
+        /// <param name="district">District within the city. (optional)</param>
+        /// <param name="postalCode">Postal code to restrict to. (optional)</param>
+        /// <param name="type">Kind of property. (optional)</param>
         /// <param name="transactionType">Restrict to sales or rentals. (optional)</param>
-        /// <param name="propertyType">Repeatable for a union. (optional)</param>
-        /// <param name="priceMin">Inclusive lower bound, in minor units. (optional)</param>
-        /// <param name="priceMax">Inclusive upper bound, in minor units. (optional)</param>
-        /// <param name="bedroomsMin">Inclusive lower bound on bedroom count. (optional)</param>
-        /// <param name="areaMin">Inclusive lower bound on living area, in square metres. (optional)</param>
-        /// <param name="status">Defaults to active. Pass explicitly to include withdrawn records. (optional, default to active)</param>
-        /// <param name="updatedSince">RFC 3339 timestamp. The efficient way to keep a mirror in step without re-reading everything. (optional)</param>
-        /// <param name="limit">Records per page, 1 to 200. (optional, default to 50)</param>
+        /// <param name="status">Listing status. Omit for every status rather than only active ones. (optional)</param>
+        /// <param name="externalId">Your own identifier for a record, to find what an import created. (optional)</param>
+        /// <param name="minPrice">Inclusive lower bound on the asking price. (optional)</param>
+        /// <param name="maxPrice">Inclusive upper bound on the asking price. (optional)</param>
+        /// <param name="minLivingArea">Inclusive lower bound on living area, in square metres. (optional)</param>
+        /// <param name="minBedrooms">Inclusive lower bound on bedroom count. (optional)</param>
+        /// <param name="limit">Records per page. (optional, default to 50)</param>
         /// <param name="cursor">Opaque pointer from the previous response. Omit for the first page. Cursors are stable across inserts, so paging never skips or repeats a record the way an offset does. (optional)</param>
-        /// <param name="sort">Field to order by. Prefix with a minus for descending. Ties break on id, so paging is deterministic. (optional, default to -listed_at)</param>
-        /// <param name="fields">Comma-separated list of fields to return. Trims payloads substantially when you only need a few. (optional)</param>
-        /// <param name="expand">Comma-separated related resources to inline rather than fetch separately. (optional)</param>
+        /// <param name="sort">Field to order by. Prefix with a minus for descending. (optional)</param>
+        /// <param name="expand">Related records to inline rather than fetch separately. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListPropertiesApiResponse"/>&gt;</returns>
-        Task<IListPropertiesApiResponse> ListPropertiesAsync(Option<string> market = default, Option<List<string>> district = default, Option<string> transactionType = default, Option<List<string>> propertyType = default, Option<int> priceMin = default, Option<int> priceMax = default, Option<int> bedroomsMin = default, Option<decimal> areaMin = default, Option<string> status = default, Option<string> updatedSince = default, Option<int> limit = default, Option<string> cursor = default, Option<string> sort = default, Option<List<string>> fields = default, Option<List<string>> expand = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IListPropertiesApiResponse> ListPropertiesAsync(Option<string> city = default, Option<string> district = default, Option<string> postalCode = default, Option<string> type = default, Option<string> transactionType = default, Option<string> status = default, Option<string> externalId = default, Option<decimal> minPrice = default, Option<decimal> maxPrice = default, Option<decimal> minLivingArea = default, Option<int> minBedrooms = default, Option<int> limit = default, Option<string> cursor = default, Option<string> sort = default, Option<List<string>> expand = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List properties
@@ -168,24 +168,24 @@ namespace Skautik.Sdk.Api
         /// <remarks>
         /// Page through the catalogue with filters.  The workhorse read endpoint. Filters combine with AND. Anything omitted is unconstrained, so an unfiltered call returns the whole catalogue in cursor order.  Requires the &#x60;properties:read&#x60; scope.
         /// </remarks>
-        /// <param name="market">Market identifier from the markets endpoint. (optional)</param>
-        /// <param name="district">District within the market. Repeatable for a union. (optional)</param>
+        /// <param name="city">City to restrict to, as it appears on a property&#39;s address. (optional)</param>
+        /// <param name="district">District within the city. (optional)</param>
+        /// <param name="postalCode">Postal code to restrict to. (optional)</param>
+        /// <param name="type">Kind of property. (optional)</param>
         /// <param name="transactionType">Restrict to sales or rentals. (optional)</param>
-        /// <param name="propertyType">Repeatable for a union. (optional)</param>
-        /// <param name="priceMin">Inclusive lower bound, in minor units. (optional)</param>
-        /// <param name="priceMax">Inclusive upper bound, in minor units. (optional)</param>
-        /// <param name="bedroomsMin">Inclusive lower bound on bedroom count. (optional)</param>
-        /// <param name="areaMin">Inclusive lower bound on living area, in square metres. (optional)</param>
-        /// <param name="status">Defaults to active. Pass explicitly to include withdrawn records. (optional, default to active)</param>
-        /// <param name="updatedSince">RFC 3339 timestamp. The efficient way to keep a mirror in step without re-reading everything. (optional)</param>
-        /// <param name="limit">Records per page, 1 to 200. (optional, default to 50)</param>
+        /// <param name="status">Listing status. Omit for every status rather than only active ones. (optional)</param>
+        /// <param name="externalId">Your own identifier for a record, to find what an import created. (optional)</param>
+        /// <param name="minPrice">Inclusive lower bound on the asking price. (optional)</param>
+        /// <param name="maxPrice">Inclusive upper bound on the asking price. (optional)</param>
+        /// <param name="minLivingArea">Inclusive lower bound on living area, in square metres. (optional)</param>
+        /// <param name="minBedrooms">Inclusive lower bound on bedroom count. (optional)</param>
+        /// <param name="limit">Records per page. (optional, default to 50)</param>
         /// <param name="cursor">Opaque pointer from the previous response. Omit for the first page. Cursors are stable across inserts, so paging never skips or repeats a record the way an offset does. (optional)</param>
-        /// <param name="sort">Field to order by. Prefix with a minus for descending. Ties break on id, so paging is deterministic. (optional, default to -listed_at)</param>
-        /// <param name="fields">Comma-separated list of fields to return. Trims payloads substantially when you only need a few. (optional)</param>
-        /// <param name="expand">Comma-separated related resources to inline rather than fetch separately. (optional)</param>
+        /// <param name="sort">Field to order by. Prefix with a minus for descending. (optional)</param>
+        /// <param name="expand">Related records to inline rather than fetch separately. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListPropertiesApiResponse"/>?&gt;</returns>
-        Task<IListPropertiesApiResponse?> ListPropertiesOrDefaultAsync(Option<string> market = default, Option<List<string>> district = default, Option<string> transactionType = default, Option<List<string>> propertyType = default, Option<int> priceMin = default, Option<int> priceMax = default, Option<int> bedroomsMin = default, Option<decimal> areaMin = default, Option<string> status = default, Option<string> updatedSince = default, Option<int> limit = default, Option<string> cursor = default, Option<string> sort = default, Option<List<string>> fields = default, Option<List<string>> expand = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IListPropertiesApiResponse?> ListPropertiesOrDefaultAsync(Option<string> city = default, Option<string> district = default, Option<string> postalCode = default, Option<string> type = default, Option<string> transactionType = default, Option<string> status = default, Option<string> externalId = default, Option<decimal> minPrice = default, Option<decimal> maxPrice = default, Option<decimal> minLivingArea = default, Option<int> minBedrooms = default, Option<int> limit = default, Option<string> cursor = default, Option<string> sort = default, Option<List<string>> expand = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List images
@@ -2555,7 +2555,7 @@ namespace Skautik.Sdk.Api
         /// Retrieve a property One property with its full attribute set.  Requires the &#x60;properties:read&#x60; scope.
         /// </summary>
         /// <param name="propertyId">Identifier returned by any collection endpoint.</param>
-        /// <param name="expand">Related resources to inline. (optional)</param>
+        /// <param name="expand">Related records to inline rather than fetch separately. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetPropertyApiResponse"/>&gt;</returns>
         public async Task<IGetPropertyApiResponse?> GetPropertyOrDefaultAsync(string propertyId, Option<List<string>> expand = default, System.Threading.CancellationToken cancellationToken = default)
@@ -2575,7 +2575,7 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId">Identifier returned by any collection endpoint.</param>
-        /// <param name="expand">Related resources to inline. (optional)</param>
+        /// <param name="expand">Related records to inline rather than fetch separately. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetPropertyApiResponse"/>&gt;</returns>
         public async Task<IGetPropertyApiResponse> GetPropertyAsync(string propertyId, Option<List<string>> expand = default, System.Threading.CancellationToken cancellationToken = default)
@@ -2944,50 +2944,50 @@ namespace Skautik.Sdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatListProperties(ref Option<string> market, Option<List<string>> district, ref Option<string> transactionType, Option<List<string>> propertyType, ref Option<int> priceMin, ref Option<int> priceMax, ref Option<int> bedroomsMin, ref Option<decimal> areaMin, ref Option<string> status, ref Option<string> updatedSince, ref Option<int> limit, ref Option<string> cursor, ref Option<string> sort, Option<List<string>> fields, Option<List<string>> expand);
+        partial void FormatListProperties(ref Option<string> city, ref Option<string> district, ref Option<string> postalCode, ref Option<string> type, ref Option<string> transactionType, ref Option<string> status, ref Option<string> externalId, ref Option<decimal> minPrice, ref Option<decimal> maxPrice, ref Option<decimal> minLivingArea, ref Option<int> minBedrooms, ref Option<int> limit, ref Option<string> cursor, ref Option<string> sort, Option<List<string>> expand);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
-        /// <param name="market"></param>
+        /// <param name="city"></param>
         /// <param name="district"></param>
+        /// <param name="postalCode"></param>
+        /// <param name="type"></param>
         /// <param name="transactionType"></param>
-        /// <param name="propertyType"></param>
         /// <param name="status"></param>
-        /// <param name="updatedSince"></param>
+        /// <param name="externalId"></param>
         /// <param name="cursor"></param>
         /// <param name="sort"></param>
-        /// <param name="fields"></param>
         /// <param name="expand"></param>
         /// <returns></returns>
-        private void ValidateListProperties(Option<string> market, Option<List<string>> district, Option<string> transactionType, Option<List<string>> propertyType, Option<string> status, Option<string> updatedSince, Option<string> cursor, Option<string> sort, Option<List<string>> fields, Option<List<string>> expand)
+        private void ValidateListProperties(Option<string> city, Option<string> district, Option<string> postalCode, Option<string> type, Option<string> transactionType, Option<string> status, Option<string> externalId, Option<string> cursor, Option<string> sort, Option<List<string>> expand)
         {
-            if (market.IsSet && market.Value == null)
-                throw new ArgumentNullException(nameof(market));
+            if (city.IsSet && city.Value == null)
+                throw new ArgumentNullException(nameof(city));
 
             if (district.IsSet && district.Value == null)
                 throw new ArgumentNullException(nameof(district));
 
+            if (postalCode.IsSet && postalCode.Value == null)
+                throw new ArgumentNullException(nameof(postalCode));
+
+            if (type.IsSet && type.Value == null)
+                throw new ArgumentNullException(nameof(type));
+
             if (transactionType.IsSet && transactionType.Value == null)
                 throw new ArgumentNullException(nameof(transactionType));
-
-            if (propertyType.IsSet && propertyType.Value == null)
-                throw new ArgumentNullException(nameof(propertyType));
 
             if (status.IsSet && status.Value == null)
                 throw new ArgumentNullException(nameof(status));
 
-            if (updatedSince.IsSet && updatedSince.Value == null)
-                throw new ArgumentNullException(nameof(updatedSince));
+            if (externalId.IsSet && externalId.Value == null)
+                throw new ArgumentNullException(nameof(externalId));
 
             if (cursor.IsSet && cursor.Value == null)
                 throw new ArgumentNullException(nameof(cursor));
 
             if (sort.IsSet && sort.Value == null)
                 throw new ArgumentNullException(nameof(sort));
-
-            if (fields.IsSet && fields.Value == null)
-                throw new ArgumentNullException(nameof(fields));
 
             if (expand.IsSet && expand.Value == null)
                 throw new ArgumentNullException(nameof(expand));
@@ -2997,25 +2997,25 @@ namespace Skautik.Sdk.Api
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="market"></param>
+        /// <param name="city"></param>
         /// <param name="district"></param>
+        /// <param name="postalCode"></param>
+        /// <param name="type"></param>
         /// <param name="transactionType"></param>
-        /// <param name="propertyType"></param>
-        /// <param name="priceMin"></param>
-        /// <param name="priceMax"></param>
-        /// <param name="bedroomsMin"></param>
-        /// <param name="areaMin"></param>
         /// <param name="status"></param>
-        /// <param name="updatedSince"></param>
+        /// <param name="externalId"></param>
+        /// <param name="minPrice"></param>
+        /// <param name="maxPrice"></param>
+        /// <param name="minLivingArea"></param>
+        /// <param name="minBedrooms"></param>
         /// <param name="limit"></param>
         /// <param name="cursor"></param>
         /// <param name="sort"></param>
-        /// <param name="fields"></param>
         /// <param name="expand"></param>
-        private void AfterListPropertiesDefaultImplementation(IListPropertiesApiResponse apiResponseLocalVar, Option<string> market, Option<List<string>> district, Option<string> transactionType, Option<List<string>> propertyType, Option<int> priceMin, Option<int> priceMax, Option<int> bedroomsMin, Option<decimal> areaMin, Option<string> status, Option<string> updatedSince, Option<int> limit, Option<string> cursor, Option<string> sort, Option<List<string>> fields, Option<List<string>> expand)
+        private void AfterListPropertiesDefaultImplementation(IListPropertiesApiResponse apiResponseLocalVar, Option<string> city, Option<string> district, Option<string> postalCode, Option<string> type, Option<string> transactionType, Option<string> status, Option<string> externalId, Option<decimal> minPrice, Option<decimal> maxPrice, Option<decimal> minLivingArea, Option<int> minBedrooms, Option<int> limit, Option<string> cursor, Option<string> sort, Option<List<string>> expand)
         {
             bool suppressDefaultLog = false;
-            AfterListProperties(ref suppressDefaultLog, apiResponseLocalVar, market, district, transactionType, propertyType, priceMin, priceMax, bedroomsMin, areaMin, status, updatedSince, limit, cursor, sort, fields, expand);
+            AfterListProperties(ref suppressDefaultLog, apiResponseLocalVar, city, district, postalCode, type, transactionType, status, externalId, minPrice, maxPrice, minLivingArea, minBedrooms, limit, cursor, sort, expand);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -3025,22 +3025,22 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="market"></param>
+        /// <param name="city"></param>
         /// <param name="district"></param>
+        /// <param name="postalCode"></param>
+        /// <param name="type"></param>
         /// <param name="transactionType"></param>
-        /// <param name="propertyType"></param>
-        /// <param name="priceMin"></param>
-        /// <param name="priceMax"></param>
-        /// <param name="bedroomsMin"></param>
-        /// <param name="areaMin"></param>
         /// <param name="status"></param>
-        /// <param name="updatedSince"></param>
+        /// <param name="externalId"></param>
+        /// <param name="minPrice"></param>
+        /// <param name="maxPrice"></param>
+        /// <param name="minLivingArea"></param>
+        /// <param name="minBedrooms"></param>
         /// <param name="limit"></param>
         /// <param name="cursor"></param>
         /// <param name="sort"></param>
-        /// <param name="fields"></param>
         /// <param name="expand"></param>
-        partial void AfterListProperties(ref bool suppressDefaultLog, IListPropertiesApiResponse apiResponseLocalVar, Option<string> market, Option<List<string>> district, Option<string> transactionType, Option<List<string>> propertyType, Option<int> priceMin, Option<int> priceMax, Option<int> bedroomsMin, Option<decimal> areaMin, Option<string> status, Option<string> updatedSince, Option<int> limit, Option<string> cursor, Option<string> sort, Option<List<string>> fields, Option<List<string>> expand);
+        partial void AfterListProperties(ref bool suppressDefaultLog, IListPropertiesApiResponse apiResponseLocalVar, Option<string> city, Option<string> district, Option<string> postalCode, Option<string> type, Option<string> transactionType, Option<string> status, Option<string> externalId, Option<decimal> minPrice, Option<decimal> maxPrice, Option<decimal> minLivingArea, Option<int> minBedrooms, Option<int> limit, Option<string> cursor, Option<string> sort, Option<List<string>> expand);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -3048,25 +3048,25 @@ namespace Skautik.Sdk.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="market"></param>
+        /// <param name="city"></param>
         /// <param name="district"></param>
+        /// <param name="postalCode"></param>
+        /// <param name="type"></param>
         /// <param name="transactionType"></param>
-        /// <param name="propertyType"></param>
-        /// <param name="priceMin"></param>
-        /// <param name="priceMax"></param>
-        /// <param name="bedroomsMin"></param>
-        /// <param name="areaMin"></param>
         /// <param name="status"></param>
-        /// <param name="updatedSince"></param>
+        /// <param name="externalId"></param>
+        /// <param name="minPrice"></param>
+        /// <param name="maxPrice"></param>
+        /// <param name="minLivingArea"></param>
+        /// <param name="minBedrooms"></param>
         /// <param name="limit"></param>
         /// <param name="cursor"></param>
         /// <param name="sort"></param>
-        /// <param name="fields"></param>
         /// <param name="expand"></param>
-        private void OnErrorListPropertiesDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> market, Option<List<string>> district, Option<string> transactionType, Option<List<string>> propertyType, Option<int> priceMin, Option<int> priceMax, Option<int> bedroomsMin, Option<decimal> areaMin, Option<string> status, Option<string> updatedSince, Option<int> limit, Option<string> cursor, Option<string> sort, Option<List<string>> fields, Option<List<string>> expand)
+        private void OnErrorListPropertiesDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> city, Option<string> district, Option<string> postalCode, Option<string> type, Option<string> transactionType, Option<string> status, Option<string> externalId, Option<decimal> minPrice, Option<decimal> maxPrice, Option<decimal> minLivingArea, Option<int> minBedrooms, Option<int> limit, Option<string> cursor, Option<string> sort, Option<List<string>> expand)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorListProperties(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, market, district, transactionType, propertyType, priceMin, priceMax, bedroomsMin, areaMin, status, updatedSince, limit, cursor, sort, fields, expand);
+            OnErrorListProperties(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, city, district, postalCode, type, transactionType, status, externalId, minPrice, maxPrice, minLivingArea, minBedrooms, limit, cursor, sort, expand);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -3078,48 +3078,48 @@ namespace Skautik.Sdk.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="market"></param>
+        /// <param name="city"></param>
         /// <param name="district"></param>
+        /// <param name="postalCode"></param>
+        /// <param name="type"></param>
         /// <param name="transactionType"></param>
-        /// <param name="propertyType"></param>
-        /// <param name="priceMin"></param>
-        /// <param name="priceMax"></param>
-        /// <param name="bedroomsMin"></param>
-        /// <param name="areaMin"></param>
         /// <param name="status"></param>
-        /// <param name="updatedSince"></param>
+        /// <param name="externalId"></param>
+        /// <param name="minPrice"></param>
+        /// <param name="maxPrice"></param>
+        /// <param name="minLivingArea"></param>
+        /// <param name="minBedrooms"></param>
         /// <param name="limit"></param>
         /// <param name="cursor"></param>
         /// <param name="sort"></param>
-        /// <param name="fields"></param>
         /// <param name="expand"></param>
-        partial void OnErrorListProperties(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> market, Option<List<string>> district, Option<string> transactionType, Option<List<string>> propertyType, Option<int> priceMin, Option<int> priceMax, Option<int> bedroomsMin, Option<decimal> areaMin, Option<string> status, Option<string> updatedSince, Option<int> limit, Option<string> cursor, Option<string> sort, Option<List<string>> fields, Option<List<string>> expand);
+        partial void OnErrorListProperties(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> city, Option<string> district, Option<string> postalCode, Option<string> type, Option<string> transactionType, Option<string> status, Option<string> externalId, Option<decimal> minPrice, Option<decimal> maxPrice, Option<decimal> minLivingArea, Option<int> minBedrooms, Option<int> limit, Option<string> cursor, Option<string> sort, Option<List<string>> expand);
 
         /// <summary>
         /// List properties Page through the catalogue with filters.  The workhorse read endpoint. Filters combine with AND. Anything omitted is unconstrained, so an unfiltered call returns the whole catalogue in cursor order.  Requires the &#x60;properties:read&#x60; scope.
         /// </summary>
-        /// <param name="market">Market identifier from the markets endpoint. (optional)</param>
-        /// <param name="district">District within the market. Repeatable for a union. (optional)</param>
+        /// <param name="city">City to restrict to, as it appears on a property&#39;s address. (optional)</param>
+        /// <param name="district">District within the city. (optional)</param>
+        /// <param name="postalCode">Postal code to restrict to. (optional)</param>
+        /// <param name="type">Kind of property. (optional)</param>
         /// <param name="transactionType">Restrict to sales or rentals. (optional)</param>
-        /// <param name="propertyType">Repeatable for a union. (optional)</param>
-        /// <param name="priceMin">Inclusive lower bound, in minor units. (optional)</param>
-        /// <param name="priceMax">Inclusive upper bound, in minor units. (optional)</param>
-        /// <param name="bedroomsMin">Inclusive lower bound on bedroom count. (optional)</param>
-        /// <param name="areaMin">Inclusive lower bound on living area, in square metres. (optional)</param>
-        /// <param name="status">Defaults to active. Pass explicitly to include withdrawn records. (optional, default to active)</param>
-        /// <param name="updatedSince">RFC 3339 timestamp. The efficient way to keep a mirror in step without re-reading everything. (optional)</param>
-        /// <param name="limit">Records per page, 1 to 200. (optional, default to 50)</param>
+        /// <param name="status">Listing status. Omit for every status rather than only active ones. (optional)</param>
+        /// <param name="externalId">Your own identifier for a record, to find what an import created. (optional)</param>
+        /// <param name="minPrice">Inclusive lower bound on the asking price. (optional)</param>
+        /// <param name="maxPrice">Inclusive upper bound on the asking price. (optional)</param>
+        /// <param name="minLivingArea">Inclusive lower bound on living area, in square metres. (optional)</param>
+        /// <param name="minBedrooms">Inclusive lower bound on bedroom count. (optional)</param>
+        /// <param name="limit">Records per page. (optional, default to 50)</param>
         /// <param name="cursor">Opaque pointer from the previous response. Omit for the first page. Cursors are stable across inserts, so paging never skips or repeats a record the way an offset does. (optional)</param>
-        /// <param name="sort">Field to order by. Prefix with a minus for descending. Ties break on id, so paging is deterministic. (optional, default to -listed_at)</param>
-        /// <param name="fields">Comma-separated list of fields to return. Trims payloads substantially when you only need a few. (optional)</param>
-        /// <param name="expand">Comma-separated related resources to inline rather than fetch separately. (optional)</param>
+        /// <param name="sort">Field to order by. Prefix with a minus for descending. (optional)</param>
+        /// <param name="expand">Related records to inline rather than fetch separately. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListPropertiesApiResponse"/>&gt;</returns>
-        public async Task<IListPropertiesApiResponse?> ListPropertiesOrDefaultAsync(Option<string> market = default, Option<List<string>> district = default, Option<string> transactionType = default, Option<List<string>> propertyType = default, Option<int> priceMin = default, Option<int> priceMax = default, Option<int> bedroomsMin = default, Option<decimal> areaMin = default, Option<string> status = default, Option<string> updatedSince = default, Option<int> limit = default, Option<string> cursor = default, Option<string> sort = default, Option<List<string>> fields = default, Option<List<string>> expand = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IListPropertiesApiResponse?> ListPropertiesOrDefaultAsync(Option<string> city = default, Option<string> district = default, Option<string> postalCode = default, Option<string> type = default, Option<string> transactionType = default, Option<string> status = default, Option<string> externalId = default, Option<decimal> minPrice = default, Option<decimal> maxPrice = default, Option<decimal> minLivingArea = default, Option<int> minBedrooms = default, Option<int> limit = default, Option<string> cursor = default, Option<string> sort = default, Option<List<string>> expand = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await ListPropertiesAsync(market, district, transactionType, propertyType, priceMin, priceMax, bedroomsMin, areaMin, status, updatedSince, limit, cursor, sort, fields, expand, cancellationToken).ConfigureAwait(false);
+                return await ListPropertiesAsync(city, district, postalCode, type, transactionType, status, externalId, minPrice, maxPrice, minLivingArea, minBedrooms, limit, cursor, sort, expand, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -3131,32 +3131,32 @@ namespace Skautik.Sdk.Api
         /// List properties Page through the catalogue with filters.  The workhorse read endpoint. Filters combine with AND. Anything omitted is unconstrained, so an unfiltered call returns the whole catalogue in cursor order.  Requires the &#x60;properties:read&#x60; scope.
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="market">Market identifier from the markets endpoint. (optional)</param>
-        /// <param name="district">District within the market. Repeatable for a union. (optional)</param>
+        /// <param name="city">City to restrict to, as it appears on a property&#39;s address. (optional)</param>
+        /// <param name="district">District within the city. (optional)</param>
+        /// <param name="postalCode">Postal code to restrict to. (optional)</param>
+        /// <param name="type">Kind of property. (optional)</param>
         /// <param name="transactionType">Restrict to sales or rentals. (optional)</param>
-        /// <param name="propertyType">Repeatable for a union. (optional)</param>
-        /// <param name="priceMin">Inclusive lower bound, in minor units. (optional)</param>
-        /// <param name="priceMax">Inclusive upper bound, in minor units. (optional)</param>
-        /// <param name="bedroomsMin">Inclusive lower bound on bedroom count. (optional)</param>
-        /// <param name="areaMin">Inclusive lower bound on living area, in square metres. (optional)</param>
-        /// <param name="status">Defaults to active. Pass explicitly to include withdrawn records. (optional, default to active)</param>
-        /// <param name="updatedSince">RFC 3339 timestamp. The efficient way to keep a mirror in step without re-reading everything. (optional)</param>
-        /// <param name="limit">Records per page, 1 to 200. (optional, default to 50)</param>
+        /// <param name="status">Listing status. Omit for every status rather than only active ones. (optional)</param>
+        /// <param name="externalId">Your own identifier for a record, to find what an import created. (optional)</param>
+        /// <param name="minPrice">Inclusive lower bound on the asking price. (optional)</param>
+        /// <param name="maxPrice">Inclusive upper bound on the asking price. (optional)</param>
+        /// <param name="minLivingArea">Inclusive lower bound on living area, in square metres. (optional)</param>
+        /// <param name="minBedrooms">Inclusive lower bound on bedroom count. (optional)</param>
+        /// <param name="limit">Records per page. (optional, default to 50)</param>
         /// <param name="cursor">Opaque pointer from the previous response. Omit for the first page. Cursors are stable across inserts, so paging never skips or repeats a record the way an offset does. (optional)</param>
-        /// <param name="sort">Field to order by. Prefix with a minus for descending. Ties break on id, so paging is deterministic. (optional, default to -listed_at)</param>
-        /// <param name="fields">Comma-separated list of fields to return. Trims payloads substantially when you only need a few. (optional)</param>
-        /// <param name="expand">Comma-separated related resources to inline rather than fetch separately. (optional)</param>
+        /// <param name="sort">Field to order by. Prefix with a minus for descending. (optional)</param>
+        /// <param name="expand">Related records to inline rather than fetch separately. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListPropertiesApiResponse"/>&gt;</returns>
-        public async Task<IListPropertiesApiResponse> ListPropertiesAsync(Option<string> market = default, Option<List<string>> district = default, Option<string> transactionType = default, Option<List<string>> propertyType = default, Option<int> priceMin = default, Option<int> priceMax = default, Option<int> bedroomsMin = default, Option<decimal> areaMin = default, Option<string> status = default, Option<string> updatedSince = default, Option<int> limit = default, Option<string> cursor = default, Option<string> sort = default, Option<List<string>> fields = default, Option<List<string>> expand = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IListPropertiesApiResponse> ListPropertiesAsync(Option<string> city = default, Option<string> district = default, Option<string> postalCode = default, Option<string> type = default, Option<string> transactionType = default, Option<string> status = default, Option<string> externalId = default, Option<decimal> minPrice = default, Option<decimal> maxPrice = default, Option<decimal> minLivingArea = default, Option<int> minBedrooms = default, Option<int> limit = default, Option<string> cursor = default, Option<string> sort = default, Option<List<string>> expand = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateListProperties(market, district, transactionType, propertyType, status, updatedSince, cursor, sort, fields, expand);
+                ValidateListProperties(city, district, postalCode, type, transactionType, status, externalId, cursor, sort, expand);
 
-                FormatListProperties(ref market, district, ref transactionType, propertyType, ref priceMin, ref priceMax, ref bedroomsMin, ref areaMin, ref status, ref updatedSince, ref limit, ref cursor, ref sort, fields, expand);
+                FormatListProperties(ref city, ref district, ref postalCode, ref type, ref transactionType, ref status, ref externalId, ref minPrice, ref maxPrice, ref minLivingArea, ref minBedrooms, ref limit, ref cursor, ref sort, expand);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -3169,35 +3169,38 @@ namespace Skautik.Sdk.Api
 
                     System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
 
-                    if (market.IsSet)
-                        parseQueryStringLocalVar["market"] = ClientUtils.ParameterToString(market.Value);
+                    if (city.IsSet)
+                        parseQueryStringLocalVar["city"] = ClientUtils.ParameterToString(city.Value);
 
                     if (district.IsSet)
                         parseQueryStringLocalVar["district"] = ClientUtils.ParameterToString(district.Value);
 
+                    if (postalCode.IsSet)
+                        parseQueryStringLocalVar["postal_code"] = ClientUtils.ParameterToString(postalCode.Value);
+
+                    if (type.IsSet)
+                        parseQueryStringLocalVar["type"] = ClientUtils.ParameterToString(type.Value);
+
                     if (transactionType.IsSet)
                         parseQueryStringLocalVar["transaction_type"] = ClientUtils.ParameterToString(transactionType.Value);
-
-                    if (propertyType.IsSet)
-                        parseQueryStringLocalVar["property_type"] = ClientUtils.ParameterToString(propertyType.Value);
-
-                    if (priceMin.IsSet)
-                        parseQueryStringLocalVar["price_min"] = ClientUtils.ParameterToString(priceMin.Value);
-
-                    if (priceMax.IsSet)
-                        parseQueryStringLocalVar["price_max"] = ClientUtils.ParameterToString(priceMax.Value);
-
-                    if (bedroomsMin.IsSet)
-                        parseQueryStringLocalVar["bedrooms_min"] = ClientUtils.ParameterToString(bedroomsMin.Value);
-
-                    if (areaMin.IsSet)
-                        parseQueryStringLocalVar["area_min"] = ClientUtils.ParameterToString(areaMin.Value);
 
                     if (status.IsSet)
                         parseQueryStringLocalVar["status"] = ClientUtils.ParameterToString(status.Value);
 
-                    if (updatedSince.IsSet)
-                        parseQueryStringLocalVar["updated_since"] = ClientUtils.ParameterToString(updatedSince.Value);
+                    if (externalId.IsSet)
+                        parseQueryStringLocalVar["external_id"] = ClientUtils.ParameterToString(externalId.Value);
+
+                    if (minPrice.IsSet)
+                        parseQueryStringLocalVar["min_price"] = ClientUtils.ParameterToString(minPrice.Value);
+
+                    if (maxPrice.IsSet)
+                        parseQueryStringLocalVar["max_price"] = ClientUtils.ParameterToString(maxPrice.Value);
+
+                    if (minLivingArea.IsSet)
+                        parseQueryStringLocalVar["min_living_area"] = ClientUtils.ParameterToString(minLivingArea.Value);
+
+                    if (minBedrooms.IsSet)
+                        parseQueryStringLocalVar["min_bedrooms"] = ClientUtils.ParameterToString(minBedrooms.Value);
 
                     if (limit.IsSet)
                         parseQueryStringLocalVar["limit"] = ClientUtils.ParameterToString(limit.Value);
@@ -3207,9 +3210,6 @@ namespace Skautik.Sdk.Api
 
                     if (sort.IsSet)
                         parseQueryStringLocalVar["sort"] = ClientUtils.ParameterToString(sort.Value);
-
-                    if (fields.IsSet)
-                        parseQueryStringLocalVar["fields"] = ClientUtils.ParameterToString(fields.Value);
 
                     if (expand.IsSet)
                         parseQueryStringLocalVar["expand"] = ClientUtils.ParameterToString(expand.Value);
@@ -3252,7 +3252,7 @@ namespace Skautik.Sdk.Api
                             }
                         }
 
-                        AfterListPropertiesDefaultImplementation(apiResponseLocalVar, market, district, transactionType, propertyType, priceMin, priceMax, bedroomsMin, areaMin, status, updatedSince, limit, cursor, sort, fields, expand);
+                        AfterListPropertiesDefaultImplementation(apiResponseLocalVar, city, district, postalCode, type, transactionType, status, externalId, minPrice, maxPrice, minLivingArea, minBedrooms, limit, cursor, sort, expand);
 
                         Events.ExecuteOnListProperties(apiResponseLocalVar);
 
@@ -3266,7 +3266,7 @@ namespace Skautik.Sdk.Api
             }
             catch(Exception e)
             {
-                OnErrorListPropertiesDefaultImplementation(e, "/properties", uriBuilderLocalVar.Path, market, district, transactionType, propertyType, priceMin, priceMax, bedroomsMin, areaMin, status, updatedSince, limit, cursor, sort, fields, expand);
+                OnErrorListPropertiesDefaultImplementation(e, "/properties", uriBuilderLocalVar.Path, city, district, postalCode, type, transactionType, status, externalId, minPrice, maxPrice, minLivingArea, minBedrooms, limit, cursor, sort, expand);
                 Events.ExecuteOnErrorListProperties(e);
                 throw;
             }
