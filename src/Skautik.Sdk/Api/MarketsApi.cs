@@ -45,13 +45,13 @@ namespace Skautik.Sdk.Api
         /// District-level supply, price distribution, and amenity context.  Requires the &#x60;markets:read&#x60; scope.  Availability: Growth and above.
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="marketId">Market identifier.</param>
-        /// <param name="districtId">District identifier.</param>
+        /// <param name="city">Market identifier.</param>
+        /// <param name="district">District identifier.</param>
         /// <param name="period">Month to report, as YYYY-MM. Defaults to the most recent computed. (optional)</param>
         /// <param name="propertyType">Restrict the figures to one kind of property. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetDistrictApiResponse"/>&gt;</returns>
-        Task<IGetDistrictApiResponse> GetDistrictAsync(string marketId, string districtId, Option<string> period = default, Option<string> propertyType = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetDistrictApiResponse> GetDistrictAsync(string city, string district, Option<string> period = default, Option<string> propertyType = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Retrieve a district
@@ -59,13 +59,13 @@ namespace Skautik.Sdk.Api
         /// <remarks>
         /// District-level supply, price distribution, and amenity context.  Requires the &#x60;markets:read&#x60; scope.  Availability: Growth and above.
         /// </remarks>
-        /// <param name="marketId">Market identifier.</param>
-        /// <param name="districtId">District identifier.</param>
+        /// <param name="city">Market identifier.</param>
+        /// <param name="district">District identifier.</param>
         /// <param name="period">Month to report, as YYYY-MM. Defaults to the most recent computed. (optional)</param>
         /// <param name="propertyType">Restrict the figures to one kind of property. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetDistrictApiResponse"/>?&gt;</returns>
-        Task<IGetDistrictApiResponse?> GetDistrictOrDefaultAsync(string marketId, string districtId, Option<string> period = default, Option<string> propertyType = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetDistrictApiResponse?> GetDistrictOrDefaultAsync(string city, string district, Option<string> period = default, Option<string> propertyType = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Retrieve a market
@@ -74,12 +74,12 @@ namespace Skautik.Sdk.Api
         /// One market with supply and price distribution.  Requires the &#x60;markets:read&#x60; scope.
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="marketId">Market identifier, such as berlin-de.</param>
+        /// <param name="city">Market identifier, such as berlin-de.</param>
         /// <param name="period">Month to report, as YYYY-MM. Defaults to the most recent computed. (optional)</param>
         /// <param name="propertyType">Restrict the figures to one kind of property. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetMarketApiResponse"/>&gt;</returns>
-        Task<IGetMarketApiResponse> GetMarketAsync(string marketId, Option<string> period = default, Option<string> propertyType = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetMarketApiResponse> GetMarketAsync(string city, Option<string> period = default, Option<string> propertyType = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Retrieve a market
@@ -87,12 +87,12 @@ namespace Skautik.Sdk.Api
         /// <remarks>
         /// One market with supply and price distribution.  Requires the &#x60;markets:read&#x60; scope.
         /// </remarks>
-        /// <param name="marketId">Market identifier, such as berlin-de.</param>
+        /// <param name="city">Market identifier, such as berlin-de.</param>
         /// <param name="period">Month to report, as YYYY-MM. Defaults to the most recent computed. (optional)</param>
         /// <param name="propertyType">Restrict the figures to one kind of property. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetMarketApiResponse"/>?&gt;</returns>
-        Task<IGetMarketApiResponse?> GetMarketOrDefaultAsync(string marketId, Option<string> period = default, Option<string> propertyType = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetMarketApiResponse?> GetMarketOrDefaultAsync(string city, Option<string> period = default, Option<string> propertyType = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List districts
@@ -101,10 +101,10 @@ namespace Skautik.Sdk.Api
         /// Subdivisions of a market, for building your own filters.  Requires the &#x60;markets:read&#x60; scope.
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="marketId">Market identifier.</param>
+        /// <param name="city">Market identifier.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListDistrictsApiResponse"/>&gt;</returns>
-        Task<IListDistrictsApiResponse> ListDistrictsAsync(string marketId, System.Threading.CancellationToken cancellationToken = default);
+        Task<IListDistrictsApiResponse> ListDistrictsAsync(string city, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List districts
@@ -112,10 +112,10 @@ namespace Skautik.Sdk.Api
         /// <remarks>
         /// Subdivisions of a market, for building your own filters.  Requires the &#x60;markets:read&#x60; scope.
         /// </remarks>
-        /// <param name="marketId">Market identifier.</param>
+        /// <param name="city">Market identifier.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListDistrictsApiResponse"/>?&gt;</returns>
-        Task<IListDistrictsApiResponse?> ListDistrictsOrDefaultAsync(string marketId, System.Threading.CancellationToken cancellationToken = default);
+        Task<IListDistrictsApiResponse?> ListDistrictsOrDefaultAsync(string city, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List markets
@@ -145,14 +145,14 @@ namespace Skautik.Sdk.Api
         /// Supply and price series over time, by property type.  Computed from the catalogue we hold, which means these describe asking behaviour rather than transacted prices. They are not appraisals and must not be used for lending decisions.  Requires the &#x60;markets:read&#x60; scope.
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="marketId">Market identifier.</param>
+        /// <param name="city">Market identifier.</param>
         /// <param name="propertyType">Narrow to one property type. (optional)</param>
         /// <param name="transactionType">sale or rent. (optional)</param>
         /// <param name="interval">Granularity of the returned series. (optional)</param>
         /// <param name="since">RFC 3339 lower bound on the series. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IMarketStatisticsApiResponse"/>&gt;</returns>
-        Task<IMarketStatisticsApiResponse> MarketStatisticsAsync(string marketId, Option<string> propertyType = default, Option<string> transactionType = default, Option<string> interval = default, Option<string> since = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IMarketStatisticsApiResponse> MarketStatisticsAsync(string city, Option<string> propertyType = default, Option<string> transactionType = default, Option<string> interval = default, Option<string> since = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Market statistics
@@ -160,14 +160,14 @@ namespace Skautik.Sdk.Api
         /// <remarks>
         /// Supply and price series over time, by property type.  Computed from the catalogue we hold, which means these describe asking behaviour rather than transacted prices. They are not appraisals and must not be used for lending decisions.  Requires the &#x60;markets:read&#x60; scope.
         /// </remarks>
-        /// <param name="marketId">Market identifier.</param>
+        /// <param name="city">Market identifier.</param>
         /// <param name="propertyType">Narrow to one property type. (optional)</param>
         /// <param name="transactionType">sale or rent. (optional)</param>
         /// <param name="interval">Granularity of the returned series. (optional)</param>
         /// <param name="since">RFC 3339 lower bound on the series. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IMarketStatisticsApiResponse"/>?&gt;</returns>
-        Task<IMarketStatisticsApiResponse?> MarketStatisticsOrDefaultAsync(string marketId, Option<string> propertyType = default, Option<string> transactionType = default, Option<string> interval = default, Option<string> since = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IMarketStatisticsApiResponse?> MarketStatisticsOrDefaultAsync(string city, Option<string> propertyType = default, Option<string> transactionType = default, Option<string> interval = default, Option<string> since = default, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
@@ -527,23 +527,23 @@ namespace Skautik.Sdk.Api
             BearerTokenProvider = bearerTokenProvider;
         }
 
-        partial void FormatGetDistrict(ref string marketId, ref string districtId, ref Option<string> period, ref Option<string> propertyType);
+        partial void FormatGetDistrict(ref string city, ref string district, ref Option<string> period, ref Option<string> propertyType);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
-        /// <param name="marketId"></param>
-        /// <param name="districtId"></param>
+        /// <param name="city"></param>
+        /// <param name="district"></param>
         /// <param name="period"></param>
         /// <param name="propertyType"></param>
         /// <returns></returns>
-        private void ValidateGetDistrict(string marketId, string districtId, Option<string> period, Option<string> propertyType)
+        private void ValidateGetDistrict(string city, string district, Option<string> period, Option<string> propertyType)
         {
-            if (marketId == null)
-                throw new ArgumentNullException(nameof(marketId));
+            if (city == null)
+                throw new ArgumentNullException(nameof(city));
 
-            if (districtId == null)
-                throw new ArgumentNullException(nameof(districtId));
+            if (district == null)
+                throw new ArgumentNullException(nameof(district));
 
             if (period.IsSet && period.Value == null)
                 throw new ArgumentNullException(nameof(period));
@@ -556,14 +556,14 @@ namespace Skautik.Sdk.Api
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="marketId"></param>
-        /// <param name="districtId"></param>
+        /// <param name="city"></param>
+        /// <param name="district"></param>
         /// <param name="period"></param>
         /// <param name="propertyType"></param>
-        private void AfterGetDistrictDefaultImplementation(IGetDistrictApiResponse apiResponseLocalVar, string marketId, string districtId, Option<string> period, Option<string> propertyType)
+        private void AfterGetDistrictDefaultImplementation(IGetDistrictApiResponse apiResponseLocalVar, string city, string district, Option<string> period, Option<string> propertyType)
         {
             bool suppressDefaultLog = false;
-            AfterGetDistrict(ref suppressDefaultLog, apiResponseLocalVar, marketId, districtId, period, propertyType);
+            AfterGetDistrict(ref suppressDefaultLog, apiResponseLocalVar, city, district, period, propertyType);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -573,11 +573,11 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="marketId"></param>
-        /// <param name="districtId"></param>
+        /// <param name="city"></param>
+        /// <param name="district"></param>
         /// <param name="period"></param>
         /// <param name="propertyType"></param>
-        partial void AfterGetDistrict(ref bool suppressDefaultLog, IGetDistrictApiResponse apiResponseLocalVar, string marketId, string districtId, Option<string> period, Option<string> propertyType);
+        partial void AfterGetDistrict(ref bool suppressDefaultLog, IGetDistrictApiResponse apiResponseLocalVar, string city, string district, Option<string> period, Option<string> propertyType);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -585,14 +585,14 @@ namespace Skautik.Sdk.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="marketId"></param>
-        /// <param name="districtId"></param>
+        /// <param name="city"></param>
+        /// <param name="district"></param>
         /// <param name="period"></param>
         /// <param name="propertyType"></param>
-        private void OnErrorGetDistrictDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string marketId, string districtId, Option<string> period, Option<string> propertyType)
+        private void OnErrorGetDistrictDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string city, string district, Option<string> period, Option<string> propertyType)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorGetDistrict(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, marketId, districtId, period, propertyType);
+            OnErrorGetDistrict(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, city, district, period, propertyType);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -604,26 +604,26 @@ namespace Skautik.Sdk.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="marketId"></param>
-        /// <param name="districtId"></param>
+        /// <param name="city"></param>
+        /// <param name="district"></param>
         /// <param name="period"></param>
         /// <param name="propertyType"></param>
-        partial void OnErrorGetDistrict(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string marketId, string districtId, Option<string> period, Option<string> propertyType);
+        partial void OnErrorGetDistrict(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string city, string district, Option<string> period, Option<string> propertyType);
 
         /// <summary>
         /// Retrieve a district District-level supply, price distribution, and amenity context.  Requires the &#x60;markets:read&#x60; scope.  Availability: Growth and above.
         /// </summary>
-        /// <param name="marketId">Market identifier.</param>
-        /// <param name="districtId">District identifier.</param>
+        /// <param name="city">Market identifier.</param>
+        /// <param name="district">District identifier.</param>
         /// <param name="period">Month to report, as YYYY-MM. Defaults to the most recent computed. (optional)</param>
         /// <param name="propertyType">Restrict the figures to one kind of property. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetDistrictApiResponse"/>&gt;</returns>
-        public async Task<IGetDistrictApiResponse?> GetDistrictOrDefaultAsync(string marketId, string districtId, Option<string> period = default, Option<string> propertyType = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetDistrictApiResponse?> GetDistrictOrDefaultAsync(string city, string district, Option<string> period = default, Option<string> propertyType = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await GetDistrictAsync(marketId, districtId, period, propertyType, cancellationToken).ConfigureAwait(false);
+                return await GetDistrictAsync(city, district, period, propertyType, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -635,21 +635,21 @@ namespace Skautik.Sdk.Api
         /// Retrieve a district District-level supply, price distribution, and amenity context.  Requires the &#x60;markets:read&#x60; scope.  Availability: Growth and above.
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="marketId">Market identifier.</param>
-        /// <param name="districtId">District identifier.</param>
+        /// <param name="city">Market identifier.</param>
+        /// <param name="district">District identifier.</param>
         /// <param name="period">Month to report, as YYYY-MM. Defaults to the most recent computed. (optional)</param>
         /// <param name="propertyType">Restrict the figures to one kind of property. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetDistrictApiResponse"/>&gt;</returns>
-        public async Task<IGetDistrictApiResponse> GetDistrictAsync(string marketId, string districtId, Option<string> period = default, Option<string> propertyType = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetDistrictApiResponse> GetDistrictAsync(string city, string district, Option<string> period = default, Option<string> propertyType = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateGetDistrict(marketId, districtId, period, propertyType);
+                ValidateGetDistrict(city, district, period, propertyType);
 
-                FormatGetDistrict(ref marketId, ref districtId, ref period, ref propertyType);
+                FormatGetDistrict(ref city, ref district, ref period, ref propertyType);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -659,8 +659,8 @@ namespace Skautik.Sdk.Api
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
                         ? "/markets/{city}/districts/{district}"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/markets/{city}/districts/{district}");
-                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bmarket_id%7D", Uri.EscapeDataString(marketId.ToString()));
-                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bdistrict_id%7D", Uri.EscapeDataString(districtId.ToString()));
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bcity%7D", Uri.EscapeDataString(city.ToString()));
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bdistrict%7D", Uri.EscapeDataString(district.ToString()));
 
                     System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
 
@@ -707,7 +707,7 @@ namespace Skautik.Sdk.Api
                             }
                         }
 
-                        AfterGetDistrictDefaultImplementation(apiResponseLocalVar, marketId, districtId, period, propertyType);
+                        AfterGetDistrictDefaultImplementation(apiResponseLocalVar, city, district, period, propertyType);
 
                         Events.ExecuteOnGetDistrict(apiResponseLocalVar);
 
@@ -721,7 +721,7 @@ namespace Skautik.Sdk.Api
             }
             catch(Exception e)
             {
-                OnErrorGetDistrictDefaultImplementation(e, "/markets/{city}/districts/{district}", uriBuilderLocalVar.Path, marketId, districtId, period, propertyType);
+                OnErrorGetDistrictDefaultImplementation(e, "/markets/{city}/districts/{district}", uriBuilderLocalVar.Path, city, district, period, propertyType);
                 Events.ExecuteOnErrorGetDistrict(e);
                 throw;
             }
@@ -978,19 +978,19 @@ namespace Skautik.Sdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatGetMarket(ref string marketId, ref Option<string> period, ref Option<string> propertyType);
+        partial void FormatGetMarket(ref string city, ref Option<string> period, ref Option<string> propertyType);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
-        /// <param name="marketId"></param>
+        /// <param name="city"></param>
         /// <param name="period"></param>
         /// <param name="propertyType"></param>
         /// <returns></returns>
-        private void ValidateGetMarket(string marketId, Option<string> period, Option<string> propertyType)
+        private void ValidateGetMarket(string city, Option<string> period, Option<string> propertyType)
         {
-            if (marketId == null)
-                throw new ArgumentNullException(nameof(marketId));
+            if (city == null)
+                throw new ArgumentNullException(nameof(city));
 
             if (period.IsSet && period.Value == null)
                 throw new ArgumentNullException(nameof(period));
@@ -1003,13 +1003,13 @@ namespace Skautik.Sdk.Api
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="marketId"></param>
+        /// <param name="city"></param>
         /// <param name="period"></param>
         /// <param name="propertyType"></param>
-        private void AfterGetMarketDefaultImplementation(IGetMarketApiResponse apiResponseLocalVar, string marketId, Option<string> period, Option<string> propertyType)
+        private void AfterGetMarketDefaultImplementation(IGetMarketApiResponse apiResponseLocalVar, string city, Option<string> period, Option<string> propertyType)
         {
             bool suppressDefaultLog = false;
-            AfterGetMarket(ref suppressDefaultLog, apiResponseLocalVar, marketId, period, propertyType);
+            AfterGetMarket(ref suppressDefaultLog, apiResponseLocalVar, city, period, propertyType);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -1019,10 +1019,10 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="marketId"></param>
+        /// <param name="city"></param>
         /// <param name="period"></param>
         /// <param name="propertyType"></param>
-        partial void AfterGetMarket(ref bool suppressDefaultLog, IGetMarketApiResponse apiResponseLocalVar, string marketId, Option<string> period, Option<string> propertyType);
+        partial void AfterGetMarket(ref bool suppressDefaultLog, IGetMarketApiResponse apiResponseLocalVar, string city, Option<string> period, Option<string> propertyType);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -1030,13 +1030,13 @@ namespace Skautik.Sdk.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="marketId"></param>
+        /// <param name="city"></param>
         /// <param name="period"></param>
         /// <param name="propertyType"></param>
-        private void OnErrorGetMarketDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string marketId, Option<string> period, Option<string> propertyType)
+        private void OnErrorGetMarketDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string city, Option<string> period, Option<string> propertyType)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorGetMarket(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, marketId, period, propertyType);
+            OnErrorGetMarket(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, city, period, propertyType);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -1048,24 +1048,24 @@ namespace Skautik.Sdk.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="marketId"></param>
+        /// <param name="city"></param>
         /// <param name="period"></param>
         /// <param name="propertyType"></param>
-        partial void OnErrorGetMarket(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string marketId, Option<string> period, Option<string> propertyType);
+        partial void OnErrorGetMarket(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string city, Option<string> period, Option<string> propertyType);
 
         /// <summary>
         /// Retrieve a market One market with supply and price distribution.  Requires the &#x60;markets:read&#x60; scope.
         /// </summary>
-        /// <param name="marketId">Market identifier, such as berlin-de.</param>
+        /// <param name="city">Market identifier, such as berlin-de.</param>
         /// <param name="period">Month to report, as YYYY-MM. Defaults to the most recent computed. (optional)</param>
         /// <param name="propertyType">Restrict the figures to one kind of property. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetMarketApiResponse"/>&gt;</returns>
-        public async Task<IGetMarketApiResponse?> GetMarketOrDefaultAsync(string marketId, Option<string> period = default, Option<string> propertyType = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetMarketApiResponse?> GetMarketOrDefaultAsync(string city, Option<string> period = default, Option<string> propertyType = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await GetMarketAsync(marketId, period, propertyType, cancellationToken).ConfigureAwait(false);
+                return await GetMarketAsync(city, period, propertyType, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -1077,20 +1077,20 @@ namespace Skautik.Sdk.Api
         /// Retrieve a market One market with supply and price distribution.  Requires the &#x60;markets:read&#x60; scope.
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="marketId">Market identifier, such as berlin-de.</param>
+        /// <param name="city">Market identifier, such as berlin-de.</param>
         /// <param name="period">Month to report, as YYYY-MM. Defaults to the most recent computed. (optional)</param>
         /// <param name="propertyType">Restrict the figures to one kind of property. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetMarketApiResponse"/>&gt;</returns>
-        public async Task<IGetMarketApiResponse> GetMarketAsync(string marketId, Option<string> period = default, Option<string> propertyType = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetMarketApiResponse> GetMarketAsync(string city, Option<string> period = default, Option<string> propertyType = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateGetMarket(marketId, period, propertyType);
+                ValidateGetMarket(city, period, propertyType);
 
-                FormatGetMarket(ref marketId, ref period, ref propertyType);
+                FormatGetMarket(ref city, ref period, ref propertyType);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -1100,7 +1100,7 @@ namespace Skautik.Sdk.Api
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
                         ? "/markets/{city}"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/markets/{city}");
-                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bmarket_id%7D", Uri.EscapeDataString(marketId.ToString()));
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bcity%7D", Uri.EscapeDataString(city.ToString()));
 
                     System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
 
@@ -1148,7 +1148,7 @@ namespace Skautik.Sdk.Api
                             }
                         }
 
-                        AfterGetMarketDefaultImplementation(apiResponseLocalVar, marketId, period, propertyType);
+                        AfterGetMarketDefaultImplementation(apiResponseLocalVar, city, period, propertyType);
 
                         Events.ExecuteOnGetMarket(apiResponseLocalVar);
 
@@ -1162,7 +1162,7 @@ namespace Skautik.Sdk.Api
             }
             catch(Exception e)
             {
-                OnErrorGetMarketDefaultImplementation(e, "/markets/{city}", uriBuilderLocalVar.Path, marketId, period, propertyType);
+                OnErrorGetMarketDefaultImplementation(e, "/markets/{city}", uriBuilderLocalVar.Path, city, period, propertyType);
                 Events.ExecuteOnErrorGetMarket(e);
                 throw;
             }
@@ -1451,28 +1451,28 @@ namespace Skautik.Sdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatListDistricts(ref string marketId);
+        partial void FormatListDistricts(ref string city);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
-        /// <param name="marketId"></param>
+        /// <param name="city"></param>
         /// <returns></returns>
-        private void ValidateListDistricts(string marketId)
+        private void ValidateListDistricts(string city)
         {
-            if (marketId == null)
-                throw new ArgumentNullException(nameof(marketId));
+            if (city == null)
+                throw new ArgumentNullException(nameof(city));
         }
 
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="marketId"></param>
-        private void AfterListDistrictsDefaultImplementation(IListDistrictsApiResponse apiResponseLocalVar, string marketId)
+        /// <param name="city"></param>
+        private void AfterListDistrictsDefaultImplementation(IListDistrictsApiResponse apiResponseLocalVar, string city)
         {
             bool suppressDefaultLog = false;
-            AfterListDistricts(ref suppressDefaultLog, apiResponseLocalVar, marketId);
+            AfterListDistricts(ref suppressDefaultLog, apiResponseLocalVar, city);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -1482,8 +1482,8 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="marketId"></param>
-        partial void AfterListDistricts(ref bool suppressDefaultLog, IListDistrictsApiResponse apiResponseLocalVar, string marketId);
+        /// <param name="city"></param>
+        partial void AfterListDistricts(ref bool suppressDefaultLog, IListDistrictsApiResponse apiResponseLocalVar, string city);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -1491,11 +1491,11 @@ namespace Skautik.Sdk.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="marketId"></param>
-        private void OnErrorListDistrictsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string marketId)
+        /// <param name="city"></param>
+        private void OnErrorListDistrictsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string city)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorListDistricts(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, marketId);
+            OnErrorListDistricts(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, city);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -1507,20 +1507,20 @@ namespace Skautik.Sdk.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="marketId"></param>
-        partial void OnErrorListDistricts(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string marketId);
+        /// <param name="city"></param>
+        partial void OnErrorListDistricts(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string city);
 
         /// <summary>
         /// List districts Subdivisions of a market, for building your own filters.  Requires the &#x60;markets:read&#x60; scope.
         /// </summary>
-        /// <param name="marketId">Market identifier.</param>
+        /// <param name="city">Market identifier.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListDistrictsApiResponse"/>&gt;</returns>
-        public async Task<IListDistrictsApiResponse?> ListDistrictsOrDefaultAsync(string marketId, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IListDistrictsApiResponse?> ListDistrictsOrDefaultAsync(string city, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await ListDistrictsAsync(marketId, cancellationToken).ConfigureAwait(false);
+                return await ListDistrictsAsync(city, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -1532,18 +1532,18 @@ namespace Skautik.Sdk.Api
         /// List districts Subdivisions of a market, for building your own filters.  Requires the &#x60;markets:read&#x60; scope.
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="marketId">Market identifier.</param>
+        /// <param name="city">Market identifier.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListDistrictsApiResponse"/>&gt;</returns>
-        public async Task<IListDistrictsApiResponse> ListDistrictsAsync(string marketId, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IListDistrictsApiResponse> ListDistrictsAsync(string city, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateListDistricts(marketId);
+                ValidateListDistricts(city);
 
-                FormatListDistricts(ref marketId);
+                FormatListDistricts(ref city);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -1553,7 +1553,7 @@ namespace Skautik.Sdk.Api
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
                         ? "/markets/{city}/districts"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/markets/{city}/districts");
-                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bmarket_id%7D", Uri.EscapeDataString(marketId.ToString()));
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bcity%7D", Uri.EscapeDataString(city.ToString()));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
@@ -1591,7 +1591,7 @@ namespace Skautik.Sdk.Api
                             }
                         }
 
-                        AfterListDistrictsDefaultImplementation(apiResponseLocalVar, marketId);
+                        AfterListDistrictsDefaultImplementation(apiResponseLocalVar, city);
 
                         Events.ExecuteOnListDistricts(apiResponseLocalVar);
 
@@ -1605,7 +1605,7 @@ namespace Skautik.Sdk.Api
             }
             catch(Exception e)
             {
-                OnErrorListDistrictsDefaultImplementation(e, "/markets/{city}/districts", uriBuilderLocalVar.Path, marketId);
+                OnErrorListDistrictsDefaultImplementation(e, "/markets/{city}/districts", uriBuilderLocalVar.Path, city);
                 Events.ExecuteOnErrorListDistricts(e);
                 throw;
             }
@@ -2313,21 +2313,21 @@ namespace Skautik.Sdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatMarketStatistics(ref string marketId, ref Option<string> propertyType, ref Option<string> transactionType, ref Option<string> interval, ref Option<string> since);
+        partial void FormatMarketStatistics(ref string city, ref Option<string> propertyType, ref Option<string> transactionType, ref Option<string> interval, ref Option<string> since);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
-        /// <param name="marketId"></param>
+        /// <param name="city"></param>
         /// <param name="propertyType"></param>
         /// <param name="transactionType"></param>
         /// <param name="interval"></param>
         /// <param name="since"></param>
         /// <returns></returns>
-        private void ValidateMarketStatistics(string marketId, Option<string> propertyType, Option<string> transactionType, Option<string> interval, Option<string> since)
+        private void ValidateMarketStatistics(string city, Option<string> propertyType, Option<string> transactionType, Option<string> interval, Option<string> since)
         {
-            if (marketId == null)
-                throw new ArgumentNullException(nameof(marketId));
+            if (city == null)
+                throw new ArgumentNullException(nameof(city));
 
             if (propertyType.IsSet && propertyType.Value == null)
                 throw new ArgumentNullException(nameof(propertyType));
@@ -2346,15 +2346,15 @@ namespace Skautik.Sdk.Api
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="marketId"></param>
+        /// <param name="city"></param>
         /// <param name="propertyType"></param>
         /// <param name="transactionType"></param>
         /// <param name="interval"></param>
         /// <param name="since"></param>
-        private void AfterMarketStatisticsDefaultImplementation(IMarketStatisticsApiResponse apiResponseLocalVar, string marketId, Option<string> propertyType, Option<string> transactionType, Option<string> interval, Option<string> since)
+        private void AfterMarketStatisticsDefaultImplementation(IMarketStatisticsApiResponse apiResponseLocalVar, string city, Option<string> propertyType, Option<string> transactionType, Option<string> interval, Option<string> since)
         {
             bool suppressDefaultLog = false;
-            AfterMarketStatistics(ref suppressDefaultLog, apiResponseLocalVar, marketId, propertyType, transactionType, interval, since);
+            AfterMarketStatistics(ref suppressDefaultLog, apiResponseLocalVar, city, propertyType, transactionType, interval, since);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -2364,12 +2364,12 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="marketId"></param>
+        /// <param name="city"></param>
         /// <param name="propertyType"></param>
         /// <param name="transactionType"></param>
         /// <param name="interval"></param>
         /// <param name="since"></param>
-        partial void AfterMarketStatistics(ref bool suppressDefaultLog, IMarketStatisticsApiResponse apiResponseLocalVar, string marketId, Option<string> propertyType, Option<string> transactionType, Option<string> interval, Option<string> since);
+        partial void AfterMarketStatistics(ref bool suppressDefaultLog, IMarketStatisticsApiResponse apiResponseLocalVar, string city, Option<string> propertyType, Option<string> transactionType, Option<string> interval, Option<string> since);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -2377,15 +2377,15 @@ namespace Skautik.Sdk.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="marketId"></param>
+        /// <param name="city"></param>
         /// <param name="propertyType"></param>
         /// <param name="transactionType"></param>
         /// <param name="interval"></param>
         /// <param name="since"></param>
-        private void OnErrorMarketStatisticsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string marketId, Option<string> propertyType, Option<string> transactionType, Option<string> interval, Option<string> since)
+        private void OnErrorMarketStatisticsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string city, Option<string> propertyType, Option<string> transactionType, Option<string> interval, Option<string> since)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorMarketStatistics(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, marketId, propertyType, transactionType, interval, since);
+            OnErrorMarketStatistics(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, city, propertyType, transactionType, interval, since);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -2397,28 +2397,28 @@ namespace Skautik.Sdk.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="marketId"></param>
+        /// <param name="city"></param>
         /// <param name="propertyType"></param>
         /// <param name="transactionType"></param>
         /// <param name="interval"></param>
         /// <param name="since"></param>
-        partial void OnErrorMarketStatistics(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string marketId, Option<string> propertyType, Option<string> transactionType, Option<string> interval, Option<string> since);
+        partial void OnErrorMarketStatistics(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string city, Option<string> propertyType, Option<string> transactionType, Option<string> interval, Option<string> since);
 
         /// <summary>
         /// Market statistics Supply and price series over time, by property type.  Computed from the catalogue we hold, which means these describe asking behaviour rather than transacted prices. They are not appraisals and must not be used for lending decisions.  Requires the &#x60;markets:read&#x60; scope.
         /// </summary>
-        /// <param name="marketId">Market identifier.</param>
+        /// <param name="city">Market identifier.</param>
         /// <param name="propertyType">Narrow to one property type. (optional)</param>
         /// <param name="transactionType">sale or rent. (optional)</param>
         /// <param name="interval">Granularity of the returned series. (optional)</param>
         /// <param name="since">RFC 3339 lower bound on the series. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IMarketStatisticsApiResponse"/>&gt;</returns>
-        public async Task<IMarketStatisticsApiResponse?> MarketStatisticsOrDefaultAsync(string marketId, Option<string> propertyType = default, Option<string> transactionType = default, Option<string> interval = default, Option<string> since = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IMarketStatisticsApiResponse?> MarketStatisticsOrDefaultAsync(string city, Option<string> propertyType = default, Option<string> transactionType = default, Option<string> interval = default, Option<string> since = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await MarketStatisticsAsync(marketId, propertyType, transactionType, interval, since, cancellationToken).ConfigureAwait(false);
+                return await MarketStatisticsAsync(city, propertyType, transactionType, interval, since, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -2430,22 +2430,22 @@ namespace Skautik.Sdk.Api
         /// Market statistics Supply and price series over time, by property type.  Computed from the catalogue we hold, which means these describe asking behaviour rather than transacted prices. They are not appraisals and must not be used for lending decisions.  Requires the &#x60;markets:read&#x60; scope.
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="marketId">Market identifier.</param>
+        /// <param name="city">Market identifier.</param>
         /// <param name="propertyType">Narrow to one property type. (optional)</param>
         /// <param name="transactionType">sale or rent. (optional)</param>
         /// <param name="interval">Granularity of the returned series. (optional)</param>
         /// <param name="since">RFC 3339 lower bound on the series. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IMarketStatisticsApiResponse"/>&gt;</returns>
-        public async Task<IMarketStatisticsApiResponse> MarketStatisticsAsync(string marketId, Option<string> propertyType = default, Option<string> transactionType = default, Option<string> interval = default, Option<string> since = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IMarketStatisticsApiResponse> MarketStatisticsAsync(string city, Option<string> propertyType = default, Option<string> transactionType = default, Option<string> interval = default, Option<string> since = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateMarketStatistics(marketId, propertyType, transactionType, interval, since);
+                ValidateMarketStatistics(city, propertyType, transactionType, interval, since);
 
-                FormatMarketStatistics(ref marketId, ref propertyType, ref transactionType, ref interval, ref since);
+                FormatMarketStatistics(ref city, ref propertyType, ref transactionType, ref interval, ref since);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -2455,7 +2455,7 @@ namespace Skautik.Sdk.Api
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
                         ? "/markets/{city}/statistics"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/markets/{city}/statistics");
-                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bmarket_id%7D", Uri.EscapeDataString(marketId.ToString()));
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bcity%7D", Uri.EscapeDataString(city.ToString()));
 
                     System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
 
@@ -2509,7 +2509,7 @@ namespace Skautik.Sdk.Api
                             }
                         }
 
-                        AfterMarketStatisticsDefaultImplementation(apiResponseLocalVar, marketId, propertyType, transactionType, interval, since);
+                        AfterMarketStatisticsDefaultImplementation(apiResponseLocalVar, city, propertyType, transactionType, interval, since);
 
                         Events.ExecuteOnMarketStatistics(apiResponseLocalVar);
 
@@ -2523,7 +2523,7 @@ namespace Skautik.Sdk.Api
             }
             catch(Exception e)
             {
-                OnErrorMarketStatisticsDefaultImplementation(e, "/markets/{city}/statistics", uriBuilderLocalVar.Path, marketId, propertyType, transactionType, interval, since);
+                OnErrorMarketStatisticsDefaultImplementation(e, "/markets/{city}/statistics", uriBuilderLocalVar.Path, city, propertyType, transactionType, interval, since);
                 Events.ExecuteOnErrorMarketStatistics(e);
                 throw;
             }

@@ -45,10 +45,10 @@ namespace Skautik.Sdk.Api
         /// Upload a file, or point us at one, and process it.  Accepts a multipart upload or a URL we fetch. Validation runs first and the whole file is rejected if it cannot be parsed; individual records that fail are reported without stopping the rest, unless you ask for all-or-nothing.  Requires the &#x60;imports:write&#x60; scope.
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="format"></param>
-        /// <param name="mode"> (optional, default to incremental)</param>
-        /// <param name="sourceId"> (optional)</param>
-        /// <param name="dryRun"> (optional)</param>
+        /// <param name="format">Format of the file being sent.</param>
+        /// <param name="mode">Incremental updates what the file contains and leaves the rest alone. A full sync also withdraws anything absent from it, which is why it is not the default. (optional, default to incremental)</param>
+        /// <param name="sourceId">Import source this transfer belongs to, when it comes from a standing connector rather than a one-off upload. (optional)</param>
+        /// <param name="dryRun">Parse and report what would change without writing anything. Worth doing once with a new mapping. (optional)</param>
         /// <param name="filename">Original filename, recorded on the run so a failure can be traced back to the file that caused it. (optional)</param>
         /// <param name="idempotencyKey">Prevents a retried upload from being processed twice. (optional)</param>
         /// <param name="file">The payload. Mutually exclusive with url. (optional)</param>
@@ -62,10 +62,10 @@ namespace Skautik.Sdk.Api
         /// <remarks>
         /// Upload a file, or point us at one, and process it.  Accepts a multipart upload or a URL we fetch. Validation runs first and the whole file is rejected if it cannot be parsed; individual records that fail are reported without stopping the rest, unless you ask for all-or-nothing.  Requires the &#x60;imports:write&#x60; scope.
         /// </remarks>
-        /// <param name="format"></param>
-        /// <param name="mode"> (optional, default to incremental)</param>
-        /// <param name="sourceId"> (optional)</param>
-        /// <param name="dryRun"> (optional)</param>
+        /// <param name="format">Format of the file being sent.</param>
+        /// <param name="mode">Incremental updates what the file contains and leaves the rest alone. A full sync also withdraws anything absent from it, which is why it is not the default. (optional, default to incremental)</param>
+        /// <param name="sourceId">Import source this transfer belongs to, when it comes from a standing connector rather than a one-off upload. (optional)</param>
+        /// <param name="dryRun">Parse and report what would change without writing anything. Worth doing once with a new mapping. (optional)</param>
         /// <param name="filename">Original filename, recorded on the run so a failure can be traced back to the file that caused it. (optional)</param>
         /// <param name="idempotencyKey">Prevents a retried upload from being processed twice. (optional)</param>
         /// <param name="file">The payload. Mutually exclusive with url. (optional)</param>
@@ -1062,10 +1062,10 @@ namespace Skautik.Sdk.Api
         /// <summary>
         /// Start an import Upload a file, or point us at one, and process it.  Accepts a multipart upload or a URL we fetch. Validation runs first and the whole file is rejected if it cannot be parsed; individual records that fail are reported without stopping the rest, unless you ask for all-or-nothing.  Requires the &#x60;imports:write&#x60; scope.
         /// </summary>
-        /// <param name="format"></param>
-        /// <param name="mode"> (optional, default to incremental)</param>
-        /// <param name="sourceId"> (optional)</param>
-        /// <param name="dryRun"> (optional)</param>
+        /// <param name="format">Format of the file being sent.</param>
+        /// <param name="mode">Incremental updates what the file contains and leaves the rest alone. A full sync also withdraws anything absent from it, which is why it is not the default. (optional, default to incremental)</param>
+        /// <param name="sourceId">Import source this transfer belongs to, when it comes from a standing connector rather than a one-off upload. (optional)</param>
+        /// <param name="dryRun">Parse and report what would change without writing anything. Worth doing once with a new mapping. (optional)</param>
         /// <param name="filename">Original filename, recorded on the run so a failure can be traced back to the file that caused it. (optional)</param>
         /// <param name="idempotencyKey">Prevents a retried upload from being processed twice. (optional)</param>
         /// <param name="file">The payload. Mutually exclusive with url. (optional)</param>
@@ -1087,10 +1087,10 @@ namespace Skautik.Sdk.Api
         /// Start an import Upload a file, or point us at one, and process it.  Accepts a multipart upload or a URL we fetch. Validation runs first and the whole file is rejected if it cannot be parsed; individual records that fail are reported without stopping the rest, unless you ask for all-or-nothing.  Requires the &#x60;imports:write&#x60; scope.
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="format"></param>
-        /// <param name="mode"> (optional, default to incremental)</param>
-        /// <param name="sourceId"> (optional)</param>
-        /// <param name="dryRun"> (optional)</param>
+        /// <param name="format">Format of the file being sent.</param>
+        /// <param name="mode">Incremental updates what the file contains and leaves the rest alone. A full sync also withdraws anything absent from it, which is why it is not the default. (optional, default to incremental)</param>
+        /// <param name="sourceId">Import source this transfer belongs to, when it comes from a standing connector rather than a one-off upload. (optional)</param>
+        /// <param name="dryRun">Parse and report what would change without writing anything. Worth doing once with a new mapping. (optional)</param>
         /// <param name="filename">Original filename, recorded on the run so a failure can be traced back to the file that caused it. (optional)</param>
         /// <param name="idempotencyKey">Prevents a retried upload from being processed twice. (optional)</param>
         /// <param name="file">The payload. Mutually exclusive with url. (optional)</param>
