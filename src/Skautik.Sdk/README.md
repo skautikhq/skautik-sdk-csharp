@@ -6,7 +6,7 @@ Create a config.yaml file similar to what is below, then run the following power
 
 ```yaml
 generatorName: csharp
-inputSpec: C:\Users\jovan\Projects\skautik\skautik-sdk\openapi\skautik.openapi.json
+inputSpec: openapi/skautik.openapi.json
 outputDir: out
 
 # https://openapi-generator.tech/docs/generators/csharp
