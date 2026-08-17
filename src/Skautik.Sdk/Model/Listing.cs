@@ -36,26 +36,40 @@ namespace Skautik.Sdk.Model
         /// <param name="status">status</param>
         /// <param name="transactionType">transactionType</param>
         /// <param name="availableFrom">availableFrom</param>
+        /// <param name="commissionAmount">commissionAmount</param>
+        /// <param name="commissionNote">commissionNote</param>
+        /// <param name="commissionPayer">commissionPayer</param>
+        /// <param name="commissionPercent">commissionPercent</param>
         /// <param name="currency">currency</param>
         /// <param name="deposit">deposit</param>
+        /// <param name="heatingCosts">heatingCosts</param>
         /// <param name="price">price</param>
+        /// <param name="priceOnRequest">priceOnRequest</param>
         /// <param name="pricePerSqm">pricePerSqm</param>
         /// <param name="pricePeriod">pricePeriod</param>
         /// <param name="publishedAt">publishedAt</param>
         /// <param name="serviceCharges">serviceCharges</param>
+        /// <param name="totalRent">totalRent</param>
         [JsonConstructor]
-        public Listing(string status, string transactionType, Option<DateTime?> availableFrom = default, Option<string?> currency = default, Option<decimal?> deposit = default, Option<decimal?> price = default, Option<decimal?> pricePerSqm = default, Option<string?> pricePeriod = default, Option<DateTime?> publishedAt = default, Option<decimal?> serviceCharges = default)
+        public Listing(string status, string transactionType, Option<DateTime?> availableFrom = default, Option<decimal?> commissionAmount = default, Option<string?> commissionNote = default, Option<string?> commissionPayer = default, Option<decimal?> commissionPercent = default, Option<string?> currency = default, Option<decimal?> deposit = default, Option<decimal?> heatingCosts = default, Option<decimal?> price = default, Option<bool?> priceOnRequest = default, Option<decimal?> pricePerSqm = default, Option<string?> pricePeriod = default, Option<DateTime?> publishedAt = default, Option<decimal?> serviceCharges = default, Option<decimal?> totalRent = default)
         {
             Status = status;
             TransactionType = transactionType;
             AvailableFromOption = availableFrom;
+            CommissionAmountOption = commissionAmount;
+            CommissionNoteOption = commissionNote;
+            CommissionPayerOption = commissionPayer;
+            CommissionPercentOption = commissionPercent;
             CurrencyOption = currency;
             DepositOption = deposit;
+            HeatingCostsOption = heatingCosts;
             PriceOption = price;
+            PriceOnRequestOption = priceOnRequest;
             PricePerSqmOption = pricePerSqm;
             PricePeriodOption = pricePeriod;
             PublishedAtOption = publishedAt;
             ServiceChargesOption = serviceCharges;
+            TotalRentOption = totalRent;
             OnCreated();
         }
 
@@ -87,6 +101,58 @@ namespace Skautik.Sdk.Model
         public DateTime? AvailableFrom { get { return this.AvailableFromOption.Value; } set { this.AvailableFromOption = new(value); } }
 
         /// <summary>
+        /// Used to track the state of CommissionAmount
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<decimal?> CommissionAmountOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets CommissionAmount
+        /// </summary>
+        [JsonPropertyName("commission_amount")]
+        public decimal? CommissionAmount { get { return this.CommissionAmountOption.Value; } set { this.CommissionAmountOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of CommissionNote
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> CommissionNoteOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets CommissionNote
+        /// </summary>
+        [JsonPropertyName("commission_note")]
+        public string? CommissionNote { get { return this.CommissionNoteOption.Value; } set { this.CommissionNoteOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of CommissionPayer
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> CommissionPayerOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets CommissionPayer
+        /// </summary>
+        [JsonPropertyName("commission_payer")]
+        public string? CommissionPayer { get { return this.CommissionPayerOption.Value; } set { this.CommissionPayerOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of CommissionPercent
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<decimal?> CommissionPercentOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets CommissionPercent
+        /// </summary>
+        [JsonPropertyName("commission_percent")]
+        public decimal? CommissionPercent { get { return this.CommissionPercentOption.Value; } set { this.CommissionPercentOption = new(value); } }
+
+        /// <summary>
         /// Used to track the state of Currency
         /// </summary>
         [JsonIgnore]
@@ -113,6 +179,19 @@ namespace Skautik.Sdk.Model
         public decimal? Deposit { get { return this.DepositOption.Value; } set { this.DepositOption = new(value); } }
 
         /// <summary>
+        /// Used to track the state of HeatingCosts
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<decimal?> HeatingCostsOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets HeatingCosts
+        /// </summary>
+        [JsonPropertyName("heating_costs")]
+        public decimal? HeatingCosts { get { return this.HeatingCostsOption.Value; } set { this.HeatingCostsOption = new(value); } }
+
+        /// <summary>
         /// Used to track the state of Price
         /// </summary>
         [JsonIgnore]
@@ -124,6 +203,19 @@ namespace Skautik.Sdk.Model
         /// </summary>
         [JsonPropertyName("price")]
         public decimal? Price { get { return this.PriceOption.Value; } set { this.PriceOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of PriceOnRequest
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> PriceOnRequestOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets PriceOnRequest
+        /// </summary>
+        [JsonPropertyName("price_on_request")]
+        public bool? PriceOnRequest { get { return this.PriceOnRequestOption.Value; } set { this.PriceOnRequestOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of PricePerSqm
@@ -178,6 +270,19 @@ namespace Skautik.Sdk.Model
         public decimal? ServiceCharges { get { return this.ServiceChargesOption.Value; } set { this.ServiceChargesOption = new(value); } }
 
         /// <summary>
+        /// Used to track the state of TotalRent
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<decimal?> TotalRentOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets TotalRent
+        /// </summary>
+        [JsonPropertyName("total_rent")]
+        public decimal? TotalRent { get { return this.TotalRentOption.Value; } set { this.TotalRentOption = new(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -188,13 +293,20 @@ namespace Skautik.Sdk.Model
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  TransactionType: ").Append(TransactionType).Append("\n");
             sb.Append("  AvailableFrom: ").Append(AvailableFrom).Append("\n");
+            sb.Append("  CommissionAmount: ").Append(CommissionAmount).Append("\n");
+            sb.Append("  CommissionNote: ").Append(CommissionNote).Append("\n");
+            sb.Append("  CommissionPayer: ").Append(CommissionPayer).Append("\n");
+            sb.Append("  CommissionPercent: ").Append(CommissionPercent).Append("\n");
             sb.Append("  Currency: ").Append(Currency).Append("\n");
             sb.Append("  Deposit: ").Append(Deposit).Append("\n");
+            sb.Append("  HeatingCosts: ").Append(HeatingCosts).Append("\n");
             sb.Append("  Price: ").Append(Price).Append("\n");
+            sb.Append("  PriceOnRequest: ").Append(PriceOnRequest).Append("\n");
             sb.Append("  PricePerSqm: ").Append(PricePerSqm).Append("\n");
             sb.Append("  PricePeriod: ").Append(PricePeriod).Append("\n");
             sb.Append("  PublishedAt: ").Append(PublishedAt).Append("\n");
             sb.Append("  ServiceCharges: ").Append(ServiceCharges).Append("\n");
+            sb.Append("  TotalRent: ").Append(TotalRent).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -255,13 +367,20 @@ namespace Skautik.Sdk.Model
             Option<string?> status = default;
             Option<string?> transactionType = default;
             Option<DateTime?> availableFrom = default;
+            Option<decimal?> commissionAmount = default;
+            Option<string?> commissionNote = default;
+            Option<string?> commissionPayer = default;
+            Option<decimal?> commissionPercent = default;
             Option<string?> currency = default;
             Option<decimal?> deposit = default;
+            Option<decimal?> heatingCosts = default;
             Option<decimal?> price = default;
+            Option<bool?> priceOnRequest = default;
             Option<decimal?> pricePerSqm = default;
             Option<string?> pricePeriod = default;
             Option<DateTime?> publishedAt = default;
             Option<decimal?> serviceCharges = default;
+            Option<decimal?> totalRent = default;
 
             while (utf8JsonReader.Read())
             {
@@ -287,14 +406,32 @@ namespace Skautik.Sdk.Model
                         case "available_from":
                             availableFrom = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
+                        case "commission_amount":
+                            commissionAmount = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
+                            break;
+                        case "commission_note":
+                            commissionNote = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
+                        case "commission_payer":
+                            commissionPayer = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
+                        case "commission_percent":
+                            commissionPercent = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
+                            break;
                         case "currency":
                             currency = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "deposit":
                             deposit = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
+                        case "heating_costs":
+                            heatingCosts = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
+                            break;
                         case "price":
                             price = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
+                            break;
+                        case "price_on_request":
+                            priceOnRequest = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "price_per_sqm":
                             pricePerSqm = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
@@ -307,6 +444,9 @@ namespace Skautik.Sdk.Model
                             break;
                         case "service_charges":
                             serviceCharges = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
+                            break;
+                        case "total_rent":
+                            totalRent = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         default:
                             break;
@@ -329,14 +469,32 @@ namespace Skautik.Sdk.Model
             if (availableFrom.IsSet && availableFrom.Value == null)
                 throw new ArgumentNullException(nameof(availableFrom), "Property is not nullable for class Listing.");
 
+            if (commissionAmount.IsSet && commissionAmount.Value == null)
+                throw new ArgumentNullException(nameof(commissionAmount), "Property is not nullable for class Listing.");
+
+            if (commissionNote.IsSet && commissionNote.Value == null)
+                throw new ArgumentNullException(nameof(commissionNote), "Property is not nullable for class Listing.");
+
+            if (commissionPayer.IsSet && commissionPayer.Value == null)
+                throw new ArgumentNullException(nameof(commissionPayer), "Property is not nullable for class Listing.");
+
+            if (commissionPercent.IsSet && commissionPercent.Value == null)
+                throw new ArgumentNullException(nameof(commissionPercent), "Property is not nullable for class Listing.");
+
             if (currency.IsSet && currency.Value == null)
                 throw new ArgumentNullException(nameof(currency), "Property is not nullable for class Listing.");
 
             if (deposit.IsSet && deposit.Value == null)
                 throw new ArgumentNullException(nameof(deposit), "Property is not nullable for class Listing.");
 
+            if (heatingCosts.IsSet && heatingCosts.Value == null)
+                throw new ArgumentNullException(nameof(heatingCosts), "Property is not nullable for class Listing.");
+
             if (price.IsSet && price.Value == null)
                 throw new ArgumentNullException(nameof(price), "Property is not nullable for class Listing.");
+
+            if (priceOnRequest.IsSet && priceOnRequest.Value == null)
+                throw new ArgumentNullException(nameof(priceOnRequest), "Property is not nullable for class Listing.");
 
             if (pricePerSqm.IsSet && pricePerSqm.Value == null)
                 throw new ArgumentNullException(nameof(pricePerSqm), "Property is not nullable for class Listing.");
@@ -350,7 +508,10 @@ namespace Skautik.Sdk.Model
             if (serviceCharges.IsSet && serviceCharges.Value == null)
                 throw new ArgumentNullException(nameof(serviceCharges), "Property is not nullable for class Listing.");
 
-            return new Listing(status.Value!, transactionType.Value!, availableFrom, currency, deposit, price, pricePerSqm, pricePeriod, publishedAt, serviceCharges);
+            if (totalRent.IsSet && totalRent.Value == null)
+                throw new ArgumentNullException(nameof(totalRent), "Property is not nullable for class Listing.");
+
+            return new Listing(status.Value!, transactionType.Value!, availableFrom, commissionAmount, commissionNote, commissionPayer, commissionPercent, currency, deposit, heatingCosts, price, priceOnRequest, pricePerSqm, pricePeriod, publishedAt, serviceCharges, totalRent);
         }
 
         /// <summary>
@@ -383,6 +544,12 @@ namespace Skautik.Sdk.Model
             if (listing.TransactionType == null)
                 throw new ArgumentNullException(nameof(listing.TransactionType), "Property is required for class Listing.");
 
+            if (listing.CommissionNoteOption.IsSet && listing.CommissionNote == null)
+                throw new ArgumentNullException(nameof(listing.CommissionNote), "Property is required for class Listing.");
+
+            if (listing.CommissionPayerOption.IsSet && listing.CommissionPayer == null)
+                throw new ArgumentNullException(nameof(listing.CommissionPayer), "Property is required for class Listing.");
+
             if (listing.CurrencyOption.IsSet && listing.Currency == null)
                 throw new ArgumentNullException(nameof(listing.Currency), "Property is required for class Listing.");
 
@@ -396,14 +563,32 @@ namespace Skautik.Sdk.Model
             if (listing.AvailableFromOption.IsSet)
                 writer.WriteString("available_from", listing.AvailableFromOption.Value!.Value.ToString(AvailableFromFormat));
 
+            if (listing.CommissionAmountOption.IsSet)
+                writer.WriteNumber("commission_amount", listing.CommissionAmountOption.Value!.Value);
+
+            if (listing.CommissionNoteOption.IsSet)
+                writer.WriteString("commission_note", listing.CommissionNote);
+
+            if (listing.CommissionPayerOption.IsSet)
+                writer.WriteString("commission_payer", listing.CommissionPayer);
+
+            if (listing.CommissionPercentOption.IsSet)
+                writer.WriteNumber("commission_percent", listing.CommissionPercentOption.Value!.Value);
+
             if (listing.CurrencyOption.IsSet)
                 writer.WriteString("currency", listing.Currency);
 
             if (listing.DepositOption.IsSet)
                 writer.WriteNumber("deposit", listing.DepositOption.Value!.Value);
 
+            if (listing.HeatingCostsOption.IsSet)
+                writer.WriteNumber("heating_costs", listing.HeatingCostsOption.Value!.Value);
+
             if (listing.PriceOption.IsSet)
                 writer.WriteNumber("price", listing.PriceOption.Value!.Value);
+
+            if (listing.PriceOnRequestOption.IsSet)
+                writer.WriteBoolean("price_on_request", listing.PriceOnRequestOption.Value!.Value);
 
             if (listing.PricePerSqmOption.IsSet)
                 writer.WriteNumber("price_per_sqm", listing.PricePerSqmOption.Value!.Value);
@@ -416,6 +601,9 @@ namespace Skautik.Sdk.Model
 
             if (listing.ServiceChargesOption.IsSet)
                 writer.WriteNumber("service_charges", listing.ServiceChargesOption.Value!.Value);
+
+            if (listing.TotalRentOption.IsSet)
+                writer.WriteNumber("total_rent", listing.TotalRentOption.Value!.Value);
         }
     }
 }

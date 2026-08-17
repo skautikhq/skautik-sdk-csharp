@@ -119,10 +119,11 @@ namespace Skautik.Sdk.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId">Identifier returned by any collection endpoint.</param>
-        /// <param name="expand">Related records to inline rather than fetch separately. (optional)</param>
+        /// <param name="expand">Related records to inline rather than fetch separately. Available: images, price_history, market, translations. (optional)</param>
+        /// <param name="language">Answer in this language where the property has it, as an ISO 639-1 code. A property that does not hold the language keeps its own text rather than being answered in another, and the response says which language it came back in. Feeds carrying several languages are what fills this. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetPropertyApiResponse"/>&gt;</returns>
-        Task<IGetPropertyApiResponse> GetPropertyAsync(string propertyId, Option<List<string>> expand = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetPropertyApiResponse> GetPropertyAsync(string propertyId, Option<List<string>> expand = default, Option<string> language = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Retrieve a property
@@ -131,10 +132,11 @@ namespace Skautik.Sdk.Api
         /// One property with its full attribute set.  Requires the &#x60;properties:read&#x60; scope.
         /// </remarks>
         /// <param name="propertyId">Identifier returned by any collection endpoint.</param>
-        /// <param name="expand">Related records to inline rather than fetch separately. (optional)</param>
+        /// <param name="expand">Related records to inline rather than fetch separately. Available: images, price_history, market, translations. (optional)</param>
+        /// <param name="language">Answer in this language where the property has it, as an ISO 639-1 code. A property that does not hold the language keeps its own text rather than being answered in another, and the response says which language it came back in. Feeds carrying several languages are what fills this. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetPropertyApiResponse"/>?&gt;</returns>
-        Task<IGetPropertyApiResponse?> GetPropertyOrDefaultAsync(string propertyId, Option<List<string>> expand = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetPropertyApiResponse?> GetPropertyOrDefaultAsync(string propertyId, Option<List<string>> expand = default, Option<string> language = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List properties
@@ -157,10 +159,11 @@ namespace Skautik.Sdk.Api
         /// <param name="limit">Records per page. (optional, default to 50)</param>
         /// <param name="cursor">Opaque pointer from the previous response. Omit for the first page. Cursors are stable across inserts, so paging never skips or repeats a record the way an offset does. (optional)</param>
         /// <param name="sort">Field to order by. Prefix with a minus for descending. (optional)</param>
-        /// <param name="expand">Related records to inline rather than fetch separately. (optional)</param>
+        /// <param name="expand">Related records to inline rather than fetch separately. Available: images, price_history, market, translations. (optional)</param>
+        /// <param name="language">Answer in this language where the property has it, as an ISO 639-1 code. A property that does not hold the language keeps its own text rather than being answered in another, and the response says which language it came back in. Feeds carrying several languages are what fills this. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListPropertiesApiResponse"/>&gt;</returns>
-        Task<IListPropertiesApiResponse> ListPropertiesAsync(Option<string> city = default, Option<string> district = default, Option<string> postalCode = default, Option<string> type = default, Option<string> transactionType = default, Option<string> status = default, Option<string> externalId = default, Option<decimal> minPrice = default, Option<decimal> maxPrice = default, Option<decimal> minLivingArea = default, Option<int> minBedrooms = default, Option<int> limit = default, Option<string> cursor = default, Option<string> sort = default, Option<List<string>> expand = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IListPropertiesApiResponse> ListPropertiesAsync(Option<string> city = default, Option<string> district = default, Option<string> postalCode = default, Option<string> type = default, Option<string> transactionType = default, Option<string> status = default, Option<string> externalId = default, Option<decimal> minPrice = default, Option<decimal> maxPrice = default, Option<decimal> minLivingArea = default, Option<int> minBedrooms = default, Option<int> limit = default, Option<string> cursor = default, Option<string> sort = default, Option<List<string>> expand = default, Option<string> language = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List properties
@@ -182,10 +185,11 @@ namespace Skautik.Sdk.Api
         /// <param name="limit">Records per page. (optional, default to 50)</param>
         /// <param name="cursor">Opaque pointer from the previous response. Omit for the first page. Cursors are stable across inserts, so paging never skips or repeats a record the way an offset does. (optional)</param>
         /// <param name="sort">Field to order by. Prefix with a minus for descending. (optional)</param>
-        /// <param name="expand">Related records to inline rather than fetch separately. (optional)</param>
+        /// <param name="expand">Related records to inline rather than fetch separately. Available: images, price_history, market, translations. (optional)</param>
+        /// <param name="language">Answer in this language where the property has it, as an ISO 639-1 code. A property that does not hold the language keeps its own text rather than being answered in another, and the response says which language it came back in. Feeds carrying several languages are what fills this. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListPropertiesApiResponse"/>?&gt;</returns>
-        Task<IListPropertiesApiResponse?> ListPropertiesOrDefaultAsync(Option<string> city = default, Option<string> district = default, Option<string> postalCode = default, Option<string> type = default, Option<string> transactionType = default, Option<string> status = default, Option<string> externalId = default, Option<decimal> minPrice = default, Option<decimal> maxPrice = default, Option<decimal> minLivingArea = default, Option<int> minBedrooms = default, Option<int> limit = default, Option<string> cursor = default, Option<string> sort = default, Option<List<string>> expand = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IListPropertiesApiResponse?> ListPropertiesOrDefaultAsync(Option<string> city = default, Option<string> district = default, Option<string> postalCode = default, Option<string> type = default, Option<string> transactionType = default, Option<string> status = default, Option<string> externalId = default, Option<decimal> minPrice = default, Option<decimal> maxPrice = default, Option<decimal> minLivingArea = default, Option<int> minBedrooms = default, Option<int> limit = default, Option<string> cursor = default, Option<string> sort = default, Option<List<string>> expand = default, Option<string> language = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List images
@@ -2490,21 +2494,25 @@ namespace Skautik.Sdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatGetProperty(ref string propertyId, Option<List<string>> expand);
+        partial void FormatGetProperty(ref string propertyId, Option<List<string>> expand, ref Option<string> language);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="propertyId"></param>
         /// <param name="expand"></param>
+        /// <param name="language"></param>
         /// <returns></returns>
-        private void ValidateGetProperty(string propertyId, Option<List<string>> expand)
+        private void ValidateGetProperty(string propertyId, Option<List<string>> expand, Option<string> language)
         {
             if (propertyId == null)
                 throw new ArgumentNullException(nameof(propertyId));
 
             if (expand.IsSet && expand.Value == null)
                 throw new ArgumentNullException(nameof(expand));
+
+            if (language.IsSet && language.Value == null)
+                throw new ArgumentNullException(nameof(language));
         }
 
         /// <summary>
@@ -2513,10 +2521,11 @@ namespace Skautik.Sdk.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="propertyId"></param>
         /// <param name="expand"></param>
-        private void AfterGetPropertyDefaultImplementation(IGetPropertyApiResponse apiResponseLocalVar, string propertyId, Option<List<string>> expand)
+        /// <param name="language"></param>
+        private void AfterGetPropertyDefaultImplementation(IGetPropertyApiResponse apiResponseLocalVar, string propertyId, Option<List<string>> expand, Option<string> language)
         {
             bool suppressDefaultLog = false;
-            AfterGetProperty(ref suppressDefaultLog, apiResponseLocalVar, propertyId, expand);
+            AfterGetProperty(ref suppressDefaultLog, apiResponseLocalVar, propertyId, expand, language);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -2528,7 +2537,8 @@ namespace Skautik.Sdk.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="propertyId"></param>
         /// <param name="expand"></param>
-        partial void AfterGetProperty(ref bool suppressDefaultLog, IGetPropertyApiResponse apiResponseLocalVar, string propertyId, Option<List<string>> expand);
+        /// <param name="language"></param>
+        partial void AfterGetProperty(ref bool suppressDefaultLog, IGetPropertyApiResponse apiResponseLocalVar, string propertyId, Option<List<string>> expand, Option<string> language);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -2538,10 +2548,11 @@ namespace Skautik.Sdk.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="propertyId"></param>
         /// <param name="expand"></param>
-        private void OnErrorGetPropertyDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string propertyId, Option<List<string>> expand)
+        /// <param name="language"></param>
+        private void OnErrorGetPropertyDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string propertyId, Option<List<string>> expand, Option<string> language)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorGetProperty(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, propertyId, expand);
+            OnErrorGetProperty(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, propertyId, expand, language);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -2555,20 +2566,22 @@ namespace Skautik.Sdk.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="propertyId"></param>
         /// <param name="expand"></param>
-        partial void OnErrorGetProperty(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string propertyId, Option<List<string>> expand);
+        /// <param name="language"></param>
+        partial void OnErrorGetProperty(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string propertyId, Option<List<string>> expand, Option<string> language);
 
         /// <summary>
         /// Retrieve a property One property with its full attribute set.  Requires the &#x60;properties:read&#x60; scope.
         /// </summary>
         /// <param name="propertyId">Identifier returned by any collection endpoint.</param>
-        /// <param name="expand">Related records to inline rather than fetch separately. (optional)</param>
+        /// <param name="expand">Related records to inline rather than fetch separately. Available: images, price_history, market, translations. (optional)</param>
+        /// <param name="language">Answer in this language where the property has it, as an ISO 639-1 code. A property that does not hold the language keeps its own text rather than being answered in another, and the response says which language it came back in. Feeds carrying several languages are what fills this. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetPropertyApiResponse"/>&gt;</returns>
-        public async Task<IGetPropertyApiResponse?> GetPropertyOrDefaultAsync(string propertyId, Option<List<string>> expand = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetPropertyApiResponse?> GetPropertyOrDefaultAsync(string propertyId, Option<List<string>> expand = default, Option<string> language = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await GetPropertyAsync(propertyId, expand, cancellationToken).ConfigureAwait(false);
+                return await GetPropertyAsync(propertyId, expand, language, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -2581,18 +2594,19 @@ namespace Skautik.Sdk.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId">Identifier returned by any collection endpoint.</param>
-        /// <param name="expand">Related records to inline rather than fetch separately. (optional)</param>
+        /// <param name="expand">Related records to inline rather than fetch separately. Available: images, price_history, market, translations. (optional)</param>
+        /// <param name="language">Answer in this language where the property has it, as an ISO 639-1 code. A property that does not hold the language keeps its own text rather than being answered in another, and the response says which language it came back in. Feeds carrying several languages are what fills this. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetPropertyApiResponse"/>&gt;</returns>
-        public async Task<IGetPropertyApiResponse> GetPropertyAsync(string propertyId, Option<List<string>> expand = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetPropertyApiResponse> GetPropertyAsync(string propertyId, Option<List<string>> expand = default, Option<string> language = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateGetProperty(propertyId, expand);
+                ValidateGetProperty(propertyId, expand, language);
 
-                FormatGetProperty(ref propertyId, expand);
+                FormatGetProperty(ref propertyId, expand, ref language);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -2608,6 +2622,9 @@ namespace Skautik.Sdk.Api
 
                     if (expand.IsSet)
                         parseQueryStringLocalVar["expand"] = ClientUtils.ParameterToString(expand.Value);
+
+                    if (language.IsSet)
+                        parseQueryStringLocalVar["language"] = ClientUtils.ParameterToString(language.Value);
 
                     uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
@@ -2647,7 +2664,7 @@ namespace Skautik.Sdk.Api
                             }
                         }
 
-                        AfterGetPropertyDefaultImplementation(apiResponseLocalVar, propertyId, expand);
+                        AfterGetPropertyDefaultImplementation(apiResponseLocalVar, propertyId, expand, language);
 
                         Events.ExecuteOnGetProperty(apiResponseLocalVar);
 
@@ -2661,7 +2678,7 @@ namespace Skautik.Sdk.Api
             }
             catch(Exception e)
             {
-                OnErrorGetPropertyDefaultImplementation(e, "/properties/{property_id}", uriBuilderLocalVar.Path, propertyId, expand);
+                OnErrorGetPropertyDefaultImplementation(e, "/properties/{property_id}", uriBuilderLocalVar.Path, propertyId, expand, language);
                 Events.ExecuteOnErrorGetProperty(e);
                 throw;
             }
@@ -2950,7 +2967,7 @@ namespace Skautik.Sdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatListProperties(ref Option<string> city, ref Option<string> district, ref Option<string> postalCode, ref Option<string> type, ref Option<string> transactionType, ref Option<string> status, ref Option<string> externalId, ref Option<decimal> minPrice, ref Option<decimal> maxPrice, ref Option<decimal> minLivingArea, ref Option<int> minBedrooms, ref Option<int> limit, ref Option<string> cursor, ref Option<string> sort, Option<List<string>> expand);
+        partial void FormatListProperties(ref Option<string> city, ref Option<string> district, ref Option<string> postalCode, ref Option<string> type, ref Option<string> transactionType, ref Option<string> status, ref Option<string> externalId, ref Option<decimal> minPrice, ref Option<decimal> maxPrice, ref Option<decimal> minLivingArea, ref Option<int> minBedrooms, ref Option<int> limit, ref Option<string> cursor, ref Option<string> sort, Option<List<string>> expand, ref Option<string> language);
 
         /// <summary>
         /// Validates the request parameters
@@ -2965,8 +2982,9 @@ namespace Skautik.Sdk.Api
         /// <param name="cursor"></param>
         /// <param name="sort"></param>
         /// <param name="expand"></param>
+        /// <param name="language"></param>
         /// <returns></returns>
-        private void ValidateListProperties(Option<string> city, Option<string> district, Option<string> postalCode, Option<string> type, Option<string> transactionType, Option<string> status, Option<string> externalId, Option<string> cursor, Option<string> sort, Option<List<string>> expand)
+        private void ValidateListProperties(Option<string> city, Option<string> district, Option<string> postalCode, Option<string> type, Option<string> transactionType, Option<string> status, Option<string> externalId, Option<string> cursor, Option<string> sort, Option<List<string>> expand, Option<string> language)
         {
             if (city.IsSet && city.Value == null)
                 throw new ArgumentNullException(nameof(city));
@@ -2997,6 +3015,9 @@ namespace Skautik.Sdk.Api
 
             if (expand.IsSet && expand.Value == null)
                 throw new ArgumentNullException(nameof(expand));
+
+            if (language.IsSet && language.Value == null)
+                throw new ArgumentNullException(nameof(language));
         }
 
         /// <summary>
@@ -3018,10 +3039,11 @@ namespace Skautik.Sdk.Api
         /// <param name="cursor"></param>
         /// <param name="sort"></param>
         /// <param name="expand"></param>
-        private void AfterListPropertiesDefaultImplementation(IListPropertiesApiResponse apiResponseLocalVar, Option<string> city, Option<string> district, Option<string> postalCode, Option<string> type, Option<string> transactionType, Option<string> status, Option<string> externalId, Option<decimal> minPrice, Option<decimal> maxPrice, Option<decimal> minLivingArea, Option<int> minBedrooms, Option<int> limit, Option<string> cursor, Option<string> sort, Option<List<string>> expand)
+        /// <param name="language"></param>
+        private void AfterListPropertiesDefaultImplementation(IListPropertiesApiResponse apiResponseLocalVar, Option<string> city, Option<string> district, Option<string> postalCode, Option<string> type, Option<string> transactionType, Option<string> status, Option<string> externalId, Option<decimal> minPrice, Option<decimal> maxPrice, Option<decimal> minLivingArea, Option<int> minBedrooms, Option<int> limit, Option<string> cursor, Option<string> sort, Option<List<string>> expand, Option<string> language)
         {
             bool suppressDefaultLog = false;
-            AfterListProperties(ref suppressDefaultLog, apiResponseLocalVar, city, district, postalCode, type, transactionType, status, externalId, minPrice, maxPrice, minLivingArea, minBedrooms, limit, cursor, sort, expand);
+            AfterListProperties(ref suppressDefaultLog, apiResponseLocalVar, city, district, postalCode, type, transactionType, status, externalId, minPrice, maxPrice, minLivingArea, minBedrooms, limit, cursor, sort, expand, language);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -3046,7 +3068,8 @@ namespace Skautik.Sdk.Api
         /// <param name="cursor"></param>
         /// <param name="sort"></param>
         /// <param name="expand"></param>
-        partial void AfterListProperties(ref bool suppressDefaultLog, IListPropertiesApiResponse apiResponseLocalVar, Option<string> city, Option<string> district, Option<string> postalCode, Option<string> type, Option<string> transactionType, Option<string> status, Option<string> externalId, Option<decimal> minPrice, Option<decimal> maxPrice, Option<decimal> minLivingArea, Option<int> minBedrooms, Option<int> limit, Option<string> cursor, Option<string> sort, Option<List<string>> expand);
+        /// <param name="language"></param>
+        partial void AfterListProperties(ref bool suppressDefaultLog, IListPropertiesApiResponse apiResponseLocalVar, Option<string> city, Option<string> district, Option<string> postalCode, Option<string> type, Option<string> transactionType, Option<string> status, Option<string> externalId, Option<decimal> minPrice, Option<decimal> maxPrice, Option<decimal> minLivingArea, Option<int> minBedrooms, Option<int> limit, Option<string> cursor, Option<string> sort, Option<List<string>> expand, Option<string> language);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -3069,10 +3092,11 @@ namespace Skautik.Sdk.Api
         /// <param name="cursor"></param>
         /// <param name="sort"></param>
         /// <param name="expand"></param>
-        private void OnErrorListPropertiesDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> city, Option<string> district, Option<string> postalCode, Option<string> type, Option<string> transactionType, Option<string> status, Option<string> externalId, Option<decimal> minPrice, Option<decimal> maxPrice, Option<decimal> minLivingArea, Option<int> minBedrooms, Option<int> limit, Option<string> cursor, Option<string> sort, Option<List<string>> expand)
+        /// <param name="language"></param>
+        private void OnErrorListPropertiesDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> city, Option<string> district, Option<string> postalCode, Option<string> type, Option<string> transactionType, Option<string> status, Option<string> externalId, Option<decimal> minPrice, Option<decimal> maxPrice, Option<decimal> minLivingArea, Option<int> minBedrooms, Option<int> limit, Option<string> cursor, Option<string> sort, Option<List<string>> expand, Option<string> language)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorListProperties(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, city, district, postalCode, type, transactionType, status, externalId, minPrice, maxPrice, minLivingArea, minBedrooms, limit, cursor, sort, expand);
+            OnErrorListProperties(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, city, district, postalCode, type, transactionType, status, externalId, minPrice, maxPrice, minLivingArea, minBedrooms, limit, cursor, sort, expand, language);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -3099,7 +3123,8 @@ namespace Skautik.Sdk.Api
         /// <param name="cursor"></param>
         /// <param name="sort"></param>
         /// <param name="expand"></param>
-        partial void OnErrorListProperties(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> city, Option<string> district, Option<string> postalCode, Option<string> type, Option<string> transactionType, Option<string> status, Option<string> externalId, Option<decimal> minPrice, Option<decimal> maxPrice, Option<decimal> minLivingArea, Option<int> minBedrooms, Option<int> limit, Option<string> cursor, Option<string> sort, Option<List<string>> expand);
+        /// <param name="language"></param>
+        partial void OnErrorListProperties(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> city, Option<string> district, Option<string> postalCode, Option<string> type, Option<string> transactionType, Option<string> status, Option<string> externalId, Option<decimal> minPrice, Option<decimal> maxPrice, Option<decimal> minLivingArea, Option<int> minBedrooms, Option<int> limit, Option<string> cursor, Option<string> sort, Option<List<string>> expand, Option<string> language);
 
         /// <summary>
         /// List properties Page through the catalogue with filters.  The workhorse read endpoint. Filters combine with AND. Anything omitted is unconstrained, so an unfiltered call returns the whole catalogue in cursor order.  Requires the &#x60;properties:read&#x60; scope.
@@ -3118,14 +3143,15 @@ namespace Skautik.Sdk.Api
         /// <param name="limit">Records per page. (optional, default to 50)</param>
         /// <param name="cursor">Opaque pointer from the previous response. Omit for the first page. Cursors are stable across inserts, so paging never skips or repeats a record the way an offset does. (optional)</param>
         /// <param name="sort">Field to order by. Prefix with a minus for descending. (optional)</param>
-        /// <param name="expand">Related records to inline rather than fetch separately. (optional)</param>
+        /// <param name="expand">Related records to inline rather than fetch separately. Available: images, price_history, market, translations. (optional)</param>
+        /// <param name="language">Answer in this language where the property has it, as an ISO 639-1 code. A property that does not hold the language keeps its own text rather than being answered in another, and the response says which language it came back in. Feeds carrying several languages are what fills this. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListPropertiesApiResponse"/>&gt;</returns>
-        public async Task<IListPropertiesApiResponse?> ListPropertiesOrDefaultAsync(Option<string> city = default, Option<string> district = default, Option<string> postalCode = default, Option<string> type = default, Option<string> transactionType = default, Option<string> status = default, Option<string> externalId = default, Option<decimal> minPrice = default, Option<decimal> maxPrice = default, Option<decimal> minLivingArea = default, Option<int> minBedrooms = default, Option<int> limit = default, Option<string> cursor = default, Option<string> sort = default, Option<List<string>> expand = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IListPropertiesApiResponse?> ListPropertiesOrDefaultAsync(Option<string> city = default, Option<string> district = default, Option<string> postalCode = default, Option<string> type = default, Option<string> transactionType = default, Option<string> status = default, Option<string> externalId = default, Option<decimal> minPrice = default, Option<decimal> maxPrice = default, Option<decimal> minLivingArea = default, Option<int> minBedrooms = default, Option<int> limit = default, Option<string> cursor = default, Option<string> sort = default, Option<List<string>> expand = default, Option<string> language = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await ListPropertiesAsync(city, district, postalCode, type, transactionType, status, externalId, minPrice, maxPrice, minLivingArea, minBedrooms, limit, cursor, sort, expand, cancellationToken).ConfigureAwait(false);
+                return await ListPropertiesAsync(city, district, postalCode, type, transactionType, status, externalId, minPrice, maxPrice, minLivingArea, minBedrooms, limit, cursor, sort, expand, language, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -3151,18 +3177,19 @@ namespace Skautik.Sdk.Api
         /// <param name="limit">Records per page. (optional, default to 50)</param>
         /// <param name="cursor">Opaque pointer from the previous response. Omit for the first page. Cursors are stable across inserts, so paging never skips or repeats a record the way an offset does. (optional)</param>
         /// <param name="sort">Field to order by. Prefix with a minus for descending. (optional)</param>
-        /// <param name="expand">Related records to inline rather than fetch separately. (optional)</param>
+        /// <param name="expand">Related records to inline rather than fetch separately. Available: images, price_history, market, translations. (optional)</param>
+        /// <param name="language">Answer in this language where the property has it, as an ISO 639-1 code. A property that does not hold the language keeps its own text rather than being answered in another, and the response says which language it came back in. Feeds carrying several languages are what fills this. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListPropertiesApiResponse"/>&gt;</returns>
-        public async Task<IListPropertiesApiResponse> ListPropertiesAsync(Option<string> city = default, Option<string> district = default, Option<string> postalCode = default, Option<string> type = default, Option<string> transactionType = default, Option<string> status = default, Option<string> externalId = default, Option<decimal> minPrice = default, Option<decimal> maxPrice = default, Option<decimal> minLivingArea = default, Option<int> minBedrooms = default, Option<int> limit = default, Option<string> cursor = default, Option<string> sort = default, Option<List<string>> expand = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IListPropertiesApiResponse> ListPropertiesAsync(Option<string> city = default, Option<string> district = default, Option<string> postalCode = default, Option<string> type = default, Option<string> transactionType = default, Option<string> status = default, Option<string> externalId = default, Option<decimal> minPrice = default, Option<decimal> maxPrice = default, Option<decimal> minLivingArea = default, Option<int> minBedrooms = default, Option<int> limit = default, Option<string> cursor = default, Option<string> sort = default, Option<List<string>> expand = default, Option<string> language = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateListProperties(city, district, postalCode, type, transactionType, status, externalId, cursor, sort, expand);
+                ValidateListProperties(city, district, postalCode, type, transactionType, status, externalId, cursor, sort, expand, language);
 
-                FormatListProperties(ref city, ref district, ref postalCode, ref type, ref transactionType, ref status, ref externalId, ref minPrice, ref maxPrice, ref minLivingArea, ref minBedrooms, ref limit, ref cursor, ref sort, expand);
+                FormatListProperties(ref city, ref district, ref postalCode, ref type, ref transactionType, ref status, ref externalId, ref minPrice, ref maxPrice, ref minLivingArea, ref minBedrooms, ref limit, ref cursor, ref sort, expand, ref language);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -3220,6 +3247,9 @@ namespace Skautik.Sdk.Api
                     if (expand.IsSet)
                         parseQueryStringLocalVar["expand"] = ClientUtils.ParameterToString(expand.Value);
 
+                    if (language.IsSet)
+                        parseQueryStringLocalVar["language"] = ClientUtils.ParameterToString(language.Value);
+
                     uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -3258,7 +3288,7 @@ namespace Skautik.Sdk.Api
                             }
                         }
 
-                        AfterListPropertiesDefaultImplementation(apiResponseLocalVar, city, district, postalCode, type, transactionType, status, externalId, minPrice, maxPrice, minLivingArea, minBedrooms, limit, cursor, sort, expand);
+                        AfterListPropertiesDefaultImplementation(apiResponseLocalVar, city, district, postalCode, type, transactionType, status, externalId, minPrice, maxPrice, minLivingArea, minBedrooms, limit, cursor, sort, expand, language);
 
                         Events.ExecuteOnListProperties(apiResponseLocalVar);
 
@@ -3272,7 +3302,7 @@ namespace Skautik.Sdk.Api
             }
             catch(Exception e)
             {
-                OnErrorListPropertiesDefaultImplementation(e, "/properties", uriBuilderLocalVar.Path, city, district, postalCode, type, transactionType, status, externalId, minPrice, maxPrice, minLivingArea, minBedrooms, limit, cursor, sort, expand);
+                OnErrorListPropertiesDefaultImplementation(e, "/properties", uriBuilderLocalVar.Path, city, district, postalCode, type, transactionType, status, externalId, minPrice, maxPrice, minLivingArea, minBedrooms, limit, cursor, sort, expand, language);
                 Events.ExecuteOnErrorListProperties(e);
                 throw;
             }

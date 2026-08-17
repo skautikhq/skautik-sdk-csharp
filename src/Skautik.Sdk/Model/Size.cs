@@ -33,19 +33,89 @@ namespace Skautik.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Size" /> class.
         /// </summary>
+        /// <param name="atticSqm">atticSqm</param>
+        /// <param name="balconyTerraceSqm">balconyTerraceSqm</param>
+        /// <param name="cellarSqm">cellarSqm</param>
+        /// <param name="gardenSqm">gardenSqm</param>
         /// <param name="livingAreaSqm">livingAreaSqm</param>
+        /// <param name="officeAreaSqm">officeAreaSqm</param>
+        /// <param name="otherAreaSqm">otherAreaSqm</param>
         /// <param name="plotAreaSqm">plotAreaSqm</param>
+        /// <param name="retailAreaSqm">retailAreaSqm</param>
+        /// <param name="storageAreaSqm">storageAreaSqm</param>
+        /// <param name="totalAreaSqm">totalAreaSqm</param>
         /// <param name="usableAreaSqm">usableAreaSqm</param>
         [JsonConstructor]
-        public Size(Option<decimal?> livingAreaSqm = default, Option<decimal?> plotAreaSqm = default, Option<decimal?> usableAreaSqm = default)
+        public Size(Option<decimal?> atticSqm = default, Option<decimal?> balconyTerraceSqm = default, Option<decimal?> cellarSqm = default, Option<decimal?> gardenSqm = default, Option<decimal?> livingAreaSqm = default, Option<decimal?> officeAreaSqm = default, Option<decimal?> otherAreaSqm = default, Option<decimal?> plotAreaSqm = default, Option<decimal?> retailAreaSqm = default, Option<decimal?> storageAreaSqm = default, Option<decimal?> totalAreaSqm = default, Option<decimal?> usableAreaSqm = default)
         {
+            AtticSqmOption = atticSqm;
+            BalconyTerraceSqmOption = balconyTerraceSqm;
+            CellarSqmOption = cellarSqm;
+            GardenSqmOption = gardenSqm;
             LivingAreaSqmOption = livingAreaSqm;
+            OfficeAreaSqmOption = officeAreaSqm;
+            OtherAreaSqmOption = otherAreaSqm;
             PlotAreaSqmOption = plotAreaSqm;
+            RetailAreaSqmOption = retailAreaSqm;
+            StorageAreaSqmOption = storageAreaSqm;
+            TotalAreaSqmOption = totalAreaSqm;
             UsableAreaSqmOption = usableAreaSqm;
             OnCreated();
         }
 
         partial void OnCreated();
+
+        /// <summary>
+        /// Used to track the state of AtticSqm
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<decimal?> AtticSqmOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets AtticSqm
+        /// </summary>
+        [JsonPropertyName("attic_sqm")]
+        public decimal? AtticSqm { get { return this.AtticSqmOption.Value; } set { this.AtticSqmOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of BalconyTerraceSqm
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<decimal?> BalconyTerraceSqmOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets BalconyTerraceSqm
+        /// </summary>
+        [JsonPropertyName("balcony_terrace_sqm")]
+        public decimal? BalconyTerraceSqm { get { return this.BalconyTerraceSqmOption.Value; } set { this.BalconyTerraceSqmOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of CellarSqm
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<decimal?> CellarSqmOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets CellarSqm
+        /// </summary>
+        [JsonPropertyName("cellar_sqm")]
+        public decimal? CellarSqm { get { return this.CellarSqmOption.Value; } set { this.CellarSqmOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of GardenSqm
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<decimal?> GardenSqmOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets GardenSqm
+        /// </summary>
+        [JsonPropertyName("garden_sqm")]
+        public decimal? GardenSqm { get { return this.GardenSqmOption.Value; } set { this.GardenSqmOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of LivingAreaSqm
@@ -61,6 +131,32 @@ namespace Skautik.Sdk.Model
         public decimal? LivingAreaSqm { get { return this.LivingAreaSqmOption.Value; } set { this.LivingAreaSqmOption = new(value); } }
 
         /// <summary>
+        /// Used to track the state of OfficeAreaSqm
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<decimal?> OfficeAreaSqmOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets OfficeAreaSqm
+        /// </summary>
+        [JsonPropertyName("office_area_sqm")]
+        public decimal? OfficeAreaSqm { get { return this.OfficeAreaSqmOption.Value; } set { this.OfficeAreaSqmOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of OtherAreaSqm
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<decimal?> OtherAreaSqmOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets OtherAreaSqm
+        /// </summary>
+        [JsonPropertyName("other_area_sqm")]
+        public decimal? OtherAreaSqm { get { return this.OtherAreaSqmOption.Value; } set { this.OtherAreaSqmOption = new(value); } }
+
+        /// <summary>
         /// Used to track the state of PlotAreaSqm
         /// </summary>
         [JsonIgnore]
@@ -72,6 +168,45 @@ namespace Skautik.Sdk.Model
         /// </summary>
         [JsonPropertyName("plot_area_sqm")]
         public decimal? PlotAreaSqm { get { return this.PlotAreaSqmOption.Value; } set { this.PlotAreaSqmOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of RetailAreaSqm
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<decimal?> RetailAreaSqmOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets RetailAreaSqm
+        /// </summary>
+        [JsonPropertyName("retail_area_sqm")]
+        public decimal? RetailAreaSqm { get { return this.RetailAreaSqmOption.Value; } set { this.RetailAreaSqmOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of StorageAreaSqm
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<decimal?> StorageAreaSqmOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets StorageAreaSqm
+        /// </summary>
+        [JsonPropertyName("storage_area_sqm")]
+        public decimal? StorageAreaSqm { get { return this.StorageAreaSqmOption.Value; } set { this.StorageAreaSqmOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of TotalAreaSqm
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<decimal?> TotalAreaSqmOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets TotalAreaSqm
+        /// </summary>
+        [JsonPropertyName("total_area_sqm")]
+        public decimal? TotalAreaSqm { get { return this.TotalAreaSqmOption.Value; } set { this.TotalAreaSqmOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of UsableAreaSqm
@@ -94,8 +229,17 @@ namespace Skautik.Sdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class Size {\n");
+            sb.Append("  AtticSqm: ").Append(AtticSqm).Append("\n");
+            sb.Append("  BalconyTerraceSqm: ").Append(BalconyTerraceSqm).Append("\n");
+            sb.Append("  CellarSqm: ").Append(CellarSqm).Append("\n");
+            sb.Append("  GardenSqm: ").Append(GardenSqm).Append("\n");
             sb.Append("  LivingAreaSqm: ").Append(LivingAreaSqm).Append("\n");
+            sb.Append("  OfficeAreaSqm: ").Append(OfficeAreaSqm).Append("\n");
+            sb.Append("  OtherAreaSqm: ").Append(OtherAreaSqm).Append("\n");
             sb.Append("  PlotAreaSqm: ").Append(PlotAreaSqm).Append("\n");
+            sb.Append("  RetailAreaSqm: ").Append(RetailAreaSqm).Append("\n");
+            sb.Append("  StorageAreaSqm: ").Append(StorageAreaSqm).Append("\n");
+            sb.Append("  TotalAreaSqm: ").Append(TotalAreaSqm).Append("\n");
             sb.Append("  UsableAreaSqm: ").Append(UsableAreaSqm).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -144,8 +288,17 @@ namespace Skautik.Sdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
+            Option<decimal?> atticSqm = default;
+            Option<decimal?> balconyTerraceSqm = default;
+            Option<decimal?> cellarSqm = default;
+            Option<decimal?> gardenSqm = default;
             Option<decimal?> livingAreaSqm = default;
+            Option<decimal?> officeAreaSqm = default;
+            Option<decimal?> otherAreaSqm = default;
             Option<decimal?> plotAreaSqm = default;
+            Option<decimal?> retailAreaSqm = default;
+            Option<decimal?> storageAreaSqm = default;
+            Option<decimal?> totalAreaSqm = default;
             Option<decimal?> usableAreaSqm = default;
 
             while (utf8JsonReader.Read())
@@ -163,11 +316,38 @@ namespace Skautik.Sdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
+                        case "attic_sqm":
+                            atticSqm = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
+                            break;
+                        case "balcony_terrace_sqm":
+                            balconyTerraceSqm = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
+                            break;
+                        case "cellar_sqm":
+                            cellarSqm = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
+                            break;
+                        case "garden_sqm":
+                            gardenSqm = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
+                            break;
                         case "living_area_sqm":
                             livingAreaSqm = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
+                        case "office_area_sqm":
+                            officeAreaSqm = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
+                            break;
+                        case "other_area_sqm":
+                            otherAreaSqm = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
+                            break;
                         case "plot_area_sqm":
                             plotAreaSqm = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
+                            break;
+                        case "retail_area_sqm":
+                            retailAreaSqm = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
+                            break;
+                        case "storage_area_sqm":
+                            storageAreaSqm = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
+                            break;
+                        case "total_area_sqm":
+                            totalAreaSqm = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "usable_area_sqm":
                             usableAreaSqm = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
@@ -178,16 +358,43 @@ namespace Skautik.Sdk.Model
                 }
             }
 
+            if (atticSqm.IsSet && atticSqm.Value == null)
+                throw new ArgumentNullException(nameof(atticSqm), "Property is not nullable for class Size.");
+
+            if (balconyTerraceSqm.IsSet && balconyTerraceSqm.Value == null)
+                throw new ArgumentNullException(nameof(balconyTerraceSqm), "Property is not nullable for class Size.");
+
+            if (cellarSqm.IsSet && cellarSqm.Value == null)
+                throw new ArgumentNullException(nameof(cellarSqm), "Property is not nullable for class Size.");
+
+            if (gardenSqm.IsSet && gardenSqm.Value == null)
+                throw new ArgumentNullException(nameof(gardenSqm), "Property is not nullable for class Size.");
+
             if (livingAreaSqm.IsSet && livingAreaSqm.Value == null)
                 throw new ArgumentNullException(nameof(livingAreaSqm), "Property is not nullable for class Size.");
+
+            if (officeAreaSqm.IsSet && officeAreaSqm.Value == null)
+                throw new ArgumentNullException(nameof(officeAreaSqm), "Property is not nullable for class Size.");
+
+            if (otherAreaSqm.IsSet && otherAreaSqm.Value == null)
+                throw new ArgumentNullException(nameof(otherAreaSqm), "Property is not nullable for class Size.");
 
             if (plotAreaSqm.IsSet && plotAreaSqm.Value == null)
                 throw new ArgumentNullException(nameof(plotAreaSqm), "Property is not nullable for class Size.");
 
+            if (retailAreaSqm.IsSet && retailAreaSqm.Value == null)
+                throw new ArgumentNullException(nameof(retailAreaSqm), "Property is not nullable for class Size.");
+
+            if (storageAreaSqm.IsSet && storageAreaSqm.Value == null)
+                throw new ArgumentNullException(nameof(storageAreaSqm), "Property is not nullable for class Size.");
+
+            if (totalAreaSqm.IsSet && totalAreaSqm.Value == null)
+                throw new ArgumentNullException(nameof(totalAreaSqm), "Property is not nullable for class Size.");
+
             if (usableAreaSqm.IsSet && usableAreaSqm.Value == null)
                 throw new ArgumentNullException(nameof(usableAreaSqm), "Property is not nullable for class Size.");
 
-            return new Size(livingAreaSqm, plotAreaSqm, usableAreaSqm);
+            return new Size(atticSqm, balconyTerraceSqm, cellarSqm, gardenSqm, livingAreaSqm, officeAreaSqm, otherAreaSqm, plotAreaSqm, retailAreaSqm, storageAreaSqm, totalAreaSqm, usableAreaSqm);
         }
 
         /// <summary>
@@ -214,11 +421,38 @@ namespace Skautik.Sdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Size size, JsonSerializerOptions jsonSerializerOptions)
         {
+            if (size.AtticSqmOption.IsSet)
+                writer.WriteNumber("attic_sqm", size.AtticSqmOption.Value!.Value);
+
+            if (size.BalconyTerraceSqmOption.IsSet)
+                writer.WriteNumber("balcony_terrace_sqm", size.BalconyTerraceSqmOption.Value!.Value);
+
+            if (size.CellarSqmOption.IsSet)
+                writer.WriteNumber("cellar_sqm", size.CellarSqmOption.Value!.Value);
+
+            if (size.GardenSqmOption.IsSet)
+                writer.WriteNumber("garden_sqm", size.GardenSqmOption.Value!.Value);
+
             if (size.LivingAreaSqmOption.IsSet)
                 writer.WriteNumber("living_area_sqm", size.LivingAreaSqmOption.Value!.Value);
 
+            if (size.OfficeAreaSqmOption.IsSet)
+                writer.WriteNumber("office_area_sqm", size.OfficeAreaSqmOption.Value!.Value);
+
+            if (size.OtherAreaSqmOption.IsSet)
+                writer.WriteNumber("other_area_sqm", size.OtherAreaSqmOption.Value!.Value);
+
             if (size.PlotAreaSqmOption.IsSet)
                 writer.WriteNumber("plot_area_sqm", size.PlotAreaSqmOption.Value!.Value);
+
+            if (size.RetailAreaSqmOption.IsSet)
+                writer.WriteNumber("retail_area_sqm", size.RetailAreaSqmOption.Value!.Value);
+
+            if (size.StorageAreaSqmOption.IsSet)
+                writer.WriteNumber("storage_area_sqm", size.StorageAreaSqmOption.Value!.Value);
+
+            if (size.TotalAreaSqmOption.IsSet)
+                writer.WriteNumber("total_area_sqm", size.TotalAreaSqmOption.Value!.Value);
 
             if (size.UsableAreaSqmOption.IsSet)
                 writer.WriteNumber("usable_area_sqm", size.UsableAreaSqmOption.Value!.Value);

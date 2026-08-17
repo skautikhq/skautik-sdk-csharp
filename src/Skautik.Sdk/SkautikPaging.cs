@@ -90,6 +90,7 @@ public sealed partial class SkautikClient
         Option<int> limit = default,
         Option<string> sort = default,
         Option<List<string>> expand = default,
+        Option<string> language = default,
         [EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
         Option<string> cursor = default;
@@ -112,6 +113,7 @@ public sealed partial class SkautikClient
                 cursor: cursor,
                 sort: sort,
                 expand: expand,
+                language: language,
                 cancellationToken: cancellationToken).ConfigureAwait(false);
 
             var page = response.Ok();

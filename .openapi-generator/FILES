@@ -45,9 +45,11 @@ src/Skautik.Sdk/Model/Bounds.cs
 src/Skautik.Sdk/Model/Building.cs
 src/Skautik.Sdk/Model/City.cs
 src/Skautik.Sdk/Model/CityList.cs
+src/Skautik.Sdk/Model/ConnectorInput.cs
 src/Skautik.Sdk/Model/Delivery.cs
 src/Skautik.Sdk/Model/DeliveryInput.cs
 src/Skautik.Sdk/Model/DeliveryList.cs
+src/Skautik.Sdk/Model/Descriptions.cs
 src/Skautik.Sdk/Model/District.cs
 src/Skautik.Sdk/Model/DistrictList.cs
 src/Skautik.Sdk/Model/Energy.cs
@@ -56,11 +58,13 @@ src/Skautik.Sdk/Model/Export.cs
 src/Skautik.Sdk/Model/ExportInput.cs
 src/Skautik.Sdk/Model/ExportList.cs
 src/Skautik.Sdk/Model/ExportResponse.cs
+src/Skautik.Sdk/Model/Features.cs
 src/Skautik.Sdk/Model/Generation.cs
 src/Skautik.Sdk/Model/GenerationInput.cs
 src/Skautik.Sdk/Model/GenerationList.cs
 src/Skautik.Sdk/Model/GenerationResponse.cs
 src/Skautik.Sdk/Model/Image.cs
+src/Skautik.Sdk/Model/ImageInput.cs
 src/Skautik.Sdk/Model/ImageList.cs
 src/Skautik.Sdk/Model/ImageResponse.cs
 src/Skautik.Sdk/Model/Import.cs
@@ -85,6 +89,7 @@ src/Skautik.Sdk/Model/MarketContext.cs
 src/Skautik.Sdk/Model/MarketMetric.cs
 src/Skautik.Sdk/Model/MarketResponse.cs
 src/Skautik.Sdk/Model/PageMeta.cs
+src/Skautik.Sdk/Model/Parking.cs
 src/Skautik.Sdk/Model/PriceObservation.cs
 src/Skautik.Sdk/Model/PriceObservationList.cs
 src/Skautik.Sdk/Model/Problem.cs
@@ -100,9 +105,11 @@ src/Skautik.Sdk/Model/SearchRequest.cs
 src/Skautik.Sdk/Model/Series.cs
 src/Skautik.Sdk/Model/SeriesPoint.cs
 src/Skautik.Sdk/Model/SeriesResponse.cs
+src/Skautik.Sdk/Model/ShrinkGuard.cs
 src/Skautik.Sdk/Model/Size.cs
 src/Skautik.Sdk/Model/SourceDelivery.cs
 src/Skautik.Sdk/Model/SourceUpdate.cs
+src/Skautik.Sdk/Model/Translation.cs
 src/Skautik.Sdk/Model/Webhook.cs
 src/Skautik.Sdk/Model/WebhookInput.cs
 src/Skautik.Sdk/Model/WebhookList.cs

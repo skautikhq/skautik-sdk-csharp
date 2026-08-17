@@ -34,16 +34,22 @@ namespace Skautik.Sdk.Model
         /// Initializes a new instance of the <see cref="Building" /> class.
         /// </summary>
         /// <param name="condition">condition</param>
+        /// <param name="constructionPhase">constructionPhase</param>
         /// <param name="constructionType">constructionType</param>
         /// <param name="heatingType">heatingType</param>
+        /// <param name="leasehold">leasehold</param>
+        /// <param name="monumentProtected">monumentProtected</param>
         /// <param name="yearBuilt">yearBuilt</param>
         /// <param name="yearRenovated">yearRenovated</param>
         [JsonConstructor]
-        public Building(Option<string?> condition = default, Option<string?> constructionType = default, Option<string?> heatingType = default, Option<int?> yearBuilt = default, Option<int?> yearRenovated = default)
+        public Building(Option<string?> condition = default, Option<string?> constructionPhase = default, Option<string?> constructionType = default, Option<string?> heatingType = default, Option<bool?> leasehold = default, Option<bool?> monumentProtected = default, Option<int?> yearBuilt = default, Option<int?> yearRenovated = default)
         {
             ConditionOption = condition;
+            ConstructionPhaseOption = constructionPhase;
             ConstructionTypeOption = constructionType;
             HeatingTypeOption = heatingType;
+            LeaseholdOption = leasehold;
+            MonumentProtectedOption = monumentProtected;
             YearBuiltOption = yearBuilt;
             YearRenovatedOption = yearRenovated;
             OnCreated();
@@ -63,6 +69,19 @@ namespace Skautik.Sdk.Model
         /// </summary>
         [JsonPropertyName("condition")]
         public string? Condition { get { return this.ConditionOption.Value; } set { this.ConditionOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of ConstructionPhase
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> ConstructionPhaseOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets ConstructionPhase
+        /// </summary>
+        [JsonPropertyName("construction_phase")]
+        public string? ConstructionPhase { get { return this.ConstructionPhaseOption.Value; } set { this.ConstructionPhaseOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ConstructionType
@@ -89,6 +108,32 @@ namespace Skautik.Sdk.Model
         /// </summary>
         [JsonPropertyName("heating_type")]
         public string? HeatingType { get { return this.HeatingTypeOption.Value; } set { this.HeatingTypeOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of Leasehold
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> LeaseholdOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets Leasehold
+        /// </summary>
+        [JsonPropertyName("leasehold")]
+        public bool? Leasehold { get { return this.LeaseholdOption.Value; } set { this.LeaseholdOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of MonumentProtected
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> MonumentProtectedOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets MonumentProtected
+        /// </summary>
+        [JsonPropertyName("monument_protected")]
+        public bool? MonumentProtected { get { return this.MonumentProtectedOption.Value; } set { this.MonumentProtectedOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of YearBuilt
@@ -125,8 +170,11 @@ namespace Skautik.Sdk.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class Building {\n");
             sb.Append("  Condition: ").Append(Condition).Append("\n");
+            sb.Append("  ConstructionPhase: ").Append(ConstructionPhase).Append("\n");
             sb.Append("  ConstructionType: ").Append(ConstructionType).Append("\n");
             sb.Append("  HeatingType: ").Append(HeatingType).Append("\n");
+            sb.Append("  Leasehold: ").Append(Leasehold).Append("\n");
+            sb.Append("  MonumentProtected: ").Append(MonumentProtected).Append("\n");
             sb.Append("  YearBuilt: ").Append(YearBuilt).Append("\n");
             sb.Append("  YearRenovated: ").Append(YearRenovated).Append("\n");
             sb.Append("}\n");
@@ -177,8 +225,11 @@ namespace Skautik.Sdk.Model
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
             Option<string?> condition = default;
+            Option<string?> constructionPhase = default;
             Option<string?> constructionType = default;
             Option<string?> heatingType = default;
+            Option<bool?> leasehold = default;
+            Option<bool?> monumentProtected = default;
             Option<int?> yearBuilt = default;
             Option<int?> yearRenovated = default;
 
@@ -200,11 +251,20 @@ namespace Skautik.Sdk.Model
                         case "condition":
                             condition = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
+                        case "construction_phase":
+                            constructionPhase = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
                         case "construction_type":
                             constructionType = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "heating_type":
                             heatingType = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
+                        case "leasehold":
+                            leasehold = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
+                        case "monument_protected":
+                            monumentProtected = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "year_built":
                             yearBuilt = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
@@ -221,11 +281,20 @@ namespace Skautik.Sdk.Model
             if (condition.IsSet && condition.Value == null)
                 throw new ArgumentNullException(nameof(condition), "Property is not nullable for class Building.");
 
+            if (constructionPhase.IsSet && constructionPhase.Value == null)
+                throw new ArgumentNullException(nameof(constructionPhase), "Property is not nullable for class Building.");
+
             if (constructionType.IsSet && constructionType.Value == null)
                 throw new ArgumentNullException(nameof(constructionType), "Property is not nullable for class Building.");
 
             if (heatingType.IsSet && heatingType.Value == null)
                 throw new ArgumentNullException(nameof(heatingType), "Property is not nullable for class Building.");
+
+            if (leasehold.IsSet && leasehold.Value == null)
+                throw new ArgumentNullException(nameof(leasehold), "Property is not nullable for class Building.");
+
+            if (monumentProtected.IsSet && monumentProtected.Value == null)
+                throw new ArgumentNullException(nameof(monumentProtected), "Property is not nullable for class Building.");
 
             if (yearBuilt.IsSet && yearBuilt.Value == null)
                 throw new ArgumentNullException(nameof(yearBuilt), "Property is not nullable for class Building.");
@@ -233,7 +302,7 @@ namespace Skautik.Sdk.Model
             if (yearRenovated.IsSet && yearRenovated.Value == null)
                 throw new ArgumentNullException(nameof(yearRenovated), "Property is not nullable for class Building.");
 
-            return new Building(condition, constructionType, heatingType, yearBuilt, yearRenovated);
+            return new Building(condition, constructionPhase, constructionType, heatingType, leasehold, monumentProtected, yearBuilt, yearRenovated);
         }
 
         /// <summary>
@@ -263,6 +332,9 @@ namespace Skautik.Sdk.Model
             if (building.ConditionOption.IsSet && building.Condition == null)
                 throw new ArgumentNullException(nameof(building.Condition), "Property is required for class Building.");
 
+            if (building.ConstructionPhaseOption.IsSet && building.ConstructionPhase == null)
+                throw new ArgumentNullException(nameof(building.ConstructionPhase), "Property is required for class Building.");
+
             if (building.ConstructionTypeOption.IsSet && building.ConstructionType == null)
                 throw new ArgumentNullException(nameof(building.ConstructionType), "Property is required for class Building.");
 
@@ -272,11 +344,20 @@ namespace Skautik.Sdk.Model
             if (building.ConditionOption.IsSet)
                 writer.WriteString("condition", building.Condition);
 
+            if (building.ConstructionPhaseOption.IsSet)
+                writer.WriteString("construction_phase", building.ConstructionPhase);
+
             if (building.ConstructionTypeOption.IsSet)
                 writer.WriteString("construction_type", building.ConstructionType);
 
             if (building.HeatingTypeOption.IsSet)
                 writer.WriteString("heating_type", building.HeatingType);
+
+            if (building.LeaseholdOption.IsSet)
+                writer.WriteBoolean("leasehold", building.LeaseholdOption.Value!.Value);
+
+            if (building.MonumentProtectedOption.IsSet)
+                writer.WriteBoolean("monument_protected", building.MonumentProtectedOption.Value!.Value);
 
             if (building.YearBuiltOption.IsSet)
                 writer.WriteNumber("year_built", building.YearBuiltOption.Value!.Value);

@@ -40,32 +40,85 @@ namespace Skautik.Sdk.Model
         /// <param name="addressPostalCode">addressPostalCode</param>
         /// <param name="addressProvince">addressProvince</param>
         /// <param name="addressStreet">addressStreet</param>
+        /// <param name="atticSqm">atticSqm</param>
+        /// <param name="balconyCount">balconyCount</param>
+        /// <param name="balconyTerraceSqm">balconyTerraceSqm</param>
         /// <param name="bathrooms">bathrooms</param>
         /// <param name="bedrooms">bedrooms</param>
+        /// <param name="buildingAmenities">buildingAmenities</param>
+        /// <param name="cellarSqm">cellarSqm</param>
         /// <param name="condition">condition</param>
+        /// <param name="constructionPhase">constructionPhase</param>
         /// <param name="constructionType">constructionType</param>
         /// <param name="description">description</param>
+        /// <param name="descriptionFittings">descriptionFittings</param>
+        /// <param name="descriptionLocation">descriptionLocation</param>
+        /// <param name="descriptionOther">descriptionOther</param>
+        /// <param name="energyCertificateIssuedAt">energyCertificateIssuedAt</param>
+        /// <param name="energyCertificateType">energyCertificateType</param>
+        /// <param name="energyCertificateValidUntil">energyCertificateValidUntil</param>
+        /// <param name="energyCo2Emissions">energyCo2Emissions</param>
         /// <param name="energyConsumptionKwh">energyConsumptionKwh</param>
+        /// <param name="energyDemandKwh">energyDemandKwh</param>
+        /// <param name="energyIncludesHotWater">energyIncludesHotWater</param>
         /// <param name="energyLabel">energyLabel</param>
+        /// <param name="energyPrimaryCarrier">energyPrimaryCarrier</param>
+        /// <param name="exteriorFeatures">exteriorFeatures</param>
         /// <param name="externalId">externalId</param>
         /// <param name="floor">floor</param>
+        /// <param name="flooring">flooring</param>
         /// <param name="floorsInBuilding">floorsInBuilding</param>
+        /// <param name="gardenSqm">gardenSqm</param>
         /// <param name="halfBathrooms">halfBathrooms</param>
+        /// <param name="hasAirConditioning">hasAirConditioning</param>
+        /// <param name="hasAlarmSystem">hasAlarmSystem</param>
+        /// <param name="hasBalcony">hasBalcony</param>
+        /// <param name="hasCellar">hasCellar</param>
+        /// <param name="hasFireplace">hasFireplace</param>
+        /// <param name="hasFittedKitchen">hasFittedKitchen</param>
+        /// <param name="hasGarden">hasGarden</param>
+        /// <param name="hasGuestToilet">hasGuestToilet</param>
+        /// <param name="hasLift">hasLift</param>
+        /// <param name="hasPool">hasPool</param>
+        /// <param name="hasSauna">hasSauna</param>
+        /// <param name="hasSolarPanels">hasSolarPanels</param>
+        /// <param name="hasTerrace">hasTerrace</param>
         /// <param name="heatingType">heatingType</param>
+        /// <param name="images">images</param>
+        /// <param name="interiorFeatures">interiorFeatures</param>
+        /// <param name="isBarrierFree">isBarrierFree</param>
+        /// <param name="isFurnished">isFurnished</param>
+        /// <param name="isLeasehold">isLeasehold</param>
+        /// <param name="isMonumentProtected">isMonumentProtected</param>
+        /// <param name="kitchenType">kitchenType</param>
         /// <param name="latitude">latitude</param>
         /// <param name="listing">listing</param>
         /// <param name="livingAreaSqm">livingAreaSqm</param>
         /// <param name="locationPrecision">locationPrecision</param>
         /// <param name="longitude">longitude</param>
+        /// <param name="officeAreaSqm">officeAreaSqm</param>
+        /// <param name="otherAreaSqm">otherAreaSqm</param>
+        /// <param name="parkingIncluded">parkingIncluded</param>
+        /// <param name="parkingSpaceCount">parkingSpaceCount</param>
+        /// <param name="parkingType">parkingType</param>
         /// <param name="plotAreaSqm">plotAreaSqm</param>
+        /// <param name="propertySubtype">propertySubtype</param>
+        /// <param name="publishAddress">publishAddress</param>
+        /// <param name="retailAreaSqm">retailAreaSqm</param>
+        /// <param name="storageAreaSqm">storageAreaSqm</param>
+        /// <param name="surroundings">surroundings</param>
+        /// <param name="terraceCount">terraceCount</param>
         /// <param name="title">title</param>
+        /// <param name="totalAreaSqm">totalAreaSqm</param>
         /// <param name="totalRooms">totalRooms</param>
+        /// <param name="translations">translations</param>
         /// <param name="type">type</param>
         /// <param name="usableAreaSqm">usableAreaSqm</param>
+        /// <param name="windowGlazing">windowGlazing</param>
         /// <param name="yearBuilt">yearBuilt</param>
         /// <param name="yearRenovated">yearRenovated</param>
         [JsonConstructor]
-        public PropertyInput(Option<string?> addressCity = default, Option<string?> addressCountry = default, Option<string?> addressDistrict = default, Option<string?> addressNumber = default, Option<string?> addressPostalCode = default, Option<string?> addressProvince = default, Option<string?> addressStreet = default, Option<int?> bathrooms = default, Option<int?> bedrooms = default, Option<string?> condition = default, Option<string?> constructionType = default, Option<string?> description = default, Option<decimal?> energyConsumptionKwh = default, Option<string?> energyLabel = default, Option<string?> externalId = default, Option<int?> floor = default, Option<int?> floorsInBuilding = default, Option<int?> halfBathrooms = default, Option<string?> heatingType = default, Option<decimal?> latitude = default, Option<ListingInput?> listing = default, Option<decimal?> livingAreaSqm = default, Option<string?> locationPrecision = default, Option<decimal?> longitude = default, Option<decimal?> plotAreaSqm = default, Option<string?> title = default, Option<int?> totalRooms = default, Option<string?> type = default, Option<decimal?> usableAreaSqm = default, Option<int?> yearBuilt = default, Option<int?> yearRenovated = default)
+        public PropertyInput(Option<string?> addressCity = default, Option<string?> addressCountry = default, Option<string?> addressDistrict = default, Option<string?> addressNumber = default, Option<string?> addressPostalCode = default, Option<string?> addressProvince = default, Option<string?> addressStreet = default, Option<decimal?> atticSqm = default, Option<int?> balconyCount = default, Option<decimal?> balconyTerraceSqm = default, Option<int?> bathrooms = default, Option<int?> bedrooms = default, Option<List<string>?> buildingAmenities = default, Option<decimal?> cellarSqm = default, Option<string?> condition = default, Option<string?> constructionPhase = default, Option<string?> constructionType = default, Option<string?> description = default, Option<string?> descriptionFittings = default, Option<string?> descriptionLocation = default, Option<string?> descriptionOther = default, Option<string?> energyCertificateIssuedAt = default, Option<string?> energyCertificateType = default, Option<string?> energyCertificateValidUntil = default, Option<decimal?> energyCo2Emissions = default, Option<decimal?> energyConsumptionKwh = default, Option<decimal?> energyDemandKwh = default, Option<bool?> energyIncludesHotWater = default, Option<string?> energyLabel = default, Option<string?> energyPrimaryCarrier = default, Option<List<string>?> exteriorFeatures = default, Option<string?> externalId = default, Option<int?> floor = default, Option<string?> flooring = default, Option<int?> floorsInBuilding = default, Option<decimal?> gardenSqm = default, Option<int?> halfBathrooms = default, Option<bool?> hasAirConditioning = default, Option<bool?> hasAlarmSystem = default, Option<bool?> hasBalcony = default, Option<bool?> hasCellar = default, Option<bool?> hasFireplace = default, Option<bool?> hasFittedKitchen = default, Option<bool?> hasGarden = default, Option<bool?> hasGuestToilet = default, Option<bool?> hasLift = default, Option<bool?> hasPool = default, Option<bool?> hasSauna = default, Option<bool?> hasSolarPanels = default, Option<bool?> hasTerrace = default, Option<string?> heatingType = default, Option<List<ImageInput>?> images = default, Option<List<string>?> interiorFeatures = default, Option<bool?> isBarrierFree = default, Option<bool?> isFurnished = default, Option<bool?> isLeasehold = default, Option<bool?> isMonumentProtected = default, Option<string?> kitchenType = default, Option<decimal?> latitude = default, Option<ListingInput?> listing = default, Option<decimal?> livingAreaSqm = default, Option<string?> locationPrecision = default, Option<decimal?> longitude = default, Option<decimal?> officeAreaSqm = default, Option<decimal?> otherAreaSqm = default, Option<bool?> parkingIncluded = default, Option<int?> parkingSpaceCount = default, Option<string?> parkingType = default, Option<decimal?> plotAreaSqm = default, Option<string?> propertySubtype = default, Option<bool?> publishAddress = default, Option<decimal?> retailAreaSqm = default, Option<decimal?> storageAreaSqm = default, Option<List<string>?> surroundings = default, Option<int?> terraceCount = default, Option<string?> title = default, Option<decimal?> totalAreaSqm = default, Option<int?> totalRooms = default, Option<List<Translation>?> translations = default, Option<string?> type = default, Option<decimal?> usableAreaSqm = default, Option<string?> windowGlazing = default, Option<int?> yearBuilt = default, Option<int?> yearRenovated = default)
         {
             AddressCityOption = addressCity;
             AddressCountryOption = addressCountry;
@@ -74,28 +127,81 @@ namespace Skautik.Sdk.Model
             AddressPostalCodeOption = addressPostalCode;
             AddressProvinceOption = addressProvince;
             AddressStreetOption = addressStreet;
+            AtticSqmOption = atticSqm;
+            BalconyCountOption = balconyCount;
+            BalconyTerraceSqmOption = balconyTerraceSqm;
             BathroomsOption = bathrooms;
             BedroomsOption = bedrooms;
+            BuildingAmenitiesOption = buildingAmenities;
+            CellarSqmOption = cellarSqm;
             ConditionOption = condition;
+            ConstructionPhaseOption = constructionPhase;
             ConstructionTypeOption = constructionType;
             DescriptionOption = description;
+            DescriptionFittingsOption = descriptionFittings;
+            DescriptionLocationOption = descriptionLocation;
+            DescriptionOtherOption = descriptionOther;
+            EnergyCertificateIssuedAtOption = energyCertificateIssuedAt;
+            EnergyCertificateTypeOption = energyCertificateType;
+            EnergyCertificateValidUntilOption = energyCertificateValidUntil;
+            EnergyCo2EmissionsOption = energyCo2Emissions;
             EnergyConsumptionKwhOption = energyConsumptionKwh;
+            EnergyDemandKwhOption = energyDemandKwh;
+            EnergyIncludesHotWaterOption = energyIncludesHotWater;
             EnergyLabelOption = energyLabel;
+            EnergyPrimaryCarrierOption = energyPrimaryCarrier;
+            ExteriorFeaturesOption = exteriorFeatures;
             ExternalIdOption = externalId;
             FloorOption = floor;
+            FlooringOption = flooring;
             FloorsInBuildingOption = floorsInBuilding;
+            GardenSqmOption = gardenSqm;
             HalfBathroomsOption = halfBathrooms;
+            HasAirConditioningOption = hasAirConditioning;
+            HasAlarmSystemOption = hasAlarmSystem;
+            HasBalconyOption = hasBalcony;
+            HasCellarOption = hasCellar;
+            HasFireplaceOption = hasFireplace;
+            HasFittedKitchenOption = hasFittedKitchen;
+            HasGardenOption = hasGarden;
+            HasGuestToiletOption = hasGuestToilet;
+            HasLiftOption = hasLift;
+            HasPoolOption = hasPool;
+            HasSaunaOption = hasSauna;
+            HasSolarPanelsOption = hasSolarPanels;
+            HasTerraceOption = hasTerrace;
             HeatingTypeOption = heatingType;
+            ImagesOption = images;
+            InteriorFeaturesOption = interiorFeatures;
+            IsBarrierFreeOption = isBarrierFree;
+            IsFurnishedOption = isFurnished;
+            IsLeaseholdOption = isLeasehold;
+            IsMonumentProtectedOption = isMonumentProtected;
+            KitchenTypeOption = kitchenType;
             LatitudeOption = latitude;
             ListingOption = listing;
             LivingAreaSqmOption = livingAreaSqm;
             LocationPrecisionOption = locationPrecision;
             LongitudeOption = longitude;
+            OfficeAreaSqmOption = officeAreaSqm;
+            OtherAreaSqmOption = otherAreaSqm;
+            ParkingIncludedOption = parkingIncluded;
+            ParkingSpaceCountOption = parkingSpaceCount;
+            ParkingTypeOption = parkingType;
             PlotAreaSqmOption = plotAreaSqm;
+            PropertySubtypeOption = propertySubtype;
+            PublishAddressOption = publishAddress;
+            RetailAreaSqmOption = retailAreaSqm;
+            StorageAreaSqmOption = storageAreaSqm;
+            SurroundingsOption = surroundings;
+            TerraceCountOption = terraceCount;
             TitleOption = title;
+            TotalAreaSqmOption = totalAreaSqm;
             TotalRoomsOption = totalRooms;
+            TranslationsOption = translations;
             TypeOption = type;
             UsableAreaSqmOption = usableAreaSqm;
+            WindowGlazingOption = windowGlazing;
             YearBuiltOption = yearBuilt;
             YearRenovatedOption = yearRenovated;
             OnCreated();
@@ -195,6 +301,45 @@ namespace Skautik.Sdk.Model
         public string? AddressStreet { get { return this.AddressStreetOption.Value; } set { this.AddressStreetOption = new(value); } }
 
         /// <summary>
+        /// Used to track the state of AtticSqm
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<decimal?> AtticSqmOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets AtticSqm
+        /// </summary>
+        [JsonPropertyName("attic_sqm")]
+        public decimal? AtticSqm { get { return this.AtticSqmOption.Value; } set { this.AtticSqmOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of BalconyCount
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<int?> BalconyCountOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets BalconyCount
+        /// </summary>
+        [JsonPropertyName("balcony_count")]
+        public int? BalconyCount { get { return this.BalconyCountOption.Value; } set { this.BalconyCountOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of BalconyTerraceSqm
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<decimal?> BalconyTerraceSqmOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets BalconyTerraceSqm
+        /// </summary>
+        [JsonPropertyName("balcony_terrace_sqm")]
+        public decimal? BalconyTerraceSqm { get { return this.BalconyTerraceSqmOption.Value; } set { this.BalconyTerraceSqmOption = new(value); } }
+
+        /// <summary>
         /// Used to track the state of Bathrooms
         /// </summary>
         [JsonIgnore]
@@ -221,6 +366,32 @@ namespace Skautik.Sdk.Model
         public int? Bedrooms { get { return this.BedroomsOption.Value; } set { this.BedroomsOption = new(value); } }
 
         /// <summary>
+        /// Used to track the state of BuildingAmenities
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<string>?> BuildingAmenitiesOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets BuildingAmenities
+        /// </summary>
+        [JsonPropertyName("building_amenities")]
+        public List<string>? BuildingAmenities { get { return this.BuildingAmenitiesOption.Value; } set { this.BuildingAmenitiesOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of CellarSqm
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<decimal?> CellarSqmOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets CellarSqm
+        /// </summary>
+        [JsonPropertyName("cellar_sqm")]
+        public decimal? CellarSqm { get { return this.CellarSqmOption.Value; } set { this.CellarSqmOption = new(value); } }
+
+        /// <summary>
         /// Used to track the state of Condition
         /// </summary>
         [JsonIgnore]
@@ -232,6 +403,19 @@ namespace Skautik.Sdk.Model
         /// </summary>
         [JsonPropertyName("condition")]
         public string? Condition { get { return this.ConditionOption.Value; } set { this.ConditionOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of ConstructionPhase
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> ConstructionPhaseOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets ConstructionPhase
+        /// </summary>
+        [JsonPropertyName("construction_phase")]
+        public string? ConstructionPhase { get { return this.ConstructionPhaseOption.Value; } set { this.ConstructionPhaseOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ConstructionType
@@ -260,6 +444,97 @@ namespace Skautik.Sdk.Model
         public string? Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new(value); } }
 
         /// <summary>
+        /// Used to track the state of DescriptionFittings
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> DescriptionFittingsOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets DescriptionFittings
+        /// </summary>
+        [JsonPropertyName("description_fittings")]
+        public string? DescriptionFittings { get { return this.DescriptionFittingsOption.Value; } set { this.DescriptionFittingsOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of DescriptionLocation
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> DescriptionLocationOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets DescriptionLocation
+        /// </summary>
+        [JsonPropertyName("description_location")]
+        public string? DescriptionLocation { get { return this.DescriptionLocationOption.Value; } set { this.DescriptionLocationOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of DescriptionOther
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> DescriptionOtherOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets DescriptionOther
+        /// </summary>
+        [JsonPropertyName("description_other")]
+        public string? DescriptionOther { get { return this.DescriptionOtherOption.Value; } set { this.DescriptionOtherOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of EnergyCertificateIssuedAt
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> EnergyCertificateIssuedAtOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets EnergyCertificateIssuedAt
+        /// </summary>
+        [JsonPropertyName("energy_certificate_issued_at")]
+        public string? EnergyCertificateIssuedAt { get { return this.EnergyCertificateIssuedAtOption.Value; } set { this.EnergyCertificateIssuedAtOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of EnergyCertificateType
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> EnergyCertificateTypeOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets EnergyCertificateType
+        /// </summary>
+        [JsonPropertyName("energy_certificate_type")]
+        public string? EnergyCertificateType { get { return this.EnergyCertificateTypeOption.Value; } set { this.EnergyCertificateTypeOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of EnergyCertificateValidUntil
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> EnergyCertificateValidUntilOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets EnergyCertificateValidUntil
+        /// </summary>
+        [JsonPropertyName("energy_certificate_valid_until")]
+        public string? EnergyCertificateValidUntil { get { return this.EnergyCertificateValidUntilOption.Value; } set { this.EnergyCertificateValidUntilOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of EnergyCo2Emissions
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<decimal?> EnergyCo2EmissionsOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets EnergyCo2Emissions
+        /// </summary>
+        [JsonPropertyName("energy_co2_emissions")]
+        public decimal? EnergyCo2Emissions { get { return this.EnergyCo2EmissionsOption.Value; } set { this.EnergyCo2EmissionsOption = new(value); } }
+
+        /// <summary>
         /// Used to track the state of EnergyConsumptionKwh
         /// </summary>
         [JsonIgnore]
@@ -273,6 +548,32 @@ namespace Skautik.Sdk.Model
         public decimal? EnergyConsumptionKwh { get { return this.EnergyConsumptionKwhOption.Value; } set { this.EnergyConsumptionKwhOption = new(value); } }
 
         /// <summary>
+        /// Used to track the state of EnergyDemandKwh
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<decimal?> EnergyDemandKwhOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets EnergyDemandKwh
+        /// </summary>
+        [JsonPropertyName("energy_demand_kwh")]
+        public decimal? EnergyDemandKwh { get { return this.EnergyDemandKwhOption.Value; } set { this.EnergyDemandKwhOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of EnergyIncludesHotWater
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> EnergyIncludesHotWaterOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets EnergyIncludesHotWater
+        /// </summary>
+        [JsonPropertyName("energy_includes_hot_water")]
+        public bool? EnergyIncludesHotWater { get { return this.EnergyIncludesHotWaterOption.Value; } set { this.EnergyIncludesHotWaterOption = new(value); } }
+
+        /// <summary>
         /// Used to track the state of EnergyLabel
         /// </summary>
         [JsonIgnore]
@@ -284,6 +585,32 @@ namespace Skautik.Sdk.Model
         /// </summary>
         [JsonPropertyName("energy_label")]
         public string? EnergyLabel { get { return this.EnergyLabelOption.Value; } set { this.EnergyLabelOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of EnergyPrimaryCarrier
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> EnergyPrimaryCarrierOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets EnergyPrimaryCarrier
+        /// </summary>
+        [JsonPropertyName("energy_primary_carrier")]
+        public string? EnergyPrimaryCarrier { get { return this.EnergyPrimaryCarrierOption.Value; } set { this.EnergyPrimaryCarrierOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of ExteriorFeatures
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<string>?> ExteriorFeaturesOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets ExteriorFeatures
+        /// </summary>
+        [JsonPropertyName("exterior_features")]
+        public List<string>? ExteriorFeatures { get { return this.ExteriorFeaturesOption.Value; } set { this.ExteriorFeaturesOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ExternalId
@@ -312,6 +639,19 @@ namespace Skautik.Sdk.Model
         public int? Floor { get { return this.FloorOption.Value; } set { this.FloorOption = new(value); } }
 
         /// <summary>
+        /// Used to track the state of Flooring
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> FlooringOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets Flooring
+        /// </summary>
+        [JsonPropertyName("flooring")]
+        public string? Flooring { get { return this.FlooringOption.Value; } set { this.FlooringOption = new(value); } }
+
+        /// <summary>
         /// Used to track the state of FloorsInBuilding
         /// </summary>
         [JsonIgnore]
@@ -323,6 +663,19 @@ namespace Skautik.Sdk.Model
         /// </summary>
         [JsonPropertyName("floors_in_building")]
         public int? FloorsInBuilding { get { return this.FloorsInBuildingOption.Value; } set { this.FloorsInBuildingOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of GardenSqm
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<decimal?> GardenSqmOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets GardenSqm
+        /// </summary>
+        [JsonPropertyName("garden_sqm")]
+        public decimal? GardenSqm { get { return this.GardenSqmOption.Value; } set { this.GardenSqmOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of HalfBathrooms
@@ -338,6 +691,175 @@ namespace Skautik.Sdk.Model
         public int? HalfBathrooms { get { return this.HalfBathroomsOption.Value; } set { this.HalfBathroomsOption = new(value); } }
 
         /// <summary>
+        /// Used to track the state of HasAirConditioning
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> HasAirConditioningOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets HasAirConditioning
+        /// </summary>
+        [JsonPropertyName("has_air_conditioning")]
+        public bool? HasAirConditioning { get { return this.HasAirConditioningOption.Value; } set { this.HasAirConditioningOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of HasAlarmSystem
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> HasAlarmSystemOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets HasAlarmSystem
+        /// </summary>
+        [JsonPropertyName("has_alarm_system")]
+        public bool? HasAlarmSystem { get { return this.HasAlarmSystemOption.Value; } set { this.HasAlarmSystemOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of HasBalcony
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> HasBalconyOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets HasBalcony
+        /// </summary>
+        [JsonPropertyName("has_balcony")]
+        public bool? HasBalcony { get { return this.HasBalconyOption.Value; } set { this.HasBalconyOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of HasCellar
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> HasCellarOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets HasCellar
+        /// </summary>
+        [JsonPropertyName("has_cellar")]
+        public bool? HasCellar { get { return this.HasCellarOption.Value; } set { this.HasCellarOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of HasFireplace
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> HasFireplaceOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets HasFireplace
+        /// </summary>
+        [JsonPropertyName("has_fireplace")]
+        public bool? HasFireplace { get { return this.HasFireplaceOption.Value; } set { this.HasFireplaceOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of HasFittedKitchen
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> HasFittedKitchenOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets HasFittedKitchen
+        /// </summary>
+        [JsonPropertyName("has_fitted_kitchen")]
+        public bool? HasFittedKitchen { get { return this.HasFittedKitchenOption.Value; } set { this.HasFittedKitchenOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of HasGarden
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> HasGardenOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets HasGarden
+        /// </summary>
+        [JsonPropertyName("has_garden")]
+        public bool? HasGarden { get { return this.HasGardenOption.Value; } set { this.HasGardenOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of HasGuestToilet
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> HasGuestToiletOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets HasGuestToilet
+        /// </summary>
+        [JsonPropertyName("has_guest_toilet")]
+        public bool? HasGuestToilet { get { return this.HasGuestToiletOption.Value; } set { this.HasGuestToiletOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of HasLift
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> HasLiftOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets HasLift
+        /// </summary>
+        [JsonPropertyName("has_lift")]
+        public bool? HasLift { get { return this.HasLiftOption.Value; } set { this.HasLiftOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of HasPool
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> HasPoolOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets HasPool
+        /// </summary>
+        [JsonPropertyName("has_pool")]
+        public bool? HasPool { get { return this.HasPoolOption.Value; } set { this.HasPoolOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of HasSauna
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> HasSaunaOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets HasSauna
+        /// </summary>
+        [JsonPropertyName("has_sauna")]
+        public bool? HasSauna { get { return this.HasSaunaOption.Value; } set { this.HasSaunaOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of HasSolarPanels
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> HasSolarPanelsOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets HasSolarPanels
+        /// </summary>
+        [JsonPropertyName("has_solar_panels")]
+        public bool? HasSolarPanels { get { return this.HasSolarPanelsOption.Value; } set { this.HasSolarPanelsOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of HasTerrace
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> HasTerraceOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets HasTerrace
+        /// </summary>
+        [JsonPropertyName("has_terrace")]
+        public bool? HasTerrace { get { return this.HasTerraceOption.Value; } set { this.HasTerraceOption = new(value); } }
+
+        /// <summary>
         /// Used to track the state of HeatingType
         /// </summary>
         [JsonIgnore]
@@ -349,6 +871,97 @@ namespace Skautik.Sdk.Model
         /// </summary>
         [JsonPropertyName("heating_type")]
         public string? HeatingType { get { return this.HeatingTypeOption.Value; } set { this.HeatingTypeOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of Images
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<ImageInput>?> ImagesOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets Images
+        /// </summary>
+        [JsonPropertyName("images")]
+        public List<ImageInput>? Images { get { return this.ImagesOption.Value; } set { this.ImagesOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of InteriorFeatures
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<string>?> InteriorFeaturesOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets InteriorFeatures
+        /// </summary>
+        [JsonPropertyName("interior_features")]
+        public List<string>? InteriorFeatures { get { return this.InteriorFeaturesOption.Value; } set { this.InteriorFeaturesOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of IsBarrierFree
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> IsBarrierFreeOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets IsBarrierFree
+        /// </summary>
+        [JsonPropertyName("is_barrier_free")]
+        public bool? IsBarrierFree { get { return this.IsBarrierFreeOption.Value; } set { this.IsBarrierFreeOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of IsFurnished
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> IsFurnishedOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets IsFurnished
+        /// </summary>
+        [JsonPropertyName("is_furnished")]
+        public bool? IsFurnished { get { return this.IsFurnishedOption.Value; } set { this.IsFurnishedOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of IsLeasehold
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> IsLeaseholdOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets IsLeasehold
+        /// </summary>
+        [JsonPropertyName("is_leasehold")]
+        public bool? IsLeasehold { get { return this.IsLeaseholdOption.Value; } set { this.IsLeaseholdOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of IsMonumentProtected
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> IsMonumentProtectedOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets IsMonumentProtected
+        /// </summary>
+        [JsonPropertyName("is_monument_protected")]
+        public bool? IsMonumentProtected { get { return this.IsMonumentProtectedOption.Value; } set { this.IsMonumentProtectedOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of KitchenType
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> KitchenTypeOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets KitchenType
+        /// </summary>
+        [JsonPropertyName("kitchen_type")]
+        public string? KitchenType { get { return this.KitchenTypeOption.Value; } set { this.KitchenTypeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Latitude
@@ -416,6 +1029,71 @@ namespace Skautik.Sdk.Model
         public decimal? Longitude { get { return this.LongitudeOption.Value; } set { this.LongitudeOption = new(value); } }
 
         /// <summary>
+        /// Used to track the state of OfficeAreaSqm
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<decimal?> OfficeAreaSqmOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets OfficeAreaSqm
+        /// </summary>
+        [JsonPropertyName("office_area_sqm")]
+        public decimal? OfficeAreaSqm { get { return this.OfficeAreaSqmOption.Value; } set { this.OfficeAreaSqmOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of OtherAreaSqm
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<decimal?> OtherAreaSqmOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets OtherAreaSqm
+        /// </summary>
+        [JsonPropertyName("other_area_sqm")]
+        public decimal? OtherAreaSqm { get { return this.OtherAreaSqmOption.Value; } set { this.OtherAreaSqmOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of ParkingIncluded
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> ParkingIncludedOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets ParkingIncluded
+        /// </summary>
+        [JsonPropertyName("parking_included")]
+        public bool? ParkingIncluded { get { return this.ParkingIncludedOption.Value; } set { this.ParkingIncludedOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of ParkingSpaceCount
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<int?> ParkingSpaceCountOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets ParkingSpaceCount
+        /// </summary>
+        [JsonPropertyName("parking_space_count")]
+        public int? ParkingSpaceCount { get { return this.ParkingSpaceCountOption.Value; } set { this.ParkingSpaceCountOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of ParkingType
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> ParkingTypeOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets ParkingType
+        /// </summary>
+        [JsonPropertyName("parking_type")]
+        public string? ParkingType { get { return this.ParkingTypeOption.Value; } set { this.ParkingTypeOption = new(value); } }
+
+        /// <summary>
         /// Used to track the state of PlotAreaSqm
         /// </summary>
         [JsonIgnore]
@@ -427,6 +1105,84 @@ namespace Skautik.Sdk.Model
         /// </summary>
         [JsonPropertyName("plot_area_sqm")]
         public decimal? PlotAreaSqm { get { return this.PlotAreaSqmOption.Value; } set { this.PlotAreaSqmOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of PropertySubtype
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> PropertySubtypeOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets PropertySubtype
+        /// </summary>
+        [JsonPropertyName("property_subtype")]
+        public string? PropertySubtype { get { return this.PropertySubtypeOption.Value; } set { this.PropertySubtypeOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of PublishAddress
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> PublishAddressOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets PublishAddress
+        /// </summary>
+        [JsonPropertyName("publish_address")]
+        public bool? PublishAddress { get { return this.PublishAddressOption.Value; } set { this.PublishAddressOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of RetailAreaSqm
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<decimal?> RetailAreaSqmOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets RetailAreaSqm
+        /// </summary>
+        [JsonPropertyName("retail_area_sqm")]
+        public decimal? RetailAreaSqm { get { return this.RetailAreaSqmOption.Value; } set { this.RetailAreaSqmOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of StorageAreaSqm
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<decimal?> StorageAreaSqmOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets StorageAreaSqm
+        /// </summary>
+        [JsonPropertyName("storage_area_sqm")]
+        public decimal? StorageAreaSqm { get { return this.StorageAreaSqmOption.Value; } set { this.StorageAreaSqmOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of Surroundings
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<string>?> SurroundingsOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets Surroundings
+        /// </summary>
+        [JsonPropertyName("surroundings")]
+        public List<string>? Surroundings { get { return this.SurroundingsOption.Value; } set { this.SurroundingsOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of TerraceCount
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<int?> TerraceCountOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets TerraceCount
+        /// </summary>
+        [JsonPropertyName("terrace_count")]
+        public int? TerraceCount { get { return this.TerraceCountOption.Value; } set { this.TerraceCountOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Title
@@ -442,6 +1198,19 @@ namespace Skautik.Sdk.Model
         public string? Title { get { return this.TitleOption.Value; } set { this.TitleOption = new(value); } }
 
         /// <summary>
+        /// Used to track the state of TotalAreaSqm
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<decimal?> TotalAreaSqmOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets TotalAreaSqm
+        /// </summary>
+        [JsonPropertyName("total_area_sqm")]
+        public decimal? TotalAreaSqm { get { return this.TotalAreaSqmOption.Value; } set { this.TotalAreaSqmOption = new(value); } }
+
+        /// <summary>
         /// Used to track the state of TotalRooms
         /// </summary>
         [JsonIgnore]
@@ -453,6 +1222,19 @@ namespace Skautik.Sdk.Model
         /// </summary>
         [JsonPropertyName("total_rooms")]
         public int? TotalRooms { get { return this.TotalRoomsOption.Value; } set { this.TotalRoomsOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of Translations
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<Translation>?> TranslationsOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets Translations
+        /// </summary>
+        [JsonPropertyName("translations")]
+        public List<Translation>? Translations { get { return this.TranslationsOption.Value; } set { this.TranslationsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Type
@@ -479,6 +1261,19 @@ namespace Skautik.Sdk.Model
         /// </summary>
         [JsonPropertyName("usable_area_sqm")]
         public decimal? UsableAreaSqm { get { return this.UsableAreaSqmOption.Value; } set { this.UsableAreaSqmOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of WindowGlazing
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> WindowGlazingOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets WindowGlazing
+        /// </summary>
+        [JsonPropertyName("window_glazing")]
+        public string? WindowGlazing { get { return this.WindowGlazingOption.Value; } set { this.WindowGlazingOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of YearBuilt
@@ -521,28 +1316,81 @@ namespace Skautik.Sdk.Model
             sb.Append("  AddressPostalCode: ").Append(AddressPostalCode).Append("\n");
             sb.Append("  AddressProvince: ").Append(AddressProvince).Append("\n");
             sb.Append("  AddressStreet: ").Append(AddressStreet).Append("\n");
+            sb.Append("  AtticSqm: ").Append(AtticSqm).Append("\n");
+            sb.Append("  BalconyCount: ").Append(BalconyCount).Append("\n");
+            sb.Append("  BalconyTerraceSqm: ").Append(BalconyTerraceSqm).Append("\n");
             sb.Append("  Bathrooms: ").Append(Bathrooms).Append("\n");
             sb.Append("  Bedrooms: ").Append(Bedrooms).Append("\n");
+            sb.Append("  BuildingAmenities: ").Append(BuildingAmenities).Append("\n");
+            sb.Append("  CellarSqm: ").Append(CellarSqm).Append("\n");
             sb.Append("  Condition: ").Append(Condition).Append("\n");
+            sb.Append("  ConstructionPhase: ").Append(ConstructionPhase).Append("\n");
             sb.Append("  ConstructionType: ").Append(ConstructionType).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
+            sb.Append("  DescriptionFittings: ").Append(DescriptionFittings).Append("\n");
+            sb.Append("  DescriptionLocation: ").Append(DescriptionLocation).Append("\n");
+            sb.Append("  DescriptionOther: ").Append(DescriptionOther).Append("\n");
+            sb.Append("  EnergyCertificateIssuedAt: ").Append(EnergyCertificateIssuedAt).Append("\n");
+            sb.Append("  EnergyCertificateType: ").Append(EnergyCertificateType).Append("\n");
+            sb.Append("  EnergyCertificateValidUntil: ").Append(EnergyCertificateValidUntil).Append("\n");
+            sb.Append("  EnergyCo2Emissions: ").Append(EnergyCo2Emissions).Append("\n");
             sb.Append("  EnergyConsumptionKwh: ").Append(EnergyConsumptionKwh).Append("\n");
+            sb.Append("  EnergyDemandKwh: ").Append(EnergyDemandKwh).Append("\n");
+            sb.Append("  EnergyIncludesHotWater: ").Append(EnergyIncludesHotWater).Append("\n");
             sb.Append("  EnergyLabel: ").Append(EnergyLabel).Append("\n");
+            sb.Append("  EnergyPrimaryCarrier: ").Append(EnergyPrimaryCarrier).Append("\n");
+            sb.Append("  ExteriorFeatures: ").Append(ExteriorFeatures).Append("\n");
             sb.Append("  ExternalId: ").Append(ExternalId).Append("\n");
             sb.Append("  Floor: ").Append(Floor).Append("\n");
+            sb.Append("  Flooring: ").Append(Flooring).Append("\n");
             sb.Append("  FloorsInBuilding: ").Append(FloorsInBuilding).Append("\n");
+            sb.Append("  GardenSqm: ").Append(GardenSqm).Append("\n");
             sb.Append("  HalfBathrooms: ").Append(HalfBathrooms).Append("\n");
+            sb.Append("  HasAirConditioning: ").Append(HasAirConditioning).Append("\n");
+            sb.Append("  HasAlarmSystem: ").Append(HasAlarmSystem).Append("\n");
+            sb.Append("  HasBalcony: ").Append(HasBalcony).Append("\n");
+            sb.Append("  HasCellar: ").Append(HasCellar).Append("\n");
+            sb.Append("  HasFireplace: ").Append(HasFireplace).Append("\n");
+            sb.Append("  HasFittedKitchen: ").Append(HasFittedKitchen).Append("\n");
+            sb.Append("  HasGarden: ").Append(HasGarden).Append("\n");
+            sb.Append("  HasGuestToilet: ").Append(HasGuestToilet).Append("\n");
+            sb.Append("  HasLift: ").Append(HasLift).Append("\n");
+            sb.Append("  HasPool: ").Append(HasPool).Append("\n");
+            sb.Append("  HasSauna: ").Append(HasSauna).Append("\n");
+            sb.Append("  HasSolarPanels: ").Append(HasSolarPanels).Append("\n");
+            sb.Append("  HasTerrace: ").Append(HasTerrace).Append("\n");
             sb.Append("  HeatingType: ").Append(HeatingType).Append("\n");
+            sb.Append("  Images: ").Append(Images).Append("\n");
+            sb.Append("  InteriorFeatures: ").Append(InteriorFeatures).Append("\n");
+            sb.Append("  IsBarrierFree: ").Append(IsBarrierFree).Append("\n");
+            sb.Append("  IsFurnished: ").Append(IsFurnished).Append("\n");
+            sb.Append("  IsLeasehold: ").Append(IsLeasehold).Append("\n");
+            sb.Append("  IsMonumentProtected: ").Append(IsMonumentProtected).Append("\n");
+            sb.Append("  KitchenType: ").Append(KitchenType).Append("\n");
             sb.Append("  Latitude: ").Append(Latitude).Append("\n");
             sb.Append("  Listing: ").Append(Listing).Append("\n");
             sb.Append("  LivingAreaSqm: ").Append(LivingAreaSqm).Append("\n");
             sb.Append("  LocationPrecision: ").Append(LocationPrecision).Append("\n");
             sb.Append("  Longitude: ").Append(Longitude).Append("\n");
+            sb.Append("  OfficeAreaSqm: ").Append(OfficeAreaSqm).Append("\n");
+            sb.Append("  OtherAreaSqm: ").Append(OtherAreaSqm).Append("\n");
+            sb.Append("  ParkingIncluded: ").Append(ParkingIncluded).Append("\n");
+            sb.Append("  ParkingSpaceCount: ").Append(ParkingSpaceCount).Append("\n");
+            sb.Append("  ParkingType: ").Append(ParkingType).Append("\n");
             sb.Append("  PlotAreaSqm: ").Append(PlotAreaSqm).Append("\n");
+            sb.Append("  PropertySubtype: ").Append(PropertySubtype).Append("\n");
+            sb.Append("  PublishAddress: ").Append(PublishAddress).Append("\n");
+            sb.Append("  RetailAreaSqm: ").Append(RetailAreaSqm).Append("\n");
+            sb.Append("  StorageAreaSqm: ").Append(StorageAreaSqm).Append("\n");
+            sb.Append("  Surroundings: ").Append(Surroundings).Append("\n");
+            sb.Append("  TerraceCount: ").Append(TerraceCount).Append("\n");
             sb.Append("  Title: ").Append(Title).Append("\n");
+            sb.Append("  TotalAreaSqm: ").Append(TotalAreaSqm).Append("\n");
             sb.Append("  TotalRooms: ").Append(TotalRooms).Append("\n");
+            sb.Append("  Translations: ").Append(Translations).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  UsableAreaSqm: ").Append(UsableAreaSqm).Append("\n");
+            sb.Append("  WindowGlazing: ").Append(WindowGlazing).Append("\n");
             sb.Append("  YearBuilt: ").Append(YearBuilt).Append("\n");
             sb.Append("  YearRenovated: ").Append(YearRenovated).Append("\n");
             sb.Append("}\n");
@@ -599,28 +1447,81 @@ namespace Skautik.Sdk.Model
             Option<string?> addressPostalCode = default;
             Option<string?> addressProvince = default;
             Option<string?> addressStreet = default;
+            Option<decimal?> atticSqm = default;
+            Option<int?> balconyCount = default;
+            Option<decimal?> balconyTerraceSqm = default;
             Option<int?> bathrooms = default;
             Option<int?> bedrooms = default;
+            Option<List<string>?> buildingAmenities = default;
+            Option<decimal?> cellarSqm = default;
             Option<string?> condition = default;
+            Option<string?> constructionPhase = default;
             Option<string?> constructionType = default;
             Option<string?> description = default;
+            Option<string?> descriptionFittings = default;
+            Option<string?> descriptionLocation = default;
+            Option<string?> descriptionOther = default;
+            Option<string?> energyCertificateIssuedAt = default;
+            Option<string?> energyCertificateType = default;
+            Option<string?> energyCertificateValidUntil = default;
+            Option<decimal?> energyCo2Emissions = default;
             Option<decimal?> energyConsumptionKwh = default;
+            Option<decimal?> energyDemandKwh = default;
+            Option<bool?> energyIncludesHotWater = default;
             Option<string?> energyLabel = default;
+            Option<string?> energyPrimaryCarrier = default;
+            Option<List<string>?> exteriorFeatures = default;
             Option<string?> externalId = default;
             Option<int?> floor = default;
+            Option<string?> flooring = default;
             Option<int?> floorsInBuilding = default;
+            Option<decimal?> gardenSqm = default;
             Option<int?> halfBathrooms = default;
+            Option<bool?> hasAirConditioning = default;
+            Option<bool?> hasAlarmSystem = default;
+            Option<bool?> hasBalcony = default;
+            Option<bool?> hasCellar = default;
+            Option<bool?> hasFireplace = default;
+            Option<bool?> hasFittedKitchen = default;
+            Option<bool?> hasGarden = default;
+            Option<bool?> hasGuestToilet = default;
+            Option<bool?> hasLift = default;
+            Option<bool?> hasPool = default;
+            Option<bool?> hasSauna = default;
+            Option<bool?> hasSolarPanels = default;
+            Option<bool?> hasTerrace = default;
             Option<string?> heatingType = default;
+            Option<List<ImageInput>?> images = default;
+            Option<List<string>?> interiorFeatures = default;
+            Option<bool?> isBarrierFree = default;
+            Option<bool?> isFurnished = default;
+            Option<bool?> isLeasehold = default;
+            Option<bool?> isMonumentProtected = default;
+            Option<string?> kitchenType = default;
             Option<decimal?> latitude = default;
             Option<ListingInput?> listing = default;
             Option<decimal?> livingAreaSqm = default;
             Option<string?> locationPrecision = default;
             Option<decimal?> longitude = default;
+            Option<decimal?> officeAreaSqm = default;
+            Option<decimal?> otherAreaSqm = default;
+            Option<bool?> parkingIncluded = default;
+            Option<int?> parkingSpaceCount = default;
+            Option<string?> parkingType = default;
             Option<decimal?> plotAreaSqm = default;
+            Option<string?> propertySubtype = default;
+            Option<bool?> publishAddress = default;
+            Option<decimal?> retailAreaSqm = default;
+            Option<decimal?> storageAreaSqm = default;
+            Option<List<string>?> surroundings = default;
+            Option<int?> terraceCount = default;
             Option<string?> title = default;
+            Option<decimal?> totalAreaSqm = default;
             Option<int?> totalRooms = default;
+            Option<List<Translation>?> translations = default;
             Option<string?> type = default;
             Option<decimal?> usableAreaSqm = default;
+            Option<string?> windowGlazing = default;
             Option<int?> yearBuilt = default;
             Option<int?> yearRenovated = default;
 
@@ -660,14 +1561,32 @@ namespace Skautik.Sdk.Model
                         case "address_street":
                             addressStreet = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
+                        case "attic_sqm":
+                            atticSqm = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
+                            break;
+                        case "balcony_count":
+                            balconyCount = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
+                            break;
+                        case "balcony_terrace_sqm":
+                            balconyTerraceSqm = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
+                            break;
                         case "bathrooms":
                             bathrooms = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
                             break;
                         case "bedrooms":
                             bedrooms = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
                             break;
+                        case "building_amenities":
+                            buildingAmenities = new Option<List<string>?>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
+                        case "cellar_sqm":
+                            cellarSqm = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
+                            break;
                         case "condition":
                             condition = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
+                        case "construction_phase":
+                            constructionPhase = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "construction_type":
                             constructionType = new Option<string?>(utf8JsonReader.GetString()!);
@@ -675,11 +1594,44 @@ namespace Skautik.Sdk.Model
                         case "description":
                             description = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
+                        case "description_fittings":
+                            descriptionFittings = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
+                        case "description_location":
+                            descriptionLocation = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
+                        case "description_other":
+                            descriptionOther = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
+                        case "energy_certificate_issued_at":
+                            energyCertificateIssuedAt = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
+                        case "energy_certificate_type":
+                            energyCertificateType = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
+                        case "energy_certificate_valid_until":
+                            energyCertificateValidUntil = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
+                        case "energy_co2_emissions":
+                            energyCo2Emissions = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
+                            break;
                         case "energy_consumption_kwh":
                             energyConsumptionKwh = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
+                        case "energy_demand_kwh":
+                            energyDemandKwh = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
+                            break;
+                        case "energy_includes_hot_water":
+                            energyIncludesHotWater = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
                         case "energy_label":
                             energyLabel = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
+                        case "energy_primary_carrier":
+                            energyPrimaryCarrier = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
+                        case "exterior_features":
+                            exteriorFeatures = new Option<List<string>?>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         case "external_id":
                             externalId = new Option<string?>(utf8JsonReader.GetString()!);
@@ -687,14 +1639,80 @@ namespace Skautik.Sdk.Model
                         case "floor":
                             floor = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
                             break;
+                        case "flooring":
+                            flooring = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
                         case "floors_in_building":
                             floorsInBuilding = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
+                            break;
+                        case "garden_sqm":
+                            gardenSqm = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "half_bathrooms":
                             halfBathrooms = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
                             break;
+                        case "has_air_conditioning":
+                            hasAirConditioning = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
+                        case "has_alarm_system":
+                            hasAlarmSystem = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
+                        case "has_balcony":
+                            hasBalcony = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
+                        case "has_cellar":
+                            hasCellar = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
+                        case "has_fireplace":
+                            hasFireplace = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
+                        case "has_fitted_kitchen":
+                            hasFittedKitchen = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
+                        case "has_garden":
+                            hasGarden = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
+                        case "has_guest_toilet":
+                            hasGuestToilet = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
+                        case "has_lift":
+                            hasLift = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
+                        case "has_pool":
+                            hasPool = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
+                        case "has_sauna":
+                            hasSauna = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
+                        case "has_solar_panels":
+                            hasSolarPanels = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
+                        case "has_terrace":
+                            hasTerrace = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
                         case "heating_type":
                             heatingType = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
+                        case "images":
+                            images = new Option<List<ImageInput>?>(JsonSerializer.Deserialize<List<ImageInput>>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
+                        case "interior_features":
+                            interiorFeatures = new Option<List<string>?>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
+                        case "is_barrier_free":
+                            isBarrierFree = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
+                        case "is_furnished":
+                            isFurnished = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
+                        case "is_leasehold":
+                            isLeasehold = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
+                        case "is_monument_protected":
+                            isMonumentProtected = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
+                        case "kitchen_type":
+                            kitchenType = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "latitude":
                             latitude = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
@@ -711,20 +1729,62 @@ namespace Skautik.Sdk.Model
                         case "longitude":
                             longitude = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
+                        case "office_area_sqm":
+                            officeAreaSqm = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
+                            break;
+                        case "other_area_sqm":
+                            otherAreaSqm = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
+                            break;
+                        case "parking_included":
+                            parkingIncluded = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
+                        case "parking_space_count":
+                            parkingSpaceCount = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
+                            break;
+                        case "parking_type":
+                            parkingType = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
                         case "plot_area_sqm":
                             plotAreaSqm = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
+                            break;
+                        case "property_subtype":
+                            propertySubtype = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
+                        case "publish_address":
+                            publishAddress = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
+                        case "retail_area_sqm":
+                            retailAreaSqm = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
+                            break;
+                        case "storage_area_sqm":
+                            storageAreaSqm = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
+                            break;
+                        case "surroundings":
+                            surroundings = new Option<List<string>?>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
+                        case "terrace_count":
+                            terraceCount = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
                             break;
                         case "title":
                             title = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
+                        case "total_area_sqm":
+                            totalAreaSqm = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
+                            break;
                         case "total_rooms":
                             totalRooms = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
+                            break;
+                        case "translations":
+                            translations = new Option<List<Translation>?>(JsonSerializer.Deserialize<List<Translation>>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         case "type":
                             type = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "usable_area_sqm":
                             usableAreaSqm = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
+                            break;
+                        case "window_glazing":
+                            windowGlazing = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "year_built":
                             yearBuilt = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
@@ -759,14 +1819,32 @@ namespace Skautik.Sdk.Model
             if (addressStreet.IsSet && addressStreet.Value == null)
                 throw new ArgumentNullException(nameof(addressStreet), "Property is not nullable for class PropertyInput.");
 
+            if (atticSqm.IsSet && atticSqm.Value == null)
+                throw new ArgumentNullException(nameof(atticSqm), "Property is not nullable for class PropertyInput.");
+
+            if (balconyCount.IsSet && balconyCount.Value == null)
+                throw new ArgumentNullException(nameof(balconyCount), "Property is not nullable for class PropertyInput.");
+
+            if (balconyTerraceSqm.IsSet && balconyTerraceSqm.Value == null)
+                throw new ArgumentNullException(nameof(balconyTerraceSqm), "Property is not nullable for class PropertyInput.");
+
             if (bathrooms.IsSet && bathrooms.Value == null)
                 throw new ArgumentNullException(nameof(bathrooms), "Property is not nullable for class PropertyInput.");
 
             if (bedrooms.IsSet && bedrooms.Value == null)
                 throw new ArgumentNullException(nameof(bedrooms), "Property is not nullable for class PropertyInput.");
 
+            if (buildingAmenities.IsSet && buildingAmenities.Value == null)
+                throw new ArgumentNullException(nameof(buildingAmenities), "Property is not nullable for class PropertyInput.");
+
+            if (cellarSqm.IsSet && cellarSqm.Value == null)
+                throw new ArgumentNullException(nameof(cellarSqm), "Property is not nullable for class PropertyInput.");
+
             if (condition.IsSet && condition.Value == null)
                 throw new ArgumentNullException(nameof(condition), "Property is not nullable for class PropertyInput.");
+
+            if (constructionPhase.IsSet && constructionPhase.Value == null)
+                throw new ArgumentNullException(nameof(constructionPhase), "Property is not nullable for class PropertyInput.");
 
             if (constructionType.IsSet && constructionType.Value == null)
                 throw new ArgumentNullException(nameof(constructionType), "Property is not nullable for class PropertyInput.");
@@ -774,11 +1852,44 @@ namespace Skautik.Sdk.Model
             if (description.IsSet && description.Value == null)
                 throw new ArgumentNullException(nameof(description), "Property is not nullable for class PropertyInput.");
 
+            if (descriptionFittings.IsSet && descriptionFittings.Value == null)
+                throw new ArgumentNullException(nameof(descriptionFittings), "Property is not nullable for class PropertyInput.");
+
+            if (descriptionLocation.IsSet && descriptionLocation.Value == null)
+                throw new ArgumentNullException(nameof(descriptionLocation), "Property is not nullable for class PropertyInput.");
+
+            if (descriptionOther.IsSet && descriptionOther.Value == null)
+                throw new ArgumentNullException(nameof(descriptionOther), "Property is not nullable for class PropertyInput.");
+
+            if (energyCertificateIssuedAt.IsSet && energyCertificateIssuedAt.Value == null)
+                throw new ArgumentNullException(nameof(energyCertificateIssuedAt), "Property is not nullable for class PropertyInput.");
+
+            if (energyCertificateType.IsSet && energyCertificateType.Value == null)
+                throw new ArgumentNullException(nameof(energyCertificateType), "Property is not nullable for class PropertyInput.");
+
+            if (energyCertificateValidUntil.IsSet && energyCertificateValidUntil.Value == null)
+                throw new ArgumentNullException(nameof(energyCertificateValidUntil), "Property is not nullable for class PropertyInput.");
+
+            if (energyCo2Emissions.IsSet && energyCo2Emissions.Value == null)
+                throw new ArgumentNullException(nameof(energyCo2Emissions), "Property is not nullable for class PropertyInput.");
+
             if (energyConsumptionKwh.IsSet && energyConsumptionKwh.Value == null)
                 throw new ArgumentNullException(nameof(energyConsumptionKwh), "Property is not nullable for class PropertyInput.");
 
+            if (energyDemandKwh.IsSet && energyDemandKwh.Value == null)
+                throw new ArgumentNullException(nameof(energyDemandKwh), "Property is not nullable for class PropertyInput.");
+
+            if (energyIncludesHotWater.IsSet && energyIncludesHotWater.Value == null)
+                throw new ArgumentNullException(nameof(energyIncludesHotWater), "Property is not nullable for class PropertyInput.");
+
             if (energyLabel.IsSet && energyLabel.Value == null)
                 throw new ArgumentNullException(nameof(energyLabel), "Property is not nullable for class PropertyInput.");
+
+            if (energyPrimaryCarrier.IsSet && energyPrimaryCarrier.Value == null)
+                throw new ArgumentNullException(nameof(energyPrimaryCarrier), "Property is not nullable for class PropertyInput.");
+
+            if (exteriorFeatures.IsSet && exteriorFeatures.Value == null)
+                throw new ArgumentNullException(nameof(exteriorFeatures), "Property is not nullable for class PropertyInput.");
 
             if (externalId.IsSet && externalId.Value == null)
                 throw new ArgumentNullException(nameof(externalId), "Property is not nullable for class PropertyInput.");
@@ -786,14 +1897,80 @@ namespace Skautik.Sdk.Model
             if (floor.IsSet && floor.Value == null)
                 throw new ArgumentNullException(nameof(floor), "Property is not nullable for class PropertyInput.");
 
+            if (flooring.IsSet && flooring.Value == null)
+                throw new ArgumentNullException(nameof(flooring), "Property is not nullable for class PropertyInput.");
+
             if (floorsInBuilding.IsSet && floorsInBuilding.Value == null)
                 throw new ArgumentNullException(nameof(floorsInBuilding), "Property is not nullable for class PropertyInput.");
+
+            if (gardenSqm.IsSet && gardenSqm.Value == null)
+                throw new ArgumentNullException(nameof(gardenSqm), "Property is not nullable for class PropertyInput.");
 
             if (halfBathrooms.IsSet && halfBathrooms.Value == null)
                 throw new ArgumentNullException(nameof(halfBathrooms), "Property is not nullable for class PropertyInput.");
 
+            if (hasAirConditioning.IsSet && hasAirConditioning.Value == null)
+                throw new ArgumentNullException(nameof(hasAirConditioning), "Property is not nullable for class PropertyInput.");
+
+            if (hasAlarmSystem.IsSet && hasAlarmSystem.Value == null)
+                throw new ArgumentNullException(nameof(hasAlarmSystem), "Property is not nullable for class PropertyInput.");
+
+            if (hasBalcony.IsSet && hasBalcony.Value == null)
+                throw new ArgumentNullException(nameof(hasBalcony), "Property is not nullable for class PropertyInput.");
+
+            if (hasCellar.IsSet && hasCellar.Value == null)
+                throw new ArgumentNullException(nameof(hasCellar), "Property is not nullable for class PropertyInput.");
+
+            if (hasFireplace.IsSet && hasFireplace.Value == null)
+                throw new ArgumentNullException(nameof(hasFireplace), "Property is not nullable for class PropertyInput.");
+
+            if (hasFittedKitchen.IsSet && hasFittedKitchen.Value == null)
+                throw new ArgumentNullException(nameof(hasFittedKitchen), "Property is not nullable for class PropertyInput.");
+
+            if (hasGarden.IsSet && hasGarden.Value == null)
+                throw new ArgumentNullException(nameof(hasGarden), "Property is not nullable for class PropertyInput.");
+
+            if (hasGuestToilet.IsSet && hasGuestToilet.Value == null)
+                throw new ArgumentNullException(nameof(hasGuestToilet), "Property is not nullable for class PropertyInput.");
+
+            if (hasLift.IsSet && hasLift.Value == null)
+                throw new ArgumentNullException(nameof(hasLift), "Property is not nullable for class PropertyInput.");
+
+            if (hasPool.IsSet && hasPool.Value == null)
+                throw new ArgumentNullException(nameof(hasPool), "Property is not nullable for class PropertyInput.");
+
+            if (hasSauna.IsSet && hasSauna.Value == null)
+                throw new ArgumentNullException(nameof(hasSauna), "Property is not nullable for class PropertyInput.");
+
+            if (hasSolarPanels.IsSet && hasSolarPanels.Value == null)
+                throw new ArgumentNullException(nameof(hasSolarPanels), "Property is not nullable for class PropertyInput.");
+
+            if (hasTerrace.IsSet && hasTerrace.Value == null)
+                throw new ArgumentNullException(nameof(hasTerrace), "Property is not nullable for class PropertyInput.");
+
             if (heatingType.IsSet && heatingType.Value == null)
                 throw new ArgumentNullException(nameof(heatingType), "Property is not nullable for class PropertyInput.");
+
+            if (images.IsSet && images.Value == null)
+                throw new ArgumentNullException(nameof(images), "Property is not nullable for class PropertyInput.");
+
+            if (interiorFeatures.IsSet && interiorFeatures.Value == null)
+                throw new ArgumentNullException(nameof(interiorFeatures), "Property is not nullable for class PropertyInput.");
+
+            if (isBarrierFree.IsSet && isBarrierFree.Value == null)
+                throw new ArgumentNullException(nameof(isBarrierFree), "Property is not nullable for class PropertyInput.");
+
+            if (isFurnished.IsSet && isFurnished.Value == null)
+                throw new ArgumentNullException(nameof(isFurnished), "Property is not nullable for class PropertyInput.");
+
+            if (isLeasehold.IsSet && isLeasehold.Value == null)
+                throw new ArgumentNullException(nameof(isLeasehold), "Property is not nullable for class PropertyInput.");
+
+            if (isMonumentProtected.IsSet && isMonumentProtected.Value == null)
+                throw new ArgumentNullException(nameof(isMonumentProtected), "Property is not nullable for class PropertyInput.");
+
+            if (kitchenType.IsSet && kitchenType.Value == null)
+                throw new ArgumentNullException(nameof(kitchenType), "Property is not nullable for class PropertyInput.");
 
             if (latitude.IsSet && latitude.Value == null)
                 throw new ArgumentNullException(nameof(latitude), "Property is not nullable for class PropertyInput.");
@@ -810,14 +1987,53 @@ namespace Skautik.Sdk.Model
             if (longitude.IsSet && longitude.Value == null)
                 throw new ArgumentNullException(nameof(longitude), "Property is not nullable for class PropertyInput.");
 
+            if (officeAreaSqm.IsSet && officeAreaSqm.Value == null)
+                throw new ArgumentNullException(nameof(officeAreaSqm), "Property is not nullable for class PropertyInput.");
+
+            if (otherAreaSqm.IsSet && otherAreaSqm.Value == null)
+                throw new ArgumentNullException(nameof(otherAreaSqm), "Property is not nullable for class PropertyInput.");
+
+            if (parkingIncluded.IsSet && parkingIncluded.Value == null)
+                throw new ArgumentNullException(nameof(parkingIncluded), "Property is not nullable for class PropertyInput.");
+
+            if (parkingSpaceCount.IsSet && parkingSpaceCount.Value == null)
+                throw new ArgumentNullException(nameof(parkingSpaceCount), "Property is not nullable for class PropertyInput.");
+
+            if (parkingType.IsSet && parkingType.Value == null)
+                throw new ArgumentNullException(nameof(parkingType), "Property is not nullable for class PropertyInput.");
+
             if (plotAreaSqm.IsSet && plotAreaSqm.Value == null)
                 throw new ArgumentNullException(nameof(plotAreaSqm), "Property is not nullable for class PropertyInput.");
+
+            if (propertySubtype.IsSet && propertySubtype.Value == null)
+                throw new ArgumentNullException(nameof(propertySubtype), "Property is not nullable for class PropertyInput.");
+
+            if (publishAddress.IsSet && publishAddress.Value == null)
+                throw new ArgumentNullException(nameof(publishAddress), "Property is not nullable for class PropertyInput.");
+
+            if (retailAreaSqm.IsSet && retailAreaSqm.Value == null)
+                throw new ArgumentNullException(nameof(retailAreaSqm), "Property is not nullable for class PropertyInput.");
+
+            if (storageAreaSqm.IsSet && storageAreaSqm.Value == null)
+                throw new ArgumentNullException(nameof(storageAreaSqm), "Property is not nullable for class PropertyInput.");
+
+            if (surroundings.IsSet && surroundings.Value == null)
+                throw new ArgumentNullException(nameof(surroundings), "Property is not nullable for class PropertyInput.");
+
+            if (terraceCount.IsSet && terraceCount.Value == null)
+                throw new ArgumentNullException(nameof(terraceCount), "Property is not nullable for class PropertyInput.");
 
             if (title.IsSet && title.Value == null)
                 throw new ArgumentNullException(nameof(title), "Property is not nullable for class PropertyInput.");
 
+            if (totalAreaSqm.IsSet && totalAreaSqm.Value == null)
+                throw new ArgumentNullException(nameof(totalAreaSqm), "Property is not nullable for class PropertyInput.");
+
             if (totalRooms.IsSet && totalRooms.Value == null)
                 throw new ArgumentNullException(nameof(totalRooms), "Property is not nullable for class PropertyInput.");
+
+            if (translations.IsSet && translations.Value == null)
+                throw new ArgumentNullException(nameof(translations), "Property is not nullable for class PropertyInput.");
 
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class PropertyInput.");
@@ -825,13 +2041,16 @@ namespace Skautik.Sdk.Model
             if (usableAreaSqm.IsSet && usableAreaSqm.Value == null)
                 throw new ArgumentNullException(nameof(usableAreaSqm), "Property is not nullable for class PropertyInput.");
 
+            if (windowGlazing.IsSet && windowGlazing.Value == null)
+                throw new ArgumentNullException(nameof(windowGlazing), "Property is not nullable for class PropertyInput.");
+
             if (yearBuilt.IsSet && yearBuilt.Value == null)
                 throw new ArgumentNullException(nameof(yearBuilt), "Property is not nullable for class PropertyInput.");
 
             if (yearRenovated.IsSet && yearRenovated.Value == null)
                 throw new ArgumentNullException(nameof(yearRenovated), "Property is not nullable for class PropertyInput.");
 
-            return new PropertyInput(addressCity, addressCountry, addressDistrict, addressNumber, addressPostalCode, addressProvince, addressStreet, bathrooms, bedrooms, condition, constructionType, description, energyConsumptionKwh, energyLabel, externalId, floor, floorsInBuilding, halfBathrooms, heatingType, latitude, listing, livingAreaSqm, locationPrecision, longitude, plotAreaSqm, title, totalRooms, type, usableAreaSqm, yearBuilt, yearRenovated);
+            return new PropertyInput(addressCity, addressCountry, addressDistrict, addressNumber, addressPostalCode, addressProvince, addressStreet, atticSqm, balconyCount, balconyTerraceSqm, bathrooms, bedrooms, buildingAmenities, cellarSqm, condition, constructionPhase, constructionType, description, descriptionFittings, descriptionLocation, descriptionOther, energyCertificateIssuedAt, energyCertificateType, energyCertificateValidUntil, energyCo2Emissions, energyConsumptionKwh, energyDemandKwh, energyIncludesHotWater, energyLabel, energyPrimaryCarrier, exteriorFeatures, externalId, floor, flooring, floorsInBuilding, gardenSqm, halfBathrooms, hasAirConditioning, hasAlarmSystem, hasBalcony, hasCellar, hasFireplace, hasFittedKitchen, hasGarden, hasGuestToilet, hasLift, hasPool, hasSauna, hasSolarPanels, hasTerrace, heatingType, images, interiorFeatures, isBarrierFree, isFurnished, isLeasehold, isMonumentProtected, kitchenType, latitude, listing, livingAreaSqm, locationPrecision, longitude, officeAreaSqm, otherAreaSqm, parkingIncluded, parkingSpaceCount, parkingType, plotAreaSqm, propertySubtype, publishAddress, retailAreaSqm, storageAreaSqm, surroundings, terraceCount, title, totalAreaSqm, totalRooms, translations, type, usableAreaSqm, windowGlazing, yearBuilt, yearRenovated);
         }
 
         /// <summary>
@@ -879,8 +2098,14 @@ namespace Skautik.Sdk.Model
             if (propertyInput.AddressStreetOption.IsSet && propertyInput.AddressStreet == null)
                 throw new ArgumentNullException(nameof(propertyInput.AddressStreet), "Property is required for class PropertyInput.");
 
+            if (propertyInput.BuildingAmenitiesOption.IsSet && propertyInput.BuildingAmenities == null)
+                throw new ArgumentNullException(nameof(propertyInput.BuildingAmenities), "Property is required for class PropertyInput.");
+
             if (propertyInput.ConditionOption.IsSet && propertyInput.Condition == null)
                 throw new ArgumentNullException(nameof(propertyInput.Condition), "Property is required for class PropertyInput.");
+
+            if (propertyInput.ConstructionPhaseOption.IsSet && propertyInput.ConstructionPhase == null)
+                throw new ArgumentNullException(nameof(propertyInput.ConstructionPhase), "Property is required for class PropertyInput.");
 
             if (propertyInput.ConstructionTypeOption.IsSet && propertyInput.ConstructionType == null)
                 throw new ArgumentNullException(nameof(propertyInput.ConstructionType), "Property is required for class PropertyInput.");
@@ -888,14 +2113,50 @@ namespace Skautik.Sdk.Model
             if (propertyInput.DescriptionOption.IsSet && propertyInput.Description == null)
                 throw new ArgumentNullException(nameof(propertyInput.Description), "Property is required for class PropertyInput.");
 
+            if (propertyInput.DescriptionFittingsOption.IsSet && propertyInput.DescriptionFittings == null)
+                throw new ArgumentNullException(nameof(propertyInput.DescriptionFittings), "Property is required for class PropertyInput.");
+
+            if (propertyInput.DescriptionLocationOption.IsSet && propertyInput.DescriptionLocation == null)
+                throw new ArgumentNullException(nameof(propertyInput.DescriptionLocation), "Property is required for class PropertyInput.");
+
+            if (propertyInput.DescriptionOtherOption.IsSet && propertyInput.DescriptionOther == null)
+                throw new ArgumentNullException(nameof(propertyInput.DescriptionOther), "Property is required for class PropertyInput.");
+
+            if (propertyInput.EnergyCertificateIssuedAtOption.IsSet && propertyInput.EnergyCertificateIssuedAt == null)
+                throw new ArgumentNullException(nameof(propertyInput.EnergyCertificateIssuedAt), "Property is required for class PropertyInput.");
+
+            if (propertyInput.EnergyCertificateTypeOption.IsSet && propertyInput.EnergyCertificateType == null)
+                throw new ArgumentNullException(nameof(propertyInput.EnergyCertificateType), "Property is required for class PropertyInput.");
+
+            if (propertyInput.EnergyCertificateValidUntilOption.IsSet && propertyInput.EnergyCertificateValidUntil == null)
+                throw new ArgumentNullException(nameof(propertyInput.EnergyCertificateValidUntil), "Property is required for class PropertyInput.");
+
             if (propertyInput.EnergyLabelOption.IsSet && propertyInput.EnergyLabel == null)
                 throw new ArgumentNullException(nameof(propertyInput.EnergyLabel), "Property is required for class PropertyInput.");
+
+            if (propertyInput.EnergyPrimaryCarrierOption.IsSet && propertyInput.EnergyPrimaryCarrier == null)
+                throw new ArgumentNullException(nameof(propertyInput.EnergyPrimaryCarrier), "Property is required for class PropertyInput.");
+
+            if (propertyInput.ExteriorFeaturesOption.IsSet && propertyInput.ExteriorFeatures == null)
+                throw new ArgumentNullException(nameof(propertyInput.ExteriorFeatures), "Property is required for class PropertyInput.");
 
             if (propertyInput.ExternalIdOption.IsSet && propertyInput.ExternalId == null)
                 throw new ArgumentNullException(nameof(propertyInput.ExternalId), "Property is required for class PropertyInput.");
 
+            if (propertyInput.FlooringOption.IsSet && propertyInput.Flooring == null)
+                throw new ArgumentNullException(nameof(propertyInput.Flooring), "Property is required for class PropertyInput.");
+
             if (propertyInput.HeatingTypeOption.IsSet && propertyInput.HeatingType == null)
                 throw new ArgumentNullException(nameof(propertyInput.HeatingType), "Property is required for class PropertyInput.");
+
+            if (propertyInput.ImagesOption.IsSet && propertyInput.Images == null)
+                throw new ArgumentNullException(nameof(propertyInput.Images), "Property is required for class PropertyInput.");
+
+            if (propertyInput.InteriorFeaturesOption.IsSet && propertyInput.InteriorFeatures == null)
+                throw new ArgumentNullException(nameof(propertyInput.InteriorFeatures), "Property is required for class PropertyInput.");
+
+            if (propertyInput.KitchenTypeOption.IsSet && propertyInput.KitchenType == null)
+                throw new ArgumentNullException(nameof(propertyInput.KitchenType), "Property is required for class PropertyInput.");
 
             if (propertyInput.ListingOption.IsSet && propertyInput.Listing == null)
                 throw new ArgumentNullException(nameof(propertyInput.Listing), "Property is required for class PropertyInput.");
@@ -903,11 +2164,26 @@ namespace Skautik.Sdk.Model
             if (propertyInput.LocationPrecisionOption.IsSet && propertyInput.LocationPrecision == null)
                 throw new ArgumentNullException(nameof(propertyInput.LocationPrecision), "Property is required for class PropertyInput.");
 
+            if (propertyInput.ParkingTypeOption.IsSet && propertyInput.ParkingType == null)
+                throw new ArgumentNullException(nameof(propertyInput.ParkingType), "Property is required for class PropertyInput.");
+
+            if (propertyInput.PropertySubtypeOption.IsSet && propertyInput.PropertySubtype == null)
+                throw new ArgumentNullException(nameof(propertyInput.PropertySubtype), "Property is required for class PropertyInput.");
+
+            if (propertyInput.SurroundingsOption.IsSet && propertyInput.Surroundings == null)
+                throw new ArgumentNullException(nameof(propertyInput.Surroundings), "Property is required for class PropertyInput.");
+
             if (propertyInput.TitleOption.IsSet && propertyInput.Title == null)
                 throw new ArgumentNullException(nameof(propertyInput.Title), "Property is required for class PropertyInput.");
 
+            if (propertyInput.TranslationsOption.IsSet && propertyInput.Translations == null)
+                throw new ArgumentNullException(nameof(propertyInput.Translations), "Property is required for class PropertyInput.");
+
             if (propertyInput.TypeOption.IsSet && propertyInput.Type == null)
                 throw new ArgumentNullException(nameof(propertyInput.Type), "Property is required for class PropertyInput.");
+
+            if (propertyInput.WindowGlazingOption.IsSet && propertyInput.WindowGlazing == null)
+                throw new ArgumentNullException(nameof(propertyInput.WindowGlazing), "Property is required for class PropertyInput.");
 
             if (propertyInput.AddressCityOption.IsSet)
                 writer.WriteString("address_city", propertyInput.AddressCity);
@@ -930,14 +2206,34 @@ namespace Skautik.Sdk.Model
             if (propertyInput.AddressStreetOption.IsSet)
                 writer.WriteString("address_street", propertyInput.AddressStreet);
 
+            if (propertyInput.AtticSqmOption.IsSet)
+                writer.WriteNumber("attic_sqm", propertyInput.AtticSqmOption.Value!.Value);
+
+            if (propertyInput.BalconyCountOption.IsSet)
+                writer.WriteNumber("balcony_count", propertyInput.BalconyCountOption.Value!.Value);
+
+            if (propertyInput.BalconyTerraceSqmOption.IsSet)
+                writer.WriteNumber("balcony_terrace_sqm", propertyInput.BalconyTerraceSqmOption.Value!.Value);
+
             if (propertyInput.BathroomsOption.IsSet)
                 writer.WriteNumber("bathrooms", propertyInput.BathroomsOption.Value!.Value);
 
             if (propertyInput.BedroomsOption.IsSet)
                 writer.WriteNumber("bedrooms", propertyInput.BedroomsOption.Value!.Value);
 
+            if (propertyInput.BuildingAmenitiesOption.IsSet)
+            {
+                writer.WritePropertyName("building_amenities");
+                JsonSerializer.Serialize(writer, propertyInput.BuildingAmenities, jsonSerializerOptions);
+            }
+            if (propertyInput.CellarSqmOption.IsSet)
+                writer.WriteNumber("cellar_sqm", propertyInput.CellarSqmOption.Value!.Value);
+
             if (propertyInput.ConditionOption.IsSet)
                 writer.WriteString("condition", propertyInput.Condition);
+
+            if (propertyInput.ConstructionPhaseOption.IsSet)
+                writer.WriteString("construction_phase", propertyInput.ConstructionPhase);
 
             if (propertyInput.ConstructionTypeOption.IsSet)
                 writer.WriteString("construction_type", propertyInput.ConstructionType);
@@ -945,26 +2241,131 @@ namespace Skautik.Sdk.Model
             if (propertyInput.DescriptionOption.IsSet)
                 writer.WriteString("description", propertyInput.Description);
 
+            if (propertyInput.DescriptionFittingsOption.IsSet)
+                writer.WriteString("description_fittings", propertyInput.DescriptionFittings);
+
+            if (propertyInput.DescriptionLocationOption.IsSet)
+                writer.WriteString("description_location", propertyInput.DescriptionLocation);
+
+            if (propertyInput.DescriptionOtherOption.IsSet)
+                writer.WriteString("description_other", propertyInput.DescriptionOther);
+
+            if (propertyInput.EnergyCertificateIssuedAtOption.IsSet)
+                writer.WriteString("energy_certificate_issued_at", propertyInput.EnergyCertificateIssuedAt);
+
+            if (propertyInput.EnergyCertificateTypeOption.IsSet)
+                writer.WriteString("energy_certificate_type", propertyInput.EnergyCertificateType);
+
+            if (propertyInput.EnergyCertificateValidUntilOption.IsSet)
+                writer.WriteString("energy_certificate_valid_until", propertyInput.EnergyCertificateValidUntil);
+
+            if (propertyInput.EnergyCo2EmissionsOption.IsSet)
+                writer.WriteNumber("energy_co2_emissions", propertyInput.EnergyCo2EmissionsOption.Value!.Value);
+
             if (propertyInput.EnergyConsumptionKwhOption.IsSet)
                 writer.WriteNumber("energy_consumption_kwh", propertyInput.EnergyConsumptionKwhOption.Value!.Value);
+
+            if (propertyInput.EnergyDemandKwhOption.IsSet)
+                writer.WriteNumber("energy_demand_kwh", propertyInput.EnergyDemandKwhOption.Value!.Value);
+
+            if (propertyInput.EnergyIncludesHotWaterOption.IsSet)
+                writer.WriteBoolean("energy_includes_hot_water", propertyInput.EnergyIncludesHotWaterOption.Value!.Value);
 
             if (propertyInput.EnergyLabelOption.IsSet)
                 writer.WriteString("energy_label", propertyInput.EnergyLabel);
 
+            if (propertyInput.EnergyPrimaryCarrierOption.IsSet)
+                writer.WriteString("energy_primary_carrier", propertyInput.EnergyPrimaryCarrier);
+
+            if (propertyInput.ExteriorFeaturesOption.IsSet)
+            {
+                writer.WritePropertyName("exterior_features");
+                JsonSerializer.Serialize(writer, propertyInput.ExteriorFeatures, jsonSerializerOptions);
+            }
             if (propertyInput.ExternalIdOption.IsSet)
                 writer.WriteString("external_id", propertyInput.ExternalId);
 
             if (propertyInput.FloorOption.IsSet)
                 writer.WriteNumber("floor", propertyInput.FloorOption.Value!.Value);
 
+            if (propertyInput.FlooringOption.IsSet)
+                writer.WriteString("flooring", propertyInput.Flooring);
+
             if (propertyInput.FloorsInBuildingOption.IsSet)
                 writer.WriteNumber("floors_in_building", propertyInput.FloorsInBuildingOption.Value!.Value);
+
+            if (propertyInput.GardenSqmOption.IsSet)
+                writer.WriteNumber("garden_sqm", propertyInput.GardenSqmOption.Value!.Value);
 
             if (propertyInput.HalfBathroomsOption.IsSet)
                 writer.WriteNumber("half_bathrooms", propertyInput.HalfBathroomsOption.Value!.Value);
 
+            if (propertyInput.HasAirConditioningOption.IsSet)
+                writer.WriteBoolean("has_air_conditioning", propertyInput.HasAirConditioningOption.Value!.Value);
+
+            if (propertyInput.HasAlarmSystemOption.IsSet)
+                writer.WriteBoolean("has_alarm_system", propertyInput.HasAlarmSystemOption.Value!.Value);
+
+            if (propertyInput.HasBalconyOption.IsSet)
+                writer.WriteBoolean("has_balcony", propertyInput.HasBalconyOption.Value!.Value);
+
+            if (propertyInput.HasCellarOption.IsSet)
+                writer.WriteBoolean("has_cellar", propertyInput.HasCellarOption.Value!.Value);
+
+            if (propertyInput.HasFireplaceOption.IsSet)
+                writer.WriteBoolean("has_fireplace", propertyInput.HasFireplaceOption.Value!.Value);
+
+            if (propertyInput.HasFittedKitchenOption.IsSet)
+                writer.WriteBoolean("has_fitted_kitchen", propertyInput.HasFittedKitchenOption.Value!.Value);
+
+            if (propertyInput.HasGardenOption.IsSet)
+                writer.WriteBoolean("has_garden", propertyInput.HasGardenOption.Value!.Value);
+
+            if (propertyInput.HasGuestToiletOption.IsSet)
+                writer.WriteBoolean("has_guest_toilet", propertyInput.HasGuestToiletOption.Value!.Value);
+
+            if (propertyInput.HasLiftOption.IsSet)
+                writer.WriteBoolean("has_lift", propertyInput.HasLiftOption.Value!.Value);
+
+            if (propertyInput.HasPoolOption.IsSet)
+                writer.WriteBoolean("has_pool", propertyInput.HasPoolOption.Value!.Value);
+
+            if (propertyInput.HasSaunaOption.IsSet)
+                writer.WriteBoolean("has_sauna", propertyInput.HasSaunaOption.Value!.Value);
+
+            if (propertyInput.HasSolarPanelsOption.IsSet)
+                writer.WriteBoolean("has_solar_panels", propertyInput.HasSolarPanelsOption.Value!.Value);
+
+            if (propertyInput.HasTerraceOption.IsSet)
+                writer.WriteBoolean("has_terrace", propertyInput.HasTerraceOption.Value!.Value);
+
             if (propertyInput.HeatingTypeOption.IsSet)
                 writer.WriteString("heating_type", propertyInput.HeatingType);
+
+            if (propertyInput.ImagesOption.IsSet)
+            {
+                writer.WritePropertyName("images");
+                JsonSerializer.Serialize(writer, propertyInput.Images, jsonSerializerOptions);
+            }
+            if (propertyInput.InteriorFeaturesOption.IsSet)
+            {
+                writer.WritePropertyName("interior_features");
+                JsonSerializer.Serialize(writer, propertyInput.InteriorFeatures, jsonSerializerOptions);
+            }
+            if (propertyInput.IsBarrierFreeOption.IsSet)
+                writer.WriteBoolean("is_barrier_free", propertyInput.IsBarrierFreeOption.Value!.Value);
+
+            if (propertyInput.IsFurnishedOption.IsSet)
+                writer.WriteBoolean("is_furnished", propertyInput.IsFurnishedOption.Value!.Value);
+
+            if (propertyInput.IsLeaseholdOption.IsSet)
+                writer.WriteBoolean("is_leasehold", propertyInput.IsLeaseholdOption.Value!.Value);
+
+            if (propertyInput.IsMonumentProtectedOption.IsSet)
+                writer.WriteBoolean("is_monument_protected", propertyInput.IsMonumentProtectedOption.Value!.Value);
+
+            if (propertyInput.KitchenTypeOption.IsSet)
+                writer.WriteString("kitchen_type", propertyInput.KitchenType);
 
             if (propertyInput.LatitudeOption.IsSet)
                 writer.WriteNumber("latitude", propertyInput.LatitudeOption.Value!.Value);
@@ -983,20 +2384,66 @@ namespace Skautik.Sdk.Model
             if (propertyInput.LongitudeOption.IsSet)
                 writer.WriteNumber("longitude", propertyInput.LongitudeOption.Value!.Value);
 
+            if (propertyInput.OfficeAreaSqmOption.IsSet)
+                writer.WriteNumber("office_area_sqm", propertyInput.OfficeAreaSqmOption.Value!.Value);
+
+            if (propertyInput.OtherAreaSqmOption.IsSet)
+                writer.WriteNumber("other_area_sqm", propertyInput.OtherAreaSqmOption.Value!.Value);
+
+            if (propertyInput.ParkingIncludedOption.IsSet)
+                writer.WriteBoolean("parking_included", propertyInput.ParkingIncludedOption.Value!.Value);
+
+            if (propertyInput.ParkingSpaceCountOption.IsSet)
+                writer.WriteNumber("parking_space_count", propertyInput.ParkingSpaceCountOption.Value!.Value);
+
+            if (propertyInput.ParkingTypeOption.IsSet)
+                writer.WriteString("parking_type", propertyInput.ParkingType);
+
             if (propertyInput.PlotAreaSqmOption.IsSet)
                 writer.WriteNumber("plot_area_sqm", propertyInput.PlotAreaSqmOption.Value!.Value);
+
+            if (propertyInput.PropertySubtypeOption.IsSet)
+                writer.WriteString("property_subtype", propertyInput.PropertySubtype);
+
+            if (propertyInput.PublishAddressOption.IsSet)
+                writer.WriteBoolean("publish_address", propertyInput.PublishAddressOption.Value!.Value);
+
+            if (propertyInput.RetailAreaSqmOption.IsSet)
+                writer.WriteNumber("retail_area_sqm", propertyInput.RetailAreaSqmOption.Value!.Value);
+
+            if (propertyInput.StorageAreaSqmOption.IsSet)
+                writer.WriteNumber("storage_area_sqm", propertyInput.StorageAreaSqmOption.Value!.Value);
+
+            if (propertyInput.SurroundingsOption.IsSet)
+            {
+                writer.WritePropertyName("surroundings");
+                JsonSerializer.Serialize(writer, propertyInput.Surroundings, jsonSerializerOptions);
+            }
+            if (propertyInput.TerraceCountOption.IsSet)
+                writer.WriteNumber("terrace_count", propertyInput.TerraceCountOption.Value!.Value);
 
             if (propertyInput.TitleOption.IsSet)
                 writer.WriteString("title", propertyInput.Title);
 
+            if (propertyInput.TotalAreaSqmOption.IsSet)
+                writer.WriteNumber("total_area_sqm", propertyInput.TotalAreaSqmOption.Value!.Value);
+
             if (propertyInput.TotalRoomsOption.IsSet)
                 writer.WriteNumber("total_rooms", propertyInput.TotalRoomsOption.Value!.Value);
 
+            if (propertyInput.TranslationsOption.IsSet)
+            {
+                writer.WritePropertyName("translations");
+                JsonSerializer.Serialize(writer, propertyInput.Translations, jsonSerializerOptions);
+            }
             if (propertyInput.TypeOption.IsSet)
                 writer.WriteString("type", propertyInput.Type);
 
             if (propertyInput.UsableAreaSqmOption.IsSet)
                 writer.WriteNumber("usable_area_sqm", propertyInput.UsableAreaSqmOption.Value!.Value);
+
+            if (propertyInput.WindowGlazingOption.IsSet)
+                writer.WriteString("window_glazing", propertyInput.WindowGlazing);
 
             if (propertyInput.YearBuiltOption.IsSet)
                 writer.WriteNumber("year_built", propertyInput.YearBuiltOption.Value!.Value);

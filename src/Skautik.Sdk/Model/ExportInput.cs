@@ -33,37 +33,51 @@ namespace Skautik.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ExportInput" /> class.
         /// </summary>
+        /// <param name="format">format</param>
         /// <param name="fields">fields</param>
         /// <param name="filters">filters</param>
-        /// <param name="format">format</param>
         [JsonConstructor]
-        public ExportInput(List<string> fields, Dictionary<string, string> filters, string format)
+        public ExportInput(string format, Option<List<string>?> fields = default, Option<Dictionary<string, string>?> filters = default)
         {
-            Fields = fields;
-            Filters = filters;
             Format = format;
+            FieldsOption = fields;
+            FiltersOption = filters;
             OnCreated();
         }
 
         partial void OnCreated();
 
         /// <summary>
+        /// Gets or Sets Format
+        /// </summary>
+        [JsonPropertyName("format")]
+        public string Format { get; set; }
+
+        /// <summary>
+        /// Used to track the state of Fields
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<string>?> FieldsOption { get; private set; }
+
+        /// <summary>
         /// Gets or Sets Fields
         /// </summary>
         [JsonPropertyName("fields")]
-        public List<string> Fields { get; set; }
+        public List<string>? Fields { get { return this.FieldsOption.Value; } set { this.FieldsOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of Filters
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<Dictionary<string, string>?> FiltersOption { get; private set; }
 
         /// <summary>
         /// Gets or Sets Filters
         /// </summary>
         [JsonPropertyName("filters")]
-        public Dictionary<string, string> Filters { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Format
-        /// </summary>
-        [JsonPropertyName("format")]
-        public string Format { get; set; }
+        public Dictionary<string, string>? Filters { get { return this.FiltersOption.Value; } set { this.FiltersOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -73,9 +87,9 @@ namespace Skautik.Sdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class ExportInput {\n");
+            sb.Append("  Format: ").Append(Format).Append("\n");
             sb.Append("  Fields: ").Append(Fields).Append("\n");
             sb.Append("  Filters: ").Append(Filters).Append("\n");
-            sb.Append("  Format: ").Append(Format).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -123,9 +137,9 @@ namespace Skautik.Sdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
+            Option<string?> format = default;
             Option<List<string>?> fields = default;
             Option<Dictionary<string, string>?> filters = default;
-            Option<string?> format = default;
 
             while (utf8JsonReader.Read())
             {
@@ -142,14 +156,14 @@ namespace Skautik.Sdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
+                        case "format":
+                            format = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
                         case "fields":
                             fields = new Option<List<string>?>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         case "filters":
                             filters = new Option<Dictionary<string, string>?>(JsonSerializer.Deserialize<Dictionary<string, string>>(ref utf8JsonReader, jsonSerializerOptions)!);
-                            break;
-                        case "format":
-                            format = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         default:
                             break;
@@ -157,14 +171,11 @@ namespace Skautik.Sdk.Model
                 }
             }
 
-            if (!fields.IsSet)
-                throw new ArgumentException("Property is required for class ExportInput.", nameof(fields));
-
-            if (!filters.IsSet)
-                throw new ArgumentException("Property is required for class ExportInput.", nameof(filters));
-
             if (!format.IsSet)
                 throw new ArgumentException("Property is required for class ExportInput.", nameof(format));
+
+            if (format.IsSet && format.Value == null)
+                throw new ArgumentNullException(nameof(format), "Property is not nullable for class ExportInput.");
 
             if (fields.IsSet && fields.Value == null)
                 throw new ArgumentNullException(nameof(fields), "Property is not nullable for class ExportInput.");
@@ -172,10 +183,7 @@ namespace Skautik.Sdk.Model
             if (filters.IsSet && filters.Value == null)
                 throw new ArgumentNullException(nameof(filters), "Property is not nullable for class ExportInput.");
 
-            if (format.IsSet && format.Value == null)
-                throw new ArgumentNullException(nameof(format), "Property is not nullable for class ExportInput.");
-
-            return new ExportInput(fields.Value!, filters.Value!, format.Value!);
+            return new ExportInput(format.Value!, fields, filters);
         }
 
         /// <summary>
@@ -202,20 +210,27 @@ namespace Skautik.Sdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ExportInput exportInput, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (exportInput.Fields == null)
-                throw new ArgumentNullException(nameof(exportInput.Fields), "Property is required for class ExportInput.");
-
-            if (exportInput.Filters == null)
-                throw new ArgumentNullException(nameof(exportInput.Filters), "Property is required for class ExportInput.");
-
             if (exportInput.Format == null)
                 throw new ArgumentNullException(nameof(exportInput.Format), "Property is required for class ExportInput.");
 
-            writer.WritePropertyName("fields");
-            JsonSerializer.Serialize(writer, exportInput.Fields, jsonSerializerOptions);
-            writer.WritePropertyName("filters");
-            JsonSerializer.Serialize(writer, exportInput.Filters, jsonSerializerOptions);
+            if (exportInput.FieldsOption.IsSet && exportInput.Fields == null)
+                throw new ArgumentNullException(nameof(exportInput.Fields), "Property is required for class ExportInput.");
+
+            if (exportInput.FiltersOption.IsSet && exportInput.Filters == null)
+                throw new ArgumentNullException(nameof(exportInput.Filters), "Property is required for class ExportInput.");
+
             writer.WriteString("format", exportInput.Format);
+
+            if (exportInput.FieldsOption.IsSet)
+            {
+                writer.WritePropertyName("fields");
+                JsonSerializer.Serialize(writer, exportInput.Fields, jsonSerializerOptions);
+            }
+            if (exportInput.FiltersOption.IsSet)
+            {
+                writer.WritePropertyName("filters");
+                JsonSerializer.Serialize(writer, exportInput.Filters, jsonSerializerOptions);
+            }
         }
     }
 }

@@ -34,18 +34,18 @@ namespace Skautik.Sdk.Model
         /// Initializes a new instance of the <see cref="GenerationInput" /> class.
         /// </summary>
         /// <param name="kind">kind</param>
+        /// <param name="sourceImageId">sourceImageId</param>
         /// <param name="prompt">prompt</param>
         /// <param name="roomType">roomType</param>
-        /// <param name="sourceImageId">sourceImageId</param>
         /// <param name="style">style</param>
         [JsonConstructor]
-        public GenerationInput(string kind, string prompt, string roomType, string sourceImageId, string style)
+        public GenerationInput(string kind, string sourceImageId, Option<string?> prompt = default, Option<string?> roomType = default, Option<string?> style = default)
         {
             Kind = kind;
-            Prompt = prompt;
-            RoomType = roomType;
             SourceImageId = sourceImageId;
-            Style = style;
+            PromptOption = prompt;
+            RoomTypeOption = roomType;
+            StyleOption = style;
             OnCreated();
         }
 
@@ -58,28 +58,49 @@ namespace Skautik.Sdk.Model
         public string Kind { get; set; }
 
         /// <summary>
-        /// Gets or Sets Prompt
-        /// </summary>
-        [JsonPropertyName("prompt")]
-        public string Prompt { get; set; }
-
-        /// <summary>
-        /// Gets or Sets RoomType
-        /// </summary>
-        [JsonPropertyName("room_type")]
-        public string RoomType { get; set; }
-
-        /// <summary>
         /// Gets or Sets SourceImageId
         /// </summary>
         [JsonPropertyName("source_image_id")]
         public string SourceImageId { get; set; }
 
         /// <summary>
+        /// Used to track the state of Prompt
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> PromptOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets Prompt
+        /// </summary>
+        [JsonPropertyName("prompt")]
+        public string? Prompt { get { return this.PromptOption.Value; } set { this.PromptOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of RoomType
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> RoomTypeOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets RoomType
+        /// </summary>
+        [JsonPropertyName("room_type")]
+        public string? RoomType { get { return this.RoomTypeOption.Value; } set { this.RoomTypeOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of Style
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> StyleOption { get; private set; }
+
+        /// <summary>
         /// Gets or Sets Style
         /// </summary>
         [JsonPropertyName("style")]
-        public string Style { get; set; }
+        public string? Style { get { return this.StyleOption.Value; } set { this.StyleOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -90,9 +111,9 @@ namespace Skautik.Sdk.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class GenerationInput {\n");
             sb.Append("  Kind: ").Append(Kind).Append("\n");
+            sb.Append("  SourceImageId: ").Append(SourceImageId).Append("\n");
             sb.Append("  Prompt: ").Append(Prompt).Append("\n");
             sb.Append("  RoomType: ").Append(RoomType).Append("\n");
-            sb.Append("  SourceImageId: ").Append(SourceImageId).Append("\n");
             sb.Append("  Style: ").Append(Style).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -142,9 +163,9 @@ namespace Skautik.Sdk.Model
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
             Option<string?> kind = default;
+            Option<string?> sourceImageId = default;
             Option<string?> prompt = default;
             Option<string?> roomType = default;
-            Option<string?> sourceImageId = default;
             Option<string?> style = default;
 
             while (utf8JsonReader.Read())
@@ -165,14 +186,14 @@ namespace Skautik.Sdk.Model
                         case "kind":
                             kind = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
+                        case "source_image_id":
+                            sourceImageId = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
                         case "prompt":
                             prompt = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "room_type":
                             roomType = new Option<string?>(utf8JsonReader.GetString()!);
-                            break;
-                        case "source_image_id":
-                            sourceImageId = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "style":
                             style = new Option<string?>(utf8JsonReader.GetString()!);
@@ -186,20 +207,14 @@ namespace Skautik.Sdk.Model
             if (!kind.IsSet)
                 throw new ArgumentException("Property is required for class GenerationInput.", nameof(kind));
 
-            if (!prompt.IsSet)
-                throw new ArgumentException("Property is required for class GenerationInput.", nameof(prompt));
-
-            if (!roomType.IsSet)
-                throw new ArgumentException("Property is required for class GenerationInput.", nameof(roomType));
-
             if (!sourceImageId.IsSet)
                 throw new ArgumentException("Property is required for class GenerationInput.", nameof(sourceImageId));
 
-            if (!style.IsSet)
-                throw new ArgumentException("Property is required for class GenerationInput.", nameof(style));
-
             if (kind.IsSet && kind.Value == null)
                 throw new ArgumentNullException(nameof(kind), "Property is not nullable for class GenerationInput.");
+
+            if (sourceImageId.IsSet && sourceImageId.Value == null)
+                throw new ArgumentNullException(nameof(sourceImageId), "Property is not nullable for class GenerationInput.");
 
             if (prompt.IsSet && prompt.Value == null)
                 throw new ArgumentNullException(nameof(prompt), "Property is not nullable for class GenerationInput.");
@@ -207,13 +222,10 @@ namespace Skautik.Sdk.Model
             if (roomType.IsSet && roomType.Value == null)
                 throw new ArgumentNullException(nameof(roomType), "Property is not nullable for class GenerationInput.");
 
-            if (sourceImageId.IsSet && sourceImageId.Value == null)
-                throw new ArgumentNullException(nameof(sourceImageId), "Property is not nullable for class GenerationInput.");
-
             if (style.IsSet && style.Value == null)
                 throw new ArgumentNullException(nameof(style), "Property is not nullable for class GenerationInput.");
 
-            return new GenerationInput(kind.Value!, prompt.Value!, roomType.Value!, sourceImageId.Value!, style.Value!);
+            return new GenerationInput(kind.Value!, sourceImageId.Value!, prompt, roomType, style);
         }
 
         /// <summary>
@@ -243,27 +255,30 @@ namespace Skautik.Sdk.Model
             if (generationInput.Kind == null)
                 throw new ArgumentNullException(nameof(generationInput.Kind), "Property is required for class GenerationInput.");
 
-            if (generationInput.Prompt == null)
-                throw new ArgumentNullException(nameof(generationInput.Prompt), "Property is required for class GenerationInput.");
-
-            if (generationInput.RoomType == null)
-                throw new ArgumentNullException(nameof(generationInput.RoomType), "Property is required for class GenerationInput.");
-
             if (generationInput.SourceImageId == null)
                 throw new ArgumentNullException(nameof(generationInput.SourceImageId), "Property is required for class GenerationInput.");
 
-            if (generationInput.Style == null)
+            if (generationInput.PromptOption.IsSet && generationInput.Prompt == null)
+                throw new ArgumentNullException(nameof(generationInput.Prompt), "Property is required for class GenerationInput.");
+
+            if (generationInput.RoomTypeOption.IsSet && generationInput.RoomType == null)
+                throw new ArgumentNullException(nameof(generationInput.RoomType), "Property is required for class GenerationInput.");
+
+            if (generationInput.StyleOption.IsSet && generationInput.Style == null)
                 throw new ArgumentNullException(nameof(generationInput.Style), "Property is required for class GenerationInput.");
 
             writer.WriteString("kind", generationInput.Kind);
 
-            writer.WriteString("prompt", generationInput.Prompt);
-
-            writer.WriteString("room_type", generationInput.RoomType);
-
             writer.WriteString("source_image_id", generationInput.SourceImageId);
 
-            writer.WriteString("style", generationInput.Style);
+            if (generationInput.PromptOption.IsSet)
+                writer.WriteString("prompt", generationInput.Prompt);
+
+            if (generationInput.RoomTypeOption.IsSet)
+                writer.WriteString("room_type", generationInput.RoomType);
+
+            if (generationInput.StyleOption.IsSet)
+                writer.WriteString("style", generationInput.Style);
         }
     }
 }

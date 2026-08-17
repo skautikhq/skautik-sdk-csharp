@@ -26,43 +26,65 @@ using Skautik.Sdk.Client;
 namespace Skautik.Sdk.Model
 {
     /// <summary>
-    /// DeliveryInput
+    /// Parking
     /// </summary>
-    public partial class DeliveryInput : IValidatableObject
+    public partial class Parking : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DeliveryInput" /> class.
+        /// Initializes a new instance of the <see cref="Parking" /> class.
         /// </summary>
+        /// <param name="included">included</param>
+        /// <param name="spaces">spaces</param>
         /// <param name="type">type</param>
-        /// <param name="url">url</param>
         [JsonConstructor]
-        public DeliveryInput(string type, Option<string?> url = default)
+        public Parking(Option<bool?> included = default, Option<int?> spaces = default, Option<string?> type = default)
         {
-            Type = type;
-            UrlOption = url;
+            IncludedOption = included;
+            SpacesOption = spaces;
+            TypeOption = type;
             OnCreated();
         }
 
         partial void OnCreated();
 
         /// <summary>
-        /// Gets or Sets Type
-        /// </summary>
-        [JsonPropertyName("type")]
-        public string Type { get; set; }
-
-        /// <summary>
-        /// Used to track the state of Url
+        /// Used to track the state of Included
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string?> UrlOption { get; private set; }
+        public Option<bool?> IncludedOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Url
+        /// Gets or Sets Included
         /// </summary>
-        [JsonPropertyName("url")]
-        public string? Url { get { return this.UrlOption.Value; } set { this.UrlOption = new(value); } }
+        [JsonPropertyName("included")]
+        public bool? Included { get { return this.IncludedOption.Value; } set { this.IncludedOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of Spaces
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<int?> SpacesOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets Spaces
+        /// </summary>
+        [JsonPropertyName("spaces")]
+        public int? Spaces { get { return this.SpacesOption.Value; } set { this.SpacesOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of Type
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> TypeOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets Type
+        /// </summary>
+        [JsonPropertyName("type")]
+        public string? Type { get { return this.TypeOption.Value; } set { this.TypeOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -71,9 +93,10 @@ namespace Skautik.Sdk.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class DeliveryInput {\n");
+            sb.Append("class Parking {\n");
+            sb.Append("  Included: ").Append(Included).Append("\n");
+            sb.Append("  Spaces: ").Append(Spaces).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
-            sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -90,29 +113,29 @@ namespace Skautik.Sdk.Model
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="DeliveryInput" />
+    /// A Json converter for type <see cref="Parking" />
     /// </summary>
-    public partial class DeliveryInputJsonConverter : JsonConverter<DeliveryInput>
+    public partial class ParkingJsonConverter : JsonConverter<Parking>
     {
         partial void OnCreated();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DeliveryInputJsonConverter" /> class.
+        /// Initializes a new instance of the <see cref="ParkingJsonConverter" /> class.
         /// </summary>
-        public DeliveryInputJsonConverter()
+        public ParkingJsonConverter()
         {
             OnCreated();
         }
 
         /// <summary>
-        /// Deserializes json to <see cref="DeliveryInput" />
+        /// Deserializes json to <see cref="Parking" />
         /// </summary>
         /// <param name="utf8JsonReader"></param>
         /// <param name="typeToConvert"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <returns></returns>
         /// <exception cref="JsonException"></exception>
-        public override DeliveryInput Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override Parking Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -121,8 +144,9 @@ namespace Skautik.Sdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
+            Option<bool?> included = default;
+            Option<int?> spaces = default;
             Option<string?> type = default;
-            Option<string?> url = default;
 
             while (utf8JsonReader.Read())
             {
@@ -139,11 +163,14 @@ namespace Skautik.Sdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
+                        case "included":
+                            included = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
+                        case "spaces":
+                            spaces = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
+                            break;
                         case "type":
                             type = new Option<string?>(utf8JsonReader.GetString()!);
-                            break;
-                        case "url":
-                            url = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         default:
                             break;
@@ -151,52 +178,53 @@ namespace Skautik.Sdk.Model
                 }
             }
 
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class DeliveryInput.", nameof(type));
+            if (included.IsSet && included.Value == null)
+                throw new ArgumentNullException(nameof(included), "Property is not nullable for class Parking.");
+
+            if (spaces.IsSet && spaces.Value == null)
+                throw new ArgumentNullException(nameof(spaces), "Property is not nullable for class Parking.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class DeliveryInput.");
+                throw new ArgumentNullException(nameof(type), "Property is not nullable for class Parking.");
 
-            if (url.IsSet && url.Value == null)
-                throw new ArgumentNullException(nameof(url), "Property is not nullable for class DeliveryInput.");
-
-            return new DeliveryInput(type.Value!, url);
+            return new Parking(included, spaces, type);
         }
 
         /// <summary>
-        /// Serializes a <see cref="DeliveryInput" />
+        /// Serializes a <see cref="Parking" />
         /// </summary>
         /// <param name="writer"></param>
-        /// <param name="deliveryInput"></param>
+        /// <param name="parking"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <exception cref="NotImplementedException"></exception>
-        public override void Write(Utf8JsonWriter writer, DeliveryInput deliveryInput, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, Parking parking, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
 
-            WriteProperties(writer, deliveryInput, jsonSerializerOptions);
+            WriteProperties(writer, parking, jsonSerializerOptions);
             writer.WriteEndObject();
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="DeliveryInput" />
+        /// Serializes the properties of <see cref="Parking" />
         /// </summary>
         /// <param name="writer"></param>
-        /// <param name="deliveryInput"></param>
+        /// <param name="parking"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <exception cref="NotImplementedException"></exception>
-        public void WriteProperties(Utf8JsonWriter writer, DeliveryInput deliveryInput, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, Parking parking, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (deliveryInput.Type == null)
-                throw new ArgumentNullException(nameof(deliveryInput.Type), "Property is required for class DeliveryInput.");
+            if (parking.TypeOption.IsSet && parking.Type == null)
+                throw new ArgumentNullException(nameof(parking.Type), "Property is required for class Parking.");
 
-            if (deliveryInput.UrlOption.IsSet && deliveryInput.Url == null)
-                throw new ArgumentNullException(nameof(deliveryInput.Url), "Property is required for class DeliveryInput.");
+            if (parking.IncludedOption.IsSet)
+                writer.WriteBoolean("included", parking.IncludedOption.Value!.Value);
 
-            writer.WriteString("type", deliveryInput.Type);
+            if (parking.SpacesOption.IsSet)
+                writer.WriteNumber("spaces", parking.SpacesOption.Value!.Value);
 
-            if (deliveryInput.UrlOption.IsSet)
-                writer.WriteString("url", deliveryInput.Url);
+            if (parking.TypeOption.IsSet)
+                writer.WriteString("type", parking.Type);
         }
     }
 }

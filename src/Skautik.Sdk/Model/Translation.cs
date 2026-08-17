@@ -26,43 +26,44 @@ using Skautik.Sdk.Client;
 namespace Skautik.Sdk.Model
 {
     /// <summary>
-    /// DeliveryInput
+    /// Translation
     /// </summary>
-    public partial class DeliveryInput : IValidatableObject
+    public partial class Translation : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DeliveryInput" /> class.
+        /// Initializes a new instance of the <see cref="Translation" /> class.
         /// </summary>
-        /// <param name="type">type</param>
-        /// <param name="url">url</param>
+        /// <param name="field">field</param>
+        /// <param name="language">language</param>
+        /// <param name="value">value</param>
         [JsonConstructor]
-        public DeliveryInput(string type, Option<string?> url = default)
+        public Translation(string field, string language, string value)
         {
-            Type = type;
-            UrlOption = url;
+            Field = field;
+            Language = language;
+            Value = value;
             OnCreated();
         }
 
         partial void OnCreated();
 
         /// <summary>
-        /// Gets or Sets Type
+        /// Gets or Sets Field
         /// </summary>
-        [JsonPropertyName("type")]
-        public string Type { get; set; }
+        [JsonPropertyName("field")]
+        public string Field { get; set; }
 
         /// <summary>
-        /// Used to track the state of Url
+        /// Gets or Sets Language
         /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string?> UrlOption { get; private set; }
+        [JsonPropertyName("language")]
+        public string Language { get; set; }
 
         /// <summary>
-        /// Gets or Sets Url
+        /// Gets or Sets Value
         /// </summary>
-        [JsonPropertyName("url")]
-        public string? Url { get { return this.UrlOption.Value; } set { this.UrlOption = new(value); } }
+        [JsonPropertyName("value")]
+        public string Value { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -71,9 +72,10 @@ namespace Skautik.Sdk.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class DeliveryInput {\n");
-            sb.Append("  Type: ").Append(Type).Append("\n");
-            sb.Append("  Url: ").Append(Url).Append("\n");
+            sb.Append("class Translation {\n");
+            sb.Append("  Field: ").Append(Field).Append("\n");
+            sb.Append("  Language: ").Append(Language).Append("\n");
+            sb.Append("  Value: ").Append(Value).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -90,29 +92,29 @@ namespace Skautik.Sdk.Model
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="DeliveryInput" />
+    /// A Json converter for type <see cref="Translation" />
     /// </summary>
-    public partial class DeliveryInputJsonConverter : JsonConverter<DeliveryInput>
+    public partial class TranslationJsonConverter : JsonConverter<Translation>
     {
         partial void OnCreated();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DeliveryInputJsonConverter" /> class.
+        /// Initializes a new instance of the <see cref="TranslationJsonConverter" /> class.
         /// </summary>
-        public DeliveryInputJsonConverter()
+        public TranslationJsonConverter()
         {
             OnCreated();
         }
 
         /// <summary>
-        /// Deserializes json to <see cref="DeliveryInput" />
+        /// Deserializes json to <see cref="Translation" />
         /// </summary>
         /// <param name="utf8JsonReader"></param>
         /// <param name="typeToConvert"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <returns></returns>
         /// <exception cref="JsonException"></exception>
-        public override DeliveryInput Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override Translation Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -121,8 +123,9 @@ namespace Skautik.Sdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string?> type = default;
-            Option<string?> url = default;
+            Option<string?> field = default;
+            Option<string?> language = default;
+            Option<string?> value = default;
 
             while (utf8JsonReader.Read())
             {
@@ -139,11 +142,14 @@ namespace Skautik.Sdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "type":
-                            type = new Option<string?>(utf8JsonReader.GetString()!);
+                        case "field":
+                            field = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
-                        case "url":
-                            url = new Option<string?>(utf8JsonReader.GetString()!);
+                        case "language":
+                            language = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
+                        case "value":
+                            value = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         default:
                             break;
@@ -151,52 +157,65 @@ namespace Skautik.Sdk.Model
                 }
             }
 
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class DeliveryInput.", nameof(type));
+            if (!field.IsSet)
+                throw new ArgumentException("Property is required for class Translation.", nameof(field));
 
-            if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class DeliveryInput.");
+            if (!language.IsSet)
+                throw new ArgumentException("Property is required for class Translation.", nameof(language));
 
-            if (url.IsSet && url.Value == null)
-                throw new ArgumentNullException(nameof(url), "Property is not nullable for class DeliveryInput.");
+            if (!value.IsSet)
+                throw new ArgumentException("Property is required for class Translation.", nameof(value));
 
-            return new DeliveryInput(type.Value!, url);
+            if (field.IsSet && field.Value == null)
+                throw new ArgumentNullException(nameof(field), "Property is not nullable for class Translation.");
+
+            if (language.IsSet && language.Value == null)
+                throw new ArgumentNullException(nameof(language), "Property is not nullable for class Translation.");
+
+            if (value.IsSet && value.Value == null)
+                throw new ArgumentNullException(nameof(value), "Property is not nullable for class Translation.");
+
+            return new Translation(field.Value!, language.Value!, value.Value!);
         }
 
         /// <summary>
-        /// Serializes a <see cref="DeliveryInput" />
+        /// Serializes a <see cref="Translation" />
         /// </summary>
         /// <param name="writer"></param>
-        /// <param name="deliveryInput"></param>
+        /// <param name="translation"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <exception cref="NotImplementedException"></exception>
-        public override void Write(Utf8JsonWriter writer, DeliveryInput deliveryInput, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, Translation translation, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
 
-            WriteProperties(writer, deliveryInput, jsonSerializerOptions);
+            WriteProperties(writer, translation, jsonSerializerOptions);
             writer.WriteEndObject();
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="DeliveryInput" />
+        /// Serializes the properties of <see cref="Translation" />
         /// </summary>
         /// <param name="writer"></param>
-        /// <param name="deliveryInput"></param>
+        /// <param name="translation"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <exception cref="NotImplementedException"></exception>
-        public void WriteProperties(Utf8JsonWriter writer, DeliveryInput deliveryInput, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, Translation translation, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (deliveryInput.Type == null)
-                throw new ArgumentNullException(nameof(deliveryInput.Type), "Property is required for class DeliveryInput.");
+            if (translation.Field == null)
+                throw new ArgumentNullException(nameof(translation.Field), "Property is required for class Translation.");
 
-            if (deliveryInput.UrlOption.IsSet && deliveryInput.Url == null)
-                throw new ArgumentNullException(nameof(deliveryInput.Url), "Property is required for class DeliveryInput.");
+            if (translation.Language == null)
+                throw new ArgumentNullException(nameof(translation.Language), "Property is required for class Translation.");
 
-            writer.WriteString("type", deliveryInput.Type);
+            if (translation.Value == null)
+                throw new ArgumentNullException(nameof(translation.Value), "Property is required for class Translation.");
 
-            if (deliveryInput.UrlOption.IsSet)
-                writer.WriteString("url", deliveryInput.Url);
+            writer.WriteString("field", translation.Field);
+
+            writer.WriteString("language", translation.Language);
+
+            writer.WriteString("value", translation.Value);
         }
     }
 }

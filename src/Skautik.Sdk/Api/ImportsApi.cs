@@ -50,11 +50,12 @@ namespace Skautik.Sdk.Api
         /// <param name="sourceId">Import source this transfer belongs to, when it comes from a standing connector rather than a one-off upload. (optional)</param>
         /// <param name="dryRun">Parse and report what would change without writing anything. Worth doing once with a new mapping. (optional)</param>
         /// <param name="filename">Original filename, recorded on the run so a failure can be traced back to the file that caused it. (optional)</param>
+        /// <param name="confirmShrink">Allow a full sync that would withdraw a large share of the source&#39;s portfolio. Without it, a delivery carrying far fewer records than the source currently holds has its withdrawals held back and the run is reported as partial, on the assumption that the export was truncated. Set this when the reduction is real. (optional)</param>
         /// <param name="idempotencyKey">Prevents a retried upload from being processed twice. (optional)</param>
         /// <param name="file">The payload. Mutually exclusive with url. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateImportApiResponse"/>&gt;</returns>
-        Task<ICreateImportApiResponse> CreateImportAsync(string format, Option<string> mode = default, Option<string> sourceId = default, Option<bool> dryRun = default, Option<string> filename = default, Option<string> idempotencyKey = default, Option<Skautik.Sdk.Client.FileParameter> file = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICreateImportApiResponse> CreateImportAsync(string format, Option<string> mode = default, Option<string> sourceId = default, Option<bool> dryRun = default, Option<string> filename = default, Option<bool> confirmShrink = default, Option<string> idempotencyKey = default, Option<Skautik.Sdk.Client.FileParameter> file = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Start an import
@@ -67,11 +68,12 @@ namespace Skautik.Sdk.Api
         /// <param name="sourceId">Import source this transfer belongs to, when it comes from a standing connector rather than a one-off upload. (optional)</param>
         /// <param name="dryRun">Parse and report what would change without writing anything. Worth doing once with a new mapping. (optional)</param>
         /// <param name="filename">Original filename, recorded on the run so a failure can be traced back to the file that caused it. (optional)</param>
+        /// <param name="confirmShrink">Allow a full sync that would withdraw a large share of the source&#39;s portfolio. Without it, a delivery carrying far fewer records than the source currently holds has its withdrawals held back and the run is reported as partial, on the assumption that the export was truncated. Set this when the reduction is real. (optional)</param>
         /// <param name="idempotencyKey">Prevents a retried upload from being processed twice. (optional)</param>
         /// <param name="file">The payload. Mutually exclusive with url. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateImportApiResponse"/>?&gt;</returns>
-        Task<ICreateImportApiResponse?> CreateImportOrDefaultAsync(string format, Option<string> mode = default, Option<string> sourceId = default, Option<bool> dryRun = default, Option<string> filename = default, Option<string> idempotencyKey = default, Option<Skautik.Sdk.Client.FileParameter> file = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICreateImportApiResponse?> CreateImportOrDefaultAsync(string format, Option<string> mode = default, Option<string> sourceId = default, Option<bool> dryRun = default, Option<string> filename = default, Option<bool> confirmShrink = default, Option<string> idempotencyKey = default, Option<Skautik.Sdk.Client.FileParameter> file = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Create an import source
@@ -956,7 +958,7 @@ namespace Skautik.Sdk.Api
             BearerTokenProvider = bearerTokenProvider;
         }
 
-        partial void FormatCreateImport(ref string format, ref Option<string> mode, ref Option<string> sourceId, ref Option<bool> dryRun, ref Option<string> filename, ref Option<string> idempotencyKey, ref Option<Skautik.Sdk.Client.FileParameter> file);
+        partial void FormatCreateImport(ref string format, ref Option<string> mode, ref Option<string> sourceId, ref Option<bool> dryRun, ref Option<string> filename, ref Option<bool> confirmShrink, ref Option<string> idempotencyKey, ref Option<Skautik.Sdk.Client.FileParameter> file);
 
         /// <summary>
         /// Validates the request parameters
@@ -998,12 +1000,13 @@ namespace Skautik.Sdk.Api
         /// <param name="sourceId"></param>
         /// <param name="dryRun"></param>
         /// <param name="filename"></param>
+        /// <param name="confirmShrink"></param>
         /// <param name="idempotencyKey"></param>
         /// <param name="file"></param>
-        private void AfterCreateImportDefaultImplementation(ICreateImportApiResponse apiResponseLocalVar, string format, Option<string> mode, Option<string> sourceId, Option<bool> dryRun, Option<string> filename, Option<string> idempotencyKey, Option<Skautik.Sdk.Client.FileParameter> file)
+        private void AfterCreateImportDefaultImplementation(ICreateImportApiResponse apiResponseLocalVar, string format, Option<string> mode, Option<string> sourceId, Option<bool> dryRun, Option<string> filename, Option<bool> confirmShrink, Option<string> idempotencyKey, Option<Skautik.Sdk.Client.FileParameter> file)
         {
             bool suppressDefaultLog = false;
-            AfterCreateImport(ref suppressDefaultLog, apiResponseLocalVar, format, mode, sourceId, dryRun, filename, idempotencyKey, file);
+            AfterCreateImport(ref suppressDefaultLog, apiResponseLocalVar, format, mode, sourceId, dryRun, filename, confirmShrink, idempotencyKey, file);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -1018,9 +1021,10 @@ namespace Skautik.Sdk.Api
         /// <param name="sourceId"></param>
         /// <param name="dryRun"></param>
         /// <param name="filename"></param>
+        /// <param name="confirmShrink"></param>
         /// <param name="idempotencyKey"></param>
         /// <param name="file"></param>
-        partial void AfterCreateImport(ref bool suppressDefaultLog, ICreateImportApiResponse apiResponseLocalVar, string format, Option<string> mode, Option<string> sourceId, Option<bool> dryRun, Option<string> filename, Option<string> idempotencyKey, Option<Skautik.Sdk.Client.FileParameter> file);
+        partial void AfterCreateImport(ref bool suppressDefaultLog, ICreateImportApiResponse apiResponseLocalVar, string format, Option<string> mode, Option<string> sourceId, Option<bool> dryRun, Option<string> filename, Option<bool> confirmShrink, Option<string> idempotencyKey, Option<Skautik.Sdk.Client.FileParameter> file);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -1033,12 +1037,13 @@ namespace Skautik.Sdk.Api
         /// <param name="sourceId"></param>
         /// <param name="dryRun"></param>
         /// <param name="filename"></param>
+        /// <param name="confirmShrink"></param>
         /// <param name="idempotencyKey"></param>
         /// <param name="file"></param>
-        private void OnErrorCreateImportDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string format, Option<string> mode, Option<string> sourceId, Option<bool> dryRun, Option<string> filename, Option<string> idempotencyKey, Option<Skautik.Sdk.Client.FileParameter> file)
+        private void OnErrorCreateImportDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string format, Option<string> mode, Option<string> sourceId, Option<bool> dryRun, Option<string> filename, Option<bool> confirmShrink, Option<string> idempotencyKey, Option<Skautik.Sdk.Client.FileParameter> file)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorCreateImport(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, format, mode, sourceId, dryRun, filename, idempotencyKey, file);
+            OnErrorCreateImport(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, format, mode, sourceId, dryRun, filename, confirmShrink, idempotencyKey, file);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -1055,9 +1060,10 @@ namespace Skautik.Sdk.Api
         /// <param name="sourceId"></param>
         /// <param name="dryRun"></param>
         /// <param name="filename"></param>
+        /// <param name="confirmShrink"></param>
         /// <param name="idempotencyKey"></param>
         /// <param name="file"></param>
-        partial void OnErrorCreateImport(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string format, Option<string> mode, Option<string> sourceId, Option<bool> dryRun, Option<string> filename, Option<string> idempotencyKey, Option<Skautik.Sdk.Client.FileParameter> file);
+        partial void OnErrorCreateImport(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string format, Option<string> mode, Option<string> sourceId, Option<bool> dryRun, Option<string> filename, Option<bool> confirmShrink, Option<string> idempotencyKey, Option<Skautik.Sdk.Client.FileParameter> file);
 
         /// <summary>
         /// Start an import Upload a file, or point us at one, and process it.  Accepts a multipart upload or a URL we fetch. Validation runs first and the whole file is rejected if it cannot be parsed; individual records that fail are reported without stopping the rest, unless you ask for all-or-nothing.  Requires the &#x60;imports:write&#x60; scope.
@@ -1067,15 +1073,16 @@ namespace Skautik.Sdk.Api
         /// <param name="sourceId">Import source this transfer belongs to, when it comes from a standing connector rather than a one-off upload. (optional)</param>
         /// <param name="dryRun">Parse and report what would change without writing anything. Worth doing once with a new mapping. (optional)</param>
         /// <param name="filename">Original filename, recorded on the run so a failure can be traced back to the file that caused it. (optional)</param>
+        /// <param name="confirmShrink">Allow a full sync that would withdraw a large share of the source&#39;s portfolio. Without it, a delivery carrying far fewer records than the source currently holds has its withdrawals held back and the run is reported as partial, on the assumption that the export was truncated. Set this when the reduction is real. (optional)</param>
         /// <param name="idempotencyKey">Prevents a retried upload from being processed twice. (optional)</param>
         /// <param name="file">The payload. Mutually exclusive with url. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateImportApiResponse"/>&gt;</returns>
-        public async Task<ICreateImportApiResponse?> CreateImportOrDefaultAsync(string format, Option<string> mode = default, Option<string> sourceId = default, Option<bool> dryRun = default, Option<string> filename = default, Option<string> idempotencyKey = default, Option<Skautik.Sdk.Client.FileParameter> file = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<ICreateImportApiResponse?> CreateImportOrDefaultAsync(string format, Option<string> mode = default, Option<string> sourceId = default, Option<bool> dryRun = default, Option<string> filename = default, Option<bool> confirmShrink = default, Option<string> idempotencyKey = default, Option<Skautik.Sdk.Client.FileParameter> file = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await CreateImportAsync(format, mode, sourceId, dryRun, filename, idempotencyKey, file, cancellationToken).ConfigureAwait(false);
+                return await CreateImportAsync(format, mode, sourceId, dryRun, filename, confirmShrink, idempotencyKey, file, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -1092,11 +1099,12 @@ namespace Skautik.Sdk.Api
         /// <param name="sourceId">Import source this transfer belongs to, when it comes from a standing connector rather than a one-off upload. (optional)</param>
         /// <param name="dryRun">Parse and report what would change without writing anything. Worth doing once with a new mapping. (optional)</param>
         /// <param name="filename">Original filename, recorded on the run so a failure can be traced back to the file that caused it. (optional)</param>
+        /// <param name="confirmShrink">Allow a full sync that would withdraw a large share of the source&#39;s portfolio. Without it, a delivery carrying far fewer records than the source currently holds has its withdrawals held back and the run is reported as partial, on the assumption that the export was truncated. Set this when the reduction is real. (optional)</param>
         /// <param name="idempotencyKey">Prevents a retried upload from being processed twice. (optional)</param>
         /// <param name="file">The payload. Mutually exclusive with url. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateImportApiResponse"/>&gt;</returns>
-        public async Task<ICreateImportApiResponse> CreateImportAsync(string format, Option<string> mode = default, Option<string> sourceId = default, Option<bool> dryRun = default, Option<string> filename = default, Option<string> idempotencyKey = default, Option<Skautik.Sdk.Client.FileParameter> file = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<ICreateImportApiResponse> CreateImportAsync(string format, Option<string> mode = default, Option<string> sourceId = default, Option<bool> dryRun = default, Option<string> filename = default, Option<bool> confirmShrink = default, Option<string> idempotencyKey = default, Option<Skautik.Sdk.Client.FileParameter> file = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -1104,7 +1112,7 @@ namespace Skautik.Sdk.Api
             {
                 ValidateCreateImport(format, mode, sourceId, filename, idempotencyKey, file);
 
-                FormatCreateImport(ref format, ref mode, ref sourceId, ref dryRun, ref filename, ref idempotencyKey, ref file);
+                FormatCreateImport(ref format, ref mode, ref sourceId, ref dryRun, ref filename, ref confirmShrink, ref idempotencyKey, ref file);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -1130,6 +1138,9 @@ namespace Skautik.Sdk.Api
 
                     if (filename.IsSet)
                         parseQueryStringLocalVar["filename"] = ClientUtils.ParameterToString(filename.Value);
+
+                    if (confirmShrink.IsSet)
+                        parseQueryStringLocalVar["confirm_shrink"] = ClientUtils.ParameterToString(confirmShrink.Value);
 
                     uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
@@ -1202,7 +1213,7 @@ namespace Skautik.Sdk.Api
                             }
                         }
 
-                        AfterCreateImportDefaultImplementation(apiResponseLocalVar, format, mode, sourceId, dryRun, filename, idempotencyKey, file);
+                        AfterCreateImportDefaultImplementation(apiResponseLocalVar, format, mode, sourceId, dryRun, filename, confirmShrink, idempotencyKey, file);
 
                         Events.ExecuteOnCreateImport(apiResponseLocalVar);
 
@@ -1216,7 +1227,7 @@ namespace Skautik.Sdk.Api
             }
             catch(Exception e)
             {
-                OnErrorCreateImportDefaultImplementation(e, "/imports", uriBuilderLocalVar.Path, format, mode, sourceId, dryRun, filename, idempotencyKey, file);
+                OnErrorCreateImportDefaultImplementation(e, "/imports", uriBuilderLocalVar.Path, format, mode, sourceId, dryRun, filename, confirmShrink, idempotencyKey, file);
                 Events.ExecuteOnErrorCreateImport(e);
                 throw;
             }

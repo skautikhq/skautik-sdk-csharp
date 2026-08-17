@@ -44,16 +44,22 @@ namespace Skautik.Sdk.Model
         /// <param name="type">type</param>
         /// <param name="updatedAt">updatedAt</param>
         /// <param name="description">description</param>
+        /// <param name="descriptions">descriptions</param>
         /// <param name="energy">energy</param>
         /// <param name="externalId">externalId</param>
+        /// <param name="features">features</param>
         /// <param name="images">images</param>
+        /// <param name="language">language</param>
         /// <param name="lastVerifiedAt">lastVerifiedAt</param>
         /// <param name="listing">listing</param>
         /// <param name="location">location</param>
         /// <param name="market">market</param>
+        /// <param name="parking">parking</param>
         /// <param name="priceHistory">priceHistory</param>
+        /// <param name="subtype">subtype</param>
+        /// <param name="translations">translations</param>
         [JsonConstructor]
-        public Property(Address address, Building building, DateTime createdAt, string id, Rooms rooms, Size size, string source, string title, string type, DateTime updatedAt, Option<string?> description = default, Option<Energy?> energy = default, Option<string?> externalId = default, Option<List<Image>?> images = default, Option<DateTime?> lastVerifiedAt = default, Option<Listing?> listing = default, Option<Location?> location = default, Option<MarketContext?> market = default, Option<List<PriceObservation>?> priceHistory = default)
+        public Property(Address address, Building building, DateTime createdAt, string id, Rooms rooms, Size size, string source, string title, string type, DateTime updatedAt, Option<string?> description = default, Option<Descriptions?> descriptions = default, Option<Energy?> energy = default, Option<string?> externalId = default, Option<Features?> features = default, Option<List<Image>?> images = default, Option<string?> language = default, Option<DateTime?> lastVerifiedAt = default, Option<Listing?> listing = default, Option<Location?> location = default, Option<MarketContext?> market = default, Option<Parking?> parking = default, Option<List<PriceObservation>?> priceHistory = default, Option<string?> subtype = default, Option<List<Translation>?> translations = default)
         {
             Address = address;
             Building = building;
@@ -66,14 +72,20 @@ namespace Skautik.Sdk.Model
             Type = type;
             UpdatedAt = updatedAt;
             DescriptionOption = description;
+            DescriptionsOption = descriptions;
             EnergyOption = energy;
             ExternalIdOption = externalId;
+            FeaturesOption = features;
             ImagesOption = images;
+            LanguageOption = language;
             LastVerifiedAtOption = lastVerifiedAt;
             ListingOption = listing;
             LocationOption = location;
             MarketOption = market;
+            ParkingOption = parking;
             PriceHistoryOption = priceHistory;
+            SubtypeOption = subtype;
+            TranslationsOption = translations;
             OnCreated();
         }
 
@@ -153,6 +165,19 @@ namespace Skautik.Sdk.Model
         public string? Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new(value); } }
 
         /// <summary>
+        /// Used to track the state of Descriptions
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<Descriptions?> DescriptionsOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets Descriptions
+        /// </summary>
+        [JsonPropertyName("descriptions")]
+        public Descriptions? Descriptions { get { return this.DescriptionsOption.Value; } set { this.DescriptionsOption = new(value); } }
+
+        /// <summary>
         /// Used to track the state of Energy
         /// </summary>
         [JsonIgnore]
@@ -179,6 +204,19 @@ namespace Skautik.Sdk.Model
         public string? ExternalId { get { return this.ExternalIdOption.Value; } set { this.ExternalIdOption = new(value); } }
 
         /// <summary>
+        /// Used to track the state of Features
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<Features?> FeaturesOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets Features
+        /// </summary>
+        [JsonPropertyName("features")]
+        public Features? Features { get { return this.FeaturesOption.Value; } set { this.FeaturesOption = new(value); } }
+
+        /// <summary>
         /// Used to track the state of Images
         /// </summary>
         [JsonIgnore]
@@ -190,6 +228,19 @@ namespace Skautik.Sdk.Model
         /// </summary>
         [JsonPropertyName("images")]
         public List<Image>? Images { get { return this.ImagesOption.Value; } set { this.ImagesOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of Language
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> LanguageOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets Language
+        /// </summary>
+        [JsonPropertyName("language")]
+        public string? Language { get { return this.LanguageOption.Value; } set { this.LanguageOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of LastVerifiedAt
@@ -244,6 +295,19 @@ namespace Skautik.Sdk.Model
         public MarketContext? Market { get { return this.MarketOption.Value; } set { this.MarketOption = new(value); } }
 
         /// <summary>
+        /// Used to track the state of Parking
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<Parking?> ParkingOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets Parking
+        /// </summary>
+        [JsonPropertyName("parking")]
+        public Parking? Parking { get { return this.ParkingOption.Value; } set { this.ParkingOption = new(value); } }
+
+        /// <summary>
         /// Used to track the state of PriceHistory
         /// </summary>
         [JsonIgnore]
@@ -255,6 +319,32 @@ namespace Skautik.Sdk.Model
         /// </summary>
         [JsonPropertyName("price_history")]
         public List<PriceObservation>? PriceHistory { get { return this.PriceHistoryOption.Value; } set { this.PriceHistoryOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of Subtype
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> SubtypeOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets Subtype
+        /// </summary>
+        [JsonPropertyName("subtype")]
+        public string? Subtype { get { return this.SubtypeOption.Value; } set { this.SubtypeOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of Translations
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<Translation>?> TranslationsOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets Translations
+        /// </summary>
+        [JsonPropertyName("translations")]
+        public List<Translation>? Translations { get { return this.TranslationsOption.Value; } set { this.TranslationsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -275,14 +365,20 @@ namespace Skautik.Sdk.Model
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
+            sb.Append("  Descriptions: ").Append(Descriptions).Append("\n");
             sb.Append("  Energy: ").Append(Energy).Append("\n");
             sb.Append("  ExternalId: ").Append(ExternalId).Append("\n");
+            sb.Append("  Features: ").Append(Features).Append("\n");
             sb.Append("  Images: ").Append(Images).Append("\n");
+            sb.Append("  Language: ").Append(Language).Append("\n");
             sb.Append("  LastVerifiedAt: ").Append(LastVerifiedAt).Append("\n");
             sb.Append("  Listing: ").Append(Listing).Append("\n");
             sb.Append("  Location: ").Append(Location).Append("\n");
             sb.Append("  Market: ").Append(Market).Append("\n");
+            sb.Append("  Parking: ").Append(Parking).Append("\n");
             sb.Append("  PriceHistory: ").Append(PriceHistory).Append("\n");
+            sb.Append("  Subtype: ").Append(Subtype).Append("\n");
+            sb.Append("  Translations: ").Append(Translations).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -356,14 +452,20 @@ namespace Skautik.Sdk.Model
             Option<string?> type = default;
             Option<DateTime?> updatedAt = default;
             Option<string?> description = default;
+            Option<Descriptions?> descriptions = default;
             Option<Energy?> energy = default;
             Option<string?> externalId = default;
+            Option<Features?> features = default;
             Option<List<Image>?> images = default;
+            Option<string?> language = default;
             Option<DateTime?> lastVerifiedAt = default;
             Option<Listing?> listing = default;
             Option<Location?> location = default;
             Option<MarketContext?> market = default;
+            Option<Parking?> parking = default;
             Option<List<PriceObservation>?> priceHistory = default;
+            Option<string?> subtype = default;
+            Option<List<Translation>?> translations = default;
 
             while (utf8JsonReader.Read())
             {
@@ -413,14 +515,23 @@ namespace Skautik.Sdk.Model
                         case "description":
                             description = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
+                        case "descriptions":
+                            descriptions = new Option<Descriptions?>(JsonSerializer.Deserialize<Descriptions>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
                         case "energy":
                             energy = new Option<Energy?>(JsonSerializer.Deserialize<Energy>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         case "external_id":
                             externalId = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
+                        case "features":
+                            features = new Option<Features?>(JsonSerializer.Deserialize<Features>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
                         case "images":
                             images = new Option<List<Image>?>(JsonSerializer.Deserialize<List<Image>>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
+                        case "language":
+                            language = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "last_verified_at":
                             lastVerifiedAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
@@ -434,8 +545,17 @@ namespace Skautik.Sdk.Model
                         case "market":
                             market = new Option<MarketContext?>(JsonSerializer.Deserialize<MarketContext>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
+                        case "parking":
+                            parking = new Option<Parking?>(JsonSerializer.Deserialize<Parking>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
                         case "price_history":
                             priceHistory = new Option<List<PriceObservation>?>(JsonSerializer.Deserialize<List<PriceObservation>>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
+                        case "subtype":
+                            subtype = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
+                        case "translations":
+                            translations = new Option<List<Translation>?>(JsonSerializer.Deserialize<List<Translation>>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         default:
                             break;
@@ -506,14 +626,23 @@ namespace Skautik.Sdk.Model
             if (description.IsSet && description.Value == null)
                 throw new ArgumentNullException(nameof(description), "Property is not nullable for class Property.");
 
+            if (descriptions.IsSet && descriptions.Value == null)
+                throw new ArgumentNullException(nameof(descriptions), "Property is not nullable for class Property.");
+
             if (energy.IsSet && energy.Value == null)
                 throw new ArgumentNullException(nameof(energy), "Property is not nullable for class Property.");
 
             if (externalId.IsSet && externalId.Value == null)
                 throw new ArgumentNullException(nameof(externalId), "Property is not nullable for class Property.");
 
+            if (features.IsSet && features.Value == null)
+                throw new ArgumentNullException(nameof(features), "Property is not nullable for class Property.");
+
             if (images.IsSet && images.Value == null)
                 throw new ArgumentNullException(nameof(images), "Property is not nullable for class Property.");
+
+            if (language.IsSet && language.Value == null)
+                throw new ArgumentNullException(nameof(language), "Property is not nullable for class Property.");
 
             if (lastVerifiedAt.IsSet && lastVerifiedAt.Value == null)
                 throw new ArgumentNullException(nameof(lastVerifiedAt), "Property is not nullable for class Property.");
@@ -527,10 +656,19 @@ namespace Skautik.Sdk.Model
             if (market.IsSet && market.Value == null)
                 throw new ArgumentNullException(nameof(market), "Property is not nullable for class Property.");
 
+            if (parking.IsSet && parking.Value == null)
+                throw new ArgumentNullException(nameof(parking), "Property is not nullable for class Property.");
+
             if (priceHistory.IsSet && priceHistory.Value == null)
                 throw new ArgumentNullException(nameof(priceHistory), "Property is not nullable for class Property.");
 
-            return new Property(address.Value!, building.Value!, createdAt.Value!.Value!, id.Value!, rooms.Value!, size.Value!, source.Value!, title.Value!, type.Value!, updatedAt.Value!.Value!, description, energy, externalId, images, lastVerifiedAt, listing, location, market, priceHistory);
+            if (subtype.IsSet && subtype.Value == null)
+                throw new ArgumentNullException(nameof(subtype), "Property is not nullable for class Property.");
+
+            if (translations.IsSet && translations.Value == null)
+                throw new ArgumentNullException(nameof(translations), "Property is not nullable for class Property.");
+
+            return new Property(address.Value!, building.Value!, createdAt.Value!.Value!, id.Value!, rooms.Value!, size.Value!, source.Value!, title.Value!, type.Value!, updatedAt.Value!.Value!, description, descriptions, energy, externalId, features, images, language, lastVerifiedAt, listing, location, market, parking, priceHistory, subtype, translations);
         }
 
         /// <summary>
@@ -584,14 +722,23 @@ namespace Skautik.Sdk.Model
             if (property.DescriptionOption.IsSet && property.Description == null)
                 throw new ArgumentNullException(nameof(property.Description), "Property is required for class Property.");
 
+            if (property.DescriptionsOption.IsSet && property.Descriptions == null)
+                throw new ArgumentNullException(nameof(property.Descriptions), "Property is required for class Property.");
+
             if (property.EnergyOption.IsSet && property.Energy == null)
                 throw new ArgumentNullException(nameof(property.Energy), "Property is required for class Property.");
 
             if (property.ExternalIdOption.IsSet && property.ExternalId == null)
                 throw new ArgumentNullException(nameof(property.ExternalId), "Property is required for class Property.");
 
+            if (property.FeaturesOption.IsSet && property.Features == null)
+                throw new ArgumentNullException(nameof(property.Features), "Property is required for class Property.");
+
             if (property.ImagesOption.IsSet && property.Images == null)
                 throw new ArgumentNullException(nameof(property.Images), "Property is required for class Property.");
+
+            if (property.LanguageOption.IsSet && property.Language == null)
+                throw new ArgumentNullException(nameof(property.Language), "Property is required for class Property.");
 
             if (property.ListingOption.IsSet && property.Listing == null)
                 throw new ArgumentNullException(nameof(property.Listing), "Property is required for class Property.");
@@ -602,8 +749,17 @@ namespace Skautik.Sdk.Model
             if (property.MarketOption.IsSet && property.Market == null)
                 throw new ArgumentNullException(nameof(property.Market), "Property is required for class Property.");
 
+            if (property.ParkingOption.IsSet && property.Parking == null)
+                throw new ArgumentNullException(nameof(property.Parking), "Property is required for class Property.");
+
             if (property.PriceHistoryOption.IsSet && property.PriceHistory == null)
                 throw new ArgumentNullException(nameof(property.PriceHistory), "Property is required for class Property.");
+
+            if (property.SubtypeOption.IsSet && property.Subtype == null)
+                throw new ArgumentNullException(nameof(property.Subtype), "Property is required for class Property.");
+
+            if (property.TranslationsOption.IsSet && property.Translations == null)
+                throw new ArgumentNullException(nameof(property.Translations), "Property is required for class Property.");
 
             writer.WritePropertyName("address");
             JsonSerializer.Serialize(writer, property.Address, jsonSerializerOptions);
@@ -628,6 +784,11 @@ namespace Skautik.Sdk.Model
             if (property.DescriptionOption.IsSet)
                 writer.WriteString("description", property.Description);
 
+            if (property.DescriptionsOption.IsSet)
+            {
+                writer.WritePropertyName("descriptions");
+                JsonSerializer.Serialize(writer, property.Descriptions, jsonSerializerOptions);
+            }
             if (property.EnergyOption.IsSet)
             {
                 writer.WritePropertyName("energy");
@@ -636,11 +797,19 @@ namespace Skautik.Sdk.Model
             if (property.ExternalIdOption.IsSet)
                 writer.WriteString("external_id", property.ExternalId);
 
+            if (property.FeaturesOption.IsSet)
+            {
+                writer.WritePropertyName("features");
+                JsonSerializer.Serialize(writer, property.Features, jsonSerializerOptions);
+            }
             if (property.ImagesOption.IsSet)
             {
                 writer.WritePropertyName("images");
                 JsonSerializer.Serialize(writer, property.Images, jsonSerializerOptions);
             }
+            if (property.LanguageOption.IsSet)
+                writer.WriteString("language", property.Language);
+
             if (property.LastVerifiedAtOption.IsSet)
                 writer.WriteString("last_verified_at", property.LastVerifiedAtOption.Value!.Value.ToString(LastVerifiedAtFormat));
 
@@ -659,10 +828,23 @@ namespace Skautik.Sdk.Model
                 writer.WritePropertyName("market");
                 JsonSerializer.Serialize(writer, property.Market, jsonSerializerOptions);
             }
+            if (property.ParkingOption.IsSet)
+            {
+                writer.WritePropertyName("parking");
+                JsonSerializer.Serialize(writer, property.Parking, jsonSerializerOptions);
+            }
             if (property.PriceHistoryOption.IsSet)
             {
                 writer.WritePropertyName("price_history");
                 JsonSerializer.Serialize(writer, property.PriceHistory, jsonSerializerOptions);
+            }
+            if (property.SubtypeOption.IsSet)
+                writer.WriteString("subtype", property.Subtype);
+
+            if (property.TranslationsOption.IsSet)
+            {
+                writer.WritePropertyName("translations");
+                JsonSerializer.Serialize(writer, property.Translations, jsonSerializerOptions);
             }
         }
     }

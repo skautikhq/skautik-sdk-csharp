@@ -48,9 +48,11 @@ namespace Skautik.Sdk.Client
             _jsonOptions.Converters.Add(new BuildingJsonConverter());
             _jsonOptions.Converters.Add(new CityJsonConverter());
             _jsonOptions.Converters.Add(new CityListJsonConverter());
+            _jsonOptions.Converters.Add(new ConnectorInputJsonConverter());
             _jsonOptions.Converters.Add(new DeliveryJsonConverter());
             _jsonOptions.Converters.Add(new DeliveryInputJsonConverter());
             _jsonOptions.Converters.Add(new DeliveryListJsonConverter());
+            _jsonOptions.Converters.Add(new DescriptionsJsonConverter());
             _jsonOptions.Converters.Add(new DistrictJsonConverter());
             _jsonOptions.Converters.Add(new DistrictListJsonConverter());
             _jsonOptions.Converters.Add(new EnergyJsonConverter());
@@ -59,11 +61,13 @@ namespace Skautik.Sdk.Client
             _jsonOptions.Converters.Add(new ExportInputJsonConverter());
             _jsonOptions.Converters.Add(new ExportListJsonConverter());
             _jsonOptions.Converters.Add(new ExportResponseJsonConverter());
+            _jsonOptions.Converters.Add(new FeaturesJsonConverter());
             _jsonOptions.Converters.Add(new GenerationJsonConverter());
             _jsonOptions.Converters.Add(new GenerationInputJsonConverter());
             _jsonOptions.Converters.Add(new GenerationListJsonConverter());
             _jsonOptions.Converters.Add(new GenerationResponseJsonConverter());
             _jsonOptions.Converters.Add(new ImageJsonConverter());
+            _jsonOptions.Converters.Add(new ImageInputJsonConverter());
             _jsonOptions.Converters.Add(new ImageListJsonConverter());
             _jsonOptions.Converters.Add(new ImageResponseJsonConverter());
             _jsonOptions.Converters.Add(new ImportJsonConverter());
@@ -88,6 +92,7 @@ namespace Skautik.Sdk.Client
             _jsonOptions.Converters.Add(new MarketMetricJsonConverter());
             _jsonOptions.Converters.Add(new MarketResponseJsonConverter());
             _jsonOptions.Converters.Add(new PageMetaJsonConverter());
+            _jsonOptions.Converters.Add(new ParkingJsonConverter());
             _jsonOptions.Converters.Add(new PriceObservationJsonConverter());
             _jsonOptions.Converters.Add(new PriceObservationListJsonConverter());
             _jsonOptions.Converters.Add(new ProblemJsonConverter());
@@ -103,9 +108,11 @@ namespace Skautik.Sdk.Client
             _jsonOptions.Converters.Add(new SeriesJsonConverter());
             _jsonOptions.Converters.Add(new SeriesPointJsonConverter());
             _jsonOptions.Converters.Add(new SeriesResponseJsonConverter());
+            _jsonOptions.Converters.Add(new ShrinkGuardJsonConverter());
             _jsonOptions.Converters.Add(new SizeJsonConverter());
             _jsonOptions.Converters.Add(new SourceDeliveryJsonConverter());
             _jsonOptions.Converters.Add(new SourceUpdateJsonConverter());
+            _jsonOptions.Converters.Add(new TranslationJsonConverter());
             _jsonOptions.Converters.Add(new WebhookJsonConverter());
             _jsonOptions.Converters.Add(new WebhookInputJsonConverter());
             _jsonOptions.Converters.Add(new WebhookListJsonConverter());

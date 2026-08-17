@@ -33,25 +33,42 @@ namespace Skautik.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Rooms" /> class.
         /// </summary>
+        /// <param name="balconies">balconies</param>
         /// <param name="bathrooms">bathrooms</param>
         /// <param name="bedrooms">bedrooms</param>
         /// <param name="floor">floor</param>
         /// <param name="floorsInBuilding">floorsInBuilding</param>
         /// <param name="halfBathrooms">halfBathrooms</param>
+        /// <param name="terraces">terraces</param>
         /// <param name="totalRooms">totalRooms</param>
         [JsonConstructor]
-        public Rooms(Option<int?> bathrooms = default, Option<int?> bedrooms = default, Option<int?> floor = default, Option<int?> floorsInBuilding = default, Option<int?> halfBathrooms = default, Option<int?> totalRooms = default)
+        public Rooms(Option<int?> balconies = default, Option<int?> bathrooms = default, Option<int?> bedrooms = default, Option<int?> floor = default, Option<int?> floorsInBuilding = default, Option<int?> halfBathrooms = default, Option<int?> terraces = default, Option<int?> totalRooms = default)
         {
+            BalconiesOption = balconies;
             BathroomsOption = bathrooms;
             BedroomsOption = bedrooms;
             FloorOption = floor;
             FloorsInBuildingOption = floorsInBuilding;
             HalfBathroomsOption = halfBathrooms;
+            TerracesOption = terraces;
             TotalRoomsOption = totalRooms;
             OnCreated();
         }
 
         partial void OnCreated();
+
+        /// <summary>
+        /// Used to track the state of Balconies
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<int?> BalconiesOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets Balconies
+        /// </summary>
+        [JsonPropertyName("balconies")]
+        public int? Balconies { get { return this.BalconiesOption.Value; } set { this.BalconiesOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Bathrooms
@@ -119,6 +136,19 @@ namespace Skautik.Sdk.Model
         public int? HalfBathrooms { get { return this.HalfBathroomsOption.Value; } set { this.HalfBathroomsOption = new(value); } }
 
         /// <summary>
+        /// Used to track the state of Terraces
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<int?> TerracesOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets Terraces
+        /// </summary>
+        [JsonPropertyName("terraces")]
+        public int? Terraces { get { return this.TerracesOption.Value; } set { this.TerracesOption = new(value); } }
+
+        /// <summary>
         /// Used to track the state of TotalRooms
         /// </summary>
         [JsonIgnore]
@@ -139,11 +169,13 @@ namespace Skautik.Sdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class Rooms {\n");
+            sb.Append("  Balconies: ").Append(Balconies).Append("\n");
             sb.Append("  Bathrooms: ").Append(Bathrooms).Append("\n");
             sb.Append("  Bedrooms: ").Append(Bedrooms).Append("\n");
             sb.Append("  Floor: ").Append(Floor).Append("\n");
             sb.Append("  FloorsInBuilding: ").Append(FloorsInBuilding).Append("\n");
             sb.Append("  HalfBathrooms: ").Append(HalfBathrooms).Append("\n");
+            sb.Append("  Terraces: ").Append(Terraces).Append("\n");
             sb.Append("  TotalRooms: ").Append(TotalRooms).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -192,11 +224,13 @@ namespace Skautik.Sdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
+            Option<int?> balconies = default;
             Option<int?> bathrooms = default;
             Option<int?> bedrooms = default;
             Option<int?> floor = default;
             Option<int?> floorsInBuilding = default;
             Option<int?> halfBathrooms = default;
+            Option<int?> terraces = default;
             Option<int?> totalRooms = default;
 
             while (utf8JsonReader.Read())
@@ -214,6 +248,9 @@ namespace Skautik.Sdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
+                        case "balconies":
+                            balconies = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
+                            break;
                         case "bathrooms":
                             bathrooms = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
                             break;
@@ -229,6 +266,9 @@ namespace Skautik.Sdk.Model
                         case "half_bathrooms":
                             halfBathrooms = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
                             break;
+                        case "terraces":
+                            terraces = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
+                            break;
                         case "total_rooms":
                             totalRooms = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
                             break;
@@ -237,6 +277,9 @@ namespace Skautik.Sdk.Model
                     }
                 }
             }
+
+            if (balconies.IsSet && balconies.Value == null)
+                throw new ArgumentNullException(nameof(balconies), "Property is not nullable for class Rooms.");
 
             if (bathrooms.IsSet && bathrooms.Value == null)
                 throw new ArgumentNullException(nameof(bathrooms), "Property is not nullable for class Rooms.");
@@ -253,10 +296,13 @@ namespace Skautik.Sdk.Model
             if (halfBathrooms.IsSet && halfBathrooms.Value == null)
                 throw new ArgumentNullException(nameof(halfBathrooms), "Property is not nullable for class Rooms.");
 
+            if (terraces.IsSet && terraces.Value == null)
+                throw new ArgumentNullException(nameof(terraces), "Property is not nullable for class Rooms.");
+
             if (totalRooms.IsSet && totalRooms.Value == null)
                 throw new ArgumentNullException(nameof(totalRooms), "Property is not nullable for class Rooms.");
 
-            return new Rooms(bathrooms, bedrooms, floor, floorsInBuilding, halfBathrooms, totalRooms);
+            return new Rooms(balconies, bathrooms, bedrooms, floor, floorsInBuilding, halfBathrooms, terraces, totalRooms);
         }
 
         /// <summary>
@@ -283,6 +329,9 @@ namespace Skautik.Sdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Rooms rooms, JsonSerializerOptions jsonSerializerOptions)
         {
+            if (rooms.BalconiesOption.IsSet)
+                writer.WriteNumber("balconies", rooms.BalconiesOption.Value!.Value);
+
             if (rooms.BathroomsOption.IsSet)
                 writer.WriteNumber("bathrooms", rooms.BathroomsOption.Value!.Value);
 
@@ -297,6 +346,9 @@ namespace Skautik.Sdk.Model
 
             if (rooms.HalfBathroomsOption.IsSet)
                 writer.WriteNumber("half_bathrooms", rooms.HalfBathroomsOption.Value!.Value);
+
+            if (rooms.TerracesOption.IsSet)
+                writer.WriteNumber("terraces", rooms.TerracesOption.Value!.Value);
 
             if (rooms.TotalRoomsOption.IsSet)
                 writer.WriteNumber("total_rooms", rooms.TotalRoomsOption.Value!.Value);

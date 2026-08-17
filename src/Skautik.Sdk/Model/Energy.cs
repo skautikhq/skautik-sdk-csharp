@@ -33,17 +33,57 @@ namespace Skautik.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Energy" /> class.
         /// </summary>
+        /// <param name="certificateType">certificateType</param>
+        /// <param name="co2Emissions">co2Emissions</param>
         /// <param name="consumptionKwh">consumptionKwh</param>
+        /// <param name="demandKwh">demandKwh</param>
+        /// <param name="includesHotWater">includesHotWater</param>
+        /// <param name="issuedAt">issuedAt</param>
         /// <param name="label">label</param>
+        /// <param name="primaryCarrier">primaryCarrier</param>
+        /// <param name="validUntil">validUntil</param>
         [JsonConstructor]
-        public Energy(Option<decimal?> consumptionKwh = default, Option<string?> label = default)
+        public Energy(Option<string?> certificateType = default, Option<decimal?> co2Emissions = default, Option<decimal?> consumptionKwh = default, Option<decimal?> demandKwh = default, Option<bool?> includesHotWater = default, Option<string?> issuedAt = default, Option<string?> label = default, Option<string?> primaryCarrier = default, Option<string?> validUntil = default)
         {
+            CertificateTypeOption = certificateType;
+            Co2EmissionsOption = co2Emissions;
             ConsumptionKwhOption = consumptionKwh;
+            DemandKwhOption = demandKwh;
+            IncludesHotWaterOption = includesHotWater;
+            IssuedAtOption = issuedAt;
             LabelOption = label;
+            PrimaryCarrierOption = primaryCarrier;
+            ValidUntilOption = validUntil;
             OnCreated();
         }
 
         partial void OnCreated();
+
+        /// <summary>
+        /// Used to track the state of CertificateType
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> CertificateTypeOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets CertificateType
+        /// </summary>
+        [JsonPropertyName("certificate_type")]
+        public string? CertificateType { get { return this.CertificateTypeOption.Value; } set { this.CertificateTypeOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of Co2Emissions
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<decimal?> Co2EmissionsOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets Co2Emissions
+        /// </summary>
+        [JsonPropertyName("co2_emissions")]
+        public decimal? Co2Emissions { get { return this.Co2EmissionsOption.Value; } set { this.Co2EmissionsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ConsumptionKwh
@@ -59,6 +99,45 @@ namespace Skautik.Sdk.Model
         public decimal? ConsumptionKwh { get { return this.ConsumptionKwhOption.Value; } set { this.ConsumptionKwhOption = new(value); } }
 
         /// <summary>
+        /// Used to track the state of DemandKwh
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<decimal?> DemandKwhOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets DemandKwh
+        /// </summary>
+        [JsonPropertyName("demand_kwh")]
+        public decimal? DemandKwh { get { return this.DemandKwhOption.Value; } set { this.DemandKwhOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of IncludesHotWater
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> IncludesHotWaterOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets IncludesHotWater
+        /// </summary>
+        [JsonPropertyName("includes_hot_water")]
+        public bool? IncludesHotWater { get { return this.IncludesHotWaterOption.Value; } set { this.IncludesHotWaterOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of IssuedAt
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> IssuedAtOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets IssuedAt
+        /// </summary>
+        [JsonPropertyName("issued_at")]
+        public string? IssuedAt { get { return this.IssuedAtOption.Value; } set { this.IssuedAtOption = new(value); } }
+
+        /// <summary>
         /// Used to track the state of Label
         /// </summary>
         [JsonIgnore]
@@ -72,6 +151,32 @@ namespace Skautik.Sdk.Model
         public string? Label { get { return this.LabelOption.Value; } set { this.LabelOption = new(value); } }
 
         /// <summary>
+        /// Used to track the state of PrimaryCarrier
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> PrimaryCarrierOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets PrimaryCarrier
+        /// </summary>
+        [JsonPropertyName("primary_carrier")]
+        public string? PrimaryCarrier { get { return this.PrimaryCarrierOption.Value; } set { this.PrimaryCarrierOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of ValidUntil
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> ValidUntilOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets ValidUntil
+        /// </summary>
+        [JsonPropertyName("valid_until")]
+        public string? ValidUntil { get { return this.ValidUntilOption.Value; } set { this.ValidUntilOption = new(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -79,8 +184,15 @@ namespace Skautik.Sdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class Energy {\n");
+            sb.Append("  CertificateType: ").Append(CertificateType).Append("\n");
+            sb.Append("  Co2Emissions: ").Append(Co2Emissions).Append("\n");
             sb.Append("  ConsumptionKwh: ").Append(ConsumptionKwh).Append("\n");
+            sb.Append("  DemandKwh: ").Append(DemandKwh).Append("\n");
+            sb.Append("  IncludesHotWater: ").Append(IncludesHotWater).Append("\n");
+            sb.Append("  IssuedAt: ").Append(IssuedAt).Append("\n");
             sb.Append("  Label: ").Append(Label).Append("\n");
+            sb.Append("  PrimaryCarrier: ").Append(PrimaryCarrier).Append("\n");
+            sb.Append("  ValidUntil: ").Append(ValidUntil).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -128,8 +240,15 @@ namespace Skautik.Sdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
+            Option<string?> certificateType = default;
+            Option<decimal?> co2Emissions = default;
             Option<decimal?> consumptionKwh = default;
+            Option<decimal?> demandKwh = default;
+            Option<bool?> includesHotWater = default;
+            Option<string?> issuedAt = default;
             Option<string?> label = default;
+            Option<string?> primaryCarrier = default;
+            Option<string?> validUntil = default;
 
             while (utf8JsonReader.Read())
             {
@@ -146,11 +265,32 @@ namespace Skautik.Sdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
+                        case "certificate_type":
+                            certificateType = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
+                        case "co2_emissions":
+                            co2Emissions = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
+                            break;
                         case "consumption_kwh":
                             consumptionKwh = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
+                        case "demand_kwh":
+                            demandKwh = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
+                            break;
+                        case "includes_hot_water":
+                            includesHotWater = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
+                        case "issued_at":
+                            issuedAt = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
                         case "label":
                             label = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
+                        case "primary_carrier":
+                            primaryCarrier = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
+                        case "valid_until":
+                            validUntil = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         default:
                             break;
@@ -158,13 +298,34 @@ namespace Skautik.Sdk.Model
                 }
             }
 
+            if (certificateType.IsSet && certificateType.Value == null)
+                throw new ArgumentNullException(nameof(certificateType), "Property is not nullable for class Energy.");
+
+            if (co2Emissions.IsSet && co2Emissions.Value == null)
+                throw new ArgumentNullException(nameof(co2Emissions), "Property is not nullable for class Energy.");
+
             if (consumptionKwh.IsSet && consumptionKwh.Value == null)
                 throw new ArgumentNullException(nameof(consumptionKwh), "Property is not nullable for class Energy.");
+
+            if (demandKwh.IsSet && demandKwh.Value == null)
+                throw new ArgumentNullException(nameof(demandKwh), "Property is not nullable for class Energy.");
+
+            if (includesHotWater.IsSet && includesHotWater.Value == null)
+                throw new ArgumentNullException(nameof(includesHotWater), "Property is not nullable for class Energy.");
+
+            if (issuedAt.IsSet && issuedAt.Value == null)
+                throw new ArgumentNullException(nameof(issuedAt), "Property is not nullable for class Energy.");
 
             if (label.IsSet && label.Value == null)
                 throw new ArgumentNullException(nameof(label), "Property is not nullable for class Energy.");
 
-            return new Energy(consumptionKwh, label);
+            if (primaryCarrier.IsSet && primaryCarrier.Value == null)
+                throw new ArgumentNullException(nameof(primaryCarrier), "Property is not nullable for class Energy.");
+
+            if (validUntil.IsSet && validUntil.Value == null)
+                throw new ArgumentNullException(nameof(validUntil), "Property is not nullable for class Energy.");
+
+            return new Energy(certificateType, co2Emissions, consumptionKwh, demandKwh, includesHotWater, issuedAt, label, primaryCarrier, validUntil);
         }
 
         /// <summary>
@@ -191,14 +352,47 @@ namespace Skautik.Sdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Energy energy, JsonSerializerOptions jsonSerializerOptions)
         {
+            if (energy.CertificateTypeOption.IsSet && energy.CertificateType == null)
+                throw new ArgumentNullException(nameof(energy.CertificateType), "Property is required for class Energy.");
+
+            if (energy.IssuedAtOption.IsSet && energy.IssuedAt == null)
+                throw new ArgumentNullException(nameof(energy.IssuedAt), "Property is required for class Energy.");
+
             if (energy.LabelOption.IsSet && energy.Label == null)
                 throw new ArgumentNullException(nameof(energy.Label), "Property is required for class Energy.");
+
+            if (energy.PrimaryCarrierOption.IsSet && energy.PrimaryCarrier == null)
+                throw new ArgumentNullException(nameof(energy.PrimaryCarrier), "Property is required for class Energy.");
+
+            if (energy.ValidUntilOption.IsSet && energy.ValidUntil == null)
+                throw new ArgumentNullException(nameof(energy.ValidUntil), "Property is required for class Energy.");
+
+            if (energy.CertificateTypeOption.IsSet)
+                writer.WriteString("certificate_type", energy.CertificateType);
+
+            if (energy.Co2EmissionsOption.IsSet)
+                writer.WriteNumber("co2_emissions", energy.Co2EmissionsOption.Value!.Value);
 
             if (energy.ConsumptionKwhOption.IsSet)
                 writer.WriteNumber("consumption_kwh", energy.ConsumptionKwhOption.Value!.Value);
 
+            if (energy.DemandKwhOption.IsSet)
+                writer.WriteNumber("demand_kwh", energy.DemandKwhOption.Value!.Value);
+
+            if (energy.IncludesHotWaterOption.IsSet)
+                writer.WriteBoolean("includes_hot_water", energy.IncludesHotWaterOption.Value!.Value);
+
+            if (energy.IssuedAtOption.IsSet)
+                writer.WriteString("issued_at", energy.IssuedAt);
+
             if (energy.LabelOption.IsSet)
                 writer.WriteString("label", energy.Label);
+
+            if (energy.PrimaryCarrierOption.IsSet)
+                writer.WriteString("primary_carrier", energy.PrimaryCarrier);
+
+            if (energy.ValidUntilOption.IsSet)
+                writer.WriteString("valid_until", energy.ValidUntil);
         }
     }
 }

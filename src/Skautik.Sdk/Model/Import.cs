@@ -44,10 +44,12 @@ namespace Skautik.Sdk.Model
         /// <param name="failureReason">failureReason</param>
         /// <param name="filename">filename</param>
         /// <param name="finishedAt">finishedAt</param>
+        /// <param name="imagesQueued">imagesQueued</param>
+        /// <param name="shrinkGuard">shrinkGuard</param>
         /// <param name="sourceId">sourceId</param>
         /// <param name="startedAt">startedAt</param>
         [JsonConstructor]
-        public Import(ImportCounts counts, DateTime createdAt, bool dryRun, string format, string id, string mode, string status, Option<int?> bytes = default, Option<string?> failureReason = default, Option<string?> filename = default, Option<DateTime?> finishedAt = default, Option<string?> sourceId = default, Option<DateTime?> startedAt = default)
+        public Import(ImportCounts counts, DateTime createdAt, bool dryRun, string format, string id, string mode, string status, Option<int?> bytes = default, Option<string?> failureReason = default, Option<string?> filename = default, Option<DateTime?> finishedAt = default, Option<int?> imagesQueued = default, Option<ShrinkGuard?> shrinkGuard = default, Option<string?> sourceId = default, Option<DateTime?> startedAt = default)
         {
             Counts = counts;
             CreatedAt = createdAt;
@@ -60,6 +62,8 @@ namespace Skautik.Sdk.Model
             FailureReasonOption = failureReason;
             FilenameOption = filename;
             FinishedAtOption = finishedAt;
+            ImagesQueuedOption = imagesQueued;
+            ShrinkGuardOption = shrinkGuard;
             SourceIdOption = sourceId;
             StartedAtOption = startedAt;
             OnCreated();
@@ -162,6 +166,32 @@ namespace Skautik.Sdk.Model
         public DateTime? FinishedAt { get { return this.FinishedAtOption.Value; } set { this.FinishedAtOption = new(value); } }
 
         /// <summary>
+        /// Used to track the state of ImagesQueued
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<int?> ImagesQueuedOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets ImagesQueued
+        /// </summary>
+        [JsonPropertyName("images_queued")]
+        public int? ImagesQueued { get { return this.ImagesQueuedOption.Value; } set { this.ImagesQueuedOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of ShrinkGuard
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<ShrinkGuard?> ShrinkGuardOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets ShrinkGuard
+        /// </summary>
+        [JsonPropertyName("shrink_guard")]
+        public ShrinkGuard? ShrinkGuard { get { return this.ShrinkGuardOption.Value; } set { this.ShrinkGuardOption = new(value); } }
+
+        /// <summary>
         /// Used to track the state of SourceId
         /// </summary>
         [JsonIgnore]
@@ -206,6 +236,8 @@ namespace Skautik.Sdk.Model
             sb.Append("  FailureReason: ").Append(FailureReason).Append("\n");
             sb.Append("  Filename: ").Append(Filename).Append("\n");
             sb.Append("  FinishedAt: ").Append(FinishedAt).Append("\n");
+            sb.Append("  ImagesQueued: ").Append(ImagesQueued).Append("\n");
+            sb.Append("  ShrinkGuard: ").Append(ShrinkGuard).Append("\n");
             sb.Append("  SourceId: ").Append(SourceId).Append("\n");
             sb.Append("  StartedAt: ").Append(StartedAt).Append("\n");
             sb.Append("}\n");
@@ -281,6 +313,8 @@ namespace Skautik.Sdk.Model
             Option<string?> failureReason = default;
             Option<string?> filename = default;
             Option<DateTime?> finishedAt = default;
+            Option<int?> imagesQueued = default;
+            Option<ShrinkGuard?> shrinkGuard = default;
             Option<string?> sourceId = default;
             Option<DateTime?> startedAt = default;
 
@@ -331,6 +365,12 @@ namespace Skautik.Sdk.Model
                             break;
                         case "finished_at":
                             finishedAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "images_queued":
+                            imagesQueued = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
+                            break;
+                        case "shrink_guard":
+                            shrinkGuard = new Option<ShrinkGuard?>(JsonSerializer.Deserialize<ShrinkGuard>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         case "source_id":
                             sourceId = new Option<string?>(utf8JsonReader.GetString()!);
@@ -398,13 +438,19 @@ namespace Skautik.Sdk.Model
             if (finishedAt.IsSet && finishedAt.Value == null)
                 throw new ArgumentNullException(nameof(finishedAt), "Property is not nullable for class Import.");
 
+            if (imagesQueued.IsSet && imagesQueued.Value == null)
+                throw new ArgumentNullException(nameof(imagesQueued), "Property is not nullable for class Import.");
+
+            if (shrinkGuard.IsSet && shrinkGuard.Value == null)
+                throw new ArgumentNullException(nameof(shrinkGuard), "Property is not nullable for class Import.");
+
             if (sourceId.IsSet && sourceId.Value == null)
                 throw new ArgumentNullException(nameof(sourceId), "Property is not nullable for class Import.");
 
             if (startedAt.IsSet && startedAt.Value == null)
                 throw new ArgumentNullException(nameof(startedAt), "Property is not nullable for class Import.");
 
-            return new Import(counts.Value!, createdAt.Value!.Value!, dryRun.Value!.Value!, format.Value!, id.Value!, mode.Value!, status.Value!, bytes, failureReason, filename, finishedAt, sourceId, startedAt);
+            return new Import(counts.Value!, createdAt.Value!.Value!, dryRun.Value!.Value!, format.Value!, id.Value!, mode.Value!, status.Value!, bytes, failureReason, filename, finishedAt, imagesQueued, shrinkGuard, sourceId, startedAt);
         }
 
         /// <summary>
@@ -452,6 +498,9 @@ namespace Skautik.Sdk.Model
             if (import.FilenameOption.IsSet && import.Filename == null)
                 throw new ArgumentNullException(nameof(import.Filename), "Property is required for class Import.");
 
+            if (import.ShrinkGuardOption.IsSet && import.ShrinkGuard == null)
+                throw new ArgumentNullException(nameof(import.ShrinkGuard), "Property is required for class Import.");
+
             if (import.SourceIdOption.IsSet && import.SourceId == null)
                 throw new ArgumentNullException(nameof(import.SourceId), "Property is required for class Import.");
 
@@ -481,6 +530,14 @@ namespace Skautik.Sdk.Model
             if (import.FinishedAtOption.IsSet)
                 writer.WriteString("finished_at", import.FinishedAtOption.Value!.Value.ToString(FinishedAtFormat));
 
+            if (import.ImagesQueuedOption.IsSet)
+                writer.WriteNumber("images_queued", import.ImagesQueuedOption.Value!.Value);
+
+            if (import.ShrinkGuardOption.IsSet)
+            {
+                writer.WritePropertyName("shrink_guard");
+                JsonSerializer.Serialize(writer, import.ShrinkGuard, jsonSerializerOptions);
+            }
             if (import.SourceIdOption.IsSet)
                 writer.WriteString("source_id", import.SourceId);
 

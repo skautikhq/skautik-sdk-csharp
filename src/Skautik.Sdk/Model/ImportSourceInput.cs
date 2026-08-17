@@ -33,31 +33,27 @@ namespace Skautik.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ImportSourceInput" /> class.
         /// </summary>
-        /// <param name="deletionPolicy">deletionPolicy</param>
         /// <param name="delivery">delivery</param>
         /// <param name="format">format</param>
-        /// <param name="mapping">mapping</param>
         /// <param name="name">name</param>
+        /// <param name="connector">connector</param>
+        /// <param name="deletionPolicy">deletionPolicy</param>
+        /// <param name="mapping">mapping</param>
         /// <param name="schedule">schedule</param>
         [JsonConstructor]
-        public ImportSourceInput(string deletionPolicy, DeliveryInput delivery, string format, Dictionary<string, string> mapping, string name, string schedule)
+        public ImportSourceInput(DeliveryInput delivery, string format, string name, Option<ConnectorInput?> connector = default, Option<string?> deletionPolicy = default, Option<Dictionary<string, string>?> mapping = default, Option<string?> schedule = default)
         {
-            DeletionPolicy = deletionPolicy;
             Delivery = delivery;
             Format = format;
-            Mapping = mapping;
             Name = name;
-            Schedule = schedule;
+            ConnectorOption = connector;
+            DeletionPolicyOption = deletionPolicy;
+            MappingOption = mapping;
+            ScheduleOption = schedule;
             OnCreated();
         }
 
         partial void OnCreated();
-
-        /// <summary>
-        /// Gets or Sets DeletionPolicy
-        /// </summary>
-        [JsonPropertyName("deletion_policy")]
-        public string DeletionPolicy { get; set; }
 
         /// <summary>
         /// Gets or Sets Delivery
@@ -72,22 +68,62 @@ namespace Skautik.Sdk.Model
         public string Format { get; set; }
 
         /// <summary>
-        /// Gets or Sets Mapping
-        /// </summary>
-        [JsonPropertyName("mapping")]
-        public Dictionary<string, string> Mapping { get; set; }
-
-        /// <summary>
         /// Gets or Sets Name
         /// </summary>
         [JsonPropertyName("name")]
         public string Name { get; set; }
 
         /// <summary>
+        /// Used to track the state of Connector
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<ConnectorInput?> ConnectorOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets Connector
+        /// </summary>
+        [JsonPropertyName("connector")]
+        public ConnectorInput? Connector { get { return this.ConnectorOption.Value; } set { this.ConnectorOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of DeletionPolicy
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> DeletionPolicyOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets DeletionPolicy
+        /// </summary>
+        [JsonPropertyName("deletion_policy")]
+        public string? DeletionPolicy { get { return this.DeletionPolicyOption.Value; } set { this.DeletionPolicyOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of Mapping
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<Dictionary<string, string>?> MappingOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets Mapping
+        /// </summary>
+        [JsonPropertyName("mapping")]
+        public Dictionary<string, string>? Mapping { get { return this.MappingOption.Value; } set { this.MappingOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of Schedule
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> ScheduleOption { get; private set; }
+
+        /// <summary>
         /// Gets or Sets Schedule
         /// </summary>
         [JsonPropertyName("schedule")]
-        public string Schedule { get; set; }
+        public string? Schedule { get { return this.ScheduleOption.Value; } set { this.ScheduleOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -97,11 +133,12 @@ namespace Skautik.Sdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class ImportSourceInput {\n");
-            sb.Append("  DeletionPolicy: ").Append(DeletionPolicy).Append("\n");
             sb.Append("  Delivery: ").Append(Delivery).Append("\n");
             sb.Append("  Format: ").Append(Format).Append("\n");
-            sb.Append("  Mapping: ").Append(Mapping).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  Connector: ").Append(Connector).Append("\n");
+            sb.Append("  DeletionPolicy: ").Append(DeletionPolicy).Append("\n");
+            sb.Append("  Mapping: ").Append(Mapping).Append("\n");
             sb.Append("  Schedule: ").Append(Schedule).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -150,11 +187,12 @@ namespace Skautik.Sdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string?> deletionPolicy = default;
             Option<DeliveryInput?> delivery = default;
             Option<string?> format = default;
-            Option<Dictionary<string, string>?> mapping = default;
             Option<string?> name = default;
+            Option<ConnectorInput?> connector = default;
+            Option<string?> deletionPolicy = default;
+            Option<Dictionary<string, string>?> mapping = default;
             Option<string?> schedule = default;
 
             while (utf8JsonReader.Read())
@@ -172,20 +210,23 @@ namespace Skautik.Sdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "deletion_policy":
-                            deletionPolicy = new Option<string?>(utf8JsonReader.GetString()!);
-                            break;
                         case "delivery":
                             delivery = new Option<DeliveryInput?>(JsonSerializer.Deserialize<DeliveryInput>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         case "format":
                             format = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
-                        case "mapping":
-                            mapping = new Option<Dictionary<string, string>?>(JsonSerializer.Deserialize<Dictionary<string, string>>(ref utf8JsonReader, jsonSerializerOptions)!);
-                            break;
                         case "name":
                             name = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
+                        case "connector":
+                            connector = new Option<ConnectorInput?>(JsonSerializer.Deserialize<ConnectorInput>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
+                        case "deletion_policy":
+                            deletionPolicy = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
+                        case "mapping":
+                            mapping = new Option<Dictionary<string, string>?>(JsonSerializer.Deserialize<Dictionary<string, string>>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         case "schedule":
                             schedule = new Option<string?>(utf8JsonReader.GetString()!);
@@ -196,26 +237,14 @@ namespace Skautik.Sdk.Model
                 }
             }
 
-            if (!deletionPolicy.IsSet)
-                throw new ArgumentException("Property is required for class ImportSourceInput.", nameof(deletionPolicy));
-
             if (!delivery.IsSet)
                 throw new ArgumentException("Property is required for class ImportSourceInput.", nameof(delivery));
 
             if (!format.IsSet)
                 throw new ArgumentException("Property is required for class ImportSourceInput.", nameof(format));
 
-            if (!mapping.IsSet)
-                throw new ArgumentException("Property is required for class ImportSourceInput.", nameof(mapping));
-
             if (!name.IsSet)
                 throw new ArgumentException("Property is required for class ImportSourceInput.", nameof(name));
-
-            if (!schedule.IsSet)
-                throw new ArgumentException("Property is required for class ImportSourceInput.", nameof(schedule));
-
-            if (deletionPolicy.IsSet && deletionPolicy.Value == null)
-                throw new ArgumentNullException(nameof(deletionPolicy), "Property is not nullable for class ImportSourceInput.");
 
             if (delivery.IsSet && delivery.Value == null)
                 throw new ArgumentNullException(nameof(delivery), "Property is not nullable for class ImportSourceInput.");
@@ -223,16 +252,22 @@ namespace Skautik.Sdk.Model
             if (format.IsSet && format.Value == null)
                 throw new ArgumentNullException(nameof(format), "Property is not nullable for class ImportSourceInput.");
 
-            if (mapping.IsSet && mapping.Value == null)
-                throw new ArgumentNullException(nameof(mapping), "Property is not nullable for class ImportSourceInput.");
-
             if (name.IsSet && name.Value == null)
                 throw new ArgumentNullException(nameof(name), "Property is not nullable for class ImportSourceInput.");
+
+            if (connector.IsSet && connector.Value == null)
+                throw new ArgumentNullException(nameof(connector), "Property is not nullable for class ImportSourceInput.");
+
+            if (deletionPolicy.IsSet && deletionPolicy.Value == null)
+                throw new ArgumentNullException(nameof(deletionPolicy), "Property is not nullable for class ImportSourceInput.");
+
+            if (mapping.IsSet && mapping.Value == null)
+                throw new ArgumentNullException(nameof(mapping), "Property is not nullable for class ImportSourceInput.");
 
             if (schedule.IsSet && schedule.Value == null)
                 throw new ArgumentNullException(nameof(schedule), "Property is not nullable for class ImportSourceInput.");
 
-            return new ImportSourceInput(deletionPolicy.Value!, delivery.Value!, format.Value!, mapping.Value!, name.Value!, schedule.Value!);
+            return new ImportSourceInput(delivery.Value!, format.Value!, name.Value!, connector, deletionPolicy, mapping, schedule);
         }
 
         /// <summary>
@@ -259,35 +294,48 @@ namespace Skautik.Sdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ImportSourceInput importSourceInput, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (importSourceInput.DeletionPolicy == null)
-                throw new ArgumentNullException(nameof(importSourceInput.DeletionPolicy), "Property is required for class ImportSourceInput.");
-
             if (importSourceInput.Delivery == null)
                 throw new ArgumentNullException(nameof(importSourceInput.Delivery), "Property is required for class ImportSourceInput.");
 
             if (importSourceInput.Format == null)
                 throw new ArgumentNullException(nameof(importSourceInput.Format), "Property is required for class ImportSourceInput.");
 
-            if (importSourceInput.Mapping == null)
-                throw new ArgumentNullException(nameof(importSourceInput.Mapping), "Property is required for class ImportSourceInput.");
-
             if (importSourceInput.Name == null)
                 throw new ArgumentNullException(nameof(importSourceInput.Name), "Property is required for class ImportSourceInput.");
 
-            if (importSourceInput.Schedule == null)
-                throw new ArgumentNullException(nameof(importSourceInput.Schedule), "Property is required for class ImportSourceInput.");
+            if (importSourceInput.ConnectorOption.IsSet && importSourceInput.Connector == null)
+                throw new ArgumentNullException(nameof(importSourceInput.Connector), "Property is required for class ImportSourceInput.");
 
-            writer.WriteString("deletion_policy", importSourceInput.DeletionPolicy);
+            if (importSourceInput.DeletionPolicyOption.IsSet && importSourceInput.DeletionPolicy == null)
+                throw new ArgumentNullException(nameof(importSourceInput.DeletionPolicy), "Property is required for class ImportSourceInput.");
+
+            if (importSourceInput.MappingOption.IsSet && importSourceInput.Mapping == null)
+                throw new ArgumentNullException(nameof(importSourceInput.Mapping), "Property is required for class ImportSourceInput.");
+
+            if (importSourceInput.ScheduleOption.IsSet && importSourceInput.Schedule == null)
+                throw new ArgumentNullException(nameof(importSourceInput.Schedule), "Property is required for class ImportSourceInput.");
 
             writer.WritePropertyName("delivery");
             JsonSerializer.Serialize(writer, importSourceInput.Delivery, jsonSerializerOptions);
             writer.WriteString("format", importSourceInput.Format);
 
-            writer.WritePropertyName("mapping");
-            JsonSerializer.Serialize(writer, importSourceInput.Mapping, jsonSerializerOptions);
             writer.WriteString("name", importSourceInput.Name);
 
-            writer.WriteString("schedule", importSourceInput.Schedule);
+            if (importSourceInput.ConnectorOption.IsSet)
+            {
+                writer.WritePropertyName("connector");
+                JsonSerializer.Serialize(writer, importSourceInput.Connector, jsonSerializerOptions);
+            }
+            if (importSourceInput.DeletionPolicyOption.IsSet)
+                writer.WriteString("deletion_policy", importSourceInput.DeletionPolicy);
+
+            if (importSourceInput.MappingOption.IsSet)
+            {
+                writer.WritePropertyName("mapping");
+                JsonSerializer.Serialize(writer, importSourceInput.Mapping, jsonSerializerOptions);
+            }
+            if (importSourceInput.ScheduleOption.IsSet)
+                writer.WriteString("schedule", importSourceInput.Schedule);
         }
     }
 }
